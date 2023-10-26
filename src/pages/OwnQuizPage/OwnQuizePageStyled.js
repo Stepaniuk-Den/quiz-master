@@ -36,11 +36,11 @@ export const TitleS = styled.h2`
   margin: 0 0 20px;
   padding: 0;
   /* color: #F4F4F4; */
-  color: var(--text-color-100);
-  /* font-family: Gilroy; */
+  color: var(--text-color-100);  
+  font-family: GilroyBold;
   font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
+  /* font-style: normal;
+  font-weight: 700; */
   line-height: 1.19;
   letter-spacing: -0.32px;
 
