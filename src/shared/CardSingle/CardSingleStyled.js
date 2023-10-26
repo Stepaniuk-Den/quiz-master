@@ -13,8 +13,9 @@ export const CardWrapper = styled.li`
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  /* background-color: rgba(255, 255, 255, 0.02); */
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.02);
+  background-color: var(--white-background);
+  /* background-color: rgba(0, 0, 0, 0.8); */
 
   @media (min-width: 768px) {
     width: 340px;
@@ -55,7 +56,8 @@ export const UsersNumber = styled.p`
   margin: 0;
   padding: 0;
   display: block;
-  color: #f4f4f4;
+  /* color: #f4f4f4; */
+  color: var(--text-color-100);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -70,7 +72,8 @@ export const UsersNumber = styled.p`
 export const FiHeartS = styled(FiHeart)`
   width: 20px;
   height: 20px;
-  stroke: #f4f4f4;
+  /* stroke: #f4f4f4; */
+  stroke: var(--text-color-100);
   // and add class for fill//
   /* fill: red; */
 `;
@@ -95,7 +98,8 @@ export const TextWrapper = styled.div`
 export const ThemesS = styled.h4`
   margin: 0;
   padding: 0;
-  color: rgba(244, 244, 244, 0.5);
+  /* color: rgba(244, 244, 244, 0.5); */
+  color: var(--text-color-50);
   /* font-family: Gilroy; */
   font-size: 14px;
   font-style: normal;
@@ -113,7 +117,8 @@ export const ThemesS = styled.h4`
 export const GeneralScienceS = styled.h3`
   margin: 0;
   padding: 0;
-  color: #f4f4f4;
+  /* color: #f4f4f4; */
+  color: var(--text-color-100);
   /* font-family: Gilroy; */
   font-size: 20px;
   font-style: normal;
@@ -129,5 +134,7 @@ export const GeneralScienceS = styled.h3`
 export const RatingS = styled.div`
   margin: 0;
   padding: 0;
-  color: #f4f4f4;
+  /* color: #f4f4f4; */
+  color: var(--star-color-100);
+  /* color: var(--star-color-8); */
 `;

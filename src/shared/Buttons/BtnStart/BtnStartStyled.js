@@ -8,9 +8,12 @@ export const BtnStartS = styled.button`
   width: 80px;
   height: 40px;
   border-radius: 30px;
-  border: 1px solid rgba(244, 244, 244, 0.6);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #f4f4f4;
+  /* border: 1px solid rgba(244, 244, 244, 0.6); */
+  border: 1px solid var(--bodrer-color-60);
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  background-color: transparent;
+  /* color: #f4f4f4; */
+  color: var(--text-color-100);
   /* font-family: Gilroy; */
   font-size: 14px;
   font-style: normal;
