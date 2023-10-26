@@ -1,9 +1,12 @@
+import UserStats from "../../components/UserStats"
 
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <>
+      <UserStats />
+    </>
   )
 }
 
-export default HomePage
+export default HomePage;
