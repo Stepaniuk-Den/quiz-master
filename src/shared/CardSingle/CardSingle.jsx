@@ -1,4 +1,4 @@
-import BtnStart from "../../../../components/Buttons/BtnStart/BtnStart";
+import BtnStart from "../../shared/Buttons/BtnStart";
 import {
   CardWrapper,
   FiHeartS,

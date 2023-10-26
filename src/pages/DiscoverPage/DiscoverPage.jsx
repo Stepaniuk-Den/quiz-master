@@ -1,7 +1,8 @@
-import BtnCreateQuiz from "../../components/Buttons/BtnCreateQuiz/BtnCreateQuiz";
-import BtnLoadMore from "../../components/Buttons/BtnLoadMore/BtnLoadMore";
-import CardsAll from "./DiscoverPageComponents/CardsAll/CardsAll";
+import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
+import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
+import CardsAll from "../../shared/CardsAll/CardsAll";
 import FormFilters from "./DiscoverPageComponents/FormFilters/FormFilters";
+// import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
 import {
   PageWrapper,
   SectionWrapper,
@@ -15,7 +16,7 @@ const DiscoverPage = () => {
       <SectionWrapper>
         <TitleIconBox>
           <TitleS>Discover</TitleS>
-          <BtnCreateQuiz />
+          <BtnCreateQuiz/> 
         </TitleIconBox>        
         <FormFilters/>
         <CardsAll/>
