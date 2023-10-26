@@ -1,12 +1,12 @@
 
-import { InfoText, Line, TitleText, UserCard } from "./UserStatsStyled";
+import { InfoText, Line, TitleText, UserAvatar, UserCard, UserName } from "./UserStatsStyled";
 import {infoUser} from "./info/infoUser";
 
 const UserStats = () => {
   return (
       <UserCard>
-          <img src={infoUser.avatar} alt="" width="100" height="100" />
-          <InfoText>{infoUser.userName}</InfoText>
+          <UserAvatar src={infoUser.avatar} alt="user avatar"/>
+          <UserName>{infoUser.userName}</UserName>
           <TitleText>Passed quizzes</TitleText>
           <InfoText>{infoUser.passedQuizzes}</InfoText>
           <Line/>
