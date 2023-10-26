@@ -35,7 +35,6 @@ export const TitleIconBox = styled.div`
 export const TitleS = styled.h2`
   margin: 0 0 20px;
   padding: 0;
-
   /* color: #F4F4F4; */
   color: var(--text-color-100);
   /* font-family: Gilroy; */

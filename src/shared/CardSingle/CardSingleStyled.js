@@ -34,7 +34,7 @@ export const TopIconBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   @media (min-width: 768px) {
     margin-bottom: 56px;
   }
@@ -75,7 +75,9 @@ export const FiHeartS = styled(FiHeart)`
   /* stroke: #f4f4f4; */
   stroke: var(--text-color-100);
   // and add class for fill//
-  /* fill: red; */
+  &.favorite {
+    fill: var(--text-color-100);
+  }
 `;
 
 export const TextRatingWrapper = styled.div`
@@ -129,9 +131,8 @@ export const GeneralScienceS = styled.h3`
     font-size: 24px;
     line-height: 1.33;
   }
-
 `;
-export const RatingS = styled.div`
+export const RatingStars = styled.div`
   margin: 0;
   padding: 0;
   /* color: #f4f4f4; */

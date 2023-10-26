@@ -12,6 +12,7 @@ export const ButtonS = styled.button`
   justify-content: center;
   gap: 16px;
   border: transparent;
+  background-color: transparent;
 `;
 export const IconWrapper = styled.div`
   box-sizing: border-box;
@@ -40,7 +41,9 @@ export const BtnTitle = styled.h3`
   /* height: 32px;
 text-align: center; */
   /* color: #F4F4F4; */
+  color: var(--text-color-100);
   /* font-family: Gilroy; */
+  
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
