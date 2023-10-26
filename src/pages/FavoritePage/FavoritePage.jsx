@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+//import { useLocation } from "react-router";
 import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
 import CardsAll from "../../shared/CardsAll/CardsAll";
 import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
@@ -7,7 +7,7 @@ import { PageWrapper, SectionWrapper, TitleIconBox, TitleS } from "./FavoritePag
 
 
 const FavoritePage = () => {
-  const location = useLocation();
+  //const location = useLocation();
   // console.log("locationFavorite", location);
 
   return (
@@ -18,7 +18,7 @@ const FavoritePage = () => {
           <BtnCreateQuiz />
         </TitleIconBox>
         <FormFiltersFavorite />
-        <CardsAll location={location}/>
+        <CardsAll/>
         <BtnLoadMore />
       </SectionWrapper>
     </PageWrapper>

@@ -3,7 +3,7 @@
 
 import { Options, SelectStyled } from "./SelectStyled";
 
-const Select = ({className, selectTitle, options}) => {
+const SelectCustom = ({className, selectTitle, options}) => {
     // console.log(className);
 
     // const options = [
@@ -24,4 +24,4 @@ const Select = ({className, selectTitle, options}) => {
   );
 };
 
-export default Select;
+export default SelectCustom;

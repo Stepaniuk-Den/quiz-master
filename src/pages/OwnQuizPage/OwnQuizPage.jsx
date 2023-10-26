@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+//import { useLocation } from "react-router";
 import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
 import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
 import CardsAll from "../../shared/CardsAll/CardsAll";
@@ -13,7 +13,7 @@ import FormFilterOwnQuiz from "./OwnQuizPageComponents/FormFilterOwnQuiz/FormFil
 
 
 const OwnQuizPage = () => {
-  const location = useLocation();
+  //const location = useLocation();
   // console.log("locationDiscovery", location);
 
 

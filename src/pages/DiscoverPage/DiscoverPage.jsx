@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+//import { useLocation } from "react-router";
 import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
 import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
 import CardsAll from "../../shared/CardsAll/CardsAll";
@@ -11,7 +11,7 @@ import {
 import FormFiltersDiscovery from "./DiscoverPageComponents/FormFiltersDiscovery/FormFiltersDiscovery";
 
 const DiscoverPage = () => {
-  const location = useLocation();
+  //const location = useLocation();
   // console.log("locationDiscovery", location);
 
   return (
