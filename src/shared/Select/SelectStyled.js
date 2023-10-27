@@ -46,6 +46,7 @@ export const Options = styled.option`
   `;
 
 export const FiSearchS = styled(FiSearch)`
+outline: 1px solid red;
   width: 14px;
   height: 14px;
 `;

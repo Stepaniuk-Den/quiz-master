@@ -1,7 +1,7 @@
 // import Select from 'react-select';
 //import { SelectStyled } from "./SelectStyled";
 
-import { Options, SelectStyled } from "./SelectStyled";
+import { FiSearchS, Options, SelectStyled } from "./SelectStyled";
 
 const SelectCustom = ({className, selectTitle, options}) => {
     // console.log(className);
@@ -15,8 +15,9 @@ const SelectCustom = ({className, selectTitle, options}) => {
 
   return (
     <>
-      <SelectStyled className={className}>        
-        <Options value="">{selectTitle}</Options>
+      <SelectStyled className={className}>
+                
+        <Options value="">{selectTitle} <FiSearchS/></Options>
         <Options value="">{options}</Options>         
         <Options value="">{options}</Options>
       </SelectStyled>
