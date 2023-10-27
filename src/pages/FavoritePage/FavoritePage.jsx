@@ -1,9 +1,11 @@
 //import { useLocation } from "react-router";
-import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
-import CardsAll from "../../shared/CardsAll/CardsAll";
 import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
-import FormFiltersFavorite from "./FavoritePageComponents/FormFiltersFavorite/FormFiltersFavorite";
-import { PageWrapper, SectionWrapper, TitleIconBox, TitleS } from "./FavoritePageStyled";
+import { PageWrapper, SectionWrapper } from "./FavoritePageStyled";
+import PageTopBar from "../../shared/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/QuizesList/QuizesList";
+import QuizeFilterTools from "../../modules/favoritePage/components/QuizFilterTools/QuizFilterTools";
+
+
 
 
 const FavoritePage = () => {
@@ -12,13 +14,10 @@ const FavoritePage = () => {
 
   return (
     <PageWrapper>
-      <SectionWrapper>
-        <TitleIconBox>
-          <TitleS>Favorite quize</TitleS>
-          <BtnCreateQuiz />
-        </TitleIconBox>
-        <FormFiltersFavorite />
-        <CardsAll/>
+      <SectionWrapper>        
+        <PageTopBar titlePage='Favorite quize'/>        
+        <QuizeFilterTools/>
+        <QuizesList/>
         <BtnLoadMore />
       </SectionWrapper>
     </PageWrapper>

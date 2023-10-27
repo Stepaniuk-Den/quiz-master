@@ -1,14 +1,10 @@
 //import { useLocation } from "react-router";
-import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
 import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
-import CardsAll from "../../shared/CardsAll/CardsAll";
-import {
-  PageWrapper,
-  SectionWrapper,
-  TitleIconBox,
-  TitleS,
-} from "./DiscoverPageStyled";
-import FormFiltersDiscovery from "./DiscoverPageComponents/FormFiltersDiscovery/FormFiltersDiscovery";
+import { PageWrapper, SectionWrapper } from "./DiscoverPageStyled";
+//import QuizeSearch from "../../modules/discoverPage/components/QuizesSearch/QuizesSearch";
+import PageTopBar from "../../shared/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/QuizesList/QuizesList";
+import QuizeFilterTools from "../../modules/discoverPage/components/QuizFilterTools/QuizFilterTools";
 
 const DiscoverPage = () => {
   //const location = useLocation();
@@ -17,12 +13,10 @@ const DiscoverPage = () => {
   return (
     <PageWrapper>
       <SectionWrapper>
-        <TitleIconBox>
-          <TitleS>Discover</TitleS>
-          <BtnCreateQuiz />
-        </TitleIconBox>
-        <FormFiltersDiscovery />
-        <CardsAll />
+        <PageTopBar titlePage="Discover" />
+        {/* <QuizeSearch /> */}
+        <QuizeFilterTools/>
+        <QuizesList/>
         <BtnLoadMore />
       </SectionWrapper>
     </PageWrapper>
