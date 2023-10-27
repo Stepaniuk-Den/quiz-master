@@ -1,26 +1,42 @@
-import UserTestsSearch from "../../../discoverPage/discoverFavoriteOwnquizCommonComponents/UserTestsSearch/UserTestsSearch";
+import { useState } from "react";
 import {
   BtnSearch,
   FiSearchS,
   FormWrapper,
-  SelectWrapper,
+  InputStyled,
 } from "./QuizSearchStyled";
+import { quizNames } from "../../../../shared/QuizesList/quizNames";
 
-const QuizeSearch = () => {
+const QuizeSearch = ({ filteredQuizeCards }) => {
 
-  const handleSearchBtnClick =()=>{
-    console.log("handleSearchBtnClick");
-  }
+  const newNames = quizNames.map((name) => name.quizCategory);
+  // console.log('newNames: ', newNames);
+  const [quizCollectionName, setQuizCollectionName] = useState("");
+  // console.log("quizCollectionName: ", quizCollectionName);
 
-  
+  const handleFilterNames = (name) => {
+    const filteredNames = newNames.filter((newName) =>
+      newName.toLowerCase().includes(name)
+    );
+    filteredQuizeCards(filteredNames);
+    // console.log("filteredNames: ", filteredNames);
+    setQuizCollectionName(name);
+  };
+
   return (
     <FormWrapper>
-      <BtnSearch type="button" onClick={handleSearchBtnClick}>
+      <BtnSearch type="submit">
         <FiSearchS />
       </BtnSearch>
-      <SelectWrapper>
-        <UserTestsSearch />
-      </SelectWrapper>
+      <InputStyled
+        placeholder="Search"
+        name="quizCollectionName"
+        value={quizCollectionName}
+        type="text"
+        autoComplete="on"
+        autoFocus
+        onChange={(evt) => handleFilterNames(evt.target.value)}
+      />
     </FormWrapper>
   );
 };

@@ -4,20 +4,26 @@ import { PageWrapper, SectionWrapper } from "./FavoritePageStyled";
 import PageTopBar from "../../shared/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/QuizesList/QuizesList";
 import QuizeFilterTools from "../../modules/favoritePage/components/QuizFilterTools/QuizFilterTools";
-
-
-
+import { quizNames } from "../../shared/QuizesList/quizNames";
+import { useState } from "react";
 
 const FavoritePage = () => {
-  //const location = useLocation();
-  // console.log("locationFavorite", location);
+  //const location = useLocation();  
+  const newQuizCategoriesNames = quizNames.map((name) => name.quizCategory);
+  // console.log(newQuizCategoriesNames);
+  const [quizCategoriesNameArr, setQuizCategoriesNameArr] = useState(newQuizCategoriesNames);
+  const filteredQuizeCards = (filteredNames) => {
+    setQuizCategoriesNameArr(filteredNames);
+  };
+
+  // console.log("quizCategoriesNameArr", quizCategoriesNameArr);
 
   return (
     <PageWrapper>
-      <SectionWrapper>        
-        <PageTopBar titlePage='Favorite quize'/>        
-        <QuizeFilterTools/>
-        <QuizesList/>
+      <SectionWrapper>
+        <PageTopBar titlePage="Favorite quize" />
+        <QuizeFilterTools filteredQuizeCards={filteredQuizeCards} />
+        <QuizesList quizCategoriesNameArr={quizCategoriesNameArr} />
         <BtnLoadMore />
       </SectionWrapper>
     </PageWrapper>
