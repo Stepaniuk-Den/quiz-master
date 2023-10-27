@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   CloseBtn,
   CloseBtnContainer,
@@ -15,12 +16,14 @@ const FeedbackThankYouNoAuth = () => {
         <CloseBtnContainer>
           <CloseBtn />
         </CloseBtnContainer>
-          <TitleThanks>Thank you</TitleThanks>
+        <TitleThanks>Thank you</TitleThanks>
         <FormWrapper>
           <TextThanks>
             for your feedback, feedback is very important to us.
           </TextThanks>
-          <ToMainPageBtn>To main page</ToMainPageBtn>
+          <Link to="/">
+            <ToMainPageBtn>To main page</ToMainPageBtn>
+          </Link>
         </FormWrapper>
       </FormContainer>
     </>
