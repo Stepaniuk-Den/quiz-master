@@ -1,6 +1,9 @@
 // import React from 'react';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./redux/store";
 import "./index.css";
 import App from "./App";
 // import reportWebVitals from './reportWebVitals';
@@ -9,9 +12,13 @@ import App from "./App";
 // root.render(
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
-  <BrowserRouter basename="/quiz-master">
-    <App />
-  </BrowserRouter>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter basename="/quiz-master">
+        <App />
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
   // </React.StrictMode>
 );
 

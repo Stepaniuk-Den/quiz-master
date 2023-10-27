@@ -12,6 +12,18 @@ export const clearToken = () => {
     instance.defaults.headers.Authorization = '';
 };
 
+export async function currentUser() {
+    const { data } = await instance.get('/users/current');
+    setToken(data.token);
+    return data;
+}
+
+export async function getUserStats() {
+    // {avatar, name, password, email}
+    const { data } = await instance.get('/auth/stats');
+    return data;
+}
+
 export async function registerUser(userData) {
     // {name, email, password}
     const { data } = await instance.post('/auth/sign-up', userData);
@@ -26,11 +38,6 @@ export async function loginUser(userData) {
     return data;
 }
 
-export async function currentUser() {
-    const { data } = await instance.get('/users/current');
-    setToken(data.token);
-    return data;
-}
 
 export async function logOutUser() {
     const { data } = await instance.delete('/auth/sign-out');
@@ -44,11 +51,6 @@ export async function updateUser(userData) {
     return data;
 }
 
-export async function getUserStats(userId) {
-    // {avatar, name, password, email}
-    const { data } = await instance.get('/auth/stats', userId);
-    return data;
-}
 
 
 
