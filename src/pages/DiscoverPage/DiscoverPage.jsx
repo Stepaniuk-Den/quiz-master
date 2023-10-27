@@ -1,26 +1,23 @@
-import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
+//import { useLocation } from "react-router";
 import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
-import CardsAll from "../../shared/CardsAll/CardsAll";
-import FormFilters from "./DiscoverPageComponents/FormFilters/FormFilters";
-// import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
-import {
-  PageWrapper,
-  SectionWrapper,
-  TitleIconBox,
-  TitleS,
-} from "./DiscoverPageStyled";
+import { PageWrapper, SectionWrapper } from "./DiscoverPageStyled";
+//import QuizeSearch from "../../modules/discoverPage/components/QuizesSearch/QuizesSearch";
+import PageTopBar from "../../shared/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/QuizesList/QuizesList";
+import QuizeFilterTools from "../../modules/discoverPage/components/QuizFilterTools/QuizFilterTools";
 
 const DiscoverPage = () => {
+  //const location = useLocation();
+  // console.log("locationDiscovery", location);
+
   return (
     <PageWrapper>
       <SectionWrapper>
-        <TitleIconBox>
-          <TitleS>Discover</TitleS>
-          <BtnCreateQuiz/> 
-        </TitleIconBox>        
-        <FormFilters/>
-        <CardsAll/>
-        <BtnLoadMore/>        
+        <PageTopBar titlePage="Discover" />
+        {/* <QuizeSearch /> */}
+        <QuizeFilterTools/>
+        <QuizesList/>
+        <BtnLoadMore />
       </SectionWrapper>
     </PageWrapper>
   );

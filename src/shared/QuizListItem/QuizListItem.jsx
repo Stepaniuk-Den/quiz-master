@@ -1,20 +1,8 @@
 import { useLocation } from "react-router";
-import BtnStart from "../../shared/Buttons/BtnStart";
-import {
-  CardWrapper,
-  FiHeartS,
-  FiUsersS,
-  GeneralScienceS,
-  IconUsersWrapper,  
-  RatingStars,
-  TextRatingWrapper,
-  TextWrapper,
-  ThemesS,
-  TopIconBox,
-  UsersNumber,
-} from "./CardSingleStyled";
+import { CardWrapper, FiHeartS, FiUsersS, GeneralScienceS, IconUsersWrapper, RatingStars, TextRatingWrapper, TextWrapper, ThemesS, TopIconBox, UsersNumber } from "./QuizListItemStyled";
+import BtnStart from "../Buttons/BtnStart";
 
-const CardSingle = () => {
+const QuizListItem = () => {
   const location = useLocation()
   
   const newClassName = location.pathname === '/favorite'?"favorite": '';
@@ -41,4 +29,4 @@ const CardSingle = () => {
   );
 };
 
-export default CardSingle;
+export default QuizListItem;

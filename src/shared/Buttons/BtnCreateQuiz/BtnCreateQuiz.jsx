@@ -1,9 +1,12 @@
 import { BiPlusS, BtnTitle, ButtonS, IconWrapper } from "./BtnCreateQuizStyled";
 
 const BtnCreateQuiz = () => {
+  const handleCreateQuiz = () =>{
+    console.log("Clicked Create quiz");
+  }
   return (
     <>
-      <ButtonS type="button">
+      <ButtonS type="button" onClick={handleCreateQuiz}>
         <IconWrapper>
             <BiPlusS/>
         </IconWrapper>
