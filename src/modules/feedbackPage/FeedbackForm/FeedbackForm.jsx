@@ -1,14 +1,30 @@
+import { useState } from "react";
 import {
   FormContainer,
   FormTextarea,
   FormWrapper,
   InputWrapper,
+  RateStar,
   RatingWrapper,
   SendBtn,
+  StarBtn,
   TextRating,
 } from "./FeedbackFormStyled";
 
 const FeedbackForm = ({ onSendClick }) => {
+  const [starSelected, setStarSelected] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const handleStarClick = (index) => {
+    const updatedStars = starSelected.map((isSelected, i) => i <= index);
+    setStarSelected(updatedStars);
+  };
+
   const handleClick = () => {
     onSendClick();
   };
@@ -18,7 +34,11 @@ const FeedbackForm = ({ onSendClick }) => {
         <FormWrapper>
           <RatingWrapper>
             <TextRating>Rating</TextRating>
-            <h3>*****</h3>
+            {starSelected.map((isSelected, index) => (
+              <StarBtn key={index} onClick={() => handleStarClick(index)}>
+                <RateStar selected={isSelected} />
+              </StarBtn>
+            ))}
           </RatingWrapper>
           <InputWrapper>
             <FormTextarea

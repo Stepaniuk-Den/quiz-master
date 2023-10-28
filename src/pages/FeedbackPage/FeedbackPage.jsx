@@ -1,14 +1,14 @@
 import { useState } from "react";
-import FeedbackForm from "../../components/FeedbackForm/FeedbackForm";
-import FeedbackThankYou from "../../components/FeedbackThankYou/FeedbackThankYou";
+import FeedbackForm from "../../modules/feedbackPage/FeedbackForm/FeedbackForm";
+import FeedbackThankYou from "../../modules/feedbackPage/FeedbackThankYou/FeedbackThankYou";
+// import FeedbackFormNoAuth from "../../modules/feedbackPage/FeedbackFormNoAuth/FeedbackFormNoAuth";
+// import FeedbackThankYouNoAuth from "../../modules/feedbackPage/FeedbackThankYouNoAuth/FeedbackThankYouNoAuth";
 import {
   PageWrapper,
   SectionWrapper,
   TitleS,
   TitleWrapper,
 } from "./FeedbackPageStyled";
-// import FeedbackFormNoAuth from "../../components/FeedbackFormNoAuth/FeedbackFormNoAuth";
-// import FeedbackThankYouNoAuth from "../../components/FeedbackThankYouNoAuth/FeedbackThankYouNoAuth";
 
 const FeedbackPage = () => {
   const [showThankYou, setShowThankYou] = useState(false);
@@ -39,8 +39,12 @@ const FeedbackPage = () => {
         ) : (
           <FeedbackForm onSendClick={handleSendBtnClick} />
         )}
-        {/* <FeedbackFormNoAuth /> */}
-        {/* <FeedbackThankYouNoAuth/> */}
+
+        {/* {showThankYou ? (
+          <FeedbackThankYouNoAuth />
+        ) : (
+          <FeedbackFormNoAuth onSendClick={handleSendBtnClick} />
+        )} */}
       </SectionWrapper>
     </PageWrapper>
   );
