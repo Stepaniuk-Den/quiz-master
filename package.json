@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://Stepaniuk-Den.github.io/quiz-master/",
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.2.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.15",
