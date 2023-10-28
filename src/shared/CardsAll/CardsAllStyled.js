@@ -12,6 +12,7 @@ export const CardList = styled.ul`
   margin-bottom: 40px;
 
   @media (min-width: 768px) {
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     row-gap: 48px;

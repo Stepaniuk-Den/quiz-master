@@ -18,7 +18,10 @@ import {
 const initialState = {
   quizzes: {
     current: null,
-    random: [],
+    random: {
+        adult: [],
+        children: [],
+    },
     filtered: [],
     passed: [],
     user: [],
@@ -43,7 +46,12 @@ const quizSlice = createSlice({
   extraReducers: (builder) =>{
     builder
       .addCase(getAllQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.random.push(action.payload);
+        if(action.payload.quizAdult){
+            state.quizzes.random.adult.push(action.payload.quizAdult);
+        }
+        if(action.payload.quizChildren){
+        state.quizzes.random.push(action.payload.quizChildren);
+        }
       })
       .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.filtered.push(action.payload);

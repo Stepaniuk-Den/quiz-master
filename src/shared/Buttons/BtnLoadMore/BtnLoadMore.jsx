@@ -1,9 +1,9 @@
 import { ButtonS } from "./BtnLoadMoreStyled";
 
-const BtnLoadMore = () => {
+const BtnLoadMore = ({text}) => {
   return (
     <>
-      <ButtonS type="button">BtnLoadMore</ButtonS>
+      <ButtonS type="button">{text}</ButtonS>
     </>
   );
 };
