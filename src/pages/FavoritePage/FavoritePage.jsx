@@ -1,9 +1,27 @@
+//import { useLocation } from "react-router";
+import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
+import { PageWrapper, SectionWrapper } from "./FavoritePageStyled";
+import PageTopBar from "../../shared/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/QuizesList/QuizesList";
+import QuizeFilterTools from "../../modules/favoritePage/components/QuizFilterTools/QuizFilterTools";
+
+
 
 
 const FavoritePage = () => {
-  return (
-    <div>FavoritePage</div>
-  )
-}
+  //const location = useLocation();
+  // console.log("locationFavorite", location);
 
-export default FavoritePage
+  return (
+    <PageWrapper>
+      <SectionWrapper>        
+        <PageTopBar titlePage='Favorite quize'/>        
+        <QuizeFilterTools/>
+        <QuizesList/>
+        <BtnLoadMore />
+      </SectionWrapper>
+    </PageWrapper>
+  );
+};
+
+export default FavoritePage;
