@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPortal } from "react-dom";
+// import { createPortal } from "react-dom";
 import { StyledCloseBtn, StyledModal, StyledOverlay } from "./Modal.styled";
 import { AiOutlineClose } from "react-icons/ai";
 import {
@@ -12,7 +12,7 @@ import {
   toggleShowAuthPage,
 } from "../../../../redux/Modal/modalSlice";
 
-const modalRoot = document.querySelector("#modal");
+// const modalRoot = document.querySelector("#modal");
 
 const Modal = ({ formToDisplay }) => {
   const dispatch = useDispatch();
@@ -51,7 +51,8 @@ const Modal = ({ formToDisplay }) => {
   };
   
   
-  return createPortal(
+  return (
+  // createPortal(
     <StyledOverlay onClick={handleClickOverlay}>
       {isShowAuthPage && (
         <StyledModal>
@@ -68,8 +69,8 @@ const Modal = ({ formToDisplay }) => {
         {authForm === "registerForm" && isShowAuthPage && <RegisterForm />} */}
         </StyledModal>
       )}
-    </StyledOverlay>,
-    modalRoot
+    </StyledOverlay>
+    // modalRoot
   );
 };
 
