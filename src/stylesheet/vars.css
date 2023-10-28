@@ -2,6 +2,7 @@
 /* rbba 8% = hexa 14 */
 /* rgba 30% = hexa 4d */
 /* rgba 40% = hexa 66 */
+/* rgba 50% = hexa 80 */
 /* rgba 60% = hexa 99 */
 :root {
     /* background */
@@ -17,6 +18,7 @@
     /* text colors */
     --text-color-100: #F4F4F4;
     --text-color-30: #f4f4f44d;
+    --text-color-40: #f4f4f466;
     --text-color-50: #f4f4f480;
     --text-color-60: #f4f4f499;
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaStar } from "react-icons/fa";
 
 export const FormContainer = styled.div`
   box-sizing: border-box;
@@ -8,10 +9,8 @@ export const FormContainer = styled.div`
   height: 383px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   border-radius: 20px;
-  border: 1px rgba(244.37, 244.37, 244.37, 0.3) solid;
-  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px var(--border-color-30) solid;
   background-color: var(--white-background);
 
   @media (min-width: 768px) {
@@ -25,8 +24,8 @@ export const FormWrapper = styled.div``;
 export const RatingWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 5px;
-  margin-bottom: 20px;
+  gap: 4px;
+  margin-bottom: 16px;
 `;
 export const InputWrapper = styled.div`
   display: flex;
@@ -34,11 +33,22 @@ export const InputWrapper = styled.div`
   gap: 32px;
 `;
 export const TextRating = styled.h3`
-  color: rgba(244.37, 244.37, 244.37, 0.6);
+  color: var(--text-color-60);
   font-size: 16px;
   font-family: "GilroyRegular";
   font-weight: 400;
   line-height: 16px;
+  margin-right: 8px;
+`;
+export const StarBtn = styled.button`
+  background-color: transparent;
+  line-height: 10px;
+`;
+export const RateStar = styled(FaStar)`
+  color: ${(props) =>
+    props.selected ? "var(--star-color-100)" : "var(--star-color-8)"};
+  width: 19px;
+  height: 18px;
 `;
 export const FormTextarea = styled.textarea`
   height: 100%;
@@ -48,9 +58,9 @@ export const FormTextarea = styled.textarea`
   padding-right: 18px;
   resize: none;
   border-radius: 15px;
-  border: 1px rgba(244.37, 244.37, 244.37, 0.6) solid;
+  border: 1px var(--bodrer-color-60) solid;
   background-color: transparent;
-  color: rgba(244.37, 244.37, 244.37, 0.4);
+  color: var(--text-color-50);
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
@@ -63,7 +73,7 @@ export const FormTextarea = styled.textarea`
   }
 `;
 export const SendBtn = styled.button`
-  color: #f4f4f4;
+  color: var(--text-color-100);
   font-size: 14px;
   font-family: "GilroyBold";
   font-weight: 700;
@@ -72,7 +82,7 @@ export const SendBtn = styled.button`
   height: 100%;
   padding-top: 16px;
   padding-bottom: 16px;
-  background: #205bf1;
+  background: var(--accent-color);
   border-radius: 30px;
   border: none;
 

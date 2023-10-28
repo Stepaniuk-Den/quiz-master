@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
 const TemporaryLinkToDelete = () => {
+
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: '10px' }}>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
       <Link to="/" style={{ color: "lime" }}>
         MainPage |
       </Link>
@@ -38,6 +39,20 @@ const TemporaryLinkToDelete = () => {
       </Link>
       <Link to="/feedback" style={{ color: "lime" }}>
         FeedbackPage |
+      </Link>
+
+      {/* ==================================== */}
+      {/* <button type="button" name="loginForm" onClick={handleOpenModal}></button>
+      <button type="button" name="registerForm" onClick={handleOpenModal}></button>
+      {isShowAuthPage && <AuthPage />} */}
+      {/* ============================== */}
+
+      <Link to="/auth/loginForm">
+        <button type="button">Login</button>
+      </Link>
+
+      <Link to="/auth/RegisterForm">
+        <button type="submit">Register</button>
       </Link>
     </div>
   );
