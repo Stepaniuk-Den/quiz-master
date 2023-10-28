@@ -14,6 +14,7 @@ import { quizReducer } from './quiz/quizSlice.js';
 import { userReducer } from './user/userSlice.js';
 import { feedbackReducer } from './feedback/feedbackSlice.js';
 import { rootReducer } from './rootSlice.js';
+import { modalReducer } from './Modal/modalSlice.js';
 
 const userPersistConfig = {
   key: 'user',
@@ -27,6 +28,7 @@ export const store = configureStore({
     quiz: quizReducer,
     root: rootReducer,
     feedback: feedbackReducer,
+    modal: modalReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -4,10 +4,8 @@ const initialState = {
     isShowAuthPage: false,
     authForm: '',
 
-    modalData: null,
 
   };
-  
   
   export const modalSlice = createSlice({
     name: 'modal',
