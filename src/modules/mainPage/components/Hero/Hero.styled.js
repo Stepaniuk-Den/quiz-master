@@ -8,9 +8,6 @@ export const StyledHero = styled.section`
   }
   p {
     margin-bottom: 16px;
-    line-height: 20px;
-    letter-spacing: -0.16px;
-    color: var(--text-color-100);
   }
   button {
     margin-top: 16px;
