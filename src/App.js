@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<MainPage />}></Route>
-            <Route path="/auth" element={<AuthPage />}></Route>
+            <Route path="/auth/:type" element={<AuthPage />}></Route>
             <Route path="/quizlist" element={<QuizListPage />}></Route>
             <Route path="/quiz" element={<QuizePage />}></Route>
             <Route path="/home" element={<HomePage />}></Route>
