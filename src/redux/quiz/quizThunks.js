@@ -1,0 +1,177 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  getAllQuizzes,
+  getFilteredQuizzes,
+  getQuizCategories,
+  getPassedQuizzes,
+  getUserQuizzes,
+  getTotalPassed,
+  getQuiz,
+  getFavoriteQuizzes,
+  createQuiz,
+  quizResult,
+  updateQuiz,
+  updateFavoriteQuiz,
+  deleteQuiz,
+} from "../../api/quiz";
+
+export const getAllQuizzesThunk = createAsyncThunk(
+    'quiz/getAll',
+    async (params, thunkAPI) => {
+        try {
+           const data = await getAllQuizzes(params);
+           return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const getFilteredQuizzesThunk = createAsyncThunk(
+    'quiz/getFiltered',
+    async (params, thunkAPI) => {
+        try {
+           const data = await getFilteredQuizzes(params);
+           return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const getQuizCategoriesThunk = createAsyncThunk(
+    'quiz/getCategories',
+    async (audience, thunkAPI) => {
+        try {
+            const data = await getQuizCategories(audience);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const getPassedQuizzesThunk = createAsyncThunk(
+    'quiz/getPassed',
+    async (params, thunkAPI) => {
+        try {
+            const data = await getPassedQuizzes(params);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const getUserQuizzesThunk = createAsyncThunk(
+    'quiz/getUserQuizzes',
+    async (params, thunkAPI) => {
+        try {
+            const data = await getUserQuizzes(params);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const getTotalPassedThunk = createAsyncThunk(
+    'quiz/getTotal',
+    async (_, thunkAPI) => {
+        try {
+            const data = await getTotalPassed();
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const getQuizThunk = createAsyncThunk(
+    'quiz/getQuiz',
+    async (id, thunkAPI) => {
+        try {
+            const data = await getQuiz(id);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const getFavoriteQuizzesThunk = createAsyncThunk(
+    'quiz/getFavorite',
+    async (params, thunkAPI) => {
+        try {
+            const data = await getFavoriteQuizzes(params);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const createQuizThunk = createAsyncThunk(
+    'quiz/addQuiz',
+    async (quiz, thunkAPI) => {
+        try {
+            const data = await createQuiz(quiz);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const quizResultThunk = createAsyncThunk(
+    'quiz/addResult',
+    async (quiz, thunkAPI) => {
+        try {
+            const data = await quizResult(quiz);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const updateQuizThunk = createAsyncThunk(
+    'quiz/updateQuiz',
+    async (quizData, thunkAPI) => {
+        try {
+            const data = await updateQuiz(quizData);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const updateFavoriteQuizThunk = createAsyncThunk(
+    'quiz/updateFavorite',
+    async (id, thunkAPI) => {
+        try {
+            const data = await updateFavoriteQuiz(id);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const deleteQuizThunk = createAsyncThunk(
+    'quiz/deleteQuiz',
+    async (id, thunkAPI) => {
+        try {
+            const data = await deleteQuiz(id);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+
+
+
+

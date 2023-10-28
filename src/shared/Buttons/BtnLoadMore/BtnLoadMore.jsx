@@ -1,9 +1,13 @@
 import { ButtonS } from "./BtnLoadMoreStyled";
 
 const BtnLoadMore = () => {
+  const handleLoadMore = () => {
+    console.log("Clicked Load more");
+  }
+
   return (
     <>
-      <ButtonS type="button">BtnLoadMore</ButtonS>
+      <ButtonS type="button" onClick={handleLoadMore}>Load more</ButtonS>
     </>
   );
 };
