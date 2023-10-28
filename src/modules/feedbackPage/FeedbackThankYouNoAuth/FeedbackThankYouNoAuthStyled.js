@@ -10,10 +10,8 @@ export const FormContainer = styled.div`
   height: 404px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   border-radius: 20px;
-  border: 1px rgba(244.37, 244.37, 244.37, 0.3) solid;
-  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px var(--border-color-30) solid;
   background-color: var(--white-background);
 
   @media (min-width: 768px) {
@@ -30,7 +28,6 @@ export const FormWrapper = styled.div`
   gap: 32px;
 `;
 export const TitleThanks = styled.h2`
-  color: #f4f4f4;
   font-size: 20px;
   font-family: "GilroyBold";
   font-weight: 700;
@@ -43,14 +40,14 @@ export const TitleThanks = styled.h2`
   }
 `;
 export const TextThanks = styled.p`
-  color: rgba(244.37, 244.37, 244.37, 0.6);
+  color: var(--text-color-60);
   font-size: 15px;
   font-family: "GilroyRegular";
   font-weight: 400;
   line-height: 16px;
 `;
 export const ToMainPageBtn = styled.button`
-  color: #f4f4f4;
+  color: var(--text-color-100);
   font-size: 14px;
   font-family: "GilroyBold";
   font-weight: 700;
@@ -59,7 +56,7 @@ export const ToMainPageBtn = styled.button`
   height: 100%;
   padding-top: 16px;
   padding-bottom: 16px;
-  background: #205bf1;
+  background: var(--accent-color);
   border-radius: 30px;
   border: none;
 
@@ -67,10 +64,11 @@ export const ToMainPageBtn = styled.button`
     font-size: 16px;
   }
 `;
-export const CloseBtnContainer = styled.div`
+export const CloseBtnContainer = styled.button`
   position: absolute;
   top: 18px;
   right: 18px;
+  background-color: transparent;
   @media (min-width: 768px) {
     top: 24px;
     right: 24px;
@@ -79,5 +77,5 @@ export const CloseBtnContainer = styled.div`
 export const CloseBtn = styled(AiOutlineClose)`
   width: 20px;
   height: 20px;
-  color: #f4f4f4;
+  color: var(--text-color-100);
 `;

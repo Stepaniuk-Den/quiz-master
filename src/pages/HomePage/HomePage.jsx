@@ -1,26 +1,28 @@
-import ButtonSeeAll from "../../components/ButtonSeeAll";
-import UserStats from "../../components/UserStats"
-import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
-import CardsAll from "../../shared/CardsAll/CardsAll";
-import HeaderHome from "../../shared/HeaderHome";
-import { Box, BoxLastPassed, BoxUserStats, TitleHome, TitleLastPassedQ } from "./HomePageStyled";
-
+import ButtonSeeAll from "../../modules/homepage/components/ButtonSeeAll";
+import UserStats from "../../modules/homepage/components/UserStats"
+import PageTopBar from "../../shared/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/QuizesList/QuizesList";
+import { BoxLastPassed, BoxUserStats, TitleLastPassedQ } from "./HomePageStyled";
+// import { quizNames } from "../../shared/QuizesList/quizNames";
 
 const HomePage = () => {
+  const seeAllLink = "/lastquiz"; 
+  // const shouldDisplaySeeAll = quizNames.length > 3;
+  // const displayedQuizNames = quizNames.slice(0, 3);
+  //  {shouldDisplaySeeAll && <ButtonSeeAll to={seeAllLink} />}
+  //  <QuizesList quizCategoriesNameArr={displayedQuizNames} />
+
   return (
     <>
-      <HeaderHome />
-      <Box>
-      <TitleHome>Home</TitleHome>
-        <BtnCreateQuiz />
-      </Box>
+      <PageTopBar titlePage="Home"/>
+      
       <BoxUserStats>
         <UserStats />
         <div><BoxLastPassed>
           <TitleLastPassedQ>Last passed quizzes</TitleLastPassedQ>
-          <ButtonSeeAll />
+          <ButtonSeeAll to={seeAllLink} />
         </BoxLastPassed>
-        <CardsAll/></div>
+          <QuizesList /></div>
       </BoxUserStats>
       </>
   )

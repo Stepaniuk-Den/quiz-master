@@ -31,7 +31,6 @@ export const TitleWrapper = styled.div`
 
 export const TitleS = styled.h2`
   padding: 0;
-  color: #f4f4f4;
   font-family: "GilroyBold";
   font-size: 32px;
   font-style: normal;
