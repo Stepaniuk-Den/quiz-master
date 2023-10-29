@@ -10,24 +10,28 @@ function Quizzes({ adults, children }) {
     <StyledQuizzes>
       <div>
         <Title>For Adults</Title>
+        <div>
         <Paragraph>
           Dive deep into a world of intriguing quizzes tailored for adults. From
           cinema to logic, challenge your knowledge and discover where your
           expertise lies. Explore a diverse range of topics and test the depths
           of your knowledge.
         </Paragraph>
-        <BtnLoadMore text="See all" />
+        <BtnLoadMore>See all</BtnLoadMore>
+        </div>
         <CardsAll array={adults}/>
       </div>
       <div>
         <Title>For Children</Title>
+        <div>
         <Paragraph>
           Engaging and fun quizzes designed specifically for kids. Dive into a
           world of colorful questions on movies, music, and much more. Perfect
           for young curious minds! A safe space for children to learn, play, and
           grow their knowledge.
         </Paragraph>
-        <BtnLoadMore text="See all" />
+        <BtnLoadMore>See all</BtnLoadMore>
+        </div>
         <CardsAll array={children}/>
       </div>
     </StyledQuizzes>

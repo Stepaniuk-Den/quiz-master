@@ -1,6 +1,6 @@
 import { ButtonS } from "./BtnLoadMoreStyled";
 
-const BtnLoadMore = ({text}) => {
+const BtnLoadMore = ({children}) => {
   
   const handleLoadMore = () => {
 console.log("BtnLoadMore");
@@ -8,7 +8,7 @@ console.log("BtnLoadMore");
 
   return (
     <>
-      <ButtonS type="button" onClick={handleLoadMore}>{text}</ButtonS>
+      <ButtonS type="button" onClick={handleLoadMore}>{children}</ButtonS>
     </>
   );
 };

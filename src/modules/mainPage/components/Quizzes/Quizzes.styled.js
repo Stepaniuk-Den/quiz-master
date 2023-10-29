@@ -7,8 +7,15 @@ export const StyledQuizzes = styled.section`
     margin-bottom: 24px;
   }
 
-  p{
+  p {
     display: inline-block;
     width: 660px;
+  }
+
+  h2 + div{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 48px;
   }
 `;
