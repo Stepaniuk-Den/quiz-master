@@ -6,13 +6,13 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
+  padding-top: 20px;
     @media (min-width: 768px) {
-     margin-top: 32px;
+     padding-top: 32px;
   }
 
   @media (min-width: 1440px) {
-  margin-top: 20px;
+  padding-top: 20px;
   }
 `;
 

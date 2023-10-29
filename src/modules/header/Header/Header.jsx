@@ -1,8 +1,8 @@
 import { Settings, DropdownButton, DropdownContainer, DropdownItem, DropdownList, LogOut, MessageCircle, HeaderContainer, Logo, NavItem, NavList, Up, Down, UserName, ButtonRegister, ButtonLogin } from "./HeaderStyled";
 import React, { useState } from 'react';
-import { infoUser } from "../../../homepage/components/UserStats/info/infoUser";
+import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
-import LogoutModal from "../../../homepage/components/ModalLogOut/ModalLogOut";
+import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 
 const Header = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
