@@ -17,6 +17,11 @@ export const CardWrapper = styled.li`
   background-color: var(--white-background);
   /* background-color: rgba(0, 0, 0, 0.8); */
 
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
   @media (min-width: 768px) {
     width: 340px;
   }
@@ -116,22 +121,6 @@ export const ThemesS = styled.h4`
   }
 `;
 
-export const GeneralScienceS = styled.h3`
-  margin: 0;
-  padding: 0;
-  /* color: #f4f4f4; */
-  color: var(--text-color-100);
-  /* font-family: Gilroy; */
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.4;
-
-  @media (min-width: 768px) {
-    font-size: 24px;
-    line-height: 1.33;
-  }
-`;
 export const RatingStars = styled.div`
   margin: 0;
   padding: 0;
