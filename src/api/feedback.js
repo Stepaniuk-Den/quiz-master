@@ -15,11 +15,6 @@ export async function createReview(review) {
     return data;
 }
 
-export async function createUserReview(review) {
-    const { data } = await instance.post('/review', review);
-    return data;
-}
-
 
 
 

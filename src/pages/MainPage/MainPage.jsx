@@ -1,7 +1,8 @@
+import { Main } from "../../modules/mainPage"
 
 const MainPage = () => {
     return (
-      <div>MainPage</div>
+     <Main/>
     )
   }
   

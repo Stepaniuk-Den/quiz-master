@@ -6,15 +6,12 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 80px;
   padding-top: 20px;
     @media (min-width: 768px) {
-    margin-bottom: 90px;
      padding-top: 32px;
   }
 
   @media (min-width: 1440px) {
- margin-bottom: 100px;
   padding-top: 20px;
   }
 `;
