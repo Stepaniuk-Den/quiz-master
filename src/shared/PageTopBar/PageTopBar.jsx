@@ -1,12 +1,13 @@
 import React from "react";
-import { PageTopBarBox, TitleS } from "./PageTopBarStyled";
+import { PageTopBarBox} from "./PageTopBarStyled";
+import PageTitle from "../PageTitle/PageTitle";
 import BtnCreateQuiz from "../Buttons/BtnCreateQuiz/BtnCreateQuiz";
 
 const PageTopBar = ({titlePage}) => {
   return (
     <>
       <PageTopBarBox>
-        <TitleS>{titlePage}</TitleS>
+        <PageTitle>{titlePage}</PageTitle>
         <BtnCreateQuiz />
       </PageTopBarBox>
     </>
