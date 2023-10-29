@@ -13,8 +13,8 @@ function Hero() {
           questions: cinema, music, logic and others. Quizzes differ in the
           degreeof difficulty of questions, the number and type of questions.
         </Paragraph>
-        <MediumBtn text="Choose a test" type="accent" />
-        <MediumBtn text="Create a quest" />
+        <MediumBtn type="accent">Choose a test</MediumBtn>
+        <MediumBtn>Create a quest</MediumBtn>
       </div>
       <h1>Are you ready to <br/> take the Quiz?</h1>
     </StyledHero>

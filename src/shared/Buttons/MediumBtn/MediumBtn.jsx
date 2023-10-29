@@ -1,13 +1,13 @@
 import { StyledMediumBtn } from "./MediumBtn.styled";
 
-const MediumBtn = ({text, type}) => {
+const MediumBtn = ({children, type}) => {
 const handleBtnStart = () => {
     console.log("MediumAccentBtn clicked!");
 }
 
   return (
       <StyledMediumBtn type="button" onClick={handleBtnStart} className={type ? type : ""}>
-        {text}
+        {children}
       </StyledMediumBtn>
   );
 };

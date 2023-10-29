@@ -9,9 +9,16 @@ background-color: transparent;
 font-size: 16px;
 font-family: GilroyBold, sans-serif;
 letter-spacing: -0.16px;
+line-height: 1;
 
 &.accent {
     border: none;
     background-color: var(--blue-background);
+}
+
+&.nav-accent{
+    border: none;
+    background-color: var(--star-color-100);
+    color: var(--accent-color);
 }
 `;

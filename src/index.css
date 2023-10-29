@@ -1,5 +1,6 @@
 @import '../src/stylesheet/vars.css';
 @import '../src/stylesheet/fonts.css';
+@import "modern-normalize";
 
 
 body {

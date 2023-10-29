@@ -18,4 +18,8 @@ export const StyledQuizzes = styled.section`
     align-items: flex-start;
     margin-bottom: 48px;
   }
+
+ul {
+    margin-bottom: 120px;
+  }
 `;

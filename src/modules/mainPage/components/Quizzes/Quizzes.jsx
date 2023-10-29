@@ -1,7 +1,7 @@
 import React from "react";
 import CardsAll from "../../../../shared/CardsAll";
 import BtnLoadMore from "../../../../shared/Buttons/BtnLoadMore/BtnLoadMore";
-import Title from "../../../../shared/Title/Title";
+import PageTitle from "../../../../shared/PageTitle/PageTitle";
 import Paragraph from "../../../../shared/Paragraph/Paragraph";
 import { StyledQuizzes } from "./Quizzes.styled";
 
@@ -9,7 +9,7 @@ function Quizzes({ adults, children }) {
   return (
     <StyledQuizzes>
       <div>
-        <Title>For Adults</Title>
+        <PageTitle>For Adults</PageTitle>
         <div>
         <Paragraph>
           Dive deep into a world of intriguing quizzes tailored for adults. From
@@ -22,7 +22,7 @@ function Quizzes({ adults, children }) {
         <CardsAll array={adults}/>
       </div>
       <div>
-        <Title>For Children</Title>
+        <PageTitle>For Children</PageTitle>
         <div>
         <Paragraph>
           Engaging and fun quizzes designed specifically for kids. Dive into a
