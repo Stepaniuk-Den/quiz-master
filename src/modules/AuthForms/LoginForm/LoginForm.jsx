@@ -1,35 +1,35 @@
 import { useState } from "react";
 // import { useDispatch } from "react-redux";
-import * as Yup from "yup";
-import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import {
-  AuthTitle,
-  BtnEyeStyled,
-  BtnRegisterStyled,
-  ButtonEnterStyled,
-  ErrorsStyled,
-  InputPasswWrapStyled,
   InputStyled,
   InputsWrapper,
-  LuEyeOffStyled,
+  RestoreStyled,
+  AuthTitle,
   LuEyeStyled,
-} from "../LoginForm/LoginForm.styled";
+  BtnEyeStyled,
+  LuEyeOffStyled,
+  InputPasswWrapStyled,
+  ErrorsStyled,
+} from "./LoginForm.styled";
+import BtnToggleFormAuth from "../../../shared/Buttons/BtnToggleFormAuth";
+import BtnConfirmAuth from "../../../shared/Buttons/BtnConfirmAuth";
 
-const RegisterForm = () => {
+
+const LogInForm = () => {
   // const dispatch = useDispatch();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
     },
 
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email address is required"),
@@ -47,23 +47,9 @@ const RegisterForm = () => {
 
   return (
     <>
-      <AuthTitle>Sign Up</AuthTitle>
+      <AuthTitle>Login</AuthTitle>
       <form onSubmit={formik.handleSubmit}>
         <InputsWrapper>
-          <InputStyled
-            name="name"
-            type="name"
-            value={formik.values.name}
-            placeholder="Name"
-            autoComplete="off"
-            onChange={formik.handleChange}
-            label="Name"
-          />
-
-          {formik.touched.name && formik.errors.name ? (
-            <ErrorsStyled>{formik.errors.name}</ErrorsStyled>
-          ) : null}
-
           <InputStyled
             name="email"
             type="email"
@@ -106,14 +92,16 @@ const RegisterForm = () => {
             <ErrorsStyled>{formik.errors.password}</ErrorsStyled>
           ) : null}
         </InputsWrapper>
-        <ButtonEnterStyled type="submit">Enter</ButtonEnterStyled>
+        <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
       </form>
 
-      <Link to="/login">
-        <BtnRegisterStyled type="button">Login</BtnRegisterStyled>
+      <RestoreStyled>Restore password</RestoreStyled>
+
+      <Link to="/auth/registerForm">
+        <BtnToggleFormAuth type="button">Register</BtnToggleFormAuth>
       </Link>
     </>
   );
 };
 
-export default RegisterForm;
+export default LogInForm;

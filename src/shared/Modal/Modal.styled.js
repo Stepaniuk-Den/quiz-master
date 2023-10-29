@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledOverlay = styled.div`
   position: fixed;
@@ -6,27 +6,22 @@ export const StyledOverlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--backdrop); 
+  background-color: var(--backdrop);
   backdrop-filter: blur(1.5px);
   overscroll-behavior: contain;
-
-  /* @media screen and (max-width: 768px) {
-} */
 `;
 
 export const StyledModal = styled.div`
-position: absolute;
-left: 50%;
-top: 50%;
-transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* max-width: 100vw;
-  max-height: 100vh; */
   padding: 60px 80px;
-  border: 1px solid var( --text-color-30);
+  border: 1px solid var(--text-color-30);
   border-radius: 20px;
   background-color: var(--second-background);
 
@@ -36,7 +31,7 @@ transform: translate(-50%, -50%);
 `;
 
 export const StyledCloseBtn = styled.button`
-position: absolute;
+  position: absolute;
   top: 24px;
   right: 24px;
   width: 28px;
@@ -50,6 +45,8 @@ position: absolute;
 
   @media screen and (max-width: 768px) {
     width: 24px;
-  height: 24px;
-}
-  `;
+    height: 24px;
+    top: 16px;
+    right: 16px;
+  }
+`;
