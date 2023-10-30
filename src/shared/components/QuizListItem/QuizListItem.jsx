@@ -2,13 +2,13 @@ import { useLocation } from "react-router";
 import { CardWrapper, FiHeartS, FiUsersS, GeneralScienceS, IconUsersWrapper, RatingStars, TextRatingWrapper, TextWrapper, ThemesS, TopIconBox, UsersNumber } from "./QuizListItemStyled";
 import BtnStart from "../Buttons/BtnStart";
 
-const QuizListItem = ({quiz}) => {  
+const QuizListItem = ({quiz, type}) => {  
   const location = useLocation()  
   
   const newClassName = location.pathname === '/favorite'?"favorite": '';
   return (
     <>
-      <CardWrapper>
+      <CardWrapper className={type}>
         <TopIconBox>
           <IconUsersWrapper>
             <FiUsersS />
