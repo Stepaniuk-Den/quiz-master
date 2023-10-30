@@ -6,12 +6,12 @@ export const RatingBox = styled.div`
   padding: 0;  
 `;
 
-export const RatingS = styled(Rating)({
+export const RatingS = styled(Rating)({  
   "& .MuiRating-iconFilled": {    
     color: "var(--star-color-100)",
-  },
-  "& .MuiRating-iconEmpty": {
-    // color: "red",
+  },  
+  "& .MuiRating-iconEmpty": {    
     color: "var(--star-color-8)", 
   },
+  
 });
