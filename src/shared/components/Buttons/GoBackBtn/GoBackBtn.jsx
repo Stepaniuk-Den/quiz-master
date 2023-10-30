@@ -3,10 +3,10 @@ import { BackArrow, BackText, GoBack, StyledLink } from "./GoBackBtn.styled";
 const GoBackBtn = ({to}) => {
   return (
     <StyledLink to={to}>
-      <GoBack>
+      {/* <GoBack> */}
         <BackArrow />
         <BackText>Back</BackText>
-      </GoBack>
+      {/* </GoBack> */}
     </StyledLink>
   );
 };

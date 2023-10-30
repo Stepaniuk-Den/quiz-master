@@ -1,9 +1,12 @@
 
 import { useState } from "react";
+import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
 import PageTitle from "../../shared/components/PageTitle/PageTitle";
+import Avatar from "../../shared/components/Avatar/Avatar";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import {
+  AvatarImg,
   BtnEyeStyled,
   ErrorsStyled,
   InputPasswWrapStyled,
@@ -67,21 +70,14 @@ const SettingsPage = () => {
     <PageWrapper>
         <SectionWrapper>
           firstLetter;
-        <TitleWrapper>
-          <button
-            style={{
-              color: "#000000",
-              fontFamily: "Roboto",
-              fontSize: 16,
-              width: 42,
-              marginBottom: 16,
-            }}
-          >
-            Back
-          </button>
+          <TitleWrapper>
+            <GoBackBtn to="/"/>
             <PageTitle>Settings</PageTitle>
            </TitleWrapper>
           <SettingForm>
+            <AvatarImg>
+              <Avatar size="large" />
+            </AvatarImg>
       <form onSubmit={formik.handleSubmit}>
         <InputsWrapper>
           <InputStyled

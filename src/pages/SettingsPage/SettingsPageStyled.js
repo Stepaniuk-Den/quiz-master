@@ -44,28 +44,32 @@ export const TitleWrapper = styled.div`
 //   }
 // `;
 
+export const AvatarImg = styled.div`
+margin-bottom: 47px;
+`
+
 export const InputsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   row-gap: 16px;
-  margin-top: 32px;
+  /* margin-top: 32px; */
   margin-bottom: 32px;
-  width: 280px;
+  width: 278px;
   /* width: 100%; */
 
   @media screen and (max-width: 768px) {
     /* max-width: 295px; */
-    width: 295px;
+    width: 293px;
   }
 `;
 
 export const InputStyled = styled.input`
   box-sizing: border-box;
   padding: 14px 18px;
-  width: 100%;
-  height: 44px;
+  width: 278px;
+  height: 42px;
   border-radius: 30px;
   border: 1px solid var(--text-color-60);
   /* font-family: "GilroyRegular"; */
@@ -73,6 +77,11 @@ export const InputStyled = styled.input`
   outline: 1px solid transparent;
   background: var(--second-background-color);
   color: var(--text-color-100);
+
+    @media screen and (max-width: 768px) {
+    /* max-width: 295px; */
+    width: 293px;
+  }
   
   &::placeholder {
     /* font-family: "GilroyRegular"; */
@@ -150,7 +159,7 @@ export const SettingForm = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 60px 80px;
+  padding: 50px 150px;
   border: 1px solid var(--text-color-30);
   border-radius: 20px;
   background-color: var(--second-background);
