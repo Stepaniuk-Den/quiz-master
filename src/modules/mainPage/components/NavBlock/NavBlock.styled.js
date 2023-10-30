@@ -41,4 +41,27 @@ export const StyledNavBlock = styled.section`
   button {
     margin-right: 14px;
   }
+
+  @media only screen and (min-width: 375px) {
+  }
+
+  @media only screen and (min-width: 768px) {
+
+    h2 {
+    width: 439px;
+  }
+
+    div {
+      margin: 0 auto;
+      width: 704px;
+      height: 448px;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    div {
+      width: auto;
+      height: 380px;
+    }
+  }
 `;

@@ -136,10 +136,230 @@ const initialState = {
         }
       ],
     },
-    filtered: [],
-    passed: [],
-    user: [],
-    favorites: [],
+    filtered: [{
+        _id: "653b7ab5frvf4cc7fb04f0a2",
+        quizName: "Quiz 1",
+        rate: 0,
+        totalPassed: 10,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f1tr44cc7fb04f0a2",
+        quizName: "Quiz 2",
+        rate: 0,
+        totalPassed: 15,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18hjkcc7fb04f0a2",
+        quizName: "Quiz 3",
+        rate: 0,
+        totalPassed: 20,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4rerefb04f0a2",
+        quizName: "Quiz 4",
+        rate: 0,
+        totalPassed: 12,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4tyrer7fb04f0a2",
+        quizName: "Quiz 5",
+        rate: 0,
+        totalPassed: 18,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18berr7fb04f0a2",
+        quizName: "Quiz 6",
+        rate: 0,
+        totalPassed: 9,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4cc7fb04frr",
+        quizName: "Quiz 7",
+        rate: 0,
+        totalPassed: 22,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    }],
+    passed: [{
+        _id: "653b7ab5frvf4cc7fb04f0a2",
+        quizName: "Quiz 1",
+        rate: 0,
+        totalPassed: 10,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f1tr44cc7fb04f0a2",
+        quizName: "Quiz 2",
+        rate: 0,
+        totalPassed: 15,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18hjkcc7fb04f0a2",
+        quizName: "Quiz 3",
+        rate: 0,
+        totalPassed: 20,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4rerefb04f0a2",
+        quizName: "Quiz 4",
+        rate: 0,
+        totalPassed: 12,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4tyrer7fb04f0a2",
+        quizName: "Quiz 5",
+        rate: 0,
+        totalPassed: 18,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18berr7fb04f0a2",
+        quizName: "Quiz 6",
+        rate: 0,
+        totalPassed: 9,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4cc7fb04frr",
+        quizName: "Quiz 7",
+        rate: 0,
+        totalPassed: 22,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    }],
+    ownQuiz: [{
+        _id: "653b7ab5frvf4cc7fb04f0a2",
+        quizName: "Quiz 1",
+        rate: 0,
+        totalPassed: 10,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f1tr44cc7fb04f0a2",
+        quizName: "Quiz 2",
+        rate: 0,
+        totalPassed: 15,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18hjkcc7fb04f0a2",
+        quizName: "Quiz 3",
+        rate: 0,
+        totalPassed: 20,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4rerefb04f0a2",
+        quizName: "Quiz 4",
+        rate: 0,
+        totalPassed: 12,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4tyrer7fb04f0a2",
+        quizName: "Quiz 5",
+        rate: 0,
+        totalPassed: 18,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18berr7fb04f0a2",
+        quizName: "Quiz 6",
+        rate: 0,
+        totalPassed: 9,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4cc7fb04frr",
+        quizName: "Quiz 7",
+        rate: 0,
+        totalPassed: 22,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    }],
+    favorites: [{
+        _id: "653b7ab5frvf4cc7fb04f0a2",
+        quizName: "Quiz 1",
+        rate: 0,
+        totalPassed: 10,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f1tr44cc7fb04f0a2",
+        quizName: "Quiz 2",
+        rate: 0,
+        totalPassed: 15,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18hjkcc7fb04f0a2",
+        quizName: "Quiz 3",
+        rate: 0,
+        totalPassed: 20,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4rerefb04f0a2",
+        quizName: "Quiz 4",
+        rate: 0,
+        totalPassed: 12,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4tyrer7fb04f0a2",
+        quizName: "Quiz 5",
+        rate: 0,
+        totalPassed: 18,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18berr7fb04f0a2",
+        quizName: "Quiz 6",
+        rate: 0,
+        totalPassed: 9,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4cc7fb04frr",
+        quizName: "Quiz 7",
+        rate: 0,
+        totalPassed: 22,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    }],
     total: 129865,
   },
   filters: null,
