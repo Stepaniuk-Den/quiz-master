@@ -19,7 +19,7 @@ import {
   TitleWrapper,
 } from "./SettingsPageStyled";
 import BtnConfirmSettings from "../../shared/Buttons/BtnConfirmSettings";
-// import { SettingsUserAvatar } from "../../modules/settingsPage/settingsUserAvatar";
+
 
 
 // Перша літера на аватар
@@ -80,13 +80,8 @@ const SettingsPage = () => {
             Back
           </button>
             <PageTitle>Settings</PageTitle>
-          {/* <AuthTitle>Sign Up</AuthTitle> */}
-            
-          </TitleWrapper>
-            {/* <SettingsUserAvatar/> */}
+           </TitleWrapper>
           <SettingForm>
-          {/* <UserStats /> */}
-                {/* <AuthTitle>Sign Up</AuthTitle> */}
       <form onSubmit={formik.handleSubmit}>
         <InputsWrapper>
           <InputStyled
