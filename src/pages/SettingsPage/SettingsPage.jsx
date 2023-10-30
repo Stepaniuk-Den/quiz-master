@@ -18,7 +18,7 @@ import {
   SectionWrapper,
   TitleWrapper,
 } from "./SettingsPageStyled";
-import BtnConfirmSettings from "../../shared/Buttons/BtnConfirmSettings";
+import BtnConfirmSettings from "../../shared/components/Buttons/BtnConfirmSettings";
 
 
 
