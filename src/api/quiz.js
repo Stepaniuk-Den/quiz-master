@@ -1,7 +1,7 @@
 import { instance } from "./auth";
 
 export async function getAllQuizzes(params) {
-  const { data } = await instance.get("/quiz/random", { params });
+  const { data } = await instance.get("/quizzes/random", { params });
   return data;
 }
 
@@ -16,12 +16,12 @@ export async function getQuizCategories(audience) {
 }
 
 export async function getPassedQuizzes(params) {
-  const { data } = await instance.get("/quiz/passed", { params });
+  const { data } = await instance.get("/quizzes/passed", { params });
   return data;
 }
 
 export async function getUserQuizzes() {
-  const { data } = await instance.get("/quiz/user");
+  const { data } = await instance.get("/quizzes/user");
   return data;
 }
 
@@ -31,36 +31,36 @@ export async function getTotalPassed() {
 }
 
 export async function getQuiz(id) {
-  const { data } = await instance.get(`/quiz/${id}`);
+  const { data } = await instance.get(`/quizzes/${id}`);
   return data;
 }
 
 export async function getFavoriteQuizzes() {
-  const { data } = await instance.get(`/quiz/favorite`);
+  const { data } = await instance.get(`/quizzes/favorite`);
   return data;
 }
 
 export async function createQuiz(quiz) {
-  const { data } = await instance.post("/quiz", quiz);
+  const { data } = await instance.post("/quizzes/", quiz);
   return data;
 }
 
 export async function quizResult({ quizId, result }) {
-  const { data } = await instance.post(`/quiz/${quizId}`, result);
+  const { data } = await instance.post(`/quizzes/${quizId}`, result);
   return data;
 }
 
 export async function updateQuiz(quiz) {
-  const { data } = await instance.patch(`/quiz/${quiz.id}`, quiz);
+  const { data } = await instance.patch(`/quizzes/${quiz.id}`, quiz);
   return data;
 }
 
 export async function updateFavoriteQuiz(quizId) {
-  const { data } = await instance.patch(`/quiz/favorite/${quizId}`);
+  const { data } = await instance.patch(`/quizzes/favorite/${quizId}`);
   return data;
 }
 
 export async function deleteQuiz(quizId) {
-  const { data } = await instance.delete(`/quiz/${quizId}`);
+  const { data } = await instance.delete(`/quizzes/${quizId}`);
   return data;
 }

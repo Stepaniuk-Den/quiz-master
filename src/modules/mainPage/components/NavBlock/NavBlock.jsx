@@ -1,7 +1,7 @@
 import React from "react";
-import PageTitle from "../../../../shared/PageTitle/PageTitle";
-import Paragraph from "../../../../shared/Paragraph/Paragraph";
-import MediumBtn from "../../../../shared/Buttons/MediumBtn/MediumBtn";
+import PageTitle from "../../../../shared/components/PageTitle/PageTitle";
+import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
+import MediumBtn from "../../../../shared/components/Buttons/MediumBtn/MediumBtn";
 import { StyledNavBlock } from "./NavBlock.styled";
 
 function NavBlock() {

@@ -5,7 +5,7 @@ import {
   FormWrapper,
   InputStyled,
 } from "./QuizSearchStyled";
-import { quizNames } from "../../../../shared/QuizesList/quizNames";
+import { quizNames } from "../../../../shared/components/QuizesList/quizNames";
 
 const QuizeSearch = ({ filteredQuizeCards }) => {
 

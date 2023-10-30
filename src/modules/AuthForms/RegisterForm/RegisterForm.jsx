@@ -14,8 +14,8 @@ import {
   LuEyeStyled,
 } from "../../../modules/AuthForms/LoginForm/LoginForm.styled";
 // } from "../../../homepage/components/AuthForms/LoginForm/LoginForm.styled";
-import BtnToggleFormAuth from "../../../shared/Buttons/BtnToggleFormAuth";
-import BtnConfirmAuth from "../../../shared/Buttons/BtnConfirmAuth";
+import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
+import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 
 const RegisterForm = () => {
   // const dispatch = useDispatch();

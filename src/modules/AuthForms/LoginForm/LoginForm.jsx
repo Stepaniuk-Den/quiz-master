@@ -14,8 +14,8 @@ import {
   InputPasswWrapStyled,
   ErrorsStyled,
 } from "./LoginForm.styled";
-import BtnToggleFormAuth from "../../../shared/Buttons/BtnToggleFormAuth";
-import BtnConfirmAuth from "../../../shared/Buttons/BtnConfirmAuth";
+import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
+import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 
 
 const LogInForm = () => {

@@ -1,7 +1,7 @@
 import ButtonSeeAll from "../../modules/homepage/components/ButtonSeeAll";
 import UserStats from "../../modules/homepage/components/UserStats"
-import PageTopBar from "../../shared/PageTopBar/PageTopBar";
-import QuizesList from "../../shared/QuizesList/QuizesList";
+import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { BoxLastPassed, BoxUserStats, TitleLastPassedQ } from "./HomePageStyled";
 // import { quizNames } from "../../shared/QuizesList/quizNames";
 

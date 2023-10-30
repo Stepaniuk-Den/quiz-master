@@ -5,12 +5,12 @@ import Quizzes from "../Quizzes/Quizzes.jsx";
 import NavBlock from "../NavBlock/NavBlock.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
 
-function Main({reviews}) {
+function Main({reviews, adultQuizzes, childrenQuizzes}) {
   return (
     <>
       <Hero />
       <Advantages />
-      <Quizzes/>
+      <Quizzes adultQuizzes={adultQuizzes} childrenQuizzes={childrenQuizzes}/>
       <NavBlock/>
       <Reviews reviews={reviews}/>
     </>

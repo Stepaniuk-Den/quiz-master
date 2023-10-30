@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import { StyledCloseBtn, StyledModal, StyledOverlay } from "./Modal.styled";
-import { selectIsShowAuthPage } from "../../redux/Modal/modalSelectors";
-import { toggleShowAuthPage } from "../../redux/Modal/modalSlice";
-
+import { selectIsShowAuthPage } from "../../../redux/Modal/modalSelectors";
+import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
 const Modal = ({ children }) => {
   const dispatch = useDispatch();

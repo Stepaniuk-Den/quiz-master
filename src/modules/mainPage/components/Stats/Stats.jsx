@@ -2,7 +2,7 @@ import { StyledStats } from "./Stats.styled";
 import { Link} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectTotal } from "../../../../redux/selectors";
-import Paragraph from "../../../../shared/Paragraph/Paragraph";
+import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
 
 function Stats() {
   const total = useSelector(selectTotal);
