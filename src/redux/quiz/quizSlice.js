@@ -310,7 +310,7 @@ const initialState = {
         rate: 0,
         totalPassed: 10,
         quizCategory: "65398da95191746edd434971",
-        isFavorite: false
+        isFavorite: true
     },
     {
         _id: "653b7ab5f1tr44cc7fb04f0a2",
@@ -318,7 +318,7 @@ const initialState = {
         rate: 0,
         totalPassed: 15,
         quizCategory: "65398da95191746edd434971",
-        isFavorite: false
+        isFavorite: true
     },
     {
         _id: "653b7ab5f18hjkcc7fb04f0a2",
@@ -326,7 +326,7 @@ const initialState = {
         rate: 0,
         totalPassed: 20,
         quizCategory: "65398da95191746edd434971",
-        isFavorite: false
+        isFavorite: true
     },
     {
         _id: "653b7ab5f18b4rerefb04f0a2",
@@ -334,7 +334,7 @@ const initialState = {
         rate: 0,
         totalPassed: 12,
         quizCategory: "65398da95191746edd434971",
-        isFavorite: false
+        isFavorite: true
     },
     {
         _id: "653b7ab5f18b4tyrer7fb04f0a2",
@@ -342,7 +342,7 @@ const initialState = {
         rate: 0,
         totalPassed: 18,
         quizCategory: "65398da95191746edd434971",
-        isFavorite: false
+        isFavorite: true
     },
     {
         _id: "653b7ab5f18berr7fb04f0a2",
@@ -350,7 +350,7 @@ const initialState = {
         rate: 0,
         totalPassed: 9,
         quizCategory: "65398da95191746edd434971",
-        isFavorite: false
+        isFavorite: true
     },
     {
         _id: "653b7ab5f18b4cc7fb04frr",
@@ -358,7 +358,7 @@ const initialState = {
         rate: 0,
         totalPassed: 22,
         quizCategory: "65398da95191746edd434971",
-        isFavorite: false
+        isFavorite: true
     }],
     total: 129865,
   },

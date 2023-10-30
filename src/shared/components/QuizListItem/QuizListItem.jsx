@@ -3,7 +3,8 @@ import { CardWrapper, FiHeartS, FiUsersS, GeneralScienceS, IconUsersWrapper, Rat
 import BtnStart from "../Buttons/BtnStart";
 
 const QuizListItem = ({quiz}) => {  
-  const location = useLocation()  
+  const location = useLocation()
+  console.log("quiz", quiz);  
   
   const newClassName = location.pathname === '/favorite'?"favorite": '';
   return (
