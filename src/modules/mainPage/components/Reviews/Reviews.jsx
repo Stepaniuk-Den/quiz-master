@@ -18,7 +18,7 @@ function Reviews({ reviews }) {
             dynamicBullets: true,
           }}
           autoplay={{
-            delay: 2000,
+            delay: 2500,
             disableOnInteraction: true,
           }}
           loop={true}

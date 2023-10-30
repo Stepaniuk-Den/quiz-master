@@ -32,6 +32,10 @@ export const StyledQuizzes = styled.section`
     margin-bottom: 80px;
   }
 
+  .swiper-slide:nth-child(even) > li {
+      background-color: var(--blue-background);
+    }
+
   @media only screen and (min-width: 375px) {
     p {
       width: 335px;
@@ -67,10 +71,6 @@ export const StyledQuizzes = styled.section`
       width: 705px;
       height: 420px;
       margin-bottom: 100px;
-    }
-
-    .swiper-slide:nth-child(even) li {
-      background-color: var(--blue-background);
     }
 
     .swiper-pagination-bullet {

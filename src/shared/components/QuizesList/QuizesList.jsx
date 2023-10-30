@@ -10,7 +10,7 @@ const QuizesList = ({quizzesArr, type}) => {
         {/* <QuizListItem/>
         <QuizListItem/>
         <QuizListItem/> */}
-        {quizzesArr.map(quiz=><QuizListItem key={quiz._id} quiz={quiz} type={type}/>)}        
+        {quizzesArr.map(quiz=><li><QuizListItem key={quiz._id} quiz={quiz} type={type}/></li>)}        
       </CardList>
     </>
   );
