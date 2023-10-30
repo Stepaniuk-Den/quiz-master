@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const StyledReview = styled.div`
-  width: 608px;
-  height: 164px;
-  padding: 24px;
+  height: 168px;
+  padding: 20px;
   border-radius: 20px;
   border: 1px solid var(--border-color-60);
 
@@ -18,5 +17,19 @@ export const StyledReview = styled.div`
     letter-spacing: normal;
     max-height: 60px;
     overflow-y: scroll;
+  }
+  @media only screen and (max-width: 767px) {
+    max-width: 335px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    padding: 24px;
+    width: 704px;
+    height: 144px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 608px;
+    height: 164px;
   }
 `;
