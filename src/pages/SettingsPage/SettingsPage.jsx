@@ -1,9 +1,12 @@
 
 import { useState } from "react";
+import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
 import PageTitle from "../../shared/components/PageTitle/PageTitle";
+import Avatar from "../../shared/components/Avatar/Avatar";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import {
+  AvatarImg,
   BtnEyeStyled,
   ErrorsStyled,
   InputPasswWrapStyled,
@@ -18,21 +21,27 @@ import {
   SectionWrapper,
   TitleWrapper,
 } from "./SettingsPageStyled";
+import { useSelector } from 'react-redux';
+import { selectUserAvatar } from "../../redux/user/userSelectors";
 import BtnConfirmSettings from "../../shared/components/Buttons/BtnConfirmSettings";
 
 
 
 // Перша літера на аватар
-// function firstLetterToAvatar(str) {
-//   if (str.length > 0) {
-//     const firstLetter = str.charAt(0).toUpperCase();
-//     console.log(firstLetter);
-//   }
-// }
-// const userName = "";
-// firstLetterToAvatar(userName);
+function firstLetterToAvatar(str) {
+  if (str.length > 0) {
+ const firstLetter = str.charAt(0).toUpperCase();
+ return firstLetter
+    // console.log(firstLetter);
+  }
+}
+const userName = firstLetterToAvatar("Valera");
+console.log(userName);
+
 
 const SettingsPage = () => {
+  const userAvatar = useSelector(selectUserAvatar);
+  console.log(userAvatar);
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
@@ -67,21 +76,17 @@ const SettingsPage = () => {
     <PageWrapper>
         <SectionWrapper>
           firstLetter;
-        <TitleWrapper>
-          <button
-            style={{
-              color: "#000000",
-              fontFamily: "Roboto",
-              fontSize: 16,
-              width: 42,
-              marginBottom: 16,
-            }}
-          >
-            Back
-          </button>
+          <TitleWrapper>
+            <GoBackBtn to="/"/>
             <PageTitle>Settings</PageTitle>
            </TitleWrapper>
           <SettingForm>
+            <AvatarImg>
+            {userAvatar ?      
+              <Avatar size="large" src="userAvatar"/>
+            :
+            <p>{userName}</p>}
+            </AvatarImg>
       <form onSubmit={formik.handleSubmit}>
         <InputsWrapper>
           <InputStyled

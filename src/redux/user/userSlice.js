@@ -9,10 +9,11 @@ import {
 } from "./userThunks";
 
 const initialState = {
-  user: { name: null, email: null, _id: null},
+  user: { name: null, email: null, _id: null },
   token: null,
   isAuth: false,
   statistics: null,
+  avatar: null,
 };
 
 const userSlice = createSlice({
@@ -42,6 +43,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUserThunk.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.avatar = action.payload.userAvatar;
       })
       .addCase(getUserStatsThunk.fulfilled, (state, action) => {
         state.statistics = action.payload;

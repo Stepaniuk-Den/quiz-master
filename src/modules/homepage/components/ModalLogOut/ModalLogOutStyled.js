@@ -3,6 +3,7 @@ import { FiX } from 'react-icons/fi';
 
 export const ModalOverlay = styled.div`
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
@@ -14,6 +15,7 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+
   border-radius: 20px;
   border: 1px solid rgba(244, 244, 244, 0.30);
   background: var( --second-background);
