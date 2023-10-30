@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 
@@ -11,13 +10,13 @@ export const PageWrapper = styled.div`
 `;
 
 export const SectionWrapper = styled.section`
- outline: 1px solid red;
- width: 100%;
+  outline: 1px solid red;
+  width: 100%;
   max-width: 1240px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  `;
+`;
 
 export const TitleWrapper = styled.div`
   width: 100%;
@@ -25,7 +24,7 @@ export const TitleWrapper = styled.div`
   margin-bottom: 40px;
   flex-direction: column;
   justify-content: flex-start;
-  
+
   @media (min-width: 768px) {
     margin-bottom: 48px;
   }
@@ -45,8 +44,18 @@ export const TitleWrapper = styled.div`
 // `;
 
 export const AvatarImg = styled.div`
-margin-bottom: 47px;
-`
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  outline: red;
+  background-color: blue;
+  color: white;
+  margin-bottom: 47px;
+
+  & > p {
+    color: white;
+  }
+`;
 
 export const InputsWrapper = styled.div`
   display: flex;
@@ -78,11 +87,11 @@ export const InputStyled = styled.input`
   background: var(--second-background-color);
   color: var(--text-color-100);
 
-    @media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     /* max-width: 295px; */
     width: 293px;
   }
-  
+
   &::placeholder {
     /* font-family: "GilroyRegular"; */
     /* font-size: 16px; */
