@@ -5,14 +5,14 @@ import Quizzes from "../Quizzes/Quizzes.jsx";
 import NavBlock from "../NavBlock/NavBlock.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
 
-function Main() {
+function Main({reviews}) {
   return (
     <>
       <Hero />
       <Advantages />
       <Quizzes/>
       <NavBlock/>
-      <Reviews/>
+      <Reviews reviews={reviews}/>
     </>
   );
 }

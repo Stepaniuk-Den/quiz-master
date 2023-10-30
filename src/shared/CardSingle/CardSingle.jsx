@@ -1,10 +1,10 @@
 import { useLocation } from "react-router";
-import BtnStart from "../../shared/Buttons/BtnStart";
+import BtnStart from "../Buttons/BtnStart";
+import CardTitle from "../CardTitle/CardTitle";
 import {
   CardWrapper,
   FiHeartS,
   FiUsersS,
-  GeneralScienceS,
   IconUsersWrapper,  
   RatingStars,
   TextRatingWrapper,
@@ -31,7 +31,7 @@ const CardSingle = () => {
         <TextRatingWrapper>
           <TextWrapper>
             <ThemesS>Themes</ThemesS>
-            <GeneralScienceS>General Science</GeneralScienceS>
+            <CardTitle>General Science</CardTitle>
           </TextWrapper>
           <RatingStars>*****</RatingStars>
         </TextRatingWrapper>

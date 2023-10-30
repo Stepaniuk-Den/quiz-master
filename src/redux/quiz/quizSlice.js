@@ -26,7 +26,7 @@ const initialState = {
     passed: [],
     user: [],
     favorites: [],
-    total: 0,
+    total: 129865,
   },
   filters: null,
   categories: {
