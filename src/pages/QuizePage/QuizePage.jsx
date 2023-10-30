@@ -1,4 +1,4 @@
-import GoBackBtn from "../../shared/Buttons/GoBackBtn/GoBackBtn"
+import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn"
 import { PageWrapper, QuizeBox } from "./QuizePage.styled"
 
 const QuizePage = () => {
