@@ -1,8 +1,19 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toggleShowAuthPage } from "../../redux/Modal/modalSlice";
+
 
 const TemporaryLinkToDelete = () => {
+
+  // ====================
+  const dispatch = useDispatch();
+  const handleOpenModal = (e) => {
+    dispatch(toggleShowAuthPage(e.currentTarget.name));
+  };
+  // ===================
+
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: '10px' }}>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
       <Link to="/" style={{ color: "lime" }}>
         MainPage |
       </Link>
@@ -39,8 +50,37 @@ const TemporaryLinkToDelete = () => {
       <Link to="/feedback" style={{ color: "lime" }}>
         FeedbackPage |
       </Link>
+
+
+     {/* Auth buttons */}
+
+      <Link to="/auth/loginForm">
+        <button type="button" onClick={handleOpenModal}>Login</button>
+      </Link>
+
+      <Link to="/auth/RegisterForm">
+        <button type="submit" onClick={handleOpenModal}>Register</button>
+      </Link>
+    
     </div>
   );
 };
 
 export default TemporaryLinkToDelete;
+
+
+// const handleLogOut = () => {
+//   dispatch(logOutUserThunk());
+//   // dispatch(toggleShowAuthPage(''));
+//   onClose();
+// };
+
+// ===================
+// HOMEPAGE
+// const isAuth = useSelector(selectIsAuth);
+//   useEffect(() => {
+//     if (!isAuth) return;
+//     // dispatch(getTransCategoriesThunk(token));
+//   });
+
+// isAuth && ()

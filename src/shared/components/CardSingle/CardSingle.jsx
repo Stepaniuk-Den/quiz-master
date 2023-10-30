@@ -1,10 +1,10 @@
 import { useLocation } from "react-router";
-import BtnStart from "../Buttons/BtnStart/BtnStart";
+import BtnStart from "../Buttons/BtnStart";
+import CardTitle from "../CardTitle/CardTitle";
 import {
   CardWrapper,
   FiHeartS,
   FiUsersS,
-  GeneralScienceS,
   IconUsersWrapper,  
   RatingStars,
   TextRatingWrapper,
@@ -14,13 +14,13 @@ import {
   UsersNumber,
 } from "./CardSingleStyled";
 
-const CardSingle = () => {
+const CardSingle = ({type}) => {
   const location = useLocation()
   
   const newClassName = location.pathname === '/favorite'?"favorite": '';
   return (
     <>
-      <CardWrapper>
+      <CardWrapper className={type}>
         <TopIconBox>
           <IconUsersWrapper>
             <FiUsersS />
@@ -31,7 +31,7 @@ const CardSingle = () => {
         <TextRatingWrapper>
           <TextWrapper>
             <ThemesS>Themes</ThemesS>
-            <GeneralScienceS>General Science</GeneralScienceS>
+            <CardTitle>General Science</CardTitle>
           </TextWrapper>
           <RatingStars>*****</RatingStars>
         </TextRatingWrapper>

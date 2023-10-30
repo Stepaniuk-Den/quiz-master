@@ -1,13 +1,13 @@
 import CardSingle from "../CardSingle/CardSingle";
 import { CardList } from "./CardsAllStyled";
 
-const CardsAll = () => {
+const CardsAll = ({ array, type }) => {
   return (
-    <>      
+    <>
       <CardList>
-        <CardSingle />
-        <CardSingle />
-        <CardSingle />        
+        {array.map((quiz) => {
+          return <CardSingle quizData={quiz} key={quiz._id} type={type}/>;
+        })}
       </CardList>
     </>
   );

@@ -1,7 +1,12 @@
+import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn"
+import { PageWrapper, QuizeBox } from "./QuizePage.styled"
 
 const QuizePage = () => {
   return (
-    <div>QuizePage</div>
+    <PageWrapper>
+      <QuizeBox>QuizePage</QuizeBox>
+      <GoBackBtn to="/"/>
+    </PageWrapper>
   )
 }
 

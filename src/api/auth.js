@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-    baseURL: 'https://quiz.com.ua/api',
+    baseURL: 'https://quiz-backend-vq56.onrender.com/api',
 });
 
 export const setToken = token => {
@@ -13,7 +13,7 @@ export const clearToken = () => {
 };
 
 export async function currentUser() {
-    const { data } = await instance.get('/users/current');
+    const { data } = await instance.get('/auth/current');
     setToken(data.token);
     return data;
 }
@@ -26,21 +26,21 @@ export async function getUserStats() {
 
 export async function registerUser(userData) {
     // {name, email, password}
-    const { data } = await instance.post('/auth/sign-up', userData);
+    const { data } = await instance.post('/auth/register', userData);
     setToken(data.token);
     return data;
 }
 
 export async function loginUser(userData) {
         //  {email, password}
-    const { data } = await instance.post('/auth/sign-in', userData);
+    const { data } = await instance.post('/auth/login', userData);
     setToken(data.token);
     return data;
 }
 
 
 export async function logOutUser() {
-    const { data } = await instance.delete('/auth/sign-out');
+    const { data } = await instance.post('/auth/logout');
     clearToken();
     return data;
 }
@@ -51,6 +51,8 @@ export async function updateUser(userData) {
     return data;
 }
 
+//password patch
+//email patch
 
 
 

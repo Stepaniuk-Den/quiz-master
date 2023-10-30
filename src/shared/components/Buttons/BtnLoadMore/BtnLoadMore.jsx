@@ -1,13 +1,14 @@
 import { ButtonS } from "./BtnLoadMoreStyled";
 
-const BtnLoadMore = () => {
+const BtnLoadMore = ({children}) => {
+  
   const handleLoadMore = () => {
-    console.log("Clicked Load more");
+console.log("BtnLoadMore");
   }
 
   return (
     <>
-      <ButtonS type="button" onClick={handleLoadMore}>Load more</ButtonS>
+      <ButtonS type="button" onClick={handleLoadMore}>{children}</ButtonS>
     </>
   );
 };

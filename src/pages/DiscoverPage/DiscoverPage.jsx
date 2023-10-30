@@ -2,7 +2,6 @@
 import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 import { PageWrapper, SectionWrapper } from "./DiscoverPageStyled";
 //import QuizeSearch from "../../modules/discoverPage/components/QuizesSearch/QuizesSearch";
-// import PageTopBar from "../../shared/PageTopBar/PageTopBar";
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import QuizeFilterTools from "../../modules/discoverPage/components/QuizFilterTools/QuizFilterTools";

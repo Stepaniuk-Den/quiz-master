@@ -1,7 +1,7 @@
 import { instance } from './auth';
 
 export async function getAllReviews({page = 1, limit}) {
-    const { data } = await instance.get('/transactions', {
+    const { data } = await instance.get('/feedback', {
         params: {
           limit,
           page,
@@ -11,12 +11,7 @@ export async function getAllReviews({page = 1, limit}) {
 }
 
 export async function createReview(review) {
-    const { data } = await instance.post('/review', review);
-    return data;
-}
-
-export async function createUserReview(review) {
-    const { data } = await instance.post('/review', review);
+    const { data } = await instance.post('/feedback', review);
     return data;
 }
 

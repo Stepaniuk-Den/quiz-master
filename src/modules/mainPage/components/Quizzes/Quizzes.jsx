@@ -1,0 +1,115 @@
+import "swiper/css";
+import "swiper/css/pagination";
+import CardsAll from "../../../../shared/components/CardsAll";
+import BtnLoadMore from "../../../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
+import PageTitle from "../../../../shared/components/PageTitle/PageTitle";
+import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import { useMediaQuery } from "react-responsive";
+import { StyledQuizzes } from "./Quizzes.styled";
+import CardSingle from "../../../../shared/components/CardSingle/CardSingle";
+
+function Quizzes({ adultQuizzes, childrenQuizzes }) {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1440px)",
+  });
+
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1439 })
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 767px)",
+  });
+
+  const desktopAdultQuizzes = adultQuizzes.slice(0, 4);
+  const desktopChildrenQuizzes = childrenQuizzes.slice(0, 4);
+
+  return (
+    <StyledQuizzes>
+      <div>
+        <PageTitle>For Adults</PageTitle>
+        <div>
+          <Paragraph>
+            Dive deep into a world of intriguing quizzes tailored for adults.
+            From cinema to logic, challenge your knowledge and discover where
+            your expertise lies. Explore a diverse range of topics and test the
+            depths of your knowledge.
+          </Paragraph>
+          <BtnLoadMore>See all</BtnLoadMore>
+        </div>
+        {isDesktop && <CardsAll array={desktopAdultQuizzes} />}
+        {isTablet && (
+          <Swiper
+            spaceBetween={24}
+            slidesPerView={2}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
+          >
+            {adultQuizzes.map((quiz) => (
+              <SwiperSlide key={quiz._id}>
+                <CardSingle quizData={quiz} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+         {isMobile && (
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={20}
+          >
+            {adultQuizzes.map((quiz) => (
+              <SwiperSlide key={quiz._id}>
+                <CardSingle quizData={quiz} type="adult" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </div>
+      <div>
+        <PageTitle>For Children</PageTitle>
+        <div>
+          <Paragraph>
+            Engaging and fun quizzes designed specifically for kids. Dive into a
+            world of colorful questions on movies, music, and much more. Perfect
+            for young curious minds! A safe space for children to learn, play,
+            and grow their knowledge.
+          </Paragraph>
+          <BtnLoadMore>See all</BtnLoadMore>
+        </div>
+        {isDesktop && <CardsAll array={desktopChildrenQuizzes} />}
+        {isTablet && (
+          <Swiper
+            spaceBetween={24}
+            slidesPerView={2}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
+          >
+            {childrenQuizzes.map((quiz) => (
+              <SwiperSlide key={quiz._id}>
+                <CardSingle quizData={quiz} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+           {isMobile && (
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={20}
+          >
+            {childrenQuizzes.map((quiz) => (
+              <SwiperSlide key={quiz._id}>
+                <CardSingle quizData={quiz} type="children" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </div>
+    </StyledQuizzes>
+  );
+}
+
+export default Quizzes;

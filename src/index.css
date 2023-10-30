@@ -1,5 +1,6 @@
 @import '../src/stylesheet/vars.css';
 @import '../src/stylesheet/fonts.css';
+@import "modern-normalize";
 
 
 body {
@@ -57,4 +58,8 @@ button {
 
 img {
   display: block;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
