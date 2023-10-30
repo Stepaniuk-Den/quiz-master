@@ -1,5 +1,5 @@
 import { useLocation } from "react-router";
-import BtnStart from "../../shared/Buttons/BtnStart";
+import BtnStart from "../Buttons/BtnStart/BtnStart";
 import {
   CardWrapper,
   FiHeartS,

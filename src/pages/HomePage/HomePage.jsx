@@ -1,8 +1,8 @@
 import ButtonSeeAll from "../../components/ButtonSeeAll";
 import UserStats from "../../components/UserStats"
-import BtnCreateQuiz from "../../shared/Buttons/BtnCreateQuiz/BtnCreateQuiz";
-import CardsAll from "../../shared/CardsAll/CardsAll";
-import HeaderHome from "../../shared/HeaderHome";
+import BtnCreateQuiz from "../../shared/components/Buttons/BtnCreateQuiz/BtnCreateQuiz";
+import CardsAll from "../../shared/components/CardsAll/CardsAll";
+import HeaderHome from "../../shared/components/HeaderHome";
 import { Box, BoxLastPassed, BoxUserStats, TitleHome, TitleLastPassedQ } from "./HomePageStyled";
 
 

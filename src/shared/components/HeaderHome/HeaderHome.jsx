@@ -1,8 +1,9 @@
 import { Settings, DropdownButton, DropdownContainer, DropdownItem, DropdownList, LogOut, MessageCircle, HeaderContainer, Logo, NavItem, NavList, Up, Down, UserName } from "./HeaderHomeStyled";
 import React, { useState } from 'react';
-import { infoUser } from "../../components/UserStats/info/infoUser";
+// import { infoUser } from "../../components/UserStats/info/infoUser";
+import { infoUser } from "../../../components/UserStats/info/infoUser";
 import { Link, useLocation} from "react-router-dom";
-import LogoutModal from "../../components/ModalLogOut/ModalLogOut";
+import LogoutModal from "../../../components/ModalLogOut/ModalLogOut";
 
 
 const HeaderHome = () => {

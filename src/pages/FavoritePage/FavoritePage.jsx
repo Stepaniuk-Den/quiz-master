@@ -1,10 +1,10 @@
 //import { useLocation } from "react-router";
-import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
+import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 import { PageWrapper, SectionWrapper } from "./FavoritePageStyled";
-import PageTopBar from "../../shared/PageTopBar/PageTopBar";
-import QuizesList from "../../shared/QuizesList/QuizesList";
+import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import QuizeFilterTools from "../../modules/favoritePage/components/QuizFilterTools/QuizFilterTools";
-import { quizNames } from "../../shared/QuizesList/quizNames";
+import { quizNames } from "../../shared/components/QuizesList/quizNames";
 import { useState } from "react";
 
 const FavoritePage = () => {
