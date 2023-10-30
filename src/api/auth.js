@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-    baseURL: 'https://quiz.com.ua/api',
+    baseURL: 'https://quiz-backend-vq56.onrender.com/api',
 });
 
 export const setToken = token => {

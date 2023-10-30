@@ -1,7 +1,7 @@
 import { StyledReview } from "./Review.styled";
-import CardTitle from "../../../../shared/CardTitle/CardTitle";
-import Paragraph from "../../../../shared/Paragraph/Paragraph";
-import Avatar from "../../../../shared/Avatar/Avatar";
+import CardTitle from "../../../../shared/components/CardTitle/CardTitle";
+import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
+import Avatar from "../../../../shared/components/Avatar/Avatar";
 
 function Review({ review }) {
   return (

@@ -1,6 +1,6 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import PageTitle from "../../../../shared/PageTitle/PageTitle";
+import PageTitle from "../../../../shared/components/PageTitle/PageTitle";
 import Review from "../Review/Review";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";

@@ -5,6 +5,8 @@ export const Container = styled.div.withConfig({
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   padding: 0 20px;
+  max-width: 100%;
+  overflow: hidden;
 
   @media (min-width: 768px) {
     padding: 0 32px;

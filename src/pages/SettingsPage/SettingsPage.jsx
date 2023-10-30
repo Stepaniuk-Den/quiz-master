@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import PageTitle from "../../shared/PageTitle/PageTitle";
+import PageTitle from "../../shared/components/PageTitle/PageTitle";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import {

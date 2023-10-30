@@ -14,13 +14,13 @@ import {
   UsersNumber,
 } from "./CardSingleStyled";
 
-const CardSingle = () => {
+const CardSingle = ({type}) => {
   const location = useLocation()
   
   const newClassName = location.pathname === '/favorite'?"favorite": '';
   return (
     <>
-      <CardWrapper>
+      <CardWrapper className={type}>
         <TopIconBox>
           <IconUsersWrapper>
             <FiUsersS />

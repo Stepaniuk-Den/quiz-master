@@ -13,8 +13,9 @@ import {
   LuEyeOffStyled,
   LuEyeStyled,
 } from "../../../modules/AuthForms/LoginForm/LoginForm.styled";
-import BtnToggleFormAuth from "../../../shared/Buttons/BtnToggleFormAuth";
-import BtnConfirmAuth from "../../../shared/Buttons/BtnConfirmAuth";
+// } from "../../../homepage/components/AuthForms/LoginForm/LoginForm.styled";
+import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
+import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 import { registerUserThunk } from "../../../redux/user/userThunks";
 import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 

@@ -13,9 +13,12 @@ export const CardWrapper = styled.li`
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.02);
   background-color: var(--white-background);
   /* background-color: rgba(0, 0, 0, 0.8); */
+
+  /* &.adult{
+    background-color: var(--blue-background);
+  } */
 
   h3 {
     margin: 0;

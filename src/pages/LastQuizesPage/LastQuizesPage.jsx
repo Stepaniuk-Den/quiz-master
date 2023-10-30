@@ -1,7 +1,7 @@
-import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore"
-import PageTopBar from "../../shared/PageTopBar/PageTopBar"
-import QuizesList from "../../shared/QuizesList/QuizesList"
-import { quizNames } from "../../shared/QuizesList/quizNames"
+import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore"
+import PageTopBar from "../../shared/components/PageTopBar/PageTopBar"
+import QuizesList from "../../shared/components/QuizesList/QuizesList"
+import { quizNames } from "../../shared/components/QuizesList/quizNames"
 
 const LastQuizesPage = () => {
   return (

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Modal from "../../shared/Modal/Modal";
+import Modal from "../../shared/components/Modal/Modal";
 import LogInForm from "../../modules/AuthForms/LoginForm"
 import RegisterForm from "../../modules/AuthForms/RegisterForm/RegisterForm";
 import { useSelector } from "react-redux";

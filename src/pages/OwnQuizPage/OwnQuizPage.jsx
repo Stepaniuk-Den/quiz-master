@@ -1,10 +1,10 @@
 //import { useLocation } from "react-router";
 import QuizeFilterTools from "../../modules/ownQuizPage/components/QuizFilterTools/QuizFilterTools";
-import BtnLoadMore from "../../shared/Buttons/BtnLoadMore/BtnLoadMore";
-import PageTopBar from "../../shared/PageTopBar/PageTopBar";
-import QuizesList from "../../shared/QuizesList/QuizesList";
+import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
+import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { PageWrapper, SectionWrapper } from "./OwnQuizePageStyled";
-import {quizNames} from '../../shared/QuizesList/quizNames'
+import {quizNames} from '../../shared/components/QuizesList/quizNames'
 import { useState } from "react";
 
 const OwnQuizPage = () => {

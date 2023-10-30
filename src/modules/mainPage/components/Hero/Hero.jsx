@@ -1,6 +1,6 @@
 import React from "react";
-import MediumBtn from "../../../../shared/Buttons/MediumBtn/MediumBtn";
-import Paragraph from "../../../../shared/Paragraph/Paragraph";
+import MediumBtn from "../../../../shared/components/Buttons/MediumBtn/MediumBtn";
+import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
 import { StyledHero } from "./Hero.styled";
 
 function Hero() {
@@ -13,8 +13,10 @@ function Hero() {
           questions: cinema, music, logic and others. Quizzes differ in the
           degreeof difficulty of questions, the number and type of questions.
         </Paragraph>
+        <div>
         <MediumBtn type="accent">Choose a test</MediumBtn>
         <MediumBtn>Create a quest</MediumBtn>
+        </div>
       </div>
       <h1>Are you ready to <br/> take the Quiz?</h1>
     </StyledHero>
