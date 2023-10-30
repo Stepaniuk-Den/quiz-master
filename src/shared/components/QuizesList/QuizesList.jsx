@@ -2,15 +2,15 @@
 import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
 
-const QuizesList = ({quizCategoriesNameArr}) => {
-  
+const QuizesList = ({quizzesArr, className, type}) => {
+  // console.log('quizzesArrList: ', quizzesArr);  
   return (
     <>      
-      <CardList>
+      <CardList className={className}>
+        {/* <QuizListItem/>
         <QuizListItem/>
-        <QuizListItem/>
-        <QuizListItem/>
-        {/* {quizCategoriesNameArr.map(quizCategoryName=><QuizListItem key={uuidv4()}/>)}         */}
+        <QuizListItem/> */}
+        {quizzesArr.map(quiz=><li key={quiz._id} className={type}><QuizListItem quiz={quiz}/></li>)}        
       </CardList>
     </>
   );

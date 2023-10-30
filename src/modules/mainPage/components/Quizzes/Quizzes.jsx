@@ -1,6 +1,5 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import CardsAll from "../../../../shared/components/CardsAll";
 import BtnLoadMore from "../../../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 import PageTitle from "../../../../shared/components/PageTitle/PageTitle";
 import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
@@ -8,7 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { useMediaQuery } from "react-responsive";
 import { StyledQuizzes } from "./Quizzes.styled";
-import CardSingle from "../../../../shared/components/CardSingle/CardSingle";
+import QuizesList from "../../../../shared/components/QuizesList/QuizesList";
+import QuizListItem from "../../../../shared/components/QuizListItem/QuizListItem";
 
 function Quizzes({ adultQuizzes, childrenQuizzes }) {
   const isDesktop = useMediaQuery({
@@ -37,7 +37,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           </Paragraph>
           <BtnLoadMore>See all</BtnLoadMore>
         </div>
-        {isDesktop && <CardsAll array={desktopAdultQuizzes} />}
+        {isDesktop && <QuizesList quizzesArr={desktopAdultQuizzes} type="accent"/>}
         {isTablet && (
           <Swiper
             spaceBetween={24}
@@ -48,8 +48,8 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {adultQuizzes.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
-                <CardSingle quizData={quiz} />
+              <SwiperSlide key={quiz._id} className="adult-tab">
+                <QuizListItem quizData={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -58,10 +58,14 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           <Swiper
             slidesPerView={1}
             spaceBetween={20}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
           >
             {adultQuizzes.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
-                <CardSingle quizData={quiz} type="adult" />
+              <SwiperSlide key={quiz._id} className="adult">
+                <QuizListItem quizData={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -78,7 +82,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           </Paragraph>
           <BtnLoadMore>See all</BtnLoadMore>
         </div>
-        {isDesktop && <CardsAll array={desktopChildrenQuizzes} />}
+        {isDesktop && <QuizesList quizzesArr={desktopChildrenQuizzes} />}
         {isTablet && (
           <Swiper
             spaceBetween={24}
@@ -90,7 +94,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           >
             {childrenQuizzes.map((quiz) => (
               <SwiperSlide key={quiz._id}>
-                <CardSingle quizData={quiz} />
+                <QuizListItem quizData={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -99,10 +103,14 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           <Swiper
             slidesPerView={1}
             spaceBetween={20}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
           >
             {childrenQuizzes.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
-                <CardSingle quizData={quiz} type="children" />
+              <SwiperSlide key={quiz._id} className="children">
+                <QuizListItem quizData={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>

@@ -136,14 +136,263 @@ const initialState = {
         }
       ],
     },
-    filtered: [],
-    passed: [],
-    user: [],
-    favorites: [],
+    filtered: [{
+        _id: "653b7ab5frvf4cc7fb04f0a2",
+        quizName: "Quiz 1",
+        rate: 0,
+        totalPassed: 10,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f1tr44cc7fb04f0a2",
+        quizName: "Quiz 2",
+        rate: 0,
+        totalPassed: 15,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18hjkcc7fb04f0a2",
+        quizName: "Quiz 3",
+        rate: 0,
+        totalPassed: 20,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4rerefb04f0a2",
+        quizName: "Quiz 4",
+        rate: 0,
+        totalPassed: 12,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4tyrer7fb04f0a2",
+        quizName: "Quiz 5",
+        rate: 0,
+        totalPassed: 18,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18berr7fb04f0a2",
+        quizName: "Quiz 6",
+        rate: 0,
+        totalPassed: 9,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4cc7fb04frr",
+        quizName: "Quiz 7",
+        rate: 0,
+        totalPassed: 22,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    }],
+    passed: [{
+        _id: "653b7ab5frvf4cc7fb04f0a2",
+        quizName: "Quiz 1",
+        rate: 0,
+        totalPassed: 10,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f1tr44cc7fb04f0a2",
+        quizName: "Quiz 2",
+        rate: 0,
+        totalPassed: 15,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18hjkcc7fb04f0a2",
+        quizName: "Quiz 3",
+        rate: 0,
+        totalPassed: 20,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4rerefb04f0a2",
+        quizName: "Quiz 4",
+        rate: 0,
+        totalPassed: 12,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4tyrer7fb04f0a2",
+        quizName: "Quiz 5",
+        rate: 0,
+        totalPassed: 18,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18berr7fb04f0a2",
+        quizName: "Quiz 6",
+        rate: 0,
+        totalPassed: 9,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    },
+    {
+        _id: "653b7ab5f18b4cc7fb04frr",
+        quizName: "Quiz 7",
+        rate: 0,
+        totalPassed: 22,
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: false
+    }],
+    ownQuizes: [{
+      _id: "653b7ab5frvf4cc7fb04f0a2",
+      quizName: "Quiz 1",
+      rate: 5.0,
+      totalPassed: 10,
+      categoryName: "Science",
+      quizType: "children",
+      quizCategory: "65398da95191746edd434971",
+      isFavorite: true
+  },
+  {
+      _id: "653b7ab5f1tr44cc7fb04f0a2",
+      quizName: "Quiz 2",
+      rate: 4.6,
+      totalPassed: 15,
+      categoryName: "Science",
+      quizType: "adult",
+      quizCategory: "65398da95191746edd434971",
+      isFavorite: true
+  },
+  {
+      _id: "653b7ab5f18hjkcc7fb04f0a2",
+      quizName: "Quiz 3",
+      rate: 4.3,
+      totalPassed: 20,
+      categoryName: "Sport",
+      quizType: "children",
+      quizCategory: "65398da95191746edd434971",
+      isFavorite: true
+  },
+  {
+      _id: "653b7ab5f18b4rerefb04f0a2",
+      quizName: "Quiz 4",
+      rate: 4.0,
+      totalPassed: 12,
+      categoryName: "Sport",
+      quizType: "adult",
+      quizCategory: "65398da95191746edd434971",
+      isFavorite: true
+  },
+  {
+      _id: "653b7ab5f18b4tyrer7fb04f0a2",
+      quizName: "Quiz 5",
+      rate: 3.0,
+      totalPassed: 18,
+      categoryName: "Comics",
+      quizType: "children",        
+      quizCategory: "65398da95191746edd434971",
+      isFavorite: true
+  },
+  {
+      _id: "653b7ab5f18berr7fb04f0a2",
+      quizName: "Quiz 6",
+      rate: 4.9,
+      totalPassed: 9,
+      categoryName: "Comics",
+      quizType: "adult",
+      quizCategory: "65398da95191746edd434971",
+      isFavorite: true
+  },
+  {
+      _id: "653b7ab5f18b4cc7fb04frr",
+      quizName: "Quiz 7",
+      rate: 5.0,
+      totalPassed: 22,
+      categoryName: "Books",
+      quizType: "children",
+      quizCategory: "65398da95191746edd434971",
+      isFavorite: true
+  }],
+    favorites: [{
+        _id: "653b7ab5frvf4cc7fb04f0a2",
+        quizName: "Quiz 1",
+        rate: 5.0,
+        totalPassed: 10,
+        categoryName: "Science",
+        quizType: "children",
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: true
+    },
+    {
+        _id: "653b7ab5f1tr44cc7fb04f0a2",
+        quizName: "Quiz 2",
+        rate: 4.6,
+        totalPassed: 15,
+        categoryName: "Science",
+        quizType: "adult",
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: true
+    },
+    {
+        _id: "653b7ab5f18hjkcc7fb04f0a2",
+        quizName: "Quiz 3",
+        rate: 4.3,
+        totalPassed: 20,
+        categoryName: "Sport",
+        quizType: "children",
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: true
+    },
+    {
+        _id: "653b7ab5f18b4rerefb04f0a2",
+        quizName: "Quiz 4",
+        rate: 4.0,
+        totalPassed: 12,
+        categoryName: "Sport",
+        quizType: "adult",
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: true
+    },
+    {
+        _id: "653b7ab5f18b4tyrer7fb04f0a2",
+        quizName: "Quiz 5",
+        rate: 3.0,
+        totalPassed: 18,
+        categoryName: "Comics",
+        quizType: "children",        
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: true
+    },
+    {
+        _id: "653b7ab5f18berr7fb04f0a2",
+        quizName: "Quiz 6",
+        rate: 4.9,
+        totalPassed: 9,
+        categoryName: "Comics",
+        quizType: "adult",
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: true
+    },
+    {
+        _id: "653b7ab5f18b4cc7fb04frr",
+        quizName: "Quiz 7",
+        rate: 5.0,
+        totalPassed: 22,
+        categoryName: "Books",
+        quizType: "children",
+        quizCategory: "65398da95191746edd434971",
+        isFavorite: true
+    }],
     total: 129865,
   },
   filters: null,
-  categories: {
+  
+  categoryType: {
     adult: null,
     children: null,
   },

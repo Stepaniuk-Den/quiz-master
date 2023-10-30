@@ -1,24 +1,20 @@
-import { useState } from "react";
+//import { useState } from "react";
+import { useSelector } from "react-redux";
 import { BtnSearch, FiSearchS, FormWrapper, InputStyled } from "./QuizSearchStyled";
-import { quizNames } from "../../../../shared/components/QuizesList/quizNames";
+import { selectOwnQuizes } from "../../../../redux/selectors";
 
 const QuizeSearch = ({filteredQuizeCards}) => {
-
-  const newNames = quizNames.map((name) => name.quizCategory);
-  // console.log('newNames: ', newNames);
-  const [quizCollectionName, setQuizCollectionName] = useState("");
+  const ownAllQuizes = useSelector(selectOwnQuizes)  
+  // const [quizCollectionName, setQuizCollectionName] = useState("");
   // console.log("quizCollectionName: ", quizCollectionName);
 
   const handleFilterNames = (name) => {
-    const filteredNames = newNames.filter((newName) =>
-      newName.toLowerCase().includes(name)
+    const filteredNames = ownAllQuizes.filter((quiz) =>
+      quiz.categoryName.toLowerCase().includes(name)
     );
-    filteredQuizeCards(filteredNames);
-    // console.log("filteredNames: ", filteredNames);
-    setQuizCollectionName(name);
+    filteredQuizeCards(filteredNames);    
+    // setQuizCollectionName(name);
   };
-
-
 
   const handleSearchBtnClick =()=>{
     console.log("handleSearchBtnClick");
@@ -31,7 +27,7 @@ const QuizeSearch = ({filteredQuizeCards}) => {
       <InputStyled
         placeholder="Search"
         name="quizCollectionName"
-        value={quizCollectionName}
+        // value={quizCollectionName}
         type="text"
         autoComplete="on"
         autoFocus

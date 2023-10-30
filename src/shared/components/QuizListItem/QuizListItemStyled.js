@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FiUsers, FiHeart } from "react-icons/fi";
 
-export const CardWrapper = styled.li`
+export const CardWrapper = styled.div`
   /* outline: 1px solid orange; */
   box-sizing: border-box;
   margin: 0;
@@ -118,24 +118,14 @@ export const ThemesS = styled.h4`
 
 export const GeneralScienceS = styled.h3`
   margin: 0;
-  padding: 0;
-  /* color: #f4f4f4; */
+  padding: 0;  
   color: var(--text-color-100);
-  /* font-family: Gilroy; */
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
+  font-family: GilroyBold, sans-serif;
+  font-size: 20px;  
   line-height: 1.4;
 
   @media (min-width: 768px) {
     font-size: 24px;
     line-height: 1.33;
   }
-`;
-export const RatingStars = styled.div`
-  margin: 0;
-  padding: 0;
-  /* color: #f4f4f4; */
-  color: var(--star-color-100);
-  /* color: var(--star-color-8); */
 `;

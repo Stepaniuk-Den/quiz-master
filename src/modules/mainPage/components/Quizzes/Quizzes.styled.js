@@ -29,8 +29,25 @@ export const StyledQuizzes = styled.section`
   }
 
   .swiper {
-      margin-bottom: 80px;
-    }
+    margin-bottom: 50px;
+    height: 400px;
+  }
+
+  .adult:nth-child(odd) > div {
+    background-color: var(--blue-background);
+  }
+
+  .children:nth-child(even) > div {
+    background-color: var(--blue-background);
+  }
+
+  .swiper-pagination-bullet {
+    background: var(--star-color-100);
+  }
+
+  .swiper-pagination-bullet-active {
+    background: var(--star-color-100);
+  }
 
   @media only screen and (min-width: 375px) {
     p {
@@ -44,6 +61,7 @@ export const StyledQuizzes = styled.section`
   }
 
   @media only screen and (min-width: 768px) {
+
     h2 {
       margin-bottom: 24px;
     }
@@ -69,12 +87,8 @@ export const StyledQuizzes = styled.section`
       margin-bottom: 100px;
     }
 
-    .swiper-pagination-bullet {
-      background: var(--star-color-100);
-    }
-
-    .swiper-pagination-bullet-active {
-      background: var(--star-color-100);
+    .adult-tab:first-child > div {
+      background-color: var(--blue-background);
     }
   }
 

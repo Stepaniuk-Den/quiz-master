@@ -1,11 +1,7 @@
-//import { useLocation } from "react-router";
-import QuizeSearch from "../QuizSearch/QuizSearch";
 import { FormFiltersWrapper } from "./QuizFilterToolsStyled";
-//import QuizeSearch from "../QuizSearch/QuizSearch";
+import QuizeSearch from "../QuizSearch/QuizSearch";
 
-const QuizeFilterTools = ({filteredQuizeCards}) => {
-  // const location = useLocation()
-  // const locationPath = location.pathname === '/discover'? true : false;
+const QuizeFilterTools = ({filteredQuizeCards}) => {  
   return (
     <FormFiltersWrapper>
       <QuizeSearch filteredQuizeCards={filteredQuizeCards}/>
