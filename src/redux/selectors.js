@@ -7,5 +7,6 @@ export const selectRandomChildren = state => state.quiz.quizzes.random.children;
 
 
 export const selectFavorite = state => state.quiz.quizzes.favorites
+export const selectOwnQuizes = state => state.quiz.quizzes.ownQuizes
 
 
