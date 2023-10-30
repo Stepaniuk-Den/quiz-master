@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FiUsers, FiHeart } from "react-icons/fi";
 
-export const CardWrapper = styled.li`
+export const CardWrapper = styled.div`
   /* outline: 1px solid orange; */
   box-sizing: border-box;
   margin: 0;

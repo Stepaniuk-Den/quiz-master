@@ -17,6 +17,6 @@ export const StyledReview = styled.div`
   p{
     letter-spacing: normal;
     max-height: 60px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 `;
