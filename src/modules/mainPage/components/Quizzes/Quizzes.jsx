@@ -37,7 +37,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           </Paragraph>
           <BtnLoadMore>See all</BtnLoadMore>
         </div>
-        {isDesktop && <QuizesList quizzesArr={desktopAdultQuizzes} />}
+        {isDesktop && <QuizesList quizzesArr={desktopAdultQuizzes} type="accent"/>}
         {isTablet && (
           <Swiper
             spaceBetween={24}
@@ -48,7 +48,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {adultQuizzes.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
+              <SwiperSlide key={quiz._id} className="adult-tab">
                 <QuizListItem quizData={quiz} />
               </SwiperSlide>
             ))}
@@ -58,6 +58,10 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           <Swiper
             slidesPerView={1}
             spaceBetween={20}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
           >
             {adultQuizzes.map((quiz) => (
               <SwiperSlide key={quiz._id} className="adult">
@@ -99,6 +103,10 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           <Swiper
             slidesPerView={1}
             spaceBetween={20}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
           >
             {childrenQuizzes.map((quiz) => (
               <SwiperSlide key={quiz._id} className="children">

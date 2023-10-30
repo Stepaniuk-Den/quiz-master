@@ -18,5 +18,9 @@ export const CardList = styled.ul`
     row-gap: 48px;
     column-gap: 24px;
     /* margin-bottom: 48px; */
+
+   .accent:first-child > div{
+    background-color: var(--blue-background);
+    }
   }
 `;
