@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormA
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 
 const RegisterForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
 
@@ -30,19 +30,20 @@ const RegisterForm = () => {
     },
 
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
+      name: Yup.string().min(3, "The name must consist of at least 3 characters").required("Name is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email address is required"),
       password: Yup.string()
         .min(6, "Enter at least 6 characters")
-        .max(20, "Must be maximum 30 characters")
+        .max(20, "Must be maximum 20 characters")
         .required("Password is required"),
     }),
 
     onSubmit: (values) => {
-      //   dispatch(loginThunk(values));
-      console.log(values);
+        dispatch(registerUserThunk(values));
+      // console.log(values);
+      dispatch(toggleShowAuthPage(""));
     },
   });
 
@@ -56,7 +57,7 @@ const RegisterForm = () => {
             type="name"
             value={formik.values.name}
             placeholder="Name"
-            autoComplete="off"
+            // autoComplete="off"
             onChange={formik.handleChange}
             label="Name"
           />
@@ -70,7 +71,7 @@ const RegisterForm = () => {
             type="email"
             value={formik.values.email}
             placeholder="Email"
-            autoComplete="off"
+            // autoComplete="off"
             onChange={formik.handleChange}
             label="Email"
           />
@@ -85,7 +86,7 @@ const RegisterForm = () => {
               type={passwordShown ? "text" : "password"}
               value={formik.values.password}
               placeholder="Password"
-              autoComplete="off"
+              // autoComplete="off"
               onChange={formik.handleChange}
               label="Password"
             />

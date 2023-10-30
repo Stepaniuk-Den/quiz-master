@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -19,7 +19,7 @@ import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 
 
 const LogInForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
 
@@ -35,13 +35,14 @@ const LogInForm = () => {
         .required("Email address is required"),
       password: Yup.string()
         .min(6, "Enter at least 6 characters")
-        .max(20, "Must be maximum 30 characters")
+        .max(20, "Must be maximum 20 characters")
         .required("Password is required"),
     }),
 
     onSubmit: (values) => {
-      //   dispatch(loginThunk(values));
-      console.log(values);
+        dispatch(loginUserThunk(values));
+      // console.log(values);
+      dispatch(toggleShowAuthPage(""));
     },
   });
 
@@ -55,7 +56,7 @@ const LogInForm = () => {
             type="email"
             value={formik.values.email}
             placeholder="Email"
-            autoComplete="off"
+            // autoComplete="off"
             onChange={formik.handleChange}
             label="Email"
           />
@@ -70,7 +71,7 @@ const LogInForm = () => {
               type={passwordShown ? "text" : "password"}
               value={formik.values.password}
               placeholder="Password"
-              autoComplete="off"
+              // autoComplete="off"
               onChange={formik.handleChange}
               label="Password"
             />
@@ -91,6 +92,7 @@ const LogInForm = () => {
           {formik.touched.password && formik.errors.password ? (
             <ErrorsStyled>{formik.errors.password}</ErrorsStyled>
           ) : null}
+
         </InputsWrapper>
         <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
       </form>

@@ -67,3 +67,20 @@ const TemporaryLinkToDelete = () => {
 };
 
 export default TemporaryLinkToDelete;
+
+
+// const handleLogOut = () => {
+//   dispatch(logOutUserThunk());
+//   // dispatch(toggleShowAuthPage(''));
+//   onClose();
+// };
+
+// ===================
+// HOMEPAGE
+// const isAuth = useSelector(selectIsAuth);
+//   useEffect(() => {
+//     if (!isAuth) return;
+//     // dispatch(getTransCategoriesThunk(token));
+//   });
+
+// isAuth && ()
