@@ -4,6 +4,7 @@ import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
 import Avatar from "../../../../shared/components/Avatar/Avatar";
 
 function Review({ review }) {
+    
   return (
     <StyledReview>
       <div>
