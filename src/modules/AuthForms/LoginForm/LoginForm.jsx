@@ -16,6 +16,8 @@ import {
 } from "./LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
+import { loginUserThunk } from "../../../redux/user/userThunks";
+import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
 
 const LogInForm = () => {
