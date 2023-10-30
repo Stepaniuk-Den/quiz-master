@@ -1,5 +1,5 @@
 import { Settings, DropdownButton, DropdownContainer, DropdownItem, DropdownList, LogOut, MessageCircle, HeaderContainer, Logo, NavItem, NavList, Up, Down, UserName, ButtonRegister, ButtonLogin } from "./HeaderStyled";
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
@@ -8,6 +8,8 @@ const Header = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
     const location = useLocation();
+
+const dropdownRef = useRef(null);
 
     const hasToken = true;
 
@@ -20,8 +22,22 @@ const Header = () => {
         setLogoutModalOpen(true);
     };
 
+    const handleDocumentClick = (event) => {
+        if (isDropdownOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setDropdownOpen(false);
+        }
+    };
+        useEffect(() => {
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+        }, [isDropdownOpen]);
+    
+
     const navItems = [
-        { to: '/home', label: 'Home' },
+        { to: '/home' || '/lastPassed', label: 'Home' },
         { to: '/discover', label: 'Discover' },
         { to: '/favorite', label: 'Favorite quize' },
         { to: '/ownquiz', label: 'My quize' },
@@ -56,7 +72,7 @@ const Header = () => {
             </NavList>
 
             {hasToken ? (
-                <DropdownContainer>
+                <DropdownContainer ref={dropdownRef}>
                     <DropdownButton onClick={toggleDropdown}>
                         <img src={infoUser.avatar} alt="" width={40} height={40} />
                         <UserName>{infoUser.userName}</UserName>

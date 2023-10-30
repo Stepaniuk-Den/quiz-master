@@ -1,16 +1,17 @@
-import ButtonSeeAll from "../../modules/homepage/components/ButtonSeeAll";
+import ButtonSeeAll from "../../shared/components/Buttons/ButtonSeeAll";
 import UserStats from "../../modules/homepage/components/UserStats"
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { BoxLastPassed, BoxUserStats, TitleLastPassedQ } from "./HomePageStyled";
-// import { quizNames } from "../../shared/QuizesList/quizNames";
+import { selectPassed } from "../../redux/selectors";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const seeAllLink = "/lastquiz"; 
-  // const shouldDisplaySeeAll = quizNames.length > 3;
-  // const displayedQuizNames = quizNames.slice(0, 3);
-  //  {shouldDisplaySeeAll && <ButtonSeeAll to={seeAllLink} />}
-  //  <QuizesList quizCategoriesNameArr={displayedQuizNames} />
+  const passedQuizzes = useSelector(selectPassed);
+  
+ const shouldDisplaySeeAll = passedQuizzes.length < 3;
+const displayedQuizNames = passedQuizzes.slice(0, 3);
 
   return (
     <>
@@ -20,9 +21,9 @@ const HomePage = () => {
         <UserStats />
         <div><BoxLastPassed>
           <TitleLastPassedQ>Last passed quizzes</TitleLastPassedQ>
-          <ButtonSeeAll to={seeAllLink} />
+          {shouldDisplaySeeAll ? null : <ButtonSeeAll to={seeAllLink} />}
         </BoxLastPassed>
-          <QuizesList /></div>
+          <QuizesList quizzesArr={displayedQuizNames} /></div>
       </BoxUserStats>
       </>
   )
