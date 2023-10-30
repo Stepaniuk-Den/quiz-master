@@ -21,21 +21,27 @@ import {
   SectionWrapper,
   TitleWrapper,
 } from "./SettingsPageStyled";
+import { useSelector } from 'react-redux';
+import { selectUserAvatar } from "../../redux/user/userSelectors";
 import BtnConfirmSettings from "../../shared/components/Buttons/BtnConfirmSettings";
 
 
 
 // Перша літера на аватар
-// function firstLetterToAvatar(str) {
-//   if (str.length > 0) {
-//     const firstLetter = str.charAt(0).toUpperCase();
-//     console.log(firstLetter);
-//   }
-// }
-// const userName = "";
-// firstLetterToAvatar(userName);
+function firstLetterToAvatar(str) {
+  if (str.length > 0) {
+ const firstLetter = str.charAt(0).toUpperCase();
+ return firstLetter
+    // console.log(firstLetter);
+  }
+}
+const userName = firstLetterToAvatar("Valera");
+console.log(userName);
+
 
 const SettingsPage = () => {
+  const userAvatar = useSelector(selectUserAvatar);
+  console.log(userAvatar);
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
@@ -76,7 +82,10 @@ const SettingsPage = () => {
            </TitleWrapper>
           <SettingForm>
             <AvatarImg>
-              <Avatar size="large" />
+            {userAvatar ?      
+              <Avatar size="large" src="userAvatar"/>
+            :
+            <p>{userName}</p>}
             </AvatarImg>
       <form onSubmit={formik.handleSubmit}>
         <InputsWrapper>
