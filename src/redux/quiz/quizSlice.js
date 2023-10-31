@@ -242,7 +242,7 @@ const initialState = {
         categoryName: "Science",
         quizType: "children",
         quizCategory: "65398da95191746edd434971",
-        isFavorite: true
+        isFavorite: true,
     },
     {
         _id: "653b7ab5f1tr44cc7fb04f0a2",
