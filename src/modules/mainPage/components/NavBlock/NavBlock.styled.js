@@ -47,6 +47,11 @@ export const StyledNavBlock = styled.section`
     margin-right: 14px;
   }
 
+  button:hover,
+  button:focus {
+    transform: scale(1.1);
+  }
+
   @media only screen and (max-width: 767px) {
     div > div {
       display: flex;
