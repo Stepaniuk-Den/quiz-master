@@ -28,6 +28,11 @@ export const StyledHero = styled.section`
     max-width: 335px;
   }
 
+  button:hover,
+  button:focus {
+    transform: scale(1.1);
+  }
+
   @media only screen and (min-width: 375px) {
     & > div {
       max-width: 375px;
