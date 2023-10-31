@@ -91,8 +91,8 @@ const initialState = {
   quizzes: {
     current: null,
     random: {
-      adult: null,
-      children: null,
+      adult: [],
+      children: [],
     },
     filtered: quizzesArr,
     passed: quizzesArr,
