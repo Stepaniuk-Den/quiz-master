@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
-  InputStyled,
   InputsWrapper,
   RestoreStyled,
   AuthTitle,
@@ -13,12 +12,17 @@ import {
   LuEyeOffStyled,
   InputPasswWrapStyled,
   ErrorsStyled,
+  FormStyled,
 } from "./LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
+import InputDefault from "../../../shared/components/InputDefault/InputDefault";
+import {
+  notifyLoginSuccess,
+  notifyRegisterError,
+} from "../../../shared/NotificationToastify/Toasts";
 import { loginUserThunk } from "../../../redux/user/userThunks";
 import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
-import { notifyLoginSuccess, notifyRegisterError } from "../../../shared/NotificationToastify/Toasts";
 
 const LogInForm = () => {
   const dispatch = useDispatch();
@@ -43,23 +47,24 @@ const LogInForm = () => {
 
     onSubmit: (values) => {
       dispatch(loginUserThunk(values))
-      .unwrap()
-      .then(data => {
-        notifyLoginSuccess(data);
-      })
-      .catch((error) => {
-        notifyRegisterError(error);
-      });
+        .unwrap()
+        .then((data) => {
+          notifyLoginSuccess(data);
+        })
+        .catch((error) => {
+          notifyRegisterError(error);
+        });
       dispatch(toggleShowAuthPage(""));
+      document.body.classList.remove("no-scroll");
     },
   });
 
   return (
     <>
       <AuthTitle>Login</AuthTitle>
-      <form onSubmit={formik.handleSubmit}>
+      <FormStyled onSubmit={formik.handleSubmit}>
         <InputsWrapper>
-          <InputStyled
+          <InputDefault
             name="email"
             type="email"
             value={formik.values.email}
@@ -74,7 +79,8 @@ const LogInForm = () => {
           ) : null}
 
           <InputPasswWrapStyled>
-            <InputStyled
+            <InputDefault
+              variant="input-password"
               name="password"
               type={passwordShown ? "text" : "password"}
               value={formik.values.password}
@@ -101,7 +107,7 @@ const LogInForm = () => {
           ) : null}
         </InputsWrapper>
         <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
-      </form>
+      </FormStyled>
 
       <RestoreStyled type="button">Restore password</RestoreStyled>
 
