@@ -24,7 +24,7 @@ export const BackText = styled.span`
 `;
 
 export const StyledLink = styled(Link)`
-outline: 1px solid yellow;
+/* outline: 1px solid yellow; */
 display: flex;
 align-items: center;
 max-width: 72px;

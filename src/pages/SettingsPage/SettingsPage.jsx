@@ -25,23 +25,25 @@ import { useSelector } from 'react-redux';
 import { selectUserAvatar } from "../../redux/user/userSelectors";
 import BtnConfirmSettings from "../../shared/components/Buttons/BtnConfirmSettings";
 
-
-
 // Перша літера на аватар
-function firstLetterToAvatar(str) {
+function firstLetterNameToAvatar(str) {
   if (str.length > 0) {
- const firstLetter = str.charAt(0).toUpperCase();
- return firstLetter
-    // console.log(firstLetter);
+    const firstLetter = str.trim().charAt(0).toUpperCase();
+    return firstLetter
+ // console.log(firstLetter);
   }
 }
-const userName = firstLetterToAvatar("Valera");
-console.log(userName);
+const userName = firstLetterNameToAvatar(" d");
+// console.log(userName);
 
+// function handleNameInputChange(event) {
+//   const inputValue = event.target.value;
+//   const userLetter = firstLetterNameToAvatar(inputValue);
+// }
 
 const SettingsPage = () => {
   const userAvatar = useSelector(selectUserAvatar);
-  console.log(userAvatar);
+  // console.log(userAvatar);
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
@@ -75,7 +77,6 @@ const SettingsPage = () => {
     <>
     <PageWrapper>
         <SectionWrapper>
-          firstLetter;
           <TitleWrapper>
             <GoBackBtn to="/"/>
             <PageTitle>Settings</PageTitle>
@@ -83,7 +84,7 @@ const SettingsPage = () => {
           <SettingForm>
             <AvatarImg>
             {userAvatar ?      
-              <Avatar size="large" src="userAvatar"/>
+              <Avatar size="large" src="userAvatar" alt="User avatar" width="100px"/>
             :
             <p>{userName}</p>}
             </AvatarImg>
@@ -92,10 +93,15 @@ const SettingsPage = () => {
           <InputStyled
             name="name"
             type="name"
+            // id="idName"
             value={formik.values.name}
             placeholder="Name"
             autoComplete="off"
             onChange={formik.handleChange}
+          //   onChange={(event) => {
+          //   formik.handleChange(event);
+          //   handleNameInputChange(event);
+          // }}
             label="Name"
           />
 

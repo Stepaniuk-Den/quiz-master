@@ -30,7 +30,6 @@ export const FormWrapper = styled.div`
 export const TitleThanks = styled.h2`
   font-size: 20px;
   font-family: "GilroyBold";
-  font-weight: 700;
   line-height: 20px;
   margin-bottom: 16px;
   text-align: center;
@@ -43,14 +42,12 @@ export const TextThanks = styled.p`
   color: var(--text-color-60);
   font-size: 15px;
   font-family: "GilroyRegular";
-  font-weight: 400;
   line-height: 16px;
 `;
 export const ToMainPageBtn = styled.button`
-  color: var(--text-color-100);
+  color: inherit;
   font-size: 14px;
   font-family: "GilroyBold";
-  font-weight: 700;
   line-height: 16px;
   width: 100%;
   height: 100%;
@@ -59,6 +56,13 @@ export const ToMainPageBtn = styled.button`
   background: var(--accent-color);
   border-radius: 30px;
   border: none;
+  transform: scale(1);
+  transition: transform 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(0.98);
+  }
 
   @media (min-width: 768px) {
     font-size: 16px;
@@ -69,6 +73,14 @@ export const CloseBtnContainer = styled.button`
   top: 18px;
   right: 18px;
   background-color: transparent;
+  transform: scale(1);
+  transition: transform 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+
   @media (min-width: 768px) {
     top: 24px;
     right: 24px;
