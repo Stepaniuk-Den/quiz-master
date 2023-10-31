@@ -11,6 +11,7 @@ import QuizesList from "../../../../shared/components/QuizesList/QuizesList";
 import QuizListItem from "../../../../shared/components/QuizListItem/QuizListItem";
 
 function Quizzes({ adultQuizzes, childrenQuizzes }) {
+
   const isDesktop = useMediaQuery({
     query: "(min-width: 1440px)",
   });
@@ -49,7 +50,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           >
             {adultQuizzes.map((quiz) => (
               <SwiperSlide key={quiz._id} className="adult-tab">
-                <QuizListItem quizData={quiz} />
+                <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -65,7 +66,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           >
             {adultQuizzes.map((quiz) => (
               <SwiperSlide key={quiz._id} className="adult">
-                <QuizListItem quizData={quiz} />
+                <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -94,7 +95,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           >
             {childrenQuizzes.map((quiz) => (
               <SwiperSlide key={quiz._id}>
-                <QuizListItem quizData={quiz} />
+                <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -110,7 +111,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           >
             {childrenQuizzes.map((quiz) => (
               <SwiperSlide key={quiz._id} className="children">
-                <QuizListItem quizData={quiz} />
+                <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
