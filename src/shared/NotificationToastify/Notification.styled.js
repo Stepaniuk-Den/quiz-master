@@ -16,6 +16,10 @@ export const ToastContainerStyled = styled(ToastContainer)`
     background: var(--second-background);
   }
 
+  .Toastify__toast--info {
+    background: var(--second-background);
+  }
+
   .Toastify__toast-body {
     width: 400px;
     height: 120px;

@@ -3,7 +3,7 @@ import MediumBtn from "../../../../shared/components/Buttons/MediumBtn/MediumBtn
 import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
 import { StyledHero } from "./Hero.styled";
 
-function Hero() {
+function Hero({handlerChoose, handlerCreate}) {
   return (
     <StyledHero>
       <div>
@@ -14,8 +14,8 @@ function Hero() {
           degreeof difficulty of questions, the number and type of questions.
         </Paragraph>
         <div>
-        <MediumBtn type="accent">Choose a test</MediumBtn>
-        <MediumBtn>Create a quest</MediumBtn>
+        <MediumBtn type="accent" handlerClick={handlerChoose}>Choose a test</MediumBtn>
+        <MediumBtn handlerClick={handlerCreate}>Create a quest</MediumBtn>
         </div>
       </div>
       <h1>Are you ready to <br/> take the Quiz?</h1>

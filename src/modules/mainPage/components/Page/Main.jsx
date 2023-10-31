@@ -6,14 +6,14 @@ import NavBlock from "../NavBlock/NavBlock.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
 
 function Main({data}) {
-  const {user, reviews, randomAdultQuizzes, randomChildrenQuizzes} = data;
+  const {user, reviews, randomAdultQuizzes, randomChildrenQuizzes, handleChooseTest, handleCreateTest } = data;
 
   return (
     <>
-      <Hero />
+      <Hero handlerChoose={handleChooseTest} handlerCreate={handleCreateTest}/>
       <Advantages />
       <Quizzes adultQuizzes={randomAdultQuizzes} childrenQuizzes={randomChildrenQuizzes}/>
-      <NavBlock/>
+      <NavBlock handlerChoose={handleChooseTest} handlerCreate={handleCreateTest}/>
       <Reviews reviews={reviews}/>
     </>
   );
