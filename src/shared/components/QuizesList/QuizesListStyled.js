@@ -10,17 +10,17 @@ export const CardList = styled.ul`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  /* margin-bottom: 40px; */
+  &.bottomVariant {
+    margin-bottom: 40px;
+  }
 
   @media (min-width: 768px) {
     flex-direction: row;
     flex-wrap: wrap;
     row-gap: 48px;
     column-gap: 24px;
-    /* margin-bottom: 48px; */
-
-   .accent:first-child > div{
-    background-color: var(--blue-background);
+    &.bottomVariant {
+      margin-bottom: 48px;
     }
   }
 `;

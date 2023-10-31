@@ -2,11 +2,11 @@
 import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
 
-const QuizesList = ({quizzesArr, type}) => {
-  
+const QuizesList = ({quizzesArr, className, type}) => {
+  // console.log('quizzesArrList: ', quizzesArr);  
   return (
     <>      
-      <CardList>
+      <CardList className={className}>
         {/* <QuizListItem/>
         <QuizListItem/>
         <QuizListItem/> */}
