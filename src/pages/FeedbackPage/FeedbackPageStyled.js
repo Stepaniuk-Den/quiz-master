@@ -9,7 +9,6 @@ export const PageWrapper = styled.div`
 `;
 
 export const SectionWrapper = styled.section`
-  /* outline: 1px solid red; */
   width: 100%;
   max-width: 1240px;
   display: flex;
@@ -26,22 +25,5 @@ export const TitleWrapper = styled.div`
 
   @media (min-width: 768px) {
     margin-bottom: 48px;
-  }
-`;
-
-export const TitleS = styled.h2`
-  padding: 0;
-  font-family: "GilroyBold";
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.19;
-  letter-spacing: -0.32px;
-
-  @media (min-width: 768px) {
-    margin: 0;
-    font-size: 44px;
-    line-height: 1.09;
-    letter-spacing: -0.44px;
   }
 `;

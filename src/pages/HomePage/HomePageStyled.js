@@ -1,6 +1,13 @@
 
 import styled from "styled-components";
 
+export const Container = styled.div`
+margin-top:80px;
+@media (min-width: 768px) {
+margin-top:100px;
+  }
+`
+
 export const TitleHome = styled.h2`
 color: var(--text-color-100);
 font-size: 44px;

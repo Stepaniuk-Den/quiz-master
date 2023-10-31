@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import { FiSearch } from "react-icons/fi";
 // import { Select } from "@mui/material";
 // import { styled } from "@mui/material/styles";
 // import { makeStyles } from "@material-ui/core/styles";
+
+export const FormWrapper = styled.form`
+outline: 1px solid red;
+position: relative;
+`
 
 export const SelectWrapper = styled.div`
   display: flex;
@@ -11,6 +17,24 @@ export const SelectWrapper = styled.div`
   @media (min-width: 768px) {
     margin-bottom: 24px;
   }
+`;
+export const BtnSearch = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: transparent;
+  top: 25px;
+  transform: translateY(-50%);
+  left: 18px;
+`;
+
+export const FiSearchS = styled(FiSearch)`
+  /* outline: 1px solid red; */
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-color-100);
 `;
 
 //////////////////////////////////////////////////////////

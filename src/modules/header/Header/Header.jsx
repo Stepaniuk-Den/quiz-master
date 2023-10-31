@@ -1,8 +1,11 @@
-import { Settings, DropdownButton, DropdownContainer, DropdownItem, DropdownList, LogOut, MessageCircle, HeaderContainer, Logo, NavItem, NavList, Up, Down, UserName, ButtonRegister, ButtonLogin } from "./HeaderStyled";
+import { Settings, DropdownButton, DropdownContainer, DropdownItem, DropdownList, LogOut, MessageCircle, HeaderContainer, Logo, NavItem, NavList, Up, Down, UserName, ButtonRegister, ButtonLogin, BoxAuth } from "./HeaderStyled";
 import React, { useEffect, useRef, useState } from 'react';
 import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+import { selectIsAuth } from "../../../redux/user/userSelectors";
 
 const Header = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -11,7 +14,13 @@ const Header = () => {
 
 const dropdownRef = useRef(null);
 
-    const hasToken = true;
+    const hasToken = useSelector(selectIsAuth);
+
+
+      const dispatch = useDispatch();
+  const handleOpenModal = (e) => {
+    dispatch(toggleShowAuthPage(e.currentTarget.name));
+  };
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -60,8 +69,6 @@ const dropdownRef = useRef(null);
                 {hasToken ? (
                     <>
                         {generateNavLinks(hasToken)}
-                        <NavItem className={location.pathname === '/ownquiz' ? 'active' : ''}>For Adults</NavItem>
-                        <NavItem className={location.pathname === '/ownquiz' ? 'active' : ''}>For Children</NavItem>
                     </>
                 ) : (
                     <>
@@ -86,10 +93,10 @@ const dropdownRef = useRef(null);
                     <LogoutModal isOpen={isLogoutModalOpen} onClose={() => setLogoutModalOpen(false)} />
                 </DropdownContainer>
             ) : (
-                <div>
-                    <ButtonRegister>Register</ButtonRegister>
-                    <ButtonLogin>Login</ButtonLogin>
-                </div>
+                <BoxAuth>
+                    <Link  to="/auth/loginForm"><ButtonRegister onClick={handleOpenModal}>Register</ButtonRegister></Link>
+                    <Link to="/auth/RegisterForm"><ButtonLogin onClick={handleOpenModal}>Login</ButtonLogin></Link>
+                </BoxAuth>
             )}
         </HeaderContainer>
     );

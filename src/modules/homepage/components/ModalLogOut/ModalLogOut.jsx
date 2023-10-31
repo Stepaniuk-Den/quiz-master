@@ -1,9 +1,19 @@
 import React from 'react';
 import { ButtonCansel, ButtonLogout, Close, ModalContainer, ModalContent, ModalOverlay, ModalTitle } from './ModalLogOutStyled';
+import { useDispatch } from 'react-redux';
+import { logOutUserThunk } from '../../../../redux/user/userThunks';
 
 
 const LogoutModal = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch()
+
   if (!isOpen) return null;
+
+
+    const handleLogout = () => {
+    dispatch(logOutUserThunk());
+    onClose();
+  };
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -19,7 +29,7 @@ const LogoutModal = ({ isOpen, onClose }) => {
         <ModalContent>
           Are you sure you want to log out of your account?
         </ModalContent>
-        <ButtonLogout onClick={onClose}>
+        <ButtonLogout onClick={handleLogout}>
           Log out
         </ButtonLogout>
         <ButtonCansel onClick={onClose}>Cancel</ButtonCansel>

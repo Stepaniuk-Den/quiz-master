@@ -14,6 +14,10 @@ const FavoritePage = () => {
   const filteredQuizeCards = (filteredNames) => {
     setFavoriteQuizesArr(filteredNames);
   };
+
+  const handleLoadMore = () => {
+    console.log("BtnLoadMore");
+  };
   
   return (
     <PageWrapper>
@@ -21,7 +25,7 @@ const FavoritePage = () => {
         <PageTopBar titlePage="Favorite quize" />
         <QuizeFilterTools filteredQuizeCards={filteredQuizeCards} />        
         <QuizesList quizzesArr={favoriteQuizesArr} className={"bottomVariant"}/>
-        <BtnLoadMore />
+        <BtnLoadMore handleLoadMore={handleLoadMore}/>
       </SectionWrapper>
     </PageWrapper>
   );

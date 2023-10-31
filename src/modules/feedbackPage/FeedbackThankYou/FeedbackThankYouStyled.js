@@ -45,10 +45,9 @@ export const ThankYouText = styled.h2`
 `;
 
 export const ToMainPageBtn = styled.button`
-  color: var(--text-color-100);
+  color: inherit;
   font-size: 14px;
   font-family: "GilroyBold";
-  font-weight: 700;
   line-height: 16px;
   width: 100%;
   padding-top: 16px;
@@ -56,6 +55,13 @@ export const ToMainPageBtn = styled.button`
   background: var(--accent-color);
   border-radius: 30px;
   border: none;
+  transform: scale(1);
+  transition: transform 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(0.98);
+  }
 
   @media (min-width: 768px) {
     font-size: 16px;

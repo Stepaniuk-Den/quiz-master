@@ -1,14 +1,11 @@
 import { ButtonS } from "./BtnLoadMoreStyled";
 
-const BtnLoadMore = ({ children }) => {
-  const handleLoadMore = () => {
-    console.log("BtnLoadMore");
-  };
-
+const BtnLoadMore = ({ handleLoadMore }) => {
+  
   return (
     <>
       <ButtonS type="button" onClick={handleLoadMore}>
-        {children}
+        Load more
       </ButtonS>
     </>
   );
