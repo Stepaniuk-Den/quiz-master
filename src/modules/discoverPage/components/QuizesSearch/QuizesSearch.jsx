@@ -1,12 +1,21 @@
+import { useSelector } from "react-redux";
 import UserTestsSearch from "../../discoverFavoriteOwnquizCommonComponents/UserTestsSearch/UserTestsSearch";
 import IconFilter from "../IconFilter/IconFilter";
 import QuizSelect from "../QuizSelect/QuizSelect";
-import { SelectWrapper } from "./QuizesSearchStyled";
+import { BtnSearch, FiSearchS, FormWrapper, SelectWrapper } from "./QuizesSearchStyled";
+import { selectDiscoverAdult, selectDiscoverChildren } from "../../../../redux/selectors";
 
 const QuizeSearch = () => {
+  const allAdultCategories = useSelector(selectDiscoverAdult)
+  console.log('allAdultCategories: ', allAdultCategories);
+  const allChildrenCategories = useSelector(selectDiscoverChildren)
+  
   return (
-    <form>
+    <FormWrapper>
       <SelectWrapper>
+      <BtnSearch type="submit">
+        <FiSearchS />
+      </BtnSearch>
         
         <UserTestsSearch />
 
@@ -15,16 +24,16 @@ const QuizeSearch = () => {
         <QuizSelect
           className="forChildren"
           selectTitle="For children"
-          options="options3"
+          options={allChildrenCategories}
         />
 
         <QuizSelect
           className="forAdults"
           selectTitle="For adults"
-          options="options4"
+          options={allAdultCategories}
         />
       </SelectWrapper>
-    </form>
+    </FormWrapper>
   );
 };
 

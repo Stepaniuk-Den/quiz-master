@@ -14,6 +14,9 @@ const OwnQuizPage = () => {
   const filteredQuizeCards = (filteredNames) => {    
     setOwnQuizesArr(filteredNames);
   };
+  const handleLoadMore = () => {
+    console.log("BtnLoadMore");
+  };
 
   return (
     <PageWrapper>
@@ -21,7 +24,7 @@ const OwnQuizPage = () => {
         <PageTopBar titlePage="My quiz" />
         <QuizeFilterTools filteredQuizeCards={filteredQuizeCards}/>
         <QuizesList quizzesArr={ownQuizesArr} className={"bottomVariant"}/>
-        <BtnLoadMore />
+        <BtnLoadMore handleLoadMore={handleLoadMore}/>
       </SectionWrapper>
     </PageWrapper>
   );
