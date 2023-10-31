@@ -60,7 +60,7 @@ const SettingsPage = () => {
         .required("Email address is required"),
       password: Yup.string()
         .min(6, "Enter at least 6 characters")
-        .max(20, "Must be maximum 30 characters")
+        .max(20, "Must be maximum 20 characters")
         .required("Password is required"),
     }),
 

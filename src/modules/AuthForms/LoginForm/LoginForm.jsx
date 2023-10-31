@@ -18,7 +18,7 @@ import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormA
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 import { loginUserThunk } from "../../../redux/user/userThunks";
 import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
-
+import { notifyLoginSuccess, notifyRegisterError } from "../../../shared/NotificationToastify/Toasts";
 
 const LogInForm = () => {
   const dispatch = useDispatch();
@@ -42,8 +42,14 @@ const LogInForm = () => {
     }),
 
     onSubmit: (values) => {
-        dispatch(loginUserThunk(values));
-      // console.log(values);
+      dispatch(loginUserThunk(values))
+      .unwrap()
+      .then(data => {
+        notifyLoginSuccess(data);
+      })
+      .catch((error) => {
+        notifyRegisterError(error);
+      });
       dispatch(toggleShowAuthPage(""));
     },
   });
@@ -73,7 +79,6 @@ const LogInForm = () => {
               type={passwordShown ? "text" : "password"}
               value={formik.values.password}
               placeholder="Password"
-              // autoComplete="off"
               onChange={formik.handleChange}
               label="Password"
             />
@@ -94,7 +99,6 @@ const LogInForm = () => {
           {formik.touched.password && formik.errors.password ? (
             <ErrorsStyled>{formik.errors.password}</ErrorsStyled>
           ) : null}
-
         </InputsWrapper>
         <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
       </form>

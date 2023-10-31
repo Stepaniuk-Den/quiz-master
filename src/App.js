@@ -8,6 +8,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "./redux/user/userSelectors";
 import { currentUserThunk } from "./redux/user/userThunks";
+import Notification from "./shared/NotificationToastify/Notification";
 
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"));
@@ -57,6 +58,7 @@ function App() {
     </Route>
   </Routes>
 </Suspense>
+<Notification />
 </>
   );
 }
@@ -112,5 +114,5 @@ export default App;
 //       </Route>
 //   </Routes>
 // </Suspense>
-// </> */}
+// </>  */}
 // ==========================================
