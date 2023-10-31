@@ -18,6 +18,7 @@ import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormA
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 import { registerUserThunk } from "../../../redux/user/userThunks";
 import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+import { notifyRegisterError, notifyVerifyEmail } from "../../../shared/NotificationToastify/Toasts";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -43,9 +44,14 @@ const RegisterForm = () => {
     }),
 
     onSubmit: (values) => {
-        dispatch(registerUserThunk(values));
-      // console.log(values);
-      dispatch(toggleShowAuthPage(""));
+        dispatch(registerUserThunk(values)).unwrap()
+        .then(() => {
+          notifyVerifyEmail();
+        })
+        .catch((error) => {
+          notifyRegisterError(error);
+        });
+        dispatch(toggleShowAuthPage(""));
     },
   });
 

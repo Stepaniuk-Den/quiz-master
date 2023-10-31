@@ -5,13 +5,13 @@ import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { BoxLastPassed, BoxUserStats, TitleLastPassedQ } from "./HomePageStyled";
 import { selectPassed } from "../../redux/selectors";
 import { useSelector } from "react-redux";
+import MediaQuery from "react-responsive";
 
 const HomePage = () => {
   const seeAllLink = "/lastquiz"; 
   const passedQuizzes = useSelector(selectPassed);
   
  const shouldDisplaySeeAll = passedQuizzes.length < 3;
-const displayedQuizNames = passedQuizzes.slice(0, 3);
 
   return (
     <>
@@ -19,11 +19,17 @@ const displayedQuizNames = passedQuizzes.slice(0, 3);
       
       <BoxUserStats>
         <UserStats />
-        <div><BoxLastPassed>
+        <div>
+          <BoxLastPassed>
           <TitleLastPassedQ>Last passed quizzes</TitleLastPassedQ>
           {shouldDisplaySeeAll ? null : <ButtonSeeAll to={seeAllLink} />}
         </BoxLastPassed>
-          <QuizesList quizzesArr={displayedQuizNames} /></div>
+          <MediaQuery minWidth={1440}>
+            {matches => (
+              <QuizesList quizzesArr={matches ? passedQuizzes.slice(0, 3) : passedQuizzes.slice(0, 2)} />
+            )}
+          </MediaQuery>
+          </div>
       </BoxUserStats>
       </>
   )

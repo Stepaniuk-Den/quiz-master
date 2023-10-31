@@ -2,9 +2,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleShowAuthPage } from "../../redux/Modal/modalSlice";
 
-
 const TemporaryLinkToDelete = () => {
-
   // ====================
   const dispatch = useDispatch();
   const handleOpenModal = (e) => {
@@ -50,24 +48,28 @@ const TemporaryLinkToDelete = () => {
       <Link to="/feedback" style={{ color: "lime" }}>
         FeedbackPage |
       </Link>
+      <Link to="/randomquiz" style={{ color: "red" }}>
+        RandomQuizPage |
+      </Link>
 
-
-     {/* Auth buttons */}
+      {/* Auth buttons */}
 
       <Link to="/auth/loginForm">
-        <button type="button" onClick={handleOpenModal}>Login</button>
+        <button type="button" onClick={handleOpenModal}>
+          Login
+        </button>
       </Link>
 
       <Link to="/auth/RegisterForm">
-        <button type="submit" onClick={handleOpenModal}>Register</button>
+        <button type="submit" onClick={handleOpenModal}>
+          Register
+        </button>
       </Link>
-    
     </div>
   );
 };
 
 export default TemporaryLinkToDelete;
-
 
 // const handleLogOut = () => {
 //   dispatch(logOutUserThunk());

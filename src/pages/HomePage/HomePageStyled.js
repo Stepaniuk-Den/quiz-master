@@ -47,8 +47,13 @@ gap: 20px;
     `
 
 export const BoxUserStats = styled.div`
- @media (min-width: 1440px) {
+display: table;
+margin: auto;
+ @media (min-width: 768px) {
+    display: block;
+  }
+  @media (min-width: 1440px) {
     display: flex;
-    gap: 24px;
+    gap:24px;
   }
 `
