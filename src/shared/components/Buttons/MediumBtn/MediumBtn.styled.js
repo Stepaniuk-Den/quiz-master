@@ -10,6 +10,7 @@ font-size: 3.73vw;
 font-family: GilroyBold, sans-serif;
 letter-spacing: -0.01em;
 line-height: 1.14;
+transition: transform 0.2s ease-in-out;
 
 &.accent {
     padding: 16px 18px;

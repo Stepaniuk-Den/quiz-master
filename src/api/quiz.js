@@ -1,12 +1,12 @@
 import { instance } from "./auth";
 
-export async function getAllQuizzes(params) {
+export async function getRandomQuizzes(params) {
   const { data } = await instance.get("/quizzes/random", { params });
   return data;
 }
 
 export async function getFilteredQuizzes(params) {
-  const { data } = await instance.get("/quiz", { params });
+  const { data } = await instance.get("/quizzes", { params });
   return data;
 }
 
