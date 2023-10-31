@@ -26,11 +26,11 @@ const handleSeeAll = () =>{
   
 }
 
-useEffect(() => {
-  if (!randomAdultQuizzes || !randomChildrenQuizzes) {
-      dispatch(getRandomQuizzesThunk({page: 1, limit: 8}));
-  }
-}, [dispatch, randomAdultQuizzes, randomChildrenQuizzes]);
+// useEffect(() => {
+//   if (!randomAdultQuizzes || !randomChildrenQuizzes) {
+//       dispatch(getRandomQuizzesThunk({page: 1, limit: 8}));
+//   }
+// }, [dispatch, randomAdultQuizzes, randomChildrenQuizzes]);
 
     return (
      <Main data={{user, reviews, randomAdultQuizzes, randomChildrenQuizzes}}/>
