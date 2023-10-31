@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  ErrorsStyled,
   FormContainer,
   FormTextarea,
   FormWrapper,
@@ -10,6 +11,8 @@ import {
   StarBtn,
   TextRating,
 } from "./FeedbackFormStyled";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const FeedbackForm = ({ onSendClick }) => {
   const [starSelected, setStarSelected] = useState([
@@ -20,13 +23,30 @@ const FeedbackForm = ({ onSendClick }) => {
     false,
   ]);
 
+  const formik = useFormik({
+    initialValues: {
+      feedback: "",
+    },
+
+    validationSchema: Yup.object({
+      feedback: Yup.string().required("Please write your feedback"),
+    }),
+
+    onSubmit: (values, { resetForm }) => {
+      const formData = {
+        feedback: values.feedback,
+        stars: starSelected,
+      };
+      onSendClick();
+      resetForm();
+      console.log(formData);
+    },
+  });
+
   const handleStarClick = (index) => {
     const updatedStars = starSelected.map((isSelected, i) => i <= index);
     setStarSelected(updatedStars);
-  };
-
-  const handleClick = () => {
-    onSendClick();
+    console.log(index);
   };
   return (
     <>
@@ -40,13 +60,27 @@ const FeedbackForm = ({ onSendClick }) => {
               </StarBtn>
             ))}
           </RatingWrapper>
-          <InputWrapper>
-            <FormTextarea
-              type="text"
-              placeholder="Write your opinion or wish for the service"
-            />
-            <SendBtn onClick={handleClick}>Send</SendBtn>
-          </InputWrapper>
+          <form onSubmit={formik.handleSubmit}>
+            <InputWrapper
+              className={
+                formik.errors.feedback && formik.touched.feedback
+                  ? "has-error"
+                  : ""
+              }
+            >
+              <FormTextarea
+                type="text"
+                name="feedback"
+                placeholder="Write your opinion or wish for the service"
+                onChange={formik.handleChange}
+                value={formik.values.feedback}
+              />
+              {formik.errors.feedback && formik.touched.feedback ? (
+                <ErrorsStyled>{formik.errors.feedback}</ErrorsStyled>
+              ) : null}
+              <SendBtn type="submit">Send</SendBtn>
+            </InputWrapper>
+          </form>
         </FormWrapper>
       </FormContainer>
     </>

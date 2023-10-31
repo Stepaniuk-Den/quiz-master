@@ -97,14 +97,46 @@ const initialState = {
     filtered: quizzesArr,
     passed: quizzesArr,
     ownQuizes: quizzesArr,
-    favorites: quizzesArr,
+    favorites: quizzesArr,    
     total: 129865,
   },
   filters: null,
 
   categoryType: {
-    adult: null,
-    children: null,
+    adult: [
+      {
+        _id: "65398ba45191746edd43494c",
+        categoryName: "Cars",
+        categoryType: "adults",
+      },
+      {
+        _id: "65398bca5191746edd43494f",
+        categoryName: "Architecture",
+        categoryType: "adults",
+      },
+      {
+        _id: "65398bdb5191746edd434952",
+        categoryName: "Science",
+        categoryType: "adults",
+      },
+    ],
+    children: [
+      {
+        _id: "65398dc95191746edd434974",
+        categoryName: "Nature",
+        categoryType: "children",
+      },
+      {
+        _id: "65398e175191746edd43497d",
+        categoryName: "Comics",
+        categoryType: "children",
+      },
+      {
+        _id: "65398e365191746edd434980",
+        categoryName: "Literature",
+        categoryType: "children",
+      },
+    ],
   },
 };
 

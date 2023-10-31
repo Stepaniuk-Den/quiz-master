@@ -1,20 +1,19 @@
-//import { useLocation } from "react-router";
 import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 import { PageWrapper, SectionWrapper } from "./DiscoverPageStyled";
-//import QuizeSearch from "../../modules/discoverPage/components/QuizesSearch/QuizesSearch";
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import QuizeFilterTools from "../../modules/discoverPage/components/QuizFilterTools/QuizFilterTools";
+import { useSelector } from "react-redux";
+import { selectDiscoverAdult } from "../../redux/selectors";
 
 const DiscoverPage = () => {
-  //const location = useLocation();
-  // console.log("locationDiscovery", location);
+  const allAdultCategories = useSelector(selectDiscoverAdult)
+  console.log('allAdultCategories: ', allAdultCategories);
 
   return (
     <PageWrapper>
       <SectionWrapper>
-        <PageTopBar titlePage="Discover" />
-        {/* <QuizeSearch /> */}
+        <PageTopBar titlePage="Discover" />        
         <QuizeFilterTools/>
         <QuizesList/>
         <BtnLoadMore />

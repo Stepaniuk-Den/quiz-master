@@ -1,25 +1,11 @@
-import {
-  Settings,
-  DropdownButton,
-  DropdownContainer,
-  DropdownItem,
-  DropdownList,
-  LogOut,
-  MessageCircle,
-  HeaderContainer,
-  Logo,
-  NavItem,
-  NavList,
-  Up,
-  Down,
-  UserName,
-  ButtonRegister,
-  ButtonLogin,
-} from "./HeaderStyled";
-import React, { useEffect, useRef, useState } from "react";
+import { Settings, DropdownButton, DropdownContainer, DropdownItem, DropdownList, LogOut, MessageCircle, HeaderContainer, Logo, NavItem, NavList, Up, Down, UserName, ButtonRegister, ButtonLogin, BoxAuth } from "./HeaderStyled";
+import React, { useEffect, useRef, useState } from 'react';
 import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+import { selectIsAuth } from "../../../redux/user/userSelectors";
 
 import { useMediaQuery } from "react-responsive";
 import BtnBurger from "../BtnBurger/BtnBurger";
@@ -31,7 +17,13 @@ const Header = () => {
 
   const dropdownRef = useRef(null);
 
-  const hasToken = true;
+    const hasToken = useSelector(selectIsAuth);
+
+
+      const dispatch = useDispatch();
+  const handleOpenModal = (e) => {
+    dispatch(toggleShowAuthPage(e.currentTarget.name));
+  };
 
   const isMobile = useMediaQuery({
     query: "(max-width: 767px)",
@@ -81,82 +73,97 @@ const Header = () => {
     ));
   };
 
-  return (
-    <HeaderContainer>
-      <Link to="/">
-        <Logo>QuizMaster</Logo>
-      </Link>
-      <NavList>
-        {hasToken ? (
-          <>
-            {generateNavLinks(hasToken)}
-            <NavItem
-              className={location.pathname === "/ownquiz" ? "active" : ""}
-            >
-              For Adults
-            </NavItem>
-            <NavItem
-              className={location.pathname === "/ownquiz" ? "active" : ""}
-            >
-              For Children
-            </NavItem>
-          </>
-        ) : (
-          <>
-            <NavItem
-              className={location.pathname === "/ownquiz" ? "active" : ""}
-            >
-              For Adults
-            </NavItem>
-            <NavItem
-              className={location.pathname === "/ownquiz" ? "active" : ""}
-            >
-              For Children
-            </NavItem>
-          </>
-        )}
-      </NavList>
+//   return (
+//     <HeaderContainer>
+//       <Link to="/">
+//         <Logo>QuizMaster</Logo>
+//       </Link>
+//       <NavList>
+//         {hasToken ? (
+//           <>
+//             {generateNavLinks(hasToken)}
+//             <NavItem
+//               className={location.pathname === "/ownquiz" ? "active" : ""}
+//             >
+//               For Adults
+//             </NavItem>
+//             <NavItem
+//               className={location.pathname === "/ownquiz" ? "active" : ""}
+//             >
+//               For Children
+//             </NavItem>
+//           </>
+//         ) : (
+//           <>
+//             <NavItem
+//               className={location.pathname === "/ownquiz" ? "active" : ""}
+//             >
+//               For Adults
+//             </NavItem>
+//             <NavItem
+//               className={location.pathname === "/ownquiz" ? "active" : ""}
+//             >
+//               For Children
+//             </NavItem>
+//           </>
+//         )}
+//       </NavList>
 
-      {hasToken && !isMobile ? (
-        <DropdownContainer ref={dropdownRef}>
-          <DropdownButton onClick={toggleDropdown}>
-            <img src={infoUser.avatar} alt="" width={40} height={40} />
-            <UserName>{infoUser.userName}</UserName>
-            {isDropdownOpen ? <Up /> : <Down />}
-          </DropdownButton>
-          <DropdownList open={isDropdownOpen}>
-            <Link to="/settings">
-              <DropdownItem>
-                <Settings />
-                Settings
-              </DropdownItem>
-            </Link>
-            <Link to="/feedback">
-              <DropdownItem>
-                <MessageCircle />
-                Feedback
-              </DropdownItem>
-            </Link>
-            <DropdownItem onClick={openLogoutModal}>
-              <LogOut />
-              Log out
-            </DropdownItem>
-          </DropdownList>
-          <LogoutModal
-            isOpen={isLogoutModalOpen}
-            onClose={() => setLogoutModalOpen(false)}
-          />
-        </DropdownContainer>
-      ) : isMobile ? (
-        <BtnBurger />
-      ) : (
-        <div>
-          <ButtonRegister>Register</ButtonRegister>
-          <ButtonLogin>Login</ButtonLogin>
-        </div>
-      )}
-    </HeaderContainer>
-  );
+//       {hasToken && !isMobile ? (
+//         <DropdownContainer ref={dropdownRef}>
+//           <DropdownButton onClick={toggleDropdown}>
+//             <img src={infoUser.avatar} alt="" width={40} height={40} />
+//             <UserName>{infoUser.userName}</UserName>
+//             {isDropdownOpen ? <Up /> : <Down />}
+//           </DropdownButton>
+//           <DropdownList open={isDropdownOpen}>
+//             <Link to="/settings">
+//               <DropdownItem>
+//                 <Settings />
+//                 Settings
+//               </DropdownItem>
+//             </Link>
+//         ));
+//     };
+
+    return (
+        <HeaderContainer>
+            <Link to='/'><Logo>QuizMaster</Logo></Link>
+            <NavList>
+                {hasToken ? (
+                    <>
+                        {generateNavLinks(hasToken)}
+                    </>
+                ) : (
+                    <>
+                        <NavItem className={location.pathname === '/ownquiz' ? 'active' : ''}>For Adults</NavItem>
+                        <NavItem className={location.pathname === '/ownquiz' ? 'active' : ''}>For Children</NavItem>
+                    </>
+                )}
+            </NavList>
+
+            {hasToken ? (
+                <DropdownContainer ref={dropdownRef}>
+                    <DropdownButton onClick={toggleDropdown}>
+                        <img src={infoUser.avatar} alt="" width={40} height={40} />
+                        <UserName>{infoUser.userName}</UserName>
+                        {isDropdownOpen ? <Up /> : <Down />}
+                    </DropdownButton>
+                    <DropdownList open={isDropdownOpen}>
+                        <Link to="/settings"><DropdownItem><Settings />Settings</DropdownItem></Link>
+                        <Link to="/feedback"><DropdownItem><MessageCircle />Feedback</DropdownItem></Link>
+                        <DropdownItem onClick={openLogoutModal}><LogOut />Log out</DropdownItem>
+                    </DropdownList>
+                    <LogoutModal isOpen={isLogoutModalOpen} onClose={() => setLogoutModalOpen(false)} />
+                </DropdownContainer>
+            ) : (
+                <BoxAuth>
+                    <Link  to="/auth/loginForm"><ButtonRegister onClick={handleOpenModal}>Register</ButtonRegister></Link>
+                    <Link to="/auth/RegisterForm"><ButtonLogin onClick={handleOpenModal}>Login</ButtonLogin></Link>
+                </BoxAuth>
+            )}
+        </HeaderContainer>
+    );
 };
 
 export default Header;

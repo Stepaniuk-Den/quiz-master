@@ -2,7 +2,7 @@ import ButtonSeeAll from "../../shared/components/Buttons/ButtonSeeAll";
 import UserStats from "../../modules/homepage/components/UserStats"
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/components/QuizesList/QuizesList";
-import { BoxLastPassed, BoxUserStats, TitleLastPassedQ } from "./HomePageStyled";
+import { BoxLastPassed, BoxUserStats, TitleLastPassedQ, Container } from "./HomePageStyled";
 import { selectPassed } from "../../redux/selectors";
 import { useSelector } from "react-redux";
 import MediaQuery from "react-responsive";
@@ -14,7 +14,7 @@ const HomePage = () => {
  const shouldDisplaySeeAll = passedQuizzes.length < 3;
 
   return (
-    <>
+    <Container>
       <PageTopBar titlePage="Home"/>
       
       <BoxUserStats>
@@ -31,7 +31,7 @@ const HomePage = () => {
           </MediaQuery>
           </div>
       </BoxUserStats>
-      </>
+      </Container>
   )
 }
 
