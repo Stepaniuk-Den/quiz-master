@@ -29,7 +29,7 @@ export const StyledQuizzes = styled.section`
   }
 
   .swiper {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
     height: 400px;
   }
 
