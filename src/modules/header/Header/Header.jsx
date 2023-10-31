@@ -1,5 +1,23 @@
-import { Settings, DropdownButton, DropdownContainer, DropdownItem, DropdownList, LogOut, MessageCircle, HeaderContainer, Logo, NavItem, NavList, Up, Down, UserName, ButtonRegister, ButtonLogin, BoxAuth } from "./HeaderStyled";
-import React, { useEffect, useRef, useState } from 'react';
+import {
+  Settings,
+  DropdownButton,
+  DropdownContainer,
+  DropdownItem,
+  DropdownList,
+  LogOut,
+  MessageCircle,
+  HeaderContainer,
+  Logo,
+  NavItem,
+  NavList,
+  Up,
+  Down,
+  UserName,
+  ButtonRegister,
+  ButtonLogin,
+  BoxAuth,
+} from "./HeaderStyled";
+import React, { useEffect, useRef, useState } from "react";
 import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
@@ -9,18 +27,20 @@ import { selectIsAuth } from "../../../redux/user/userSelectors";
 
 import { useMediaQuery } from "react-responsive";
 import BtnBurger from "../BtnBurger/BtnBurger";
+import ModalBurger from "../ModalBurger/ModalBurger";
 
 const Header = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
   const location = useLocation();
 
   const dropdownRef = useRef(null);
 
-    const hasToken = useSelector(selectIsAuth);
+  const hasToken = useSelector(selectIsAuth);
 
-
-      const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleOpenModal = (e) => {
     dispatch(toggleShowAuthPage(e.currentTarget.name));
   };
@@ -37,18 +57,22 @@ const Header = () => {
   const openLogoutModal = () => {
     setLogoutModalOpen(true);
   };
-  
-  useEffect(() => {
 
-  const handleDocumentClick = (event) => {
-    if (
-      isDropdownOpen &&
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target)
-    ) {
-      setDropdownOpen(false);
-    }
+  const openBurgerMenu = () => {
+    setIsBurgerMenuOpen(true);
+    console.log(isBurgerMenuOpen)
   };
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (
+        isDropdownOpen &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
     document.addEventListener("click", handleDocumentClick);
 
     return () => {
@@ -73,97 +97,77 @@ const Header = () => {
     ));
   };
 
-//   return (
-//     <HeaderContainer>
-//       <Link to="/">
-//         <Logo>QuizMaster</Logo>
-//       </Link>
-//       <NavList>
-//         {hasToken ? (
-//           <>
-//             {generateNavLinks(hasToken)}
-//             <NavItem
-//               className={location.pathname === "/ownquiz" ? "active" : ""}
-//             >
-//               For Adults
-//             </NavItem>
-//             <NavItem
-//               className={location.pathname === "/ownquiz" ? "active" : ""}
-//             >
-//               For Children
-//             </NavItem>
-//           </>
-//         ) : (
-//           <>
-//             <NavItem
-//               className={location.pathname === "/ownquiz" ? "active" : ""}
-//             >
-//               For Adults
-//             </NavItem>
-//             <NavItem
-//               className={location.pathname === "/ownquiz" ? "active" : ""}
-//             >
-//               For Children
-//             </NavItem>
-//           </>
-//         )}
-//       </NavList>
+  return (
+    <HeaderContainer>
+      <Link to="/">
+        <Logo>QuizMaster</Logo>
+      </Link>
+      <NavList>
+        {hasToken ? (
+          <>{generateNavLinks(hasToken)}</>
+        ) : (
+          <>
+            <NavItem
+              className={location.pathname === "/ownquiz" ? "active" : ""}
+            >
+              For Adults
+            </NavItem>
+            <NavItem
+              className={location.pathname === "/ownquiz" ? "active" : ""}
+            >
+              For Children
+            </NavItem>
+          </>
+        )}
+      </NavList>
 
-//       {hasToken && !isMobile ? (
-//         <DropdownContainer ref={dropdownRef}>
-//           <DropdownButton onClick={toggleDropdown}>
-//             <img src={infoUser.avatar} alt="" width={40} height={40} />
-//             <UserName>{infoUser.userName}</UserName>
-//             {isDropdownOpen ? <Up /> : <Down />}
-//           </DropdownButton>
-//           <DropdownList open={isDropdownOpen}>
-//             <Link to="/settings">
-//               <DropdownItem>
-//                 <Settings />
-//                 Settings
-//               </DropdownItem>
-//             </Link>
-//         ));
-//     };
-
-    return (
-        <HeaderContainer>
-            <Link to='/'><Logo>QuizMaster</Logo></Link>
-            <NavList>
-                {hasToken ? (
-                    <>
-                        {generateNavLinks(hasToken)}
-                    </>
-                ) : (
-                    <>
-                        <NavItem className={location.pathname === '/ownquiz' ? 'active' : ''}>For Adults</NavItem>
-                        <NavItem className={location.pathname === '/ownquiz' ? 'active' : ''}>For Children</NavItem>
-                    </>
-                )}
-            </NavList>
-
-            {hasToken ? (
-                <DropdownContainer ref={dropdownRef}>
-                    <DropdownButton onClick={toggleDropdown}>
-                        <img src={infoUser.avatar} alt="" width={40} height={40} />
-                        <UserName>{infoUser.userName}</UserName>
-                        {isDropdownOpen ? <Up /> : <Down />}
-                    </DropdownButton>
-                    <DropdownList open={isDropdownOpen}>
-                        <Link to="/settings"><DropdownItem><Settings />Settings</DropdownItem></Link>
-                        <Link to="/feedback"><DropdownItem><MessageCircle />Feedback</DropdownItem></Link>
-                        <DropdownItem onClick={openLogoutModal}><LogOut />Log out</DropdownItem>
-                    </DropdownList>
-                    <LogoutModal isOpen={isLogoutModalOpen} onClose={() => setLogoutModalOpen(false)} />
-                </DropdownContainer>
-            ) : (
-                <BoxAuth>
-                    <Link  to="/auth/loginForm"><ButtonRegister onClick={handleOpenModal}>Register</ButtonRegister></Link>
-                    <Link to="/auth/RegisterForm"><ButtonLogin onClick={handleOpenModal}>Login</ButtonLogin></Link>
-                </BoxAuth>
-            )}
-        </HeaderContainer>
-    );
+      {hasToken && !isMobile ? (
+        <DropdownContainer ref={dropdownRef}>
+          <DropdownButton onClick={toggleDropdown}>
+            <img src={infoUser.avatar} alt="" width={40} height={40} />
+            <UserName>{infoUser.userName}</UserName>
+            {isDropdownOpen ? <Up /> : <Down />}
+          </DropdownButton>
+          <DropdownList open={isDropdownOpen}>
+            <Link to="/settings">
+              <DropdownItem>
+                <Settings />
+                Settings
+              </DropdownItem>
+            </Link>
+            <Link to="/feedback">
+              <DropdownItem>
+                <MessageCircle />
+                Feedback
+              </DropdownItem>
+            </Link>
+            <DropdownItem onClick={openLogoutModal}>
+              <LogOut />
+              Log out
+            </DropdownItem>
+          </DropdownList>
+          <LogoutModal
+            isOpen={isLogoutModalOpen}
+            onClose={() => setLogoutModalOpen(false)}
+          />
+        </DropdownContainer>
+      ) : isMobile ? (
+        <BtnBurger openBurgerMenu={openBurgerMenu} />
+      ) : (
+        <BoxAuth>
+          <Link to="/auth/loginForm">
+            <ButtonRegister onClick={handleOpenModal}>Register</ButtonRegister>
+          </Link>
+          <Link to="/auth/RegisterForm">
+            <ButtonLogin onClick={handleOpenModal}>Login</ButtonLogin>
+          </Link>
+        </BoxAuth>
+      )}
+      {isMobile && isBurgerMenuOpen ? (
+          <ModalBurger />
+      ) : null}
+    </HeaderContainer>
+  );
 };
 
 export default Header;

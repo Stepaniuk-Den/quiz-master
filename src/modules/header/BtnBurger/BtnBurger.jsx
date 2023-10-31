@@ -1,13 +1,13 @@
 import React from "react";
 import { Burger, StyledBtnBurger } from "./BtnBurger.styled";
 
-const BtnBurger = () => {
+const BtnBurger = ({openBurgerMenu}) => {
   return (
-    <>
-      <StyledBtnBurger>
+
+      <StyledBtnBurger type="button" onClick={openBurgerMenu}>
       <Burger/>
       </StyledBtnBurger>
-    </>
+
   );
 };
 

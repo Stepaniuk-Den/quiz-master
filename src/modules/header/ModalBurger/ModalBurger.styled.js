@@ -6,7 +6,7 @@ export const StyledOverlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--backdrop);
+  background-color: var(--blue-background);
   backdrop-filter: blur(1.5px);
   overscroll-behavior: contain;
 `;
@@ -25,7 +25,7 @@ export const StyledModal = styled.div`
   padding: 60px 80px;
   /* border: 1px solid var(--text-color-30);
   border-radius: 20px; */
-  background-color: var(--second-background);
+  background-color: var(--blue-background);
 
   @media screen and (max-width: 768px) {
     padding: 40px 20px;

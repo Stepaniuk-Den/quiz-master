@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   StyledCloseBtn,
   StyledModal,
   StyledOverlay,
 } from "./ModalBurger.styled";
 import { AiOutlineClose } from "react-icons/ai";
-import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+
 
 const ModalBurger = ({ children }) => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const ModalBurger = ({ children }) => {
 
   const handleClickBtnClose = () => {
     document.body.classList.remove("no-scroll");
-    dispatch(toggleShowAuthPage(""));
+
   };
   return (
     <>
@@ -25,7 +25,8 @@ const ModalBurger = ({ children }) => {
           <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
             <AiOutlineClose size={28} fill="#FFFFFF" />
           </StyledCloseBtn>
-          {children}
+          {/* {children} */}
+          <h3>Burger</h3>
         </StyledModal>
       </StyledOverlay>
     </>

@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import { FiAlignJustify } from "react-icons/fi"
 
-export const StyledBtnBurger = styled.div`
+export const StyledBtnBurger = styled.button`
 position: absolute;
-top: 50%;
+top: 20px;
 right: 0;
 display: flex;
 justify-content: center;
-transform: translateY(-50%);
-/* align-self: center; */
 width: 32px;
 height: 32px;
+background-color: transparent;
 `;
 
 export const Burger = styled(FiAlignJustify)`
