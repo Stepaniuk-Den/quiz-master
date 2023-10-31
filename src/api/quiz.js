@@ -10,8 +10,8 @@ export async function getFilteredQuizzes(params) {
   return data;
 }
 
-export async function getQuizCategories(audience) {
-  const { data } = await instance.get(`/categories/${audience}`);
+export async function getQuizCategories(params) {
+  const { data } = await instance.get(`/categories/`, {params});
   return data;
 }
 

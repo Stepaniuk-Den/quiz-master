@@ -1,6 +1,6 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import BtnLoadMore from "../../../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
+import ButtonSeeAll from "../../../../shared/components/Buttons/ButtonSeeAll/ButtonSeeAll";
 import PageTitle from "../../../../shared/components/PageTitle/PageTitle";
 import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -36,7 +36,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             your expertise lies. Explore a diverse range of topics and test the
             depths of your knowledge.
           </Paragraph>
-          <BtnLoadMore>See all</BtnLoadMore>
+          <ButtonSeeAll link="/randomquiz"/>
         </div>
         {isDesktop && <QuizesList quizzesArr={desktopAdultQuizzes} type="accent"/>}
         {isTablet && (
@@ -81,7 +81,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             for young curious minds! A safe space for children to learn, play,
             and grow their knowledge.
           </Paragraph>
-          <BtnLoadMore>See all</BtnLoadMore>
+          <ButtonSeeAll link="/randomquiz"/>
         </div>
         {isDesktop && <QuizesList quizzesArr={desktopChildrenQuizzes} />}
         {isTablet && (
