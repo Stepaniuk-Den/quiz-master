@@ -5,13 +5,15 @@ import Quizzes from "../Quizzes/Quizzes.jsx";
 import NavBlock from "../NavBlock/NavBlock.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
 
-function Main({reviews, adultQuizzes, childrenQuizzes}) {
+function Main({data}) {
+  const { reviews, randomAdultQuizzes, randomChildrenQuizzes, handleChooseTest, handleCreateTest } = data;
+
   return (
     <>
-      <Hero />
+      <Hero handlerChoose={handleChooseTest} handlerCreate={handleCreateTest}/>
       <Advantages />
-      <Quizzes adultQuizzes={adultQuizzes} childrenQuizzes={childrenQuizzes}/>
-      <NavBlock/>
+      <Quizzes adultQuizzes={randomAdultQuizzes} childrenQuizzes={randomChildrenQuizzes}/>
+      <NavBlock handlerChoose={handleChooseTest} handlerCreate={handleCreateTest}/>
       <Reviews reviews={reviews}/>
     </>
   );

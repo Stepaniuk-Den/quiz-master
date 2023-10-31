@@ -1,16 +1,74 @@
-import { Main } from "../../modules/mainPage"
-import { useSelector } from 'react-redux';
-import { selectReviews, selectRandomAdult, selectRandomChildren } from "../../redux/selectors";
+import { Main } from "../../modules/mainPage";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectReviews,
+  selectRandomAdult,
+  selectRandomChildren,
+} from "../../redux/selectors";
+import { selectIsAuth } from "../../redux/user/userSelectors";
+import {
+  getRandomQuizzesThunk,
+  // getTotalPassedThunk,
+} from "../../redux/quiz/quizThunks";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { getAllReviewsThunk } from "../../redux/feedback/feedbackThunks";
 
 const MainPage = () => {
- 
-const reviews = useSelector(selectReviews);
-const randomAdultQuizzes = useSelector(selectRandomAdult);
-const randomChildrenQuizzes = useSelector(selectRandomChildren);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const reviews = useSelector(selectReviews);
+  const randomAdultQuizzes = useSelector(selectRandomAdult);
+  const randomChildrenQuizzes = useSelector(selectRandomChildren);
+  const user = useSelector(selectIsAuth);
 
-    return (
-     <Main reviews={reviews} adultQuizzes={randomAdultQuizzes} childrenQuizzes={randomChildrenQuizzes}/>
-    )
-  }
-  
-  export default MainPage
+  // dispatch(getTotalPassedThunk())
+  //  dispatch(getAllReviewsThunk())
+
+  const handleChooseTest = () => {
+    if (user) {
+      navigate("/discover");
+    } else {
+      navigate("/randomquiz");
+    }
+  };
+
+  const handleCreateTest = () => {
+    if (user) {
+      navigate("/createquiz");
+    } else {
+      toast.info("Available only for authorized users");
+    }
+  };
+
+  useEffect(() => {
+    if (reviews.length === 0) {
+      dispatch(getAllReviewsThunk({ page: 1, limit: 8 }));
+    }
+  }, [dispatch, reviews]);
+
+  useEffect(() => {
+    if (
+      randomAdultQuizzes.length === 0 ||
+      !randomChildrenQuizzes.length === 0
+    ) {
+      dispatch(getRandomQuizzesThunk({ page: 1, limit: 8 }));
+    }
+  }, [dispatch, randomAdultQuizzes, randomChildrenQuizzes]);
+
+  return (
+    <Main
+      data={{
+        user,
+        reviews,
+        randomAdultQuizzes,
+        randomChildrenQuizzes,
+        handleChooseTest,
+        handleCreateTest,
+      }}
+    />
+  );
+};
+
+export default MainPage;

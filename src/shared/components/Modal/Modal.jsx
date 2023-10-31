@@ -11,7 +11,7 @@ const Modal = ({ children }) => {
 
   useEffect(() => {
     if (!isShowAuthPage) return;
-    document.body.classList.add("no-scroll");
+    // document.body.classList.add("no-scroll");
 
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {

@@ -1,14 +1,14 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import BtnLoadMore from "../../../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
+import ButtonSeeAll from "../../../../shared/components/Buttons/ButtonSeeAll/ButtonSeeAll";
 import PageTitle from "../../../../shared/components/PageTitle/PageTitle";
 import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
+import QuizesList from "../../../../shared/components/QuizesList/QuizesList";
+import QuizListItem from "../../../../shared/components/QuizListItem/QuizListItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { useMediaQuery } from "react-responsive";
 import { StyledQuizzes } from "./Quizzes.styled";
-import QuizesList from "../../../../shared/components/QuizesList/QuizesList";
-import QuizListItem from "../../../../shared/components/QuizListItem/QuizListItem";
 
 function Quizzes({ adultQuizzes, childrenQuizzes }) {
 
@@ -22,8 +22,8 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
     query: "(max-width: 767px)",
   });
 
-  const desktopAdultQuizzes = adultQuizzes.slice(0, 4);
-  const desktopChildrenQuizzes = childrenQuizzes.slice(0, 4);
+  const desktopAdultQuizzes = adultQuizzes?.slice(0, 4);
+  const desktopChildrenQuizzes = childrenQuizzes?.slice(0, 4);
 
   return (
     <StyledQuizzes>
@@ -36,7 +36,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             your expertise lies. Explore a diverse range of topics and test the
             depths of your knowledge.
           </Paragraph>
-          <BtnLoadMore>See all</BtnLoadMore>
+          <ButtonSeeAll link="/randomquiz"/>
         </div>
         {isDesktop && <QuizesList quizzesArr={desktopAdultQuizzes} type="accent"/>}
         {isTablet && (
@@ -48,7 +48,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {adultQuizzes.map((quiz) => (
+            {adultQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id} className="adult-tab">
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
@@ -64,7 +64,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {adultQuizzes.map((quiz) => (
+            {adultQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id} className="adult">
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
@@ -81,7 +81,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             for young curious minds! A safe space for children to learn, play,
             and grow their knowledge.
           </Paragraph>
-          <BtnLoadMore>See all</BtnLoadMore>
+          <ButtonSeeAll link="/randomquiz"/>
         </div>
         {isDesktop && <QuizesList quizzesArr={desktopChildrenQuizzes} />}
         {isTablet && (
@@ -93,7 +93,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {childrenQuizzes.map((quiz) => (
+            {childrenQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
@@ -109,7 +109,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {childrenQuizzes.map((quiz) => (
+            {childrenQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id} className="children">
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
