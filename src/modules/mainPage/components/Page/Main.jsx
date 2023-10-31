@@ -5,12 +5,14 @@ import Quizzes from "../Quizzes/Quizzes.jsx";
 import NavBlock from "../NavBlock/NavBlock.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
 
-function Main({reviews, adultQuizzes, childrenQuizzes}) {
+function Main({data}) {
+  const {user, reviews, randomAdultQuizzes, randomChildrenQuizzes} = data;
+
   return (
     <>
       <Hero />
       <Advantages />
-      <Quizzes adultQuizzes={adultQuizzes} childrenQuizzes={childrenQuizzes}/>
+      <Quizzes adultQuizzes={randomAdultQuizzes} childrenQuizzes={randomChildrenQuizzes}/>
       <NavBlock/>
       <Reviews reviews={reviews}/>
     </>

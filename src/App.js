@@ -26,7 +26,6 @@ const CreateQuizPage = lazy(() =>
 const SettingsPage = lazy(() => import("./pages/SettingsPage/SettingsPage"));
 const FeedbackPage = lazy(() => import("./pages/FeedbackPage/FeedbackPage"));
 
-
 function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);

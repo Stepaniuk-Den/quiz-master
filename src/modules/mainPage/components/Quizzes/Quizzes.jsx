@@ -22,8 +22,8 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
     query: "(max-width: 767px)",
   });
 
-  const desktopAdultQuizzes = adultQuizzes.slice(0, 4);
-  const desktopChildrenQuizzes = childrenQuizzes.slice(0, 4);
+  const desktopAdultQuizzes = adultQuizzes?.slice(0, 4);
+  const desktopChildrenQuizzes = childrenQuizzes?.slice(0, 4);
 
   return (
     <StyledQuizzes>
@@ -48,7 +48,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {adultQuizzes.map((quiz) => (
+            {adultQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id} className="adult-tab">
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
@@ -64,7 +64,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {adultQuizzes.map((quiz) => (
+            {adultQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id} className="adult">
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
@@ -93,7 +93,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {childrenQuizzes.map((quiz) => (
+            {childrenQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
@@ -109,7 +109,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             }}
             modules={[Pagination]}
           >
-            {childrenQuizzes.map((quiz) => (
+            {childrenQuizzes?.map((quiz) => (
               <SwiperSlide key={quiz._id} className="children">
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
