@@ -26,7 +26,6 @@ const QuizeSearch = () => {
           selectTitle="For children"
           options={allChildrenCategories}
         />
-
         <QuizSelect
           className="forAdults"
           selectTitle="For adults"
