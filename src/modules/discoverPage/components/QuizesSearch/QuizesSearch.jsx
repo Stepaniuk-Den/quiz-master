@@ -6,12 +6,15 @@ import { BtnSearch, FiSearchS, FormWrapper, SelectWrapper } from "./QuizesSearch
 import { selectDiscoverAdult, selectDiscoverChildren } from "../../../../redux/selectors";
 
 const QuizeSearch = () => {
-  const allAdultCategories = useSelector(selectDiscoverAdult)
-  console.log('allAdultCategories: ', allAdultCategories);
+  const allAdultCategories = useSelector(selectDiscoverAdult)  
   const allChildrenCategories = useSelector(selectDiscoverChildren)
+
+  const onFormSubmit = () => {
+    console.log("form submited");
+  }
   
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={onFormSubmit}>
       <SelectWrapper>
       <BtnSearch type="submit">
         <FiSearchS />

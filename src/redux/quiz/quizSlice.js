@@ -119,6 +119,11 @@ const initialState = {
         categoryName: "Science",
         categoryType: "adults",
       },
+      {
+        _id: "65398beb5191746edd434955",
+        categoryName: "History",
+        categoryType: "adults",
+      },
     ],
     children: [
       {
