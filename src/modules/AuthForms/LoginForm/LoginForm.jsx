@@ -103,7 +103,7 @@ const LogInForm = () => {
         <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
       </form>
 
-      <RestoreStyled>Restore password</RestoreStyled>
+      <RestoreStyled type="button">Restore password</RestoreStyled>
 
       <Link to="/auth/registerForm">
         <BtnToggleFormAuth type="button">Register</BtnToggleFormAuth>
