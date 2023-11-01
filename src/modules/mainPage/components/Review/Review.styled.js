@@ -17,6 +17,9 @@ export const StyledReview = styled.div`
     letter-spacing: normal;
     max-height: 60px;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: black;
+    scrollbar-track-color: black;
   }
   @media only screen and (max-width: 767px) {
     max-width: 335px;

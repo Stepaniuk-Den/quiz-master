@@ -8,7 +8,7 @@ import {
 import { selectIsAuth } from "../../redux/user/userSelectors";
 import {
   getRandomQuizzesThunk,
-  getTotalPassedThunk,
+  // getTotalPassedThunk,
 } from "../../redux/quiz/quizThunks";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";

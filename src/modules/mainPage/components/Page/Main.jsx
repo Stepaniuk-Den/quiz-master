@@ -6,7 +6,7 @@ import NavBlock from "../NavBlock/NavBlock.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
 
 function Main({data}) {
-  const {user, reviews, randomAdultQuizzes, randomChildrenQuizzes, handleChooseTest, handleCreateTest } = data;
+  const { reviews, randomAdultQuizzes, randomChildrenQuizzes, handleChooseTest, handleCreateTest } = data;
 
   return (
     <>

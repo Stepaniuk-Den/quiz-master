@@ -11,5 +11,7 @@ export const selectOwnQuizes = state => state.quiz.quizzes.ownQuizes
 export const selectPassed = state => state.quiz.quizzes.passed
 
 export const selectReview = state => state.feedback.reviews;
+export const selectReviewPage = state => state.feedback.page;
+
 
 
