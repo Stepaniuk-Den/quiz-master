@@ -33,14 +33,6 @@ export const StyledQuizzes = styled.section`
     height: 400px;
   }
 
-  .adult:nth-child(odd) > div {
-    background-color: var(--blue-background);
-  }
-
-  .children:nth-child(even) > div {
-    background-color: var(--blue-background);
-  }
-
   .swiper-pagination-bullet {
     background: var(--star-color-100);
   }
@@ -85,10 +77,6 @@ export const StyledQuizzes = styled.section`
       width: 705px;
       height: 420px;
       margin-bottom: 100px;
-    }
-
-    .adult-tab:first-child > div {
-      background-color: var(--blue-background);
     }
   }
 

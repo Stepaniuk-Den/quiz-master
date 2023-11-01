@@ -7,28 +7,29 @@ import { useMediaQuery } from "react-responsive";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { StyledReviews } from "./Reviews.styled";
-import {  useDispatch } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
+import { selectReviewPage } from "../../../../redux/selectors";
+import EmptyBlock from "../../../../shared/components/EmptyBlock/EmptyBlock";
 
 function Reviews({ reviews }) {
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery({
     query: "(min-width: 1440px)",
   });
+  const page = useSelector(selectReviewPage)
 
   return (
     <StyledReviews>
       <PageTitle>Reviews</PageTitle>
+      {reviews.length === 0 && <EmptyBlock>No reviews yet</EmptyBlock>}
       {reviews?.length > 0 && (
         <Swiper
-          // onSlideChange={(swiper) => {
-          //   if (swiper.activeIndex === reviews.length - 1) {
-          //     console.log(swiper.activeIndex);
-          //     let page = 1;
-          //     page += 1;
-          //     console.log(page);
-          //     dispatch(getAllReviewsThunk({page, limit: 8}))
-          //   }
-          // }}
+          onSlideChange={(swiper) => {
+            if (swiper.activeIndex === reviews.length - 2) {
+              // console.log(swiper.activeIndex);
+              dispatch(getAllReviewsThunk({page, limit: 8}))
+            }
+          }}
           spaceBetween={isDesktop ? 24 : 32}
           slidesPerView={isDesktop ? 2 : 1}
           pagination={{

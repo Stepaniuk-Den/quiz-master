@@ -40,7 +40,6 @@ export async function loginUser(userData) {
 
 
 export async function logOutUser() {
-    console.log( instance.defaults.headers.Authorization);
     const { data } = await instance.post('/auth/logout');
     clearToken();
     return data;

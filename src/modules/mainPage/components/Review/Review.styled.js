@@ -6,18 +6,35 @@ export const StyledReview = styled.div`
   border-radius: 20px;
   border: 1px solid var(--border-color-60);
 
-  div{
+  div {
     display: flex;
     gap: 12px;
     align-items: center;
     margin-bottom: 12px;
   }
 
-  p{
-    letter-spacing: normal;
-    max-height: 60px;
+  div + div {
+    height: 60px;
     overflow-y: scroll;
+    display: inline-block;
+    margin: 0;
   }
+
+  div + div::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 3px;
+    background-color: var(--main-background);
+  }
+
+  div + div::-webkit-scrollbar-thumb {
+    background-color: var(--text-color-50);
+    border-radius: 3px;
+  }
+
+  p {
+    letter-spacing: normal;
+  }
+
   @media only screen and (max-width: 767px) {
     max-width: 335px;
   }

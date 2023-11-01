@@ -70,6 +70,7 @@ import { getAllReviewsThunk, createReviewThunk } from "./feedbackThunks";
 
 const initialState = {
   reviews: [],
+  page: 1,
 };
 
 const feedbackSlice = createSlice({
@@ -78,7 +79,8 @@ const feedbackSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllReviewsThunk.fulfilled, (state, action) => {
-        state.reviews = [...state.reviews, ...action.payload];
+        state.reviews.push(...action.payload);
+        state.page += 1;
       })
       .addCase(createReviewThunk.fulfilled, (state, action) => {
         state.reviews.push(action.payload);
