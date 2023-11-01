@@ -20,12 +20,15 @@ export const StyledModal = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 474px;
+  width: 100%;
   padding: 60px 80px;
   border: 1px solid var(--text-color-30);
   border-radius: 20px;
   background-color: var(--second-background);
 
   @media screen and (max-width: 768px) {
+    max-width: 335px;
     padding: 40px 20px;
   }
 `;

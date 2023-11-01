@@ -7,18 +7,21 @@ import {
   AuthTitle,
   BtnEyeStyled,
   ErrorsStyled,
+  FormStyled,
   InputPasswWrapStyled,
-  InputStyled,
   InputsWrapper,
   LuEyeOffStyled,
   LuEyeStyled,
 } from "../../../modules/AuthForms/LoginForm/LoginForm.styled";
-// } from "../../../homepage/components/AuthForms/LoginForm/LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
+import InputDefault from "../../../shared/components/InputDefault/InputDefault";
+import {
+  notifyRegisterError,
+  notifyVerifyEmail,
+} from "../../../shared/NotificationToastify/Toasts";
 import { registerUserThunk } from "../../../redux/user/userThunks";
 import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
-import { notifyRegisterError, notifyVerifyEmail } from "../../../shared/NotificationToastify/Toasts";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -33,7 +36,9 @@ const RegisterForm = () => {
     },
 
     validationSchema: Yup.object({
-      name: Yup.string().min(3, "The name must consist of at least 3 characters").required("Name is required"),
+      name: Yup.string()
+        .min(3, "The name must consist of at least 3 characters")
+        .required("Name is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email address is required"),
@@ -44,23 +49,24 @@ const RegisterForm = () => {
     }),
 
     onSubmit: (values) => {
-        dispatch(registerUserThunk(values)).unwrap()
+      dispatch(registerUserThunk(values))
+        .unwrap()
         .then(() => {
           notifyVerifyEmail();
         })
         .catch((error) => {
           notifyRegisterError(error);
         });
-        dispatch(toggleShowAuthPage(""));
+      dispatch(toggleShowAuthPage(""));
     },
   });
 
   return (
     <>
       <AuthTitle>Sign Up</AuthTitle>
-      <form onSubmit={formik.handleSubmit}>
+      <FormStyled onSubmit={formik.handleSubmit}>
         <InputsWrapper>
-          <InputStyled
+          <InputDefault
             name="name"
             type="name"
             value={formik.values.name}
@@ -74,7 +80,7 @@ const RegisterForm = () => {
             <ErrorsStyled>{formik.errors.name}</ErrorsStyled>
           ) : null}
 
-          <InputStyled
+          <InputDefault
             name="email"
             type="email"
             value={formik.values.email}
@@ -89,7 +95,8 @@ const RegisterForm = () => {
           ) : null}
 
           <InputPasswWrapStyled>
-            <InputStyled
+            <InputDefault
+              variant="input-password"
               name="password"
               type={passwordShown ? "text" : "password"}
               value={formik.values.password}
@@ -117,7 +124,7 @@ const RegisterForm = () => {
           ) : null}
         </InputsWrapper>
         <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
-      </form>
+      </FormStyled>
 
       <Link to="/auth/loginForm">
         <BtnToggleFormAuth type="button">Login</BtnToggleFormAuth>
