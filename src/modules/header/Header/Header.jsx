@@ -157,7 +157,7 @@ const Header = () => {
           </>
       ) : (
         <BoxAuth>
-          <Link to="/auth/RegisterForm">
+          <Link to="/auth/registerForm">
             <BtnRegister handleOpenModal={handleOpenModal}>Register</BtnRegister>
           </Link>
           <Link to="/auth/loginForm">
