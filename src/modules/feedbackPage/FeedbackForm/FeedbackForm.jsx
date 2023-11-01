@@ -26,7 +26,9 @@ const FeedbackForm = ({ onSendClick }) => {
     },
 
     validationSchema: Yup.object({
-      feedback: Yup.string().required("Please write your feedback"),
+      feedback: Yup.string()
+        .min(8, "Enter at least 8 characters")
+        .required("Please write your feedback"),
     }),
 
     onSubmit: async (values) => {
