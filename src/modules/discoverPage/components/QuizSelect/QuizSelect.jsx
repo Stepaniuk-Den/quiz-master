@@ -1,35 +1,50 @@
+import { useState } from "react";
 import {
   OptionS,
   OptionsList,
   ButtonStyled,
   SelectWrapper,
+  FaChevronDownS,
 } from "./QuizSelectStyled";
-
-//import { FiSearchS, Options, SelectStyled } from "./SelectStyled";
 
 const QuizSelect = ({ className, selectTitle, options }) => {
   // console.log(options);
+  const [openSelect, setOpenSelect] = useState(false);
+
+  const handleOnClickSelect = () => {
+    setOpenSelect(!openSelect);
+  };
+  const handleCheckboxChange = (event) => {
+    const checkboxId = event.target.id;
+    const isChecked = event.target.checked;
+    const categoryName = event.target.value;
+    console.log(
+      `Чекбокс с id ${checkboxId} (${categoryName}) отмечен: ${isChecked}`
+    );
+  };
 
   return (
-    // <>
-    //   <SelectStyled className={className}>
-    //     {/* <div style={{outline: '1px solid red'}}> */}
-    //     <Options value="">{selectTitle}</Options>
-    //     {options.map((option) => (
-    //       <Options key={option._id} value="">
-    //         {option.categoryName}
-    //       </Options>
-    //     ))}
-    //     {/* </div> */}
-    //   </SelectStyled>
-    // </>
     <>
       <SelectWrapper>
-        <ButtonStyled className={className}>{selectTitle}</ButtonStyled>
-        <OptionsList>
-          {options.map(option => <OptionS key={option._id} value=""><input type="checkbox"/>{option.categoryName}</OptionS>)}          
+        <ButtonStyled className={className} onClick={handleOnClickSelect}>
+          <p>{selectTitle}</p>
+          <FaChevronDownS />
+        </ButtonStyled>
+        <OptionsList className={openSelect ? "openSelect" : ""}>
+          {options.map((option) => (
+            <OptionS key={option._id}>
+              <input
+                type="checkbox"
+                id={option._id}
+                className="custom-checkbox"
+                value={option.categoryName}
+                onChange={handleCheckboxChange}
+              />
+              <label htmlFor={option._id}></label>
+              <p>{option.categoryName}</p>
+            </OptionS>
+          ))}
         </OptionsList>
-        
       </SelectWrapper>
     </>
   );

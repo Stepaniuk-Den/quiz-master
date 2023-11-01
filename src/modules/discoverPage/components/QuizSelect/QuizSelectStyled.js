@@ -1,63 +1,26 @@
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
+import { FaChevronDown } from "react-icons/fa";
 
-// export const SelectStyled = styled.select`
-//   width: 100%;
-//   max-width: 335px;
-//   height: 50px;
-//   padding: 15px 18px;
-//   border-radius: 30px;
-
-//   border: 1px solid var(--border-color-30);
-//   background-color: transparent;
-//   /* color: #F4F4F4; */
-//   color: var(--text-color-100);
-//   font-size: 14px;
-//   font-style: normal;
-//   font-weight: 400;
-//   line-height: 1.29; /* 128.571% */
-//   letter-spacing: -0.14px;
-
-//   &.filters {
-//     width: 94px;
-//   }
-
-//   &.forChildren {
-//     width: 131px;
-//   }
-//   &.forAdults {
-//     width: 121px;
-//   }
-// `;
-
-// export const Options = styled.option`
-//   background: var(--blue-background);
-//   color: var(--text-color-100);
-//   border-radius: 20px;
-//   `;
-
-// export const FiSearchS = styled(FiSearch)`
-// outline: 1px solid red;
-//   width: 14px;
-//   height: 14px;
-// `;
 export const SelectWrapper = styled.div`
-position: relative;
-display: flex;
-gap: 8px;
-`
+  position: relative;
+  display: flex;
+  gap: 8px;
+`;
 
 export const ButtonStyled = styled.button`
   /* position: relative; */
   width: 100%;
   max-width: 335px;
   height: 50px;
-  padding: 15px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 16px;
   border-radius: 30px;
-
   border: 1px solid var(--border-color-30);
   background-color: transparent;
-  /* color: #F4F4F4; */
   color: var(--text-color-100);
   font-size: 14px;
   font-style: normal;
@@ -65,36 +28,91 @@ export const ButtonStyled = styled.button`
   line-height: 1.29; /* 128.571% */
   letter-spacing: -0.14px;
 
-  &.filters {
-    width: 94px;
-  }
-
   &.forChildren {
     width: 131px;
   }
   &.forAdults {
     width: 121px;
   }
+  p {
+    display: block;
+  }
+`;
+
+export const FaChevronDownS = styled(FaChevronDown)`
+  width: 14px;
+  height: 14px;
+  transition: transform 300ms linear;
+  &:hover {
+    transform: rotate(180deg);
+  }
 `;
 
 export const OptionsList = styled.ul`
-outline: 1px solid red;
-position: absolute;
-left: 0;
-top: calc(100% + 8px);
-width: 100%;
-padding: 15px;
-background: var(--blue-background);
-border-radius: 20px;
-color: var(--text-color-100);
+  display: none;
+  &.openSelect {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    width: 100%;
+    padding: 15px;
+    background: var(--blue-background);
+    border-radius: 20px;
+    font-family: GilroyRegular, sans-serif;
+    color: var(--text-color-100);
+  }
+`;
 
-
-`
-
-export const OptionS = styled.li`  
+export const OptionS = styled.li`
   display: flex;
   align-items: center;
   gap: 6px;
+
+  .custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .custom-checkbox + label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+  }
+  .custom-checkbox + label::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid var(--border-color-60);
+    border-radius: 4px;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+  }
+  .custom-checkbox:checked + label::before {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+  }
+  .custom-checkbox:not(:disabled):not(:checked) + label:hover::before {
+    cursor: pointer;
+    scale: 1.1;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  p {
+    display: block;
+    font-family: GilroyRegular, sans-serif;
+    font-size: 14px;
+    line-height: 1.29; /* 128.571% */
+    letter-spacing: -0.14px;
+  }
 `;
 
 export const FiSearchS = styled(FiSearch)`

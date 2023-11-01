@@ -1,4 +1,5 @@
-import { PStyled, RatingBox, RatingStars, ResultBox, SpanStyled, TextWrapper } from "./QuizFilterTextStyled"
+import RatingStarsRadio from "../RatingStarsRadio/RatingStarsRadio"
+import { PStyled, RatingBox, ResultBox, SpanStyled, TextWrapper } from "./QuizFilterTextStyled"
 
 
 const QuizFilterText = () => {
@@ -14,7 +15,7 @@ const QuizFilterText = () => {
         </ResultBox>
         <RatingBox>
           <SpanStyled>Specify the desired rating:</SpanStyled>
-          <RatingStars>*****</RatingStars>
+          <RatingStarsRadio/>
         </RatingBox>
       </TextWrapper>
     </>
