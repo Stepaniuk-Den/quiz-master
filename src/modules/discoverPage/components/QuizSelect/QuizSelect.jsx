@@ -7,20 +7,15 @@ import {
   FaChevronDownS,
 } from "./QuizSelectStyled";
 
-const QuizSelect = ({ className, selectTitle, options }) => {
-  // console.log(options);
-  const [openSelect, setOpenSelect] = useState(false);
-
+const QuizSelect = ({ className, selectTitle, options, handleCategorySelection}) => {  
+  const [openSelect, setOpenSelect] = useState(false);  
+  
   const handleOnClickSelect = () => {
     setOpenSelect(!openSelect);
   };
-  const handleCheckboxChange = (event) => {
-    const checkboxId = event.target.id;
-    const isChecked = event.target.checked;
-    const categoryName = event.target.value;
-    console.log(
-      `Чекбокс с id ${checkboxId} (${categoryName}) отмечен: ${isChecked}`
-    );
+
+  const handleCheckboxChange = (event) => {    
+    handleCategorySelection(event, selectTitle)    
   };
 
   return (

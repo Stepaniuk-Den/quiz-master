@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 // import { styled } from "@mui/material/styles";
 // import { makeStyles } from "@material-ui/core/styles";
 
-export const FormWrapperDiv = styled.div`
+export const FormWrapper = styled.form`
 /* outline: 1px solid red; */
 position: relative;
 `

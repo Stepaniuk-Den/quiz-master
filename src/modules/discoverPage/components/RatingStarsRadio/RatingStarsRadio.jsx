@@ -2,12 +2,12 @@ import { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { RatingS } from "./RatingStarsRadioStyled";
 
-const RatingStarsRadio = () => {
+const RatingStarsRadio = ({handleStarSelection}) => {
   const [value, setValue] = useState(1);
 
-  const handleStarChange = (starsQty) => {
-    console.log(starsQty);
+  const handleStarChange = (starsQty) => {    
     setValue(starsQty);
+    handleStarSelection(starsQty);
   };
 
   return (

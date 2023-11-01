@@ -12,6 +12,5 @@ export const RatingS = styled(Rating)({
   },  
   "& .MuiRating-iconEmpty": {    
     color: "var(--star-color-8)", 
-  },
-  
+  },  
 });

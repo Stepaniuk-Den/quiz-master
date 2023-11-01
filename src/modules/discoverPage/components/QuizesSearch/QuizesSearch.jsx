@@ -5,7 +5,7 @@ import QuizSelect from "../QuizSelect/QuizSelect";
 import {
   BtnSearch,
   FiSearchS,
-  FormWrapperDiv,
+  FormWrapper,
   SelectWrapper,
 } from "./QuizesSearchStyled";
 import {
@@ -13,16 +13,17 @@ import {
   selectDiscoverChildren,
 } from "../../../../redux/selectors";
 
-const QuizeSearch = () => {
+const QuizeSearch = ({handleCategorySelection}) => {
   const allAdultCategories = useSelector(selectDiscoverAdult);
   const allChildrenCategories = useSelector(selectDiscoverChildren);
 
-  const onFormSubmit = () => {
+  const onFormSubmit = (evt) => {
+    evt.preventDefault();
     console.log("form submited");
   };
   // temporary div
   return (
-    <FormWrapperDiv onSubmit={onFormSubmit}>
+    <FormWrapper onSubmit={onFormSubmit}>
       <SelectWrapper>
         <BtnSearch type="submit">
           <FiSearchS />
@@ -36,14 +37,15 @@ const QuizeSearch = () => {
           className="forChildren"
           selectTitle="For children"
           options={allChildrenCategories}
+          handleCategorySelection={handleCategorySelection}          
         />
-        <QuizSelect
+        {/* <QuizSelect
           className="forAdults"
           selectTitle="For adults"
           options={allAdultCategories}
-        />
+        /> */}
       </SelectWrapper>
-    </FormWrapperDiv>
+    </FormWrapper>
   );
 };
 
