@@ -9,6 +9,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { StyledReviews } from "./Reviews.styled";
 import {  useDispatch, useSelector } from "react-redux";
 import { selectReviewPage } from "../../../../redux/selectors";
+import EmptyBlock from "../../../../shared/components/EmptyBlock/EmptyBlock";
 
 function Reviews({ reviews }) {
   const dispatch = useDispatch();
@@ -20,11 +21,12 @@ function Reviews({ reviews }) {
   return (
     <StyledReviews>
       <PageTitle>Reviews</PageTitle>
+      {reviews.length === 0 && <EmptyBlock>No reviews yet</EmptyBlock>}
       {reviews?.length > 0 && (
         <Swiper
           onSlideChange={(swiper) => {
             if (swiper.activeIndex === reviews.length - 2) {
-              console.log(swiper.activeIndex);
+              // console.log(swiper.activeIndex);
               dispatch(getAllReviewsThunk({page, limit: 8}))
             }
           }}

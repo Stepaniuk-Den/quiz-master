@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { useMediaQuery } from "react-responsive";
 import { StyledQuizzes } from "./Quizzes.styled";
+import EmptyBlock from "../../../../shared/components/EmptyBlock/EmptyBlock";
 
 function Quizzes({ adultQuizzes, childrenQuizzes }) {
 
@@ -38,8 +39,9 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           </Paragraph>
           <ButtonSeeAll link="/randomquiz"/>
         </div>
-        {isDesktop && <QuizesList quizzesArr={desktopAdultQuizzes} type="accent"/>}
-        {isTablet && (
+        {adultQuizzes?.length === 0 && <EmptyBlock>No available quizzes</EmptyBlock>}
+        {isDesktop && adultQuizzes.length > 0 && <QuizesList quizzesArr={desktopAdultQuizzes}/>}
+        {isTablet && adultQuizzes.length > 0 && (
           <Swiper
             spaceBetween={24}
             slidesPerView={2}
@@ -49,13 +51,13 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {adultQuizzes?.map((quiz) => (
-              <SwiperSlide key={quiz._id} className="adult-tab">
+              <SwiperSlide key={quiz._id}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
           </Swiper>
         )}
-         {isMobile && (
+         {isMobile && adultQuizzes.length > 0 && (
           <Swiper
             slidesPerView={1}
             spaceBetween={20}
@@ -65,7 +67,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {adultQuizzes?.map((quiz) => (
-              <SwiperSlide key={quiz._id} className="adult">
+              <SwiperSlide key={quiz._id}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
@@ -83,8 +85,9 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
           </Paragraph>
           <ButtonSeeAll link="/randomquiz"/>
         </div>
-        {isDesktop && <QuizesList quizzesArr={desktopChildrenQuizzes} />}
-        {isTablet && (
+        {childrenQuizzes?.length === 0 && <EmptyBlock>No available quizzes</EmptyBlock>}
+        {isDesktop &&  childrenQuizzes.length > 0 && <QuizesList quizzesArr={desktopChildrenQuizzes} />}
+        {isTablet && childrenQuizzes.length > 0 && (
           <Swiper
             spaceBetween={24}
             slidesPerView={2}
@@ -100,7 +103,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             ))}
           </Swiper>
         )}
-           {isMobile && (
+           {isMobile && childrenQuizzes.length > 0 &&  (
           <Swiper
             slidesPerView={1}
             spaceBetween={20}
@@ -110,7 +113,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {childrenQuizzes?.map((quiz) => (
-              <SwiperSlide key={quiz._id} className="children">
+              <SwiperSlide key={quiz._id}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
