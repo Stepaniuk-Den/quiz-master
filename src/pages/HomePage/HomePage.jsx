@@ -22,7 +22,7 @@ const HomePage = () => {
         <div>
           <BoxLastPassed>
           <TitleLastPassedQ>Last passed quizzes</TitleLastPassedQ>
-          {shouldDisplaySeeAll ? null : <ButtonSeeAll to={seeAllLink} />}
+          {shouldDisplaySeeAll ? null : <ButtonSeeAll link={seeAllLink} />}
         </BoxLastPassed>
           <MediaQuery minWidth={1440}>
             {matches => (
