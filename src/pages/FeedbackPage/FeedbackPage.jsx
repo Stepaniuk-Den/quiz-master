@@ -10,9 +10,12 @@ import {
 } from "./FeedbackPageStyled";
 import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
 import PageTitle from "../../shared/components/PageTitle/PageTitle";
+import { selectIsAuth } from "../../redux/user/userSelectors";
+import { useSelector } from "react-redux";
 
 const FeedbackPage = () => {
   const [showThankYou, setShowThankYou] = useState(false);
+  const user = useSelector(selectIsAuth);
 
   const handleSendBtnClick = () => {
     setShowThankYou(true);
@@ -22,21 +25,20 @@ const FeedbackPage = () => {
     <PageWrapper>
       <SectionWrapper>
         <TitleWrapper>
-          <GoBackBtn />
-          <PageTitle children="Feedback" />
+          {user ? <GoBackBtn /> : null}
+          {user ? <PageTitle children="Feedback" /> : null}
         </TitleWrapper>
         {showThankYou ? (
-          <FeedbackThankYou />
-        ) : (
+          user ? (
+            <FeedbackThankYou />
+          ) : (
+            <FeedbackThankYouNoAuth />
+          )
+        ) : user ? (
           <FeedbackForm onSendClick={handleSendBtnClick} />
-        )}
-        
-        {/* 
-        {showThankYou ? (
-          <FeedbackThankYouNoAuth />
         ) : (
           <FeedbackFormNoAuth onSendClick={handleSendBtnClick} />
-        )} */}
+        )}
       </SectionWrapper>
     </PageWrapper>
   );
