@@ -3,12 +3,12 @@ import "swiper/css/pagination";
 import ButtonSeeAll from "../../../../shared/components/Buttons/ButtonSeeAll/ButtonSeeAll";
 import PageTitle from "../../../../shared/components/PageTitle/PageTitle";
 import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
+import QuizesList from "../../../../shared/components/QuizesList/QuizesList";
+import QuizListItem from "../../../../shared/components/QuizListItem/QuizListItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { useMediaQuery } from "react-responsive";
 import { StyledQuizzes } from "./Quizzes.styled";
-import QuizesList from "../../../../shared/components/QuizesList/QuizesList";
-import QuizListItem from "../../../../shared/components/QuizListItem/QuizListItem";
 
 function Quizzes({ adultQuizzes, childrenQuizzes }) {
 
