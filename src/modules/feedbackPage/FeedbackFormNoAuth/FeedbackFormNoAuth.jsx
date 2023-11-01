@@ -23,7 +23,7 @@ const FeedbackFormNoAuth = ({ onSendClick }) => {
 
   const formik = useFormik({
     initialValues: {
-      rating: -1,
+      rating: 0,
       feedback: "",
     },
 
@@ -68,16 +68,10 @@ const FeedbackFormNoAuth = ({ onSendClick }) => {
             <TextRating>Rate the quiz</TextRating>
             {Array.from({ length: 5 }, (_, index) => (
               <label key={index}>
-                <input
-                  type="checkbox"
-                  name="rating"
-                  value={index}
-                  onChange={(e) =>
-                    formik.setFieldValue("rating", parseInt(e.target.value))
-                  }
-                  checked={formik.values.rating === index}
+                <RateStar
+                  selected={formik.values.rating >= index + 1}
+                  onClick={() => formik.setFieldValue("rating", index + 1)}
                 />
-                <RateStar selected={formik.values.rating >= index} />
               </label>
             ))}
             {formik.errors.rating && formik.touched.rating && (
