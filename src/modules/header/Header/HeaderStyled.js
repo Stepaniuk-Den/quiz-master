@@ -3,6 +3,7 @@ import { FiMessageCircle, FiLogOut, FiSettings, FiChevronDown, FiChevronUp } fro
 
 
 export const HeaderContainer = styled.header`
+position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
