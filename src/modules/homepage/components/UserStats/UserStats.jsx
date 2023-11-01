@@ -1,11 +1,15 @@
 
+import { useSelector } from "react-redux";
+import Avatar from "../../../../shared/components/Avatar/Avatar";
 import { InfoText, Line, LineHeight, PassedBox, TitleText, UserAvatar, UserCard, UserName } from "./UserStatsStyled";
 import {infoUser} from "./info/infoUser";
+import { selectUserAvatar } from "../../../../redux/user/userSelectors";
 
 const UserStats = () => {
+const userAvatar = useSelector(selectUserAvatar);
   return (
-      <UserCard>
-          <UserAvatar src={infoUser.avatar} alt="user avatar"/>
+    <UserCard>
+      <Avatar size="large" src={infoUser.avatar} alt="User avatar" width="100px"/>
       <UserName>{infoUser.userName}</UserName>
       <PassedBox>
         <div>
