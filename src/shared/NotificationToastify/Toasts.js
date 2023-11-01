@@ -6,3 +6,5 @@ export const notifyVerifyEmail = () => toast.success('Confirmation link has been
 
 export const notifyLoginSuccess = (data) => toast.success(`Wellcome, ${data.user.name}`)
 
+export const notifyError = (error) => toast.error(`${error.message}`);
+

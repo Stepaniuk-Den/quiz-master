@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   CloseBtn,
   CloseBtnContainer,
@@ -11,66 +10,80 @@ import {
   RateStar,
   RatingWrapper,
   SendBtn,
-  StarBtn,
   TextRating,
 } from "./FeedbackFormNoAuthStyled";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { createReviewThunk } from "../../../redux/feedback/feedbackThunks";
+import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 
 const FeedbackFormNoAuth = ({ onSendClick }) => {
-  const [starSelected, setStarSelected] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
-      // rating: [false, false, false, false, false],
+      rating: -1,
       feedback: "",
     },
 
     validationSchema: Yup.object({
-      // rating: Yup.array().oneOf([true], "Виберіть хоча б одну зірку"),
       feedback: Yup.string().required("Please write your feedback"),
     }),
 
-    onSubmit: (values, { resetForm }) => {
-      onSendClick();
-      resetForm();
-      console.log(values);
+    onSubmit: async (values) => {
+      const reviewData = {
+        userName: values.name,
+        rate: values.rating,
+        comment: values.feedback,
+      };
+
+      try {
+        await dispatch(createReviewThunk(reviewData));
+        onSendClick();
+      } catch (error) {
+        notifyError(error);
+      }
     },
   });
 
-  const handleStarClick = (index) => {
-    const updatedStars = starSelected.map((isSelected, i) => i <= index);
-    setStarSelected(updatedStars);
-  };
-
-  // const handleClick = () => {
-  //   onSendClick();
-  // };
   return (
     <>
       <FormContainer>
         <CloseBtnContainer>
           <CloseBtn />
         </CloseBtnContainer>
-        <InputWrapper>
-          <FormTitle>Write a review</FormTitle>
-          <NameInput type="text" placeholder="Name" />
-        </InputWrapper>
-        <RatingWrapper>
-          <TextRating>Rate the quiz</TextRating>
-          {starSelected.map((isSelected, index) => (
-            <StarBtn key={index} onClick={() => handleStarClick(index)}>
-              <RateStar selected={isSelected} />
-            </StarBtn>
-          ))}
-        </RatingWrapper>
         <form onSubmit={formik.handleSubmit}>
+          <InputWrapper>
+            <FormTitle>Write a review</FormTitle>
+            <NameInput
+              type="text"
+              name="name"
+              placeholder="Name"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+          </InputWrapper>
+          <RatingWrapper>
+            <TextRating>Rate the quiz</TextRating>
+            {Array.from({ length: 5 }, (_, index) => (
+              <label key={index}>
+                <input
+                  type="checkbox"
+                  name="rating"
+                  value={index}
+                  onChange={(e) =>
+                    formik.setFieldValue("rating", parseInt(e.target.value))
+                  }
+                  checked={formik.values.rating === index}
+                />
+                <RateStar selected={formik.values.rating >= index} />
+              </label>
+            ))}
+            {formik.errors.rating && formik.touched.rating && (
+              <div>{formik.errors.rating}</div>
+            )}
+          </RatingWrapper>
           <InputWrapper
             className={
               formik.errors.feedback && formik.touched.feedback
