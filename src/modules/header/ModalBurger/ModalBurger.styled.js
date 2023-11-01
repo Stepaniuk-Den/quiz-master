@@ -9,6 +9,7 @@ export const StyledOverlay = styled.div`
   background-color: var(--blue-background);
   backdrop-filter: blur(1.5px);
   overscroll-behavior: contain;
+  z-index: 1;
 `;
 
 export const StyledModal = styled.div`
@@ -19,17 +20,22 @@ export const StyledModal = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
-  justify-content: center;
+  padding: 40px 20px 28px;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
-  padding: 60px 80px;
-  /* border: 1px solid var(--text-color-30);
-  border-radius: 20px; */
-  background-color: var(--blue-background);
 
-  @media screen and (max-width: 768px) {
-    padding: 40px 20px;
-  }
+`;
+
+export const Logo = styled.div`
+ position: absolute;
+ top: 20px;
+  left: 20px;
+  color: var(--text-color-100);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.24px;
 `;
 
 export const StyledCloseBtn = styled.button`
@@ -51,4 +57,34 @@ export const StyledCloseBtn = styled.button`
     top: 16px;
     right: 16px;
   }
+`;
+
+export const BoxAuth = styled.div`
+display: flex;
+align-items: center;
+margin-top: auto;
+`;
+
+export const NavList = styled.ul`
+  display: none;
+      @media (max-width: 767px) {
+    display: flex;
+    row-gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 251px;
+  }
+`;
+
+export const NavItem = styled.li`
+  color: var(--text-color-100);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+  cursor: pointer;
+
+    /* &.active {
+    scale: 1.1;
+  } */
 `;

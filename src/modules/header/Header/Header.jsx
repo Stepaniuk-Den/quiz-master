@@ -13,8 +13,6 @@ import {
   Up,
   Down,
   UserName,
-  ButtonRegister,
-  ButtonLogin,
   BoxAuth,
 } from "./HeaderStyled";
 import React, { useEffect, useRef, useState } from "react";
@@ -22,17 +20,19 @@ import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+import { toggleShowAuthPage, toggleShowBurgerModal } from "../../../redux/Modal/modalSlice";
 import { selectIsAuth } from "../../../redux/user/userSelectors";
 
 import { useMediaQuery } from "react-responsive";
 import BtnBurger from "../BtnBurger/BtnBurger";
 import ModalBurger from "../ModalBurger/ModalBurger";
+import BtnRegister from "../components/ButtonRegister/ButtonRegister";
+import BtnLogin from "../components/ButtonLogin/ButtonLogin";
 
 const Header = () => {
+
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const location = useLocation();
 
@@ -59,8 +59,7 @@ const Header = () => {
   };
 
   const openBurgerMenu = () => {
-    setIsBurgerMenuOpen(true);
-    console.log(isBurgerMenuOpen)
+    dispatch(toggleShowBurgerModal());
   };
 
   useEffect(() => {
@@ -152,20 +151,20 @@ const Header = () => {
           />
         </DropdownContainer>
       ) : isMobile ? (
-        <BtnBurger openBurgerMenu={openBurgerMenu} />
+        <>
+          <BtnBurger openBurgerMenu={openBurgerMenu} />
+          <ModalBurger />
+          </>
       ) : (
         <BoxAuth>
-          <Link to="/auth/loginForm">
-            <ButtonRegister onClick={handleOpenModal}>Register</ButtonRegister>
-          </Link>
           <Link to="/auth/RegisterForm">
-            <ButtonLogin onClick={handleOpenModal}>Login</ButtonLogin>
+            <BtnRegister handleOpenModal={handleOpenModal}>Register</BtnRegister>
+          </Link>
+          <Link to="/auth/loginForm">
+            <BtnLogin handleOpenModal={handleOpenModal}>Login</BtnLogin>
           </Link>
         </BoxAuth>
       )}
-      {isMobile && isBurgerMenuOpen ? (
-          <ModalBurger />
-      ) : null}
     </HeaderContainer>
   );
 };
