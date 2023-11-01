@@ -14,7 +14,7 @@ export const AuthTitle = styled.h2`
   }
 `;
 
-export const FormStyled = styled.h2`
+export const FormStyled = styled.form`
   width: 100%;
 `;
 
