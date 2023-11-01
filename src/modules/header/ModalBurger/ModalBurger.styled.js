@@ -1,3 +1,10 @@
+import {
+  FiChevronDown,
+  FiChevronUp,
+  FiLogOut,
+  FiMessageCircle,
+  FiSettings,
+} from "react-icons/fi";
 import styled from "styled-components";
 
 export const StyledOverlay = styled.div`
@@ -24,12 +31,11 @@ export const StyledModal = styled.div`
   justify-content: start;
   align-items: center;
   flex-direction: column;
-
 `;
 
 export const Logo = styled.div`
- position: absolute;
- top: 20px;
+  position: absolute;
+  top: 20px;
   left: 20px;
   color: var(--text-color-100);
   font-size: 24px;
@@ -60,14 +66,14 @@ export const StyledCloseBtn = styled.button`
 `;
 
 export const BoxAuth = styled.div`
-display: flex;
-align-items: center;
-margin-top: auto;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
 `;
 
 export const NavList = styled.ul`
   display: none;
-      @media (max-width: 767px) {
+  @media (max-width: 767px) {
     display: flex;
     row-gap: 20px;
     flex-direction: column;
@@ -84,7 +90,72 @@ export const NavItem = styled.li`
   letter-spacing: -0.14px;
   cursor: pointer;
 
-    /* &.active {
+  /* &.active {
     scale: 1.1;
   } */
+`;
+
+export const DropdownButton = styled.button`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+  color: var(--text-color-100);
+`;
+
+export const UserName = styled.p`
+  color: var(--text-color-100);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-left: 8px;
+  margin-right: 16px;
+`;
+
+export const DropdownContainer = styled.div`
+  display: inline-block;
+  position: relative;
+  margin-top: 20px;
+`;
+
+export const DropdownList = styled.ul`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: ${({ open }) => (open ? "block" : "none")};
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--blue-background);
+`;
+
+export const DropdownItem = styled.li`
+  margin-bottom: 14px;
+  color: var(--text-color-100);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+`;
+
+export const Settings = styled(FiSettings)`
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-color-100);
+`;
+
+export const MessageCircle = styled(FiMessageCircle)`
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-color-100);
+`;
+
+export const LogOut = styled(FiLogOut)`
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-color-100);
 `;
