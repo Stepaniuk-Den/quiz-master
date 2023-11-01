@@ -113,7 +113,7 @@ const DiscoverPage = () => {
     // console.log("filteredOnStars: ", filteredOnStars);
 
     const commonTotalResults = filteredOnChildren.length + filteredOnStars.length
-    console.log('commonTotalResults: ', commonTotalResults);
+    // console.log('commonTotalResults: ', commonTotalResults);
 
     // setSelectedQuizesArr((prevSelectedQuizesArr) => ({
     //   // totalResults: prevSelectedQuizesArr.totalResults + filteredOnStars.length,
@@ -133,7 +133,7 @@ const DiscoverPage = () => {
       }));
 
 
-  }, [categoryName, starSelect, selectTitles]);
+  }, [categoryName, starSelect]);
 
   const handleCategorySelection = (data, selectTitle) => {
     //  console.log("data", data)
@@ -151,8 +151,8 @@ const DiscoverPage = () => {
       );
       setCategoryName(updatedCategoryName);
     }
-    
-    // setSelectTitles((prevSelectTitles) => [...prevSelectTitles, selectTitle]);
+    // setSelectTitles((prevSelectTitles) => console.log('2', prevSelectTitles));
+    setSelectTitles((prevSelectTitles) => prevSelectTitles.includes(selectTitle)? [...prevSelectTitles] : [...prevSelectTitles, selectTitle]);
 
     // const filteredOnChildren = allQuizzesArr.filter((quiz) => categoryName.includes(quiz.categoryName));
     // console.log('filteredOnChildrenLength: ', filteredOnChildren.length);
@@ -178,7 +178,7 @@ const DiscoverPage = () => {
   };
   console.log("selectTitles: ", selectTitles);
   console.log("categoryName: ", categoryName);
-  console.log(selectedQuizesArr);
+  // console.log(selectedQuizesArr);
 
   return (
     <PageWrapper>
@@ -188,6 +188,8 @@ const DiscoverPage = () => {
           handleStarSelection={handleStarSelection}
           handleCategorySelection={handleCategorySelection}
           totalResults={selectedQuizesArr.totalResults}
+          selectTitles={selectTitles}
+          categoryName={categoryName}
         />
         <QuizesList
           quizzesArr={selectedQuizesArr.filteredQuizes}

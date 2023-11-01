@@ -21,7 +21,7 @@ const QuizSelect = ({ className, selectTitle, options, handleCategorySelection})
   return (
     <>
       <SelectWrapper>
-        <ButtonStyled className={className} onClick={handleOnClickSelect}>
+        <ButtonStyled type="button" className={className} onClick={handleOnClickSelect}>
           <p>{selectTitle}</p>
           <FaChevronDownS />
         </ButtonStyled>

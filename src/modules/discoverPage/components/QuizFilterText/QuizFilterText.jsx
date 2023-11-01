@@ -2,7 +2,7 @@ import RatingStarsRadio from "../RatingStarsRadio/RatingStarsRadio"
 import { PStyled, RatingBox, ResultBox, SpanStyled, TextWrapper } from "./QuizFilterTextStyled"
 
 
-const QuizFilterText = ({handleStarSelection, totalResults}) => {
+const QuizFilterText = ({handleStarSelection, totalResults, selectTitles, categoryName}) => {
   return (
     <>    
     <TextWrapper>
@@ -10,7 +10,8 @@ const QuizFilterText = ({handleStarSelection, totalResults}) => {
           <SpanStyled>Result:</SpanStyled>
           <PStyled>{totalResults}</PStyled>
           <SpanStyled>
-            (For adults, themes: Cinema, Science, Literature)
+            {categoryName?.length? `(${selectTitles}, themes: ${categoryName.join(", ")})` : ''}
+            {/* (For adults, themes: Cinema, Science, Literature) */}
           </SpanStyled>
         </ResultBox>
         <RatingBox>
