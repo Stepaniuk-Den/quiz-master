@@ -2,7 +2,7 @@
 import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
 
-const QuizesList = ({quizzesArr, className, type}) => {
+const QuizesList = ({quizzesArr, className}) => {
   // console.log('quizzesArrList: ', quizzesArr);  
   return (
     <>      
@@ -10,7 +10,7 @@ const QuizesList = ({quizzesArr, className, type}) => {
         {/* <QuizListItem/>
         <QuizListItem/>
         <QuizListItem/> */}
-        {quizzesArr?.length > 0 && quizzesArr.map(quiz=><li key={quiz._id} className={type}><QuizListItem quiz={quiz}/></li>)}        
+        {quizzesArr?.length > 0 && quizzesArr.map(quiz=><li key={quiz._id}><QuizListItem quiz={quiz}/></li>)}        
       </CardList>
     </>
   );
