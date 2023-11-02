@@ -1,13 +1,13 @@
-import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn"
-import { PageWrapper, QuizeBox } from "./QuizePage.styled"
+import BaseQuizForm from "../../modules/quizPage/components/BaseQuizForm/BaseQuizForm";
+import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
+import { Container} from "./QuizePage.styled";
 
 const QuizePage = () => {
   return (
-    <PageWrapper>
-      <QuizeBox>QuizePage</QuizeBox>
-      <GoBackBtn to="/"/>
-    </PageWrapper>
-  )
-}
+    <Container>
+      <BaseQuizForm />
+    </Container>
+  );
+};
 
-export default QuizePage
+export default QuizePage;
