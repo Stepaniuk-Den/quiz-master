@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllReviewsThunk, createReviewThunk } from "./feedbackThunks";
+import {
+  getAllReviewsThunk,
+  createReviewThunk,
+  createReviewQuizThunk,
+} from "./feedbackThunks";
 
 // const reviews =[
 //   {
@@ -83,6 +87,9 @@ const feedbackSlice = createSlice({
         state.page += 1;
       })
       .addCase(createReviewThunk.fulfilled, (state, action) => {
+        state.reviews.push(action.payload);
+      })
+      .addCase(createReviewQuizThunk.fulfilled, (state, action) => {
         state.reviews.push(action.payload);
       });
   },

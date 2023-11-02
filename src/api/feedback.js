@@ -11,3 +11,8 @@ export async function createReview(review) {
   const { data } = await instance.post("/feedback", review);
   return data;
 }
+
+export async function createReviewQuiz(review) {
+  const { data } = await instance.post("/feedback/:quizId", review);
+  return data;
+}

@@ -15,7 +15,7 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { createReviewThunk } from "../../../redux/feedback/feedbackThunks";
+import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 
 const FeedbackFormNoAuth = ({ onSendClick }) => {
@@ -28,18 +28,22 @@ const FeedbackFormNoAuth = ({ onSendClick }) => {
     },
 
     validationSchema: Yup.object({
-      feedback: Yup.string().required("Please write your feedback"),
+      feedback: Yup.string()
+        .min(8, "Enter at least 8 characters")
+        .required("Please write your feedback"),
     }),
 
     onSubmit: async (values) => {
       const reviewData = {
-        userName: values.name,
+        userName: "Artem",
         rate: values.rating,
         comment: values.feedback,
+        quizId: "654360c3d1c10f1b61d9d92c",
+        // quizId:
       };
-
+      console.log(reviewData);
       try {
-        await dispatch(createReviewThunk(reviewData));
+        await dispatch(createReviewQuizThunk(reviewData));
         onSendClick();
       } catch (error) {
         notifyError(error);
@@ -51,7 +55,7 @@ const FeedbackFormNoAuth = ({ onSendClick }) => {
     <>
       <FormContainer>
         <CloseBtnContainer>
-          <CloseBtn />
+          <CloseBtn to="/" />
         </CloseBtnContainer>
         <form onSubmit={formik.handleSubmit}>
           <InputWrapper>
@@ -61,7 +65,8 @@ const FeedbackFormNoAuth = ({ onSendClick }) => {
               name="name"
               placeholder="Name"
               onChange={formik.handleChange}
-              value={formik.values.name}
+              value="Artem"
+              // value={formik.values.name}
             />
           </InputWrapper>
           <RatingWrapper>
