@@ -14,7 +14,7 @@ export const StyledReview = styled.div`
   }
 
   div + div {
-    height: 60px;
+    height: 72px;
     overflow-y: scroll;
     display: inline-block;
     margin: 0;
@@ -38,15 +38,24 @@ export const StyledReview = styled.div`
   @media only screen and (max-width: 767px) {
     max-width: 335px;
   }
-
+  
   @media only screen and (min-width: 768px) {
-    padding: 24px;
+      padding: 24px;
     width: 704px;
     height: 144px;
+
+    div + div {
+    height: 40px;
+  }
   }
 
   @media only screen and (min-width: 1440px) {
     width: 608px;
     height: 164px;
+
+
+    div + div {
+    height: 60px;
+  }
   }
 `;
