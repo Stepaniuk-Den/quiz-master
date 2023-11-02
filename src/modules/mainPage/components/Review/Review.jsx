@@ -11,7 +11,9 @@ function Review({ review }) {
         <Avatar src={review.userAvatar} alt="avatar" width="44" />
         <CardTitle>{review.userName}</CardTitle>
       </div>
+      <div>
       <Paragraph>{review.comment}</Paragraph>
+      </div>
     </StyledReview>
   );
 }
