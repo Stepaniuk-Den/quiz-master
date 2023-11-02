@@ -8,5 +8,6 @@ display: flex;
  @media (min-width: 768px) {
     display: block;
     margin-top: 100px;
+    text-align: center;
   }
 `
