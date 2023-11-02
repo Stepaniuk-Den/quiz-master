@@ -55,11 +55,3 @@ export const RatingBox = styled.div`
     gap: 12px;
   }
 `;
-
-export const RatingStars = styled.div`
-  margin: 0;
-  padding: 0;
-  /* color: #f4f4f4; */
-  color: var(--star-color-100);
-  /* color: var(--star-color-8); */
-`;

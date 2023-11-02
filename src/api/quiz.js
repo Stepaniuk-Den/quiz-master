@@ -4,17 +4,63 @@ export async function getRandomQuizzes(params) {
   const { data } = await instance.get("/quizzes/random", { params });
   return data;
 }
-
-export async function getFilteredQuizzes(params) {
-  const { data } = await instance.get("/quizzes", { params });
+///////////////////////////////////////////////////////////////
+// export async function getFilteredQuizzes(params) {
+//   const { data } = await instance.get("/quizzes", { params });
+//   return data;
+// }
+export async function getFilteredQuizzes(categories) {  
+  const { ratingStars, categoryNames } = categories;
+  const accessToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDNkODlmMGMxZmNhYTUwY2I2NTlhZCIsImlhdCI6MTY5ODk1NDU5NiwiZXhwIjoxNjk4OTk3Nzk2fQ.L1Quf_iEsSW2xm3EwBrTSPzfhjs-MzjGFUXxvLNLN0U";
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  const params = new URLSearchParams();
+  categoryNames.forEach((categoryName) => {
+    params.append("category", categoryName);
+  });
+  // const { data } = await instance.get(`/quizzes?${params}`, config);
+  // const { data } = await instance.get(
+  //   `/quizzes?category=History&category=Fauna`,
+  //   config
+  // );
+  const { data } = await instance.get(
+    `/quizzes?rate=${ratingStars}`,
+    config
+  );  
   return data;
 }
 
-export async function getQuizCategories(params) {
-  const { data } = await instance.get(`/categories/`, {params});
+// export async function getQuizCategories(audience) {
+//   const { data } = await instance.get(`/categories/${audience}`);
+//   return data;
+// }
+// export async function getQuizCategories(audience) {
+//   console.log(audience);
+//   const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDNkODlmMGMxZmNhYTUwY2I2NTlhZCIsImlhdCI6MTY5ODk0NTIyMSwiZXhwIjoxNjk4OTg4NDIxfQ.kDwUeNbhNGfoMZ3TBfpswMmVbs_WkJTKWNGOLgmKVY8';
+//   const config = {
+//     headers: {
+//       Authorization: `Bearer ${accessToken}`,
+//     },
+//   };
+//   const { data } = await instance.get(`/categories?audience=${audience}`, config);
+//   return data;
+// }
+export async function getQuizCategories() {
+  const accessToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDNkODlmMGMxZmNhYTUwY2I2NTlhZCIsImlhdCI6MTY5ODk1NDU5NiwiZXhwIjoxNjk4OTk3Nzk2fQ.L1Quf_iEsSW2xm3EwBrTSPzfhjs-MzjGFUXxvLNLN0U";
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  const { data } = await instance.get(`/categories`, config);
   return data;
 }
-
+////////////////////////////////////////////////////////////////////////////
 export async function getPassedQuizzes(params) {
   const { data } = await instance.get("/quizzes/passedquiz", { params });
   return data;

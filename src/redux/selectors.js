@@ -6,6 +6,8 @@ export const selectRandomChildren = state => state.quiz.quizzes.random.children;
 
 export const selectDiscoverAdult = state => state.quiz.categoryType.adult
 export const selectDiscoverChildren = state => state.quiz.categoryType.children
+export const selectDiscoverAllCategories = state => state.quiz.allCategories
+export const selectDiscoverFilteredQuizes = state => state.quiz.quizzes.filtered
 export const selectFavorite = state => state.quiz.quizzes.favorites
 export const selectOwnQuizes = state => state.quiz.quizzes.ownQuizes
 export const selectPassed = state => state.quiz.quizzes.passed

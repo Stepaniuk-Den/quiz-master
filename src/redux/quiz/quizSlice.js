@@ -93,14 +93,17 @@ const initialState = {
     random: {
       adult: [],
       children: [],
-    },
-    filtered: quizzesArr,
+    },    
+    // filtered: quizzesArr,
+    filtered: null,    
     passed: [],
     ownQuizes: quizzesArr,
     favorites: quizzesArr,    
     total: 129865,
   },
   filters: null,
+
+  allCategories: null,
 
   categoryType: {
     adult: [
@@ -117,6 +120,11 @@ const initialState = {
       {
         _id: "65398bdb5191746edd434952",
         categoryName: "Science",
+        categoryType: "adults",
+      },
+      {
+        _id: "65398beb5191746edd434955",
+        categoryName: "History",
         categoryType: "adults",
       },
     ],
@@ -158,12 +166,21 @@ const quizSlice = createSlice({
             state.quizzes.random.children.push(quiz);
         });
       })
-      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.filtered.push(action.payload);
+      // .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
+      //   console.log("123", action.payload);
+      //   state.quizzes.filtered.push(action.payload);
+      // })
+      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {        
+        state.quizzes.filtered = action.payload;
       })
+      // .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
+      //   console.log('action', action.payload);
+      //   state.categories.adult = action.payload.categoriesAdults;
+      //   state.categories.children = action.payload.categoriesChildren;
+      // })
       .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
-        state.categories.adult = action.payload.categoriesAdults;
-        state.categories.children = action.payload.categoriesChildren;
+        // console.log(action.payload);        
+        state.allCategories = action.payload;        
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.passed.push(action.payload);
