@@ -1,11 +1,13 @@
+import AnswerCard from "../../modules/quizPage/components/AnswerCard";
 import BaseQuizForm from "../../modules/quizPage/components/BaseQuizForm/BaseQuizForm";
-import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
-import { Container} from "./QuizePage.styled";
+import { Container, Image} from "./QuizePage.styled";
 
 const QuizePage = () => {
   return (
     <Container>
-      <BaseQuizForm />
+        {/* <BaseQuizForm />
+      <Image /> */}
+      <AnswerCard />
     </Container>
   );
 };

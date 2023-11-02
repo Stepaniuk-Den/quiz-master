@@ -5,8 +5,16 @@ import tabletBgQuizeImg from "../../shared/images/desktop/question-desktop@1x.we
 import desktopBgQuizeImg from "../../shared/images/desktop/question-desktop@1x.webp";
 
 export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const Image = styled.div`
+  position: fixed;
+  top: 235px; /* Расположение сверху */
+  left: 189px; /* Расположение слева */
+  z-index: -1; /* Помещаем изображение за контентом */
   background-repeat: no-repeat;
-  background-position: left 189px top 235px;
 
   @media (max-width: 767px) {
     background-image: url(${mobileBgQuizeImg});
@@ -20,5 +28,3 @@ export const Container = styled.div`
     background-image: url(${desktopBgQuizeImg});
   }
 `;
-
-
