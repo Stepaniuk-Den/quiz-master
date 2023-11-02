@@ -15,7 +15,7 @@ import BtnStart from "../Buttons/BtnStart";
 import RatingStars from "../RatingStars/RatingStars";
 
 const QuizListItem = ({ quiz }) => {
-  const { categoryName, quizName, rate, totalPassed } = quiz;
+  const { quizCategory, quizName, rate, totalPassed } = quiz;
   const location = useLocation();
 
   const newClassName = location.pathname === "/favorite" ? "favorite" : "";
@@ -24,20 +24,16 @@ const QuizListItem = ({ quiz }) => {
       <CardWrapper>
         <TopIconBox>
           <IconUsersWrapper>
-            <FiUsersS />
-            {/* <UsersNumber>485</UsersNumber> */}
+            <FiUsersS />            
             <UsersNumber>{totalPassed}</UsersNumber>
           </IconUsersWrapper>
           <FiHeartS className={newClassName} />
         </TopIconBox>
         <TextRatingWrapper>
-          <TextWrapper>
-            {/* <ThemesS>Themes</ThemesS> */}
-            <ThemesS>{categoryName}</ThemesS>
-            {/* <GeneralScienceS>General Science</GeneralScienceS> */}
+          <TextWrapper>            
+            <ThemesS>{quizCategory.categoryName}</ThemesS>            
             <GeneralScienceS>{quizName}</GeneralScienceS>
-          </TextWrapper>
-          {/* <RatingStars>*****</RatingStars> */}          
+          </TextWrapper>            
           <RatingStars rate={rate}/>
         </TextRatingWrapper>
         <BtnStart />

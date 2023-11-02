@@ -7,7 +7,7 @@ import {
   FaChevronDownS,
 } from "./QuizSelectStyled";
 
-const QuizSelect = ({ className, selectTitle, options, handleCategorySelection}) => {  
+const QuizSelect = ({ className, selectTitle, options, handleCategorySelection}) => {    
   const [openSelect, setOpenSelect] = useState(false);  
   
   const handleOnClickSelect = () => {
@@ -26,17 +26,17 @@ const QuizSelect = ({ className, selectTitle, options, handleCategorySelection})
           <FaChevronDownS />
         </ButtonStyled>
         <OptionsList className={openSelect ? "openSelect" : ""}>
-          {options.map((option) => (
-            <OptionS key={option._id}>
+          {options?.map((option) => (
+            <OptionS key={option?._id}>
               <input
                 type="checkbox"
-                id={option._id}
+                id={option?._id}
                 className="custom-checkbox"
-                value={option.categoryName}
+                value={option?.categoryName}
                 onChange={handleCheckboxChange}
               />
-              <label htmlFor={option._id}></label>
-              <p>{option.categoryName}</p>
+              <label htmlFor={option?._id}></label>
+              <p>{option?.categoryName}</p>
             </OptionS>
           ))}
         </OptionsList>

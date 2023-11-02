@@ -3,182 +3,101 @@ import { PageWrapper, SectionWrapper } from "./DiscoverPageStyled";
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import QuizeFilterTools from "../../modules/discoverPage/components/QuizFilterTools/QuizFilterTools";
-//import { useSelector } from "react-redux";
-//import { selectDiscoverAdult, selectDiscoverChildren } from "../../redux/selectors";
 import { useEffect, useState } from "react";
-
-const allQuizzesArr = [
-  {
-    _id: "653b7ab5frvf4cc7fb04f0a2",
-    quizName: "Quiz 1",
-    rate: 5.0,
-    totalPassed: 10,
-    categoryName: "Nature",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f1tr44cc7fb04f0a2",
-    quizName: "Quiz 2",
-    rate: 4.6,
-    totalPassed: 15,
-    categoryName: "Science",
-    quizType: "adult",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18hjkcc7fb04f0a2",
-    quizName: "Quiz 3",
-    rate: 4.3,
-    totalPassed: 20,
-    categoryName: "Literature",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18b4rerefb04f0a2",
-    quizName: "Quiz 4",
-    rate: 4.0,
-    totalPassed: 12,
-    categoryName: "Cars",
-    quizType: "adult",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18b4tyrer7fb04f0a2",
-    quizName: "Quiz 5",
-    rate: 3.0,
-    totalPassed: 18,
-    categoryName: "Comics",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18berr7fb04f0a2",
-    quizName: "Quiz 6",
-    rate: 4.9,
-    totalPassed: 9,
-    categoryName: "Architecture",
-    quizType: "adult",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18berr7fb04f0a3",
-    quizName: "Quiz 6",
-    rate: 1.9,
-    totalPassed: 9,
-    categoryName: "Cars",
-    quizType: "adult",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18b4cc7fb04frr",
-    quizName: "Quiz 7",
-    rate: 5.0,
-    totalPassed: 22,
-    categoryName: "Nature",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getFilteredQuizzesThunk,
+  getQuizCategoriesThunk,
+} from "../../redux/quiz/quizThunks";
+import {
+  selectDiscoverFilteredQuizes,
+} from "../../redux/selectors";
 
 const DiscoverPage = () => {
-  // const allAdultCategories = useSelector(selectDiscoverAdult)
-  // console.log('allAdultCategories: ', allAdultCategories);
-  // const allChildrenCategories = useSelector(selectDiscoverChildren)
-  // console.log('allChildrenCategories: ', allChildrenCategories);
-  const [selectTitles, setSelectTitles] = useState([]);
-  const [categoryName, setCategoryName] = useState([]);
-  const [starSelect, setStarSelect] = useState(0)
-  const [selectedQuizesArr, setSelectedQuizesArr] = useState({
-    totalResults: 0,
-    filteredQuizes: null,
+  console.log("render");
+  const filteredQuizes = useSelector(selectDiscoverFilteredQuizes)
+  console.log('filteredQuizes: ', filteredQuizes);  
+  const [categoryNames, setCategoryNames] = useState([]);
+  const [childrenCategoryNames, setChildrenCategoryNames] = useState([])  
+  const [adultCategoryNames, setAdultCategoryNames] = useState([])  
+  const [commonFilter, setCommonFilter] = useState({
+    ratingStars: null,
+    categoryNames: [],
   });
+  // console.log('selectTitles: ', selectTitles);
+  // console.log('categoryNames: ', categoryNames);
+  // console.log("commonFilter: ", commonFilter);
 
-  useEffect(() => {    
-    const filteredOnChildren = allQuizzesArr?.filter((quiz) => categoryName?.includes(quiz?.categoryName));
-    // console.log('filteredOnChildrenLength: ', filteredOnChildren.length);
-    // console.log('filteredOnChildren: ', filteredOnChildren);
-    const filteredOnStars = allQuizzesArr.filter(
-      (quiz) => Math.round(quiz.rate) === starSelect
-    );
-    // console.log("filteredOnStars: ", filteredOnStars);
+  const dispatch = useDispatch();
 
-    const commonTotalResults = filteredOnChildren.length + filteredOnStars.length
-    // console.log('commonTotalResults: ', commonTotalResults);
+  useEffect(() => {
+    console.log(1);
+    dispatch(getQuizCategoriesThunk());
+  }, [dispatch]);
 
-    // setSelectedQuizesArr((prevSelectedQuizesArr) => ({
-    //   // totalResults: prevSelectedQuizesArr.totalResults + filteredOnStars.length,
-    //   totalResults: filteredOnStars.length,
-    //   filteredQuizes: [...filteredOnStars],
-    // }));
+  useEffect(()=>{
+    if(!commonFilter.ratingStars&&!commonFilter.categoryNames.length) return
+    console.log(2);
+    dispatch(getFilteredQuizzesThunk(commonFilter))
+  }, [dispatch, commonFilter])
+  
+  // useEffect(()=>{
+  //   // if(!categoryNames.length) return
+  //   console.log(2);
+  //   dispatch(getFilteredQuizzesThunk(categoryNames))
+  // }, [dispatch, categoryNames])
 
-    //  setSelectedQuizesArr((prevSelectedQuizesArr) => ({
-    //     totalResults: filteredOnChildren.length,
-    //     filteredQuizes: [...filteredOnChildren],
-    //   }));
-
-    
-      setSelectedQuizesArr((prevSelectedQuizesArr) => ({
-        totalResults: commonTotalResults,
-        filteredQuizes: [...filteredOnChildren, ...filteredOnStars],
-      }));
-
-
-  }, [categoryName, starSelect]);
-
-  const handleCategorySelection = (data, selectTitle) => {
-    //  console.log("data", data)
+  const handleCategorySelection = (data, selectTitle) => {         
     const isChecked = data.target.checked;
     const selectedCategoryName = data.target.value;    
 
     if (isChecked) {
-      setCategoryName((prevCategoryName) => [
-        ...prevCategoryName,
+      setCategoryNames((prevCategoryNames) => [
+        ...prevCategoryNames,
         selectedCategoryName,
       ]);
+      if(selectTitle === "For children"){
+        setChildrenCategoryNames((prevChildrenCategoryNames) => [
+          ...prevChildrenCategoryNames,
+          selectedCategoryName,
+        ]);
+      }else{
+        setAdultCategoryNames((prevAdultCategoryNames) => [
+          ...prevAdultCategoryNames,
+          selectedCategoryName,
+        ]);
+      }
     } else {
-      const updatedCategoryName = categoryName.filter(
+      const updatedCategoryName = categoryNames.filter(
         (name) => name !== selectedCategoryName
       );
-      setCategoryName(updatedCategoryName);
-    }
-    // setSelectTitles((prevSelectTitles) => console.log('2', prevSelectTitles));
-    setSelectTitles((prevSelectTitles) => prevSelectTitles.includes(selectTitle)? [...prevSelectTitles] : [...prevSelectTitles, selectTitle]);
+      setCategoryNames(updatedCategoryName);
 
-    // const filteredOnChildren = allQuizzesArr.filter((quiz) => categoryName.includes(quiz.categoryName));
-    // console.log('filteredOnChildrenLength: ', filteredOnChildren.length);
-    // console.log('filteredOnChildren: ', filteredOnChildren);
-    //  setSelectedQuizesArr((prevSelectedQuizesArr) => ({
-    //     totalResults: filteredOnChildren.length,
-    //     filteredQuizes: [...filteredOnChildren],
-    //   }));
+      if(selectTitle === "For children"){
+        const updatedChildrenCategoryName = childrenCategoryNames.filter(
+          (name) => name !== selectedCategoryName
+        );
+        setChildrenCategoryNames(updatedChildrenCategoryName);
+      }else{
+        const updatedAdultCategoryName = adultCategoryNames.filter(
+          (name) => name !== selectedCategoryName
+        );
+        setAdultCategoryNames(updatedAdultCategoryName);
+      }
+    }    
+  };
+  
+  const handleStarSelection = (starsQty) => {    
+    setCommonFilter((prevCommonFilter) => ({
+      ...prevCommonFilter,
+      ratingStars: starsQty,
+    }));    
   };
 
-  const handleStarSelection = (data) => {
-    // console.log("dataStars", data)
-    setStarSelect(data);
-    // const filteredOnStars = allQuizzesArr.filter(
-    //   (quiz) => Math.round(quiz.rate) === data
-    // );
-    // console.log("filteredOnStars: ", filteredOnStars);
-    // setSelectedQuizesArr((prevSelectedQuizesArr) => ({
-    //   // totalResults: prevSelectedQuizesArr.totalResults + filteredOnStars.length,
-    //   totalResults: filteredOnStars.length,
-    //   filteredQuizes: [...filteredOnStars],
-    // }));
-  };
-  console.log("selectTitles: ", selectTitles);
-  console.log("categoryName: ", categoryName);
-  // console.log(selectedQuizesArr);
+  const selectedCategoryNames = {
+    childrenCategoryNames,
+    adultCategoryNames,
+  }
 
   return (
     <PageWrapper>
@@ -187,12 +106,11 @@ const DiscoverPage = () => {
         <QuizeFilterTools
           handleStarSelection={handleStarSelection}
           handleCategorySelection={handleCategorySelection}
-          totalResults={selectedQuizesArr.totalResults}
-          selectTitles={selectTitles}
-          categoryName={categoryName}
+          totalResults={filteredQuizes?.length}
+          selectedCategoryNames={selectedCategoryNames}          
         />
         <QuizesList
-          quizzesArr={selectedQuizesArr.filteredQuizes}
+          quizzesArr={filteredQuizes}
           className={"bottomVariant"}
         />
         <BtnLoadMore />

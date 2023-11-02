@@ -51,25 +51,34 @@ export const FaChevronDownS = styled(FaChevronDown)`
 export const OptionsList = styled.ul`
   display: none;
   &.openSelect {
+    height: 126px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     position: absolute;
     left: 0;
     top: calc(100% + 8px);
     width: 100%;
-    padding: 15px;
+    padding: 15px 4px 15px 8px;
     background: var(--blue-background);
     border-radius: 20px;
     font-family: GilroyRegular, sans-serif;
     color: var(--text-color-100);
   }
+  &::-webkit-scrollbar {
+  width: 6px; /* Ширина скроллбара */ 
+  scrollbar-width: thin; 
+}
+&::-webkit-scrollbar-thumb {
+  background-color: #0077FF; /* Цвет ползунка скроллбара */
+}
 `;
 
 export const OptionS = styled.li`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 
   .custom-checkbox {
     position: absolute;

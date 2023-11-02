@@ -8,14 +8,15 @@ import {
   FormWrapper,
   SelectWrapper,
 } from "./QuizesSearchStyled";
-import {
-  selectDiscoverAdult,
-  selectDiscoverChildren,
+import {  
+  selectDiscoverAllCategories,  
 } from "../../../../redux/selectors";
 
 const QuizeSearch = ({handleCategorySelection}) => {
-  const allAdultCategories = useSelector(selectDiscoverAdult);
-  const allChildrenCategories = useSelector(selectDiscoverChildren);
+  const allCategories = useSelector(selectDiscoverAllCategories);
+  // console.log('allCategories: ', allCategories);
+
+  
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
@@ -36,14 +37,15 @@ const QuizeSearch = ({handleCategorySelection}) => {
         <QuizSelect
           className="forChildren"
           selectTitle="For children"
-          options={allChildrenCategories}
-          handleCategorySelection={handleCategorySelection}          
+          options={allCategories?.children}
+          handleCategorySelection={handleCategorySelection}
         />
-        {/* <QuizSelect
+        <QuizSelect
           className="forAdults"
           selectTitle="For adults"
-          options={allAdultCategories}
-        /> */}
+          options={allCategories?.adults}
+          handleCategorySelection={handleCategorySelection}
+        />
       </SelectWrapper>
     </FormWrapper>
   );

@@ -5,18 +5,18 @@ import QuizFilterText from "../QuizFilterText/QuizFilterText";
 const QuizeFilterTools = ({
   handleStarSelection,
   handleCategorySelection,
-  totalResults,
-  selectTitles,
-  categoryName
+  totalResults,    
+  selectedCategoryNames,  
 }) => {
   return (
     <FormFiltersWrapper>
-      <QuizeSearch handleCategorySelection={handleCategorySelection} />
+      <QuizeSearch
+       handleCategorySelection={handleCategorySelection}
+        />
       <QuizFilterText
-        handleStarSelection={handleStarSelection}
-        totalResults={totalResults}
-        selectTitles={selectTitles}
-        categoryName={categoryName}
+         handleStarSelection={handleStarSelection}
+         totalResults={totalResults}
+         selectedCategoryNames={selectedCategoryNames}
       />
     </FormFiltersWrapper>
   );
