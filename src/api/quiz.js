@@ -62,7 +62,7 @@ export async function getQuizCategories() {
 }
 ////////////////////////////////////////////////////////////////////////////
 export async function getPassedQuizzes(params) {
-  const { data } = await instance.get("/quizzes/passed", { params });
+  const { data } = await instance.get("/quizzes/passedquiz", { params });
   return data;
 }
 

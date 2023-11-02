@@ -14,7 +14,6 @@ export const clearToken = () => {
 
 export async function currentUser() {
     const { data } = await instance.get('/auth/current');
-    setToken(data.token);
     return data;
 }
 
@@ -35,6 +34,7 @@ export async function loginUser(userData) {
         //  {email, password}
     const { data } = await instance.post('/auth/login', userData);
     setToken(data.token);
+    console.log(data.token);
     return data;
 }
 

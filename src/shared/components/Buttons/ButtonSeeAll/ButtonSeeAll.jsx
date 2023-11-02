@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { ButtonSeeALL } from './ButtonSeeAllStyled';
+import { StyledButtonSeeALL } from './ButtonSeeAllStyled';
 
-const ButtonSeeAll = ({ to }) => {
+const ButtonSeeAll = ({ link }) => {
     return (
-        <Link to={to}>
-            <ButtonSeeALL>See all</ButtonSeeALL>
-        </Link>
+        <StyledButtonSeeALL to={link}>
+           See all
+        </StyledButtonSeeALL>
     );
 };
 

@@ -3,6 +3,7 @@ import { FiMessageCircle, FiLogOut, FiSettings, FiChevronDown, FiChevronUp } fro
 
 
 export const HeaderContainer = styled.header`
+position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -133,3 +134,8 @@ export const Up = styled(FiChevronUp)`
   height: 28px;
   stroke: var(--text-color-100);
 `;
+
+export const BoxAuth = styled.div`
+display: flex;
+align-items: center;
+`

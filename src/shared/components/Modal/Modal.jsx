@@ -22,6 +22,7 @@ const Modal = ({ children }) => {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("no-scroll");
     };
   }, [dispatch, isShowAuthPage]);
 

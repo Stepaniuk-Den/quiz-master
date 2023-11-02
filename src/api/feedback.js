@@ -1,20 +1,18 @@
-import { instance } from './auth';
+import { instance } from "./auth";
 
-export async function getAllReviews({page = 1, limit}) {
-    const { data } = await instance.get('/feedback', {
-        params: {
-          limit,
-          page,
-        },
-      });
-    return data;
+export async function getAllReviews(params) {
+  const { data } = await instance.get("/feedback", {
+    params,
+  });
+  return data;
 }
 
 export async function createReview(review) {
-    const { data } = await instance.post('/feedback', review);
-    return data;
+  const { data } = await instance.post("/feedback", review);
+  return data;
 }
 
-
-
-
+export async function createReviewQuiz(review) {
+  const { data } = await instance.post("/feedback/:quizId", review);
+  return data;
+}

@@ -14,6 +14,10 @@ export const AuthTitle = styled.h2`
   }
 `;
 
+export const FormStyled = styled.form`
+  width: 100%;
+`;
+
 export const InputsWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -22,42 +26,10 @@ export const InputsWrapper = styled.div`
   row-gap: 14px;
   margin-top: 32px;
   margin-bottom: 32px;
-  width: 314px;
-  /* width: 100%; */
+  width: 100%;
 
   @media screen and (max-width: 768px) {
     max-width: 295px;
-  }
-`;
-
-export const InputStyled = styled.input`
-  box-sizing: border-box;
-  padding: 14px 18px;
-  width: 100%;
-  height: 44px;
-  border-radius: 30px;
-  border: 1px solid var(--text-color-60);
-  font-family: "GilroyRegular";
-  font-size: 16px;
-  outline: 1px solid transparent;
-  background: transparent;
-  color: var(--star-color-100);
-
-  &::placeholder {
-    font-family: "GilroyRegular";
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1;
-    color: var(--text-color-40);
-  }
-
-  @media screen and (max-width: 768px) {
-    font-size: 14px;
-    line-height: 1;
-    &::placeholder {
-      font-size: 14px;
-      line-height: 1.1;
-    }
   }
 `;
 
@@ -77,13 +49,14 @@ export const LuEyeOffStyled = styled(LuEyeOff)`
 export const BtnEyeStyled = styled.button`
   position: absolute;
   top: 50%;
-  right: 18px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: var(--text-color-100);
   border: none;
   cursor: pointer;
 `;

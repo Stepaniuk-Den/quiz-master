@@ -1,10 +1,10 @@
 import { ButtonS } from "./BtnLoadMoreStyled";
 
-const BtnLoadMore = ({ handleLoadMore }) => {
+const BtnLoadMore = ({ /*handleLoadMore */}) => {
   
   return (
     <>
-      <ButtonS type="button" onClick={handleLoadMore}>
+      <ButtonS type="button" /*onClick={handleLoadMore} */>
         Load more
       </ButtonS>
     </>
