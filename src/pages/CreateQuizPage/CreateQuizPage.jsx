@@ -1,7 +1,7 @@
 
 const CreateQuizPage = () => {
   return (
-    <div>CreateQuizPage</div>
+    <PageWrapper>CreateQuizPage</PageWrapper>
   )
 }
 
