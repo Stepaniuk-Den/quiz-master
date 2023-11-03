@@ -93,12 +93,12 @@ const initialState = {
     random: {
       adult: [],
       children: [],
-    },    
+    },
     // filtered: quizzesArr,
-    filtered: null,    
+    filtered: null,
     passed: [],
     ownQuizes: quizzesArr,
-    favorites: quizzesArr,    
+    favorites: quizzesArr,
     total: 129865,
   },
   filters: null,
@@ -160,17 +160,21 @@ const quizSlice = createSlice({
     builder
       .addCase(getRandomQuizzesThunk.fulfilled, (state, action) => {
         const allQuizzes = action.payload;
-        allQuizzes.forEach((quiz) => {
-          if (quiz.quizType === "adults") state.quizzes.random.adult.push(quiz);
-          if (quiz.quizType === "children")
-            state.quizzes.random.children.push(quiz);
-        });
+        //console.log(allQuizzes);
+        //console.log(allQuizzes.adults.quizzes);
+        state.quizzes.random.adult = allQuizzes.adults.quizzes
+        state.quizzes.random.children = allQuizzes.children.quizzes
+        // allQuizzes.forEach((quiz) => {
+        //   if (quiz.quizType === "adults") state.quizzes.random.adult.push(quiz);
+        //   if (quiz.quizType === "children")
+        //     state.quizzes.random.children.push(quiz);
+        // });
       })
       // .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
       //   console.log("123", action.payload);
       //   state.quizzes.filtered.push(action.payload);
       // })
-      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {        
+      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.filtered = action.payload;
       })
       // .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
@@ -180,7 +184,7 @@ const quizSlice = createSlice({
       // })
       .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
         // console.log(action.payload);        
-        state.allCategories = action.payload;        
+        state.allCategories = action.payload;
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.passed.push(action.payload);
