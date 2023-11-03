@@ -8,7 +8,7 @@ import PrivateRoute from "./Guard/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "./redux/user/userSelectors";
 import { currentUserThunk } from "./redux/user/userThunks";
-//import Notification from "./shared/NotificationToastify/Notification";
+import Notification from "./shared/NotificationToastify/Notification";
 
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"));
@@ -41,37 +41,18 @@ function App() {
 
   return (
     <>
-      {/* <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<MainPage />}></Route>
-            <Route path="/auth/:type" element={<AuthPage />}></Route>
-            <Route path="/quizlist" element={<QuizListPage />}></Route>
-            <Route path="/quiz" element={<QuizePage />}></Route>
-            <Route path="/home" element={<HomePage />}></Route>
-            <Route path="/lastquiz" element={<LastQuizesPage />}></Route>
-            <Route path="/discover" element={<DiscoverPage />}></Route>
-            <Route path="/favorite" element={<FavoritePage />}></Route>
-            <Route path="/ownquiz" element={<OwnQuizPage />}></Route>
-            <Route path="/createquiz" element={<CreateQuizPage />}></Route>
-            <Route path="/settings" element={<SettingsPage />}></Route>
-            <Route path="/feedback" element={<FeedbackPage />}></Route>
-            <Route path="/randomquiz/:ageType" element={<RandomQuizPage />}></Route>
-            <Route path="*" element={<Navigate to="/" />}></Route>
-          </Route>
-        </Routes>
-      </Suspense>
-      <Notification /> */}
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
 
-            <Route index element={<MainPage />}></Route>
+            <Route path="/" element={<MainPage />}>
+            <Route path="auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route>
+            </Route>
 
-            <Route path="/auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route>
+            {/* <Route path="auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route> */}
+
             <Route path="/randomquiz/:ageType" element={<PublicRoute><RandomQuizPage /></ PublicRoute>}></Route>
             <Route path="/quiz" element={<PublicRoute><QuizePage /></ PublicRoute>}></Route>
-
             <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
             <Route path="/lastquiz" element={<PrivateRoute><LastQuizesPage /></PrivateRoute>}></Route>
             <Route path="/discover" element={<PrivateRoute><DiscoverPage /></PrivateRoute>}></Route>
@@ -86,6 +67,7 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
+      <Notification />
     </>
   );
 }
@@ -116,29 +98,4 @@ export default App;
 
 // export default App;
 
-// ==========================================
-// {/* <>
-// <Suspense fallback={<Loader />}>
-//   <Routes>
-//     <Route path="/" element={<Layout />}>
 
-//       <Route index element={<MainPage />}></Route>
-
-//       <Route path="/auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route>
-//       <Route path="/quizlist" element={<PublicRoute><QuizListPage /></ PublicRoute>}></Route>
-//       <Route path="/quiz" element={<PublicRoute><QuizePage /></ PublicRoute>}></Route>
-//       <Route path="/feedback" element={<PublicRoute><FeedbackPage /></ PublicRoute>}></Route>
-
-//       <Route path="/home" element={ <PrivateRoute><HomePage /></PrivateRoute>}></Route>
-//       <Route path="/lastquiz" element={ <PrivateRoute><LastQuizesPage /></PrivateRoute>}></Route>
-//       <Route path="/discover" element={ <PrivateRoute><DiscoverPage /></PrivateRoute>}></Route>
-//       <Route path="/favorite" element={ <PrivateRoute><FavoritePage /></PrivateRoute>}></Route>
-//       <Route path="/ownquiz" element={ <PrivateRoute><OwnQuizPage /></PrivateRoute>}></Route>
-//       <Route path="/createquiz" element={ <PrivateRoute><CreateQuizPage /></PrivateRoute>}></Route>
-//       <Route path="/settings" element={ <PrivateRoute><SettingsPage /></PrivateRoute>}></Route>
-//       <Route path="*" element={<Navigate to="/" replace/>}></Route>
-//       </Route>
-//   </Routes>
-// </Suspense>
-// </>  */}
-// ==========================================
