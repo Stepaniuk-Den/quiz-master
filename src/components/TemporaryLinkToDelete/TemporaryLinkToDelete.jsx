@@ -48,9 +48,9 @@ const TemporaryLinkToDelete = () => {
       <Link to="/feedback" style={{ color: "lime" }}>
         FeedbackPage |
       </Link>
-      <Link to="/randomquiz" style={{ color: "red" }}>
+      {/* <Link to="/randomquiz" style={{ color: "red" }}>
         RandomQuizPage |
-      </Link>
+      </Link> */}
 
       {/* Auth buttons */}
 
