@@ -6,16 +6,16 @@ export const FormContainer = styled.div`
   box-sizing: border-box;
   margin-bottom: 155px;
   padding: 130px 20px;
-  width: 335px;
+  max-width: 335px;
   height: 404px;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   border: 1px var(--border-color-30) solid;
-  background-color: var(--white-background);
+  background-color: var(--second-background);
 
   @media (min-width: 768px) {
-    width: 452px;
+    max-width: 452px;
     height: 408px;
     margin-bottom: 170px;
     padding: 120px 100px;
@@ -90,4 +90,24 @@ export const CloseBtn = styled(AiOutlineClose)`
   width: 20px;
   height: 20px;
   color: var(--text-color-100);
+`;
+export const SplashImg = styled.img`
+  position: absolute;
+  top: 47%;
+  right: 41%;
+  width: 343px;
+  height: 325px;
+  max-width: 100%;
+
+  @media (min-width: 768px) {
+    top: 39.5%;
+    right: 51%;
+    width: 470px;
+    height: 445px;
+  }
+
+  @media (min-width: 1440px) {
+    top: 38%;
+    right: 53.6%;
+  }
 `;

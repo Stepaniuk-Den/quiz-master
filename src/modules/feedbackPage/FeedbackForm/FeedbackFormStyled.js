@@ -5,7 +5,8 @@ export const FormContainer = styled.div`
   box-sizing: border-box;
   margin-bottom: 219px;
   padding: 40px 20px;
-  width: 335px;
+  max-width: 335px;
+  width: 100%;
   height: 383px;
   display: flex;
   flex-direction: column;
@@ -14,13 +15,12 @@ export const FormContainer = styled.div`
   background-color: var(--white-background);
 
   @media (min-width: 768px) {
-    width: 580px;
+    max-width: 580px;
     height: 463px;
     margin-bottom: 81px;
     padding: 80px 100px;
   }
 `;
-export const FormWrapper = styled.div``;
 export const RatingWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -51,6 +51,14 @@ export const RateStar = styled(FaStar)`
     props.selected ? "var(--star-color-100)" : "var(--star-color-8)"};
   width: 19px;
   height: 18px;
+  cursor: pointer;
+  transition: transform 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+    transition: transform 250ms linear;
+  }
 `;
 export const FormTextarea = styled.textarea`
   height: 100%;
