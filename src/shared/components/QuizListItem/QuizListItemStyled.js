@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FiUsers, FiHeart } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 
 export const CardWrapper = styled.div`
   /* outline: 1px solid orange; */
@@ -66,17 +66,6 @@ export const UsersNumber = styled.p`
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 1.25;
-  }
-`;
-
-export const FiHeartS = styled(FiHeart)`
-  width: 20px;
-  height: 20px;
-  /* stroke: #f4f4f4; */
-  stroke: var(--text-color-100);
-  // and add class for fill//
-  &.favorite {
-    fill: var(--text-color-100);
   }
 `;
 

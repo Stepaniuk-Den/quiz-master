@@ -1,15 +1,9 @@
 //import { useState } from "react";
 import { BtnSearch, FiSearchS, FormWrapper, InputStyled } from "./QuizSearchStyled";
 
-
 const QuizeSearch = ({filteredQuizeCards}) => {  
   // const [quizCollectionName, setQuizCollectionName] = useState("");
   
-
-  const handleFilterNames = (name) => {    
-    filteredQuizeCards(name);        
-  };  
-
   const handleSearchBtnClick =()=>{
     console.log("handleSearchBtnClick");
   }
@@ -24,8 +18,8 @@ const QuizeSearch = ({filteredQuizeCards}) => {
         // value={quizCollectionName}
         type="text"
         autoComplete="on"
-        autoFocus
-        onChange={(evt) => handleFilterNames(evt.target.value)}
+        autoFocus        
+        onChange={(evt) => filteredQuizeCards(evt.target.value)}
       />
     </FormWrapper>
   );
