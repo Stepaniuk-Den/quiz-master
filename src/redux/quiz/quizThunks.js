@@ -1,26 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  getRandomQuizzes,
-  getFilteredQuizzes,
-  getQuizCategories,
-  getPassedQuizzes,
-  getUserQuizzes,
-  getTotalPassed,
-  getQuiz,
-  getFavoriteQuizzes,
-  createQuiz,
-  quizResult,
-  updateQuiz,
-  updateFavoriteQuiz,
-  deleteQuiz,
+    getRandomQuizzes,
+    getFilteredQuizzes,
+    getQuizCategories,
+    getPassedQuizzes,
+    getUserQuizzes,
+    getTotalPassed,
+    getQuiz,
+    getFavoriteQuizzes,
+    createQuiz,
+    quizResult,
+    updateQuiz,
+    updateFavoriteQuiz,
+    deleteQuiz,
 } from "../../api/quiz";
 
 export const getRandomQuizzesThunk = createAsyncThunk(
     'quiz/getRandom',
     async (params, thunkAPI) => {
         try {
-           const data = await getRandomQuizzes(params);
-           return data;
+            const data = await getRandomQuizzes(params);
+            return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
@@ -29,10 +29,10 @@ export const getRandomQuizzesThunk = createAsyncThunk(
 
 export const getFilteredQuizzesThunk = createAsyncThunk(
     'quiz/getFiltered',
-    async (params, thunkAPI) => {        
+    async (params, thunkAPI) => {
         try {
-           const data = await getFilteredQuizzes(params);
-           return data;
+            const data = await getFilteredQuizzes(params);
+            return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }

@@ -9,8 +9,8 @@ export async function getRandomQuizzes(params) {
 //   const { data } = await instance.get("/quizzes", { params });
 //   return data;
 // }
-export async function getFilteredQuizzes(categories) {  
-  const { ratingStars, categoryNames } = categories;  
+export async function getFilteredQuizzes(categories) {
+  const { ratingStars, categoryNames } = categories;
   const params = new URLSearchParams();
   categoryNames.forEach((categoryName) => {
     params.append("category", categoryName);
@@ -21,7 +21,7 @@ export async function getFilteredQuizzes(categories) {
   //   config
   // );
   const { data } = await instance.get(
-    `/quizzes?rate=${ratingStars}`);  
+    `/quizzes?rate=${ratingStars}`);
   return data;
 }
 
@@ -40,7 +40,7 @@ export async function getFilteredQuizzes(categories) {
 //   const { data } = await instance.get(`/categories?audience=${audience}`, config);
 //   return data;
 // }
-export async function getQuizCategories() {  
+export async function getQuizCategories() {
   const { data } = await instance.get(`/categories`);
   return data;
 }
