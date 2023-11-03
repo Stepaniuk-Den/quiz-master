@@ -97,11 +97,11 @@ const initialState = {
     // filtered: quizzesArr,
     filtered: null,
     passed: [],
-    ownQuizes: quizzesArr,
-    favorites: quizzesArr,
+    ownQuizes: [],
+    favorites: quizzesArr,    
     total: 129865,
   },
-  filters: null,
+  filters: null,  
 
   allCategories: null,
 
@@ -189,8 +189,8 @@ const quizSlice = createSlice({
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.passed.push(action.payload);
       })
-      .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.user.push(action.payload);
+      .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {        
+        state.quizzes.ownQuizes = action.payload;        
       })
       .addCase(getTotalPassedThunk.fulfilled, (state, action) => {
         state.quizzes.total = action.payload;
