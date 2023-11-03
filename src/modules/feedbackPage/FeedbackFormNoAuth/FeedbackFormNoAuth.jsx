@@ -10,6 +10,7 @@ import {
   RateStar,
   RatingWrapper,
   SendBtn,
+  SplashImg,
   TextRating,
 } from "./FeedbackFormNoAuthStyled";
 import { useFormik } from "formik";
@@ -18,8 +19,20 @@ import { useDispatch } from "react-redux";
 import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 
-const FeedbackFormNoAuth = ({ onSendClick }) => {
+import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
+import { useNavigate } from "react-router";
+
+const FeedbackFormNoAuth = ({ onSendClick, to }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (to) {
+      navigate(to);
+    } else {
+      navigate(-1);
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -53,9 +66,10 @@ const FeedbackFormNoAuth = ({ onSendClick }) => {
 
   return (
     <>
+      <SplashImg src={backgroundImg} alt="splash" loading="lazy" />
       <FormContainer>
-        <CloseBtnContainer>
-          <CloseBtn to="/" />
+        <CloseBtnContainer onClick={handleClick}>
+          <CloseBtn />
         </CloseBtnContainer>
         <form onSubmit={formik.handleSubmit}>
           <InputWrapper>

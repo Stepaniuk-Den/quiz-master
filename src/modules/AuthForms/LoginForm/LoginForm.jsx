@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AiOutlineClose } from "react-icons/ai";
@@ -25,12 +25,13 @@ import {
   notifyRegisterError,
 } from "../../../shared/NotificationToastify/Toasts";
 import { loginUserThunk } from "../../../redux/user/userThunks";
-import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+// import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
-const LogInForm = () => {
+const LogInForm = ({ modalClose}) => {
   const dispatch = useDispatch();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -52,19 +53,20 @@ const LogInForm = () => {
       dispatch(loginUserThunk(values))
         .unwrap()
         .then((data) => {
-          notifyLoginSuccess(data);
+          // notifyLoginSuccess(data);
         })
         .catch((error) => {
           notifyRegisterError(error);
+          navigate("/");
         });
-      dispatch(toggleShowAuthPage(""));
-      document.body.classList.remove("no-scroll");
+      // dispatch(toggleShowAuthPage(""));
     },
   });
 
   const handleClickBtnClose = () => {
     document.body.classList.remove("no-scroll");
-    dispatch(toggleShowAuthPage(""));
+    // dispatch(toggleShowAuthPage(""));
+    navigate("/");
   };
 
   return (

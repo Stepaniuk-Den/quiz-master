@@ -20,7 +20,7 @@ import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  toggleShowAuthPage,
+  // toggleShowAuthPage,
   toggleShowBurgerModal,
 } from "../../../redux/Modal/modalSlice";
 import { selectIsAuth, selectUser } from "../../../redux/user/userSelectors";
@@ -44,9 +44,9 @@ const Header = () => {
   const hasToken = useSelector(selectIsAuth);
 
   const dispatch = useDispatch();
-  const handleOpenModal = (e) => {
-    dispatch(toggleShowAuthPage(e.currentTarget.name));
-  };
+  // const handleOpenModal = (e) => {
+  //   dispatch(toggleShowAuthPage(e.currentTarget.name));
+  // };
 
   const isMobile = useMediaQuery({
     query: "(max-width: 767px)",
@@ -170,13 +170,23 @@ const Header = () => {
         </>
       ) : (
         <BoxAuth>
-          <Link to="/auth/registerForm">
+          {/* <Link to="/auth/registerForm">
             <BtnRegister handleOpenModal={handleOpenModal}>
               Register
             </BtnRegister>
           </Link>
           <Link to="/auth/loginForm">
             <BtnLogin handleOpenModal={handleOpenModal}>Login</BtnLogin>
+          </Link> */}
+
+          {/* <NavLink to="/auth/registerForm">Register</NavLink>
+          <NavLink to="/auth/loginForm">Login</NavLink> */}
+
+          <Link to="/auth/registerForm">
+            <BtnRegister>Register</BtnRegister>
+          </Link>
+          <Link to="/auth/loginForm">
+            <BtnLogin>Login</BtnLogin>
           </Link>
         </BoxAuth>
       )}

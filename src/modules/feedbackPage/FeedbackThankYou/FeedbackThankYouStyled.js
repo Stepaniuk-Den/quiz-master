@@ -4,7 +4,7 @@ export const FormContainer = styled.div`
   box-sizing: border-box;
   margin-bottom: 219px;
   padding: 0 20px 40px 20px;
-  width: 335px;
+  max-width: 335px;
   height: 383px;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const FormContainer = styled.div`
   background-color: var(--white-background);
 
   @media (min-width: 768px) {
-    width: 580px;
+    max-width: 580px;
     height: 440px;
     margin-bottom: 104px;
     padding: 32px 140px 64px 140px;

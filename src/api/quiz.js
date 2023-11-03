@@ -49,9 +49,13 @@ export async function getPassedQuizzes(params) {
   const { data } = await instance.get("/quizzes/passedquiz", { params });
   return data;
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////
+// export async function getUserQuizzes() {
+//   const { data } = await instance.get("/quizzes/user");
+//   return data;
+// }
 export async function getUserQuizzes() {
-  const { data } = await instance.get("/quizzes/user");
+  const { data } = await instance.get("/quizzes/myQuiz");
   return data;
 }
 
@@ -65,8 +69,8 @@ export async function getQuiz(id) {
   return data;
 }
 
-export async function getFavoriteQuizzes() {
-  const { data } = await instance.get(`/quizzes/favorite`);
+export async function getFavoriteQuizzes() {  
+  const { data } = await instance.get(`/users/favorites`);  
   return data;
 }
 
@@ -85,8 +89,9 @@ export async function updateQuiz(quiz) {
   return data;
 }
 
-export async function updateFavoriteQuiz(quizId) {
-  const { data } = await instance.patch(`/quizzes/favorite/${quizId}`);
+export async function updateFavoriteQuiz(quizId) {  
+  // const { data } = await instance.patch(`/user/favorites/${quizId}`);  
+  const { data } = await instance.patch(`/users/favorites`, quizId);
   return data;
 }
 

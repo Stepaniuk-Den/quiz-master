@@ -1,19 +1,57 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUserQuizzesThunk,
+  updateFavoriteQuizThunk,
+} from "../../redux/quiz/quizThunks";
+import { selectOwnQuizes } from "../../redux/selectors";
 import QuizeFilterTools from "../../modules/ownQuizPage/components/QuizFilterTools/QuizFilterTools";
 import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { PageWrapper, SectionWrapper } from "./OwnQuizePageStyled";
-import { selectOwnQuizes } from "../../redux/selectors";
 
-const OwnQuizPage = () => {  
-  const allOwnQuizes = useSelector(selectOwnQuizes)  
-  const [ownQuizesArr, setOwnQuizesArr] = useState(allOwnQuizes);
-  
-  const filteredQuizeCards = (filteredNames) => {    
+const OwnQuizPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserQuizzesThunk());
+  }, [dispatch]);
+
+  const allOwnQuizes = useSelector(selectOwnQuizes);
+  const [ownQuizesArr, setOwnQuizesArr] = useState();
+
+  useEffect(() => {
+    setOwnQuizesArr(allOwnQuizes);
+  }, [allOwnQuizes]);
+
+  const filteredQuizeCards = (name) => {
+    const filteredNames = allOwnQuizes.filter((quiz) =>
+      quiz?.quizName?.includes(name)
+    );
     setOwnQuizesArr(filteredNames);
   };
+
+  const updateFavoriteQuizes = (id) => {
+    const quizId = {
+      favorites: id,
+    };
+    dispatch(updateFavoriteQuizThunk(quizId));
+
+    const updatedOwnQuizesArr = ownQuizesArr.map((quiz) => {
+      if (quiz._id === id) {
+        return {
+          ...quiz,
+          owner: {
+            ...quiz.owner,
+            favorites: !quiz.owner.favorites,
+          },
+        };
+      }
+      return quiz;
+    });
+    setOwnQuizesArr(updatedOwnQuizesArr);
+  };
+
   const handleLoadMore = () => {
     console.log("BtnLoadMore");
   };
@@ -22,9 +60,13 @@ const OwnQuizPage = () => {
     <PageWrapper>
       <SectionWrapper>
         <PageTopBar titlePage="My quiz" />
-        <QuizeFilterTools filteredQuizeCards={filteredQuizeCards}/>
-        <QuizesList quizzesArr={ownQuizesArr} className={"bottomVariant"}/>
-        <BtnLoadMore handleLoadMore={handleLoadMore}/>
+        <QuizeFilterTools filteredQuizeCards={filteredQuizeCards} />
+        <QuizesList
+          quizzesArr={ownQuizesArr}
+          className={"bottomVariant"}
+          updateFavoriteQuizes={updateFavoriteQuizes}
+        />
+        <BtnLoadMore handleLoadMore={handleLoadMore} />
       </SectionWrapper>
     </PageWrapper>
   );

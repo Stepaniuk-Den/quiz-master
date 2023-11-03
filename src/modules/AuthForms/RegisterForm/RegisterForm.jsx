@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 import {
   AuthTitle,
@@ -24,12 +24,13 @@ import {
   notifyVerifyEmail,
 } from "../../../shared/NotificationToastify/Toasts";
 import { registerUserThunk } from "../../../redux/user/userThunks";
-import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+// import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -59,15 +60,16 @@ const RegisterForm = () => {
         })
         .catch((error) => {
           notifyRegisterError(error);
+          navigate("/");
         });
-      dispatch(toggleShowAuthPage(""));
-      document.body.classList.remove("no-scroll");
+      // dispatch(toggleShowAuthPage(""));
     },
   });
 
   const handleClickBtnClose = () => {
     document.body.classList.remove("no-scroll");
-    dispatch(toggleShowAuthPage(""));
+    // dispatch(toggleShowAuthPage(""));
+    navigate("/");
   };
 
   return (
@@ -115,7 +117,6 @@ const RegisterForm = () => {
               type={passwordShown ? "text" : "password"}
               value={formik.values.password}
               placeholder="Password"
-              // autoComplete="off"
               onChange={formik.handleChange}
               label="Password"
             />
