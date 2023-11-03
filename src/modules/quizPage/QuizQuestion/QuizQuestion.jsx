@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NextButton, TitleQuestion } from './QuizQuestionStyled';
 import AnswerList from '../AnswerList/AnswerList';
 import Time from '../Time/Time';
-import QuizResult from '../QuizResult/QuizResult';
 import { useNavigate } from 'react-router';
 
 function QuizQuestion({ questions }) {
@@ -15,7 +14,9 @@ function QuizQuestion({ questions }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
         setIsTestCompleted(true);
-       
+        if (isTestCompleted) {
+           navigate("/quizresult")
+       }
     }
   };
 
@@ -30,7 +31,6 @@ function QuizQuestion({ questions }) {
       <NextButton onClick={handleNextQuestion}>
         Next
       </NextButton>
-      {isTestCompleted &&  navigate('/quizresult')}
     </>
   );
 }
