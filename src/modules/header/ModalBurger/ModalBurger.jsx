@@ -61,7 +61,6 @@ const ModalBurger = () => {
       ) {
         setDropdownOpen(false);
       }
-
     };
 
     document.addEventListener("click", handleDocumentClick);
@@ -131,18 +130,28 @@ const ModalBurger = () => {
               <>{generateNavLinks(hasToken)}</>
             ) : (
               <>
-                <NavItem
-                  className={location.pathname === "/ownquiz" ? "active" : ""}
-                  onClick={handleClickBtnClose}
-                >
-                  For Adults
-                </NavItem>
-                <NavItem
-                  className={location.pathname === "/ownquiz" ? "active" : ""}
-                  onClick={handleClickBtnClose}
-                >
-                  For Children
-                </NavItem>
+                <Link to="/randomquiz/Adults">
+                  <NavItem
+                    className={
+                      location.pathname === "/randomquiz/Adults" ? "active" : ""
+                    }
+                    onClick={handleClickBtnClose}
+                  >
+                    For Adults
+                  </NavItem>
+                </Link>
+                <Link to="/randomquiz/Children">
+                  <NavItem
+                    className={
+                      location.pathname === "/randomquiz/Children"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={handleClickBtnClose}
+                  >
+                    For Children
+                  </NavItem>
+                </Link>
               </>
             )}
           </NavList>
@@ -159,29 +168,29 @@ const ModalBurger = () => {
             </BoxAuth>
           ) : (
             <DropdownContainer ref={dropdownRef}>
-              <DropdownButton onClick={toggleDropdown}>
-                Settings
-              </DropdownButton>
-              {isDropdownOpen ? (<StyledOverlay onClick={handleClickOverlay}>
-              <DropdownList open={isDropdownOpen}>
-                <Link to="/settings">
-                  <DropdownItem onClick={handleClickBtnClose}>
-                    <Settings />
-                    Settings
-                  </DropdownItem>
-                </Link>
-                <Link to="/feedback">
-                  <DropdownItem onClick={handleClickBtnClose}>
-                    <MessageCircle />
-                    Feedback
-                  </DropdownItem>
-                </Link>
-                <DropdownItem onClick={openLogoutModal}>
-                  <LogOut />
-                  Log out
-                </DropdownItem>
-              </DropdownList>
-              </StyledOverlay>) : null}
+              <DropdownButton onClick={toggleDropdown}>Settings</DropdownButton>
+              {isDropdownOpen ? (
+                <StyledOverlay onClick={handleClickOverlay}>
+                  <DropdownList open={isDropdownOpen}>
+                    <Link to="/settings">
+                      <DropdownItem onClick={handleClickBtnClose}>
+                        <Settings />
+                        Settings
+                      </DropdownItem>
+                    </Link>
+                    <Link to="/feedback">
+                      <DropdownItem onClick={handleClickBtnClose}>
+                        <MessageCircle />
+                        Feedback
+                      </DropdownItem>
+                    </Link>
+                    <DropdownItem onClick={openLogoutModal}>
+                      <LogOut />
+                      Log out
+                    </DropdownItem>
+                  </DropdownList>
+                </StyledOverlay>
+              ) : null}
               <LogoutModal
                 isOpen={isLogoutModalOpen}
                 onClose={() => setLogoutModalOpen(false)}
