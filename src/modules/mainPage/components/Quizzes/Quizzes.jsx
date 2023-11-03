@@ -36,7 +36,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             your expertise lies. Explore a diverse range of topics and test the
             depths of your knowledge.
           </Paragraph>
-          <ButtonSeeAll link="/randomquiz" />
+          <ButtonSeeAll link="/randomquiz/Adults" />
         </div>
         {adultQuizzes?.length === 0 && (
           <EmptyBlock>No available quizzes</EmptyBlock>
@@ -86,7 +86,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             for young curious minds! A safe space for children to learn, play,
             and grow their knowledge.
           </Paragraph>
-          <ButtonSeeAll link="/randomquiz" />
+          <ButtonSeeAll link="/randomquiz/Children" />
         </div>
         {childrenQuizzes?.length === 0 && (
           <EmptyBlock>No available quizzes</EmptyBlock>
