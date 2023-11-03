@@ -49,9 +49,13 @@ export async function getPassedQuizzes(params) {
   const { data } = await instance.get("/quizzes/passedquiz", { params });
   return data;
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////
+// export async function getUserQuizzes() {
+//   const { data } = await instance.get("/quizzes/user");
+//   return data;
+// }
 export async function getUserQuizzes() {
-  const { data } = await instance.get("/quizzes/user");
+  const { data } = await instance.get("/quizzes/myQuiz");
   return data;
 }
 
