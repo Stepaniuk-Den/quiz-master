@@ -6,7 +6,7 @@ import { ToastContainerStyled } from './Notification.styled';
         <ToastContainerStyled
         theme="dark"
         position="top-center"
-        autoClose={8000}
+        autoClose={4000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
