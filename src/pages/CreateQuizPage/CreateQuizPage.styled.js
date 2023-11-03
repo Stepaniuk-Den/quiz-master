@@ -13,6 +13,6 @@ export const SectionWrapper = styled.section`
   width: 100%;
   max-width: 1240px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 `;
