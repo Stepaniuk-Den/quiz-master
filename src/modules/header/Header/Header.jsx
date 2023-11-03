@@ -16,7 +16,6 @@ import {
   BoxAuth,
 } from "./HeaderStyled";
 import React, { useEffect, useRef, useState } from "react";
-import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,17 +23,19 @@ import {
   toggleShowAuthPage,
   toggleShowBurgerModal,
 } from "../../../redux/Modal/modalSlice";
-import { selectIsAuth } from "../../../redux/user/userSelectors";
+import { selectIsAuth, selectUser } from "../../../redux/user/userSelectors";
 
 import { useMediaQuery } from "react-responsive";
 import BtnBurger from "../BtnBurger/BtnBurger";
 import ModalBurger from "../ModalBurger/ModalBurger";
 import BtnRegister from "../components/ButtonRegister/ButtonRegister";
 import BtnLogin from "../components/ButtonLogin/ButtonLogin";
+import Avatar from "../../../shared/components/Avatar/Avatar";
 
 const Header = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  const infoUser = useSelector(selectUser)
 
   const location = useLocation();
 
@@ -133,8 +134,8 @@ const Header = () => {
       {hasToken && !isMobile ? (
         <DropdownContainer ref={dropdownRef}>
           <DropdownButton onClick={toggleDropdown}>
-            <img src={infoUser.avatar} alt="" width={40} height={40} />
-            <UserName>{infoUser.userName}</UserName>
+            <Avatar size="small" src={infoUser.userAvatar} alt="Photo" width="40px" />
+            <UserName>{infoUser.name}</UserName>
             {isDropdownOpen ? <Up /> : <Down />}
           </DropdownButton>
           <DropdownList open={isDropdownOpen}>
