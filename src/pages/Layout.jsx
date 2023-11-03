@@ -15,7 +15,7 @@ const Layout = () => {
       <Outlet />
     </Container>
     {isMainPage && <Stats/>}
-    <Footer />
+    {/* <Footer /> */}
     </>
   );
 }

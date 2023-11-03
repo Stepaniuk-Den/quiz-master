@@ -8,11 +8,11 @@ import PrivateRoute from "./Guard/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "./redux/user/userSelectors";
 import { currentUserThunk } from "./redux/user/userThunks";
-import Notification from "./shared/NotificationToastify/Notification";
+//import Notification from "./shared/NotificationToastify/Notification";
 
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"));
-const QuizListPage = lazy(() => import("./pages/QuizListPage"));
+//const QuizListPage = lazy(() => import("./pages/QuizListPage"));
 const QuizePage = lazy(() => import("./pages/QuizePage/QuizePage"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const LastQuizesPage = lazy(() =>
@@ -69,7 +69,7 @@ function App() {
             <Route index element={<MainPage />}></Route>
 
             <Route path="/auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route>
-            <Route path="/quizlist" element={<PublicRoute><QuizListPage /></ PublicRoute>}></Route>
+            <Route path="/randomquiz/:ageType" element={<PublicRoute><RandomQuizPage /></ PublicRoute>}></Route>
             <Route path="/quiz" element={<PublicRoute><QuizePage /></ PublicRoute>}></Route>
 
             <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
@@ -81,7 +81,7 @@ function App() {
             <Route path="/settings" element={<PrivateRoute><SettingsPage /></PrivateRoute>}></Route>
 
             <Route path="/feedback" element={<FeedbackPage />}></Route>
-            
+
             <Route path="*" element={<Navigate to="/" replace />}></Route>
           </Route>
         </Routes>
