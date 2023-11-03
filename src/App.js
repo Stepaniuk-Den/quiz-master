@@ -65,10 +65,13 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
+            
+          
+            <Route path="/" element={<MainPage />}>
+            </Route>
+              <Route path="auth/:type" element={<PublicRoute><AuthPage /></PublicRoute>}></Route>
 
-            <Route index element={<MainPage />}></Route>
 
-            <Route path="/auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route>
             <Route path="/quizlist" element={<PublicRoute><QuizListPage /></ PublicRoute>}></Route>
             <Route path="/quiz" element={<PublicRoute><QuizePage /></ PublicRoute>}></Route>
 

@@ -1,6 +1,52 @@
 import styled from "styled-components";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 
+export const StyledModal = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 474px;
+  width: 100%;
+  padding: 60px 80px;
+  border: 1px solid var(--text-color-30);
+  border-radius: 20px;
+  background-color: var(--second-background);
+
+  @media screen and (max-width: 768px) {
+    max-width: 335px;
+    padding: 40px 20px;
+  }
+`;
+
+export const StyledCloseBtn = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    width: 24px;
+    height: 24px;
+    top: 16px;
+    right: 16px;
+  }
+`;
+
+
+// ================================
+
 export const AuthTitle = styled.h2`
   align-self: flex-start;
   font-size: 24px;

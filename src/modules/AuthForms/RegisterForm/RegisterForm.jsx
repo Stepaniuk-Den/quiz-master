@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 import {
   AuthTitle,
   BtnEyeStyled,
@@ -12,6 +13,8 @@ import {
   InputsWrapper,
   LuEyeOffStyled,
   LuEyeStyled,
+  StyledCloseBtn,
+  StyledModal,
 } from "../../../modules/AuthForms/LoginForm/LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
@@ -58,11 +61,22 @@ const RegisterForm = () => {
           notifyRegisterError(error);
         });
       dispatch(toggleShowAuthPage(""));
+      document.body.classList.remove("no-scroll");
     },
   });
 
+  const handleClickBtnClose = () => {
+    document.body.classList.remove("no-scroll");
+    dispatch(toggleShowAuthPage(""));
+  };
+
   return (
     <>
+    <StyledModal>
+        <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
+          <AiOutlineClose size={28} fill="#FFFFFF" />
+        </StyledCloseBtn>
+
       <AuthTitle>Sign Up</AuthTitle>
       <FormStyled onSubmit={formik.handleSubmit}>
         <InputsWrapper>
@@ -129,6 +143,7 @@ const RegisterForm = () => {
       <Link to="/auth/loginForm">
         <BtnToggleFormAuth type="button">Login</BtnToggleFormAuth>
       </Link>
+      </StyledModal>
     </>
   );
 };

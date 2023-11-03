@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineClose } from "react-icons/ai";
-import { StyledCloseBtn, StyledModal, StyledOverlay } from "./Modal.styled";
+import { StyledOverlay } from "./Modal.styled";
 import { selectIsShowAuthPage } from "../../../redux/Modal/modalSelectors";
 import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+import { createPortal } from "react-dom";
+
+const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children }) => {
   const dispatch = useDispatch();
@@ -33,22 +35,14 @@ const Modal = ({ children }) => {
     }
   };
 
-  const handleClickBtnClose = () => {
-    document.body.classList.remove("no-scroll");
-    dispatch(toggleShowAuthPage(""));
-  };
 
-  return (
+  return createPortal (
     isShowAuthPage && (
       <StyledOverlay onClick={handleClickOverlay}>
-        <StyledModal>
-          <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
-            <AiOutlineClose size={28} fill="#FFFFFF" />
-          </StyledCloseBtn>
-          {children}
-        </StyledModal>
+        {children}
       </StyledOverlay>
-    )
+    ),
+    modalRoot
   );
 };
 
