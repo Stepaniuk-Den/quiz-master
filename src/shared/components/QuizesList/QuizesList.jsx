@@ -3,7 +3,7 @@ import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
 
 const QuizesList = ({quizzesArr, className}) => {
-  // console.log('quizzesArrList: ', quizzesArr);  
+    
   return (
     <>      
       <CardList className={className}>
