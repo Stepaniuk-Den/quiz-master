@@ -25,7 +25,7 @@ const FeedbackPage = () => {
     <PageWrapper>
       <SectionWrapper>
         <TitleWrapper>
-          {user ? <GoBackBtn /> : null}
+          {user ? <GoBackBtn to="/" /> : null}
           {user ? <PageTitle children="Feedback" /> : null}
         </TitleWrapper>
         {showThankYou ? (
