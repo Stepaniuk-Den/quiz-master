@@ -7,16 +7,17 @@ export const FormContainer = styled.div`
   box-sizing: border-box;
   margin-bottom: 155px;
   padding: 40px 20px;
-  width: 335px;
+  max-width: 335px;
+  width: 100%;
   height: 503px;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   border: 1px var(--border-color-30) solid;
-  background-color: var(--white-background);
+  background-color: var(--second-background);
 
   @media (min-width: 768px) {
-    width: 481px;
+    max-width: 481px;
     height: 460px;
     margin-bottom: 170px;
     padding: 60px 80px;
@@ -77,6 +78,14 @@ export const RateStar = styled(FaStar)`
     props.selected ? "var(--star-color-100)" : "var(--star-color-8)"};
   width: 19px;
   height: 18px;
+  cursor: pointer;
+  transition: transform 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+    transition: transform 250ms linear;
+  }
 `;
 export const FormTextarea = styled.textarea`
   height: 100%;
@@ -151,4 +160,24 @@ export const ErrorsStyled = styled.div`
   line-height: 1.1;
   color: var(--pink-color);
   text-align: center;
+`;
+export const SplashImg = styled.img`
+  position: absolute;
+  top: 47%;
+  right: 41%;
+  width: 343px;
+  height: 325px;
+  max-width: 100%;
+
+  @media (min-width: 768px) {
+    top: 39.5%;
+    right: 51%;
+    width: 470px;
+    height: 445px;
+  }
+
+  @media (min-width: 1440px) {
+    top: 38%;
+    right: 53.6%;
+  }
 `;
