@@ -10,14 +10,7 @@ export async function getRandomQuizzes(params) {
 //   return data;
 // }
 export async function getFilteredQuizzes(categories) {  
-  const { ratingStars, categoryNames } = categories;
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDNkODlmMGMxZmNhYTUwY2I2NTlhZCIsImlhdCI6MTY5ODk1NDU5NiwiZXhwIjoxNjk4OTk3Nzk2fQ.L1Quf_iEsSW2xm3EwBrTSPzfhjs-MzjGFUXxvLNLN0U";
-  const config = {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  };
+  const { ratingStars, categoryNames } = categories;  
   const params = new URLSearchParams();
   categoryNames.forEach((categoryName) => {
     params.append("category", categoryName);
@@ -28,9 +21,7 @@ export async function getFilteredQuizzes(categories) {
   //   config
   // );
   const { data } = await instance.get(
-    `/quizzes?rate=${ratingStars}`,
-    config
-  );  
+    `/quizzes?rate=${ratingStars}`);  
   return data;
 }
 
@@ -49,15 +40,8 @@ export async function getFilteredQuizzes(categories) {
 //   const { data } = await instance.get(`/categories?audience=${audience}`, config);
 //   return data;
 // }
-export async function getQuizCategories() {
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDNkODlmMGMxZmNhYTUwY2I2NTlhZCIsImlhdCI6MTY5ODk1NDU5NiwiZXhwIjoxNjk4OTk3Nzk2fQ.L1Quf_iEsSW2xm3EwBrTSPzfhjs-MzjGFUXxvLNLN0U";
-  const config = {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  };
-  const { data } = await instance.get(`/categories`, config);
+export async function getQuizCategories() {  
+  const { data } = await instance.get(`/categories`);
   return data;
 }
 ////////////////////////////////////////////////////////////////////////////
