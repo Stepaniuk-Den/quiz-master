@@ -35,7 +35,7 @@ export const StyledReview = styled.div`
     letter-spacing: normal;
   }
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 767.9px) {
     max-width: 335px;
   }
   
