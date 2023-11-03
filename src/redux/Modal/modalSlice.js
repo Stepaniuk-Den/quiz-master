@@ -3,7 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
   isShowAuthPage: false,
   isShowBurgerModal: false,
-  authForm: "",
+  // authForm: "",
 };
 
 export const modalSlice = createSlice({
@@ -22,4 +22,6 @@ export const modalSlice = createSlice({
 });
 
 export const modalReducer = modalSlice.reducer;
-export const { toggleShowAuthPage, toggleShowBurgerModal } = modalSlice.actions;
+export const { 
+  toggleShowAuthPage, 
+  toggleShowBurgerModal } = modalSlice.actions;

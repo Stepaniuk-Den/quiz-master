@@ -113,7 +113,7 @@ export const getQuizThunk = createAsyncThunk(
 export const getFavoriteQuizzesThunk = createAsyncThunk(
     'quiz/getFavorite',
     async (params, thunkAPI) => {
-        try {
+        try {            
             const data = await getFavoriteQuizzes(params);
             return data;
         } catch (error) {

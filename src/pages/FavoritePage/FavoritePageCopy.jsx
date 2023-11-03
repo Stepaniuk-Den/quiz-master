@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getFavoriteQuizzesThunk,
-  updateFavoriteQuizThunk,
-} from "../../redux/quiz/quizThunks";
+import { getFavoriteQuizzesThunk } from "../../redux/quiz/quizThunks";
 import { selectFavorite } from "../../redux/selectors";
 import QuizeFilterTools from "../../modules/favoritePage/components/QuizFilterTools/QuizFilterTools";
 import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
@@ -15,35 +12,36 @@ import { updateFavorite } from "../../redux/quiz/quizSlice";
 const FavoritePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log("1");
     dispatch(getFavoriteQuizzesThunk());
   }, [dispatch]);
 
   const allFavoriteQuizes = useSelector(selectFavorite);
   const [favoriteQuizesArr, setFavoriteQuizesArr] = useState(allFavoriteQuizes);
+  console.log('favoriteQuizesArr: ', favoriteQuizesArr);
+  
 
   useEffect(() => {
+    console.log("2");
     setFavoriteQuizesArr(allFavoriteQuizes);
   }, [allFavoriteQuizes]);
 
   const filteredQuizeCards = (name) => {
-    const filteredNames = allFavoriteQuizes.filter((quiz) =>
-      quiz?.quizName?.includes(name)
+    const filteredCategoryNames = favoriteQuizesArr.filter((quiz) =>
+      quiz?.categoryName?.toLowerCase().includes(name)
     );
-    setFavoriteQuizesArr(filteredNames);
+    setFavoriteQuizesArr(filteredCategoryNames);
+    
   };
 
-  const updateFavoriteQuizes = (id) => {
-    const quizId = {
-      favorites: id,
-    };
-    dispatch(updateFavoriteQuizThunk(quizId));
-    const updatedFavorite = favoriteQuizesArr.filter((quiz) => quiz._id !== id);
-    dispatch(updateFavorite(updatedFavorite));
-  };
+  const updateFavoriteQuizes = (id) =>{    
+    const updatedFavorite = favoriteQuizesArr.filter(quiz=> quiz._id !== id)        
+    dispatch(updateFavorite(updatedFavorite))
+  }
 
   const handleLoadMore = () => {
-    console.log("BtnLoadMore");
-  };
+    console.log("BtnLoadMore");    
+  };  
 
   return (
     <PageWrapper>
@@ -53,7 +51,7 @@ const FavoritePage = () => {
         <QuizesList
           quizzesArr={favoriteQuizesArr}
           className={"bottomVariant"}
-          updateFavoriteQuizes={updateFavoriteQuizes}
+          updateFavoriteQuizes={updateFavoriteQuizes}          
         />
         <BtnLoadMore handleLoadMore={handleLoadMore} />
       </SectionWrapper>
