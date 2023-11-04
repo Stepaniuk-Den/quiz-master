@@ -11,16 +11,12 @@ export const RandomPageWrapper = styled.div`
 export const RandomSectionWrapper = styled.section`
   //outline: 1px solid red;
   width: 100%;
-  max-width: 1240px;
+  //max-width: 1240px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-// export const RandomTitleWrapper = styled.div`
-//   margin: 0;
-//   padding: 0;
-// `;
 
 export const RandomPageDesc = styled.div`
   width: 100%;

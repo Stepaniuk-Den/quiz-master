@@ -7,16 +7,16 @@ import { useMediaQuery } from "react-responsive";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { StyledReviews } from "./Reviews.styled";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectReviewPage } from "../../../../redux/selectors";
 import EmptyBlock from "../../../../shared/components/EmptyBlock/EmptyBlock";
 
-function Reviews({ reviews }) {
+function Reviews({ reviews, totalReviews }) {
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery({
     query: "(min-width: 1440px)",
   });
-  const page = useSelector(selectReviewPage)
+  const page = useSelector(selectReviewPage);
 
   return (
     <StyledReviews>
@@ -25,9 +25,9 @@ function Reviews({ reviews }) {
       {reviews?.length > 0 && (
         <Swiper
           onSlideChange={(swiper) => {
-            if (swiper.activeIndex === reviews.length - 2) {
-              // console.log(swiper.activeIndex);
-              dispatch(getAllReviewsThunk({page, limit: 8}))
+            const limit = 8;
+            if (swiper.activeIndex === reviews.length - 2 && reviews.length < totalReviews) {
+              dispatch(getAllReviewsThunk({ page, limit}));
             }
           }}
           spaceBetween={isDesktop ? 24 : 32}
@@ -42,9 +42,11 @@ function Reviews({ reviews }) {
           modules={[Pagination, Autoplay]}
         >
           {reviews.map((review) => {
-            return  <SwiperSlide key={review._id}>
-              <Review review={review} />
-            </SwiperSlide>
+            return (
+              <SwiperSlide key={review._id}>
+                <Review review={review} />
+              </SwiperSlide>
+            );
           })}
         </Swiper>
       )}

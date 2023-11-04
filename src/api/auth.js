@@ -27,6 +27,7 @@ export async function registerUser(userData) {
     // {name, email, password}
     const { data } = await instance.post('/auth/register', userData);
     setToken(data.token);
+    console.log(data.token);
     return data;
 }
 

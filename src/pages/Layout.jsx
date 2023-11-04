@@ -7,10 +7,12 @@ import { Container } from "./LayoutStyled";
 const Layout = () => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";
+  const isAuthRegisterPage = location.pathname === "/auth/registerForm";
+  const isAuthLoginPage = location.pathname === "/auth/loginForm";
 
   return (
     <>
-    <Container hasbackground={isMainPage ? "true" : "false"}>
+    <Container hasbackground={isMainPage || isAuthRegisterPage || isAuthLoginPage ? "true" : "false"}>
       <Header />
       <Outlet />
     </Container>

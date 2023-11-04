@@ -75,6 +75,7 @@ import {
 const initialState = {
   reviews: [],
   page: 1,
+  total: null,
 };
 
 const feedbackSlice = createSlice({
@@ -83,8 +84,9 @@ const feedbackSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllReviewsThunk.fulfilled, (state, action) => {
-        state.reviews.push(...action.payload);
+        state.reviews.push(...action.payload.feedbacks);
         state.page += 1;
+        state.total = action.payload.totalCount;
       })
       .addCase(createReviewThunk.fulfilled, (state, action) => {
         state.reviews.push(action.payload);

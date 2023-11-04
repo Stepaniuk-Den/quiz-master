@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const handlePending = state => {
   state.isLoading = true;
+  // state.isRefreshing = true;
   state.error = null;
 };
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
+  // state.isRefreshing = false;
   state.error = action.payload;
 };
 
