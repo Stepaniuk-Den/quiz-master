@@ -14,6 +14,7 @@ export const selectPassed = state => state.quiz.quizzes.passed
 
 export const selectReview = state => state.feedback.reviews;
 export const selectReviewPage = state => state.feedback.page;
+export const selectTotalReviews = state => state.feedback.total;
 
 
 
