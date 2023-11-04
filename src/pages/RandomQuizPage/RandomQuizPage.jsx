@@ -31,7 +31,7 @@ const RandomQuizPage = () => {
   }, [dispatch, randomAdultsQuizzes, randomChildrenQuizzes]);
 
   const loadMore = () => {
-    console.log("btn loadMore in action");
+    console.log("u cliked Load more btn");
   };
   //console.log("random-adults =>", randomAdultsQuizzes);
   //console.log("random-children =>", randomChildrenQuizzes);
