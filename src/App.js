@@ -52,13 +52,9 @@ function App() {
             <Route path="auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route>
             </Route>
 
-            {/* <Route path="auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route> */}
-
             <Route path="/randomquiz/:ageType" element={<RandomQuizPage />}></Route>
-            <Route path="/quiz" element={<QuizePage />}></Route>
-            <Route path="/randomquiz/:ageType" element={<PublicRoute><RandomQuizPage /></ PublicRoute>}></Route>
-            <Route path="/quiz/:quizId" element={<PublicRoute><QuizePage /></ PublicRoute>}></Route>
-            <Route path="/quizresult" element={<PublicRoute><QuizResult /></ PublicRoute>}></Route>
+            <Route path="/quiz/:quizId" element={<QuizePage />}></Route>
+            <Route path="/quizresult" element={<QuizResult />}></Route>
             
             <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
             <Route path="/lastquiz" element={<PrivateRoute><LastQuizesPage /></PrivateRoute>}></Route>
