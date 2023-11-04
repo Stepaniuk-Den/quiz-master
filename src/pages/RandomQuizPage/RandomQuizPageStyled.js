@@ -9,18 +9,14 @@ export const RandomPageWrapper = styled.div`
 `;
 
 export const RandomSectionWrapper = styled.section`
-  outline: 1px solid red;
+  //outline: 1px solid red;
   width: 100%;
-  max-width: 1240px;
+  //max-width: 1240px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-// export const RandomTitleWrapper = styled.div`
-//   margin: 0;
-//   padding: 0;
-// `;
 
 export const RandomPageDesc = styled.div`
   width: 100%;
@@ -41,10 +37,10 @@ export const RandomPageDesc = styled.div`
 
   @media only screen and (min-width: 768px) {
     margin-top: 24px;
-      margin-bottom: 48px;
+    margin-bottom: 48px;
     p {
       width: 584px;
-       font-size: 16px;
+      font-size: 16px;
     }
   }
 
@@ -55,11 +51,11 @@ export const RandomPageDesc = styled.div`
   }
 `;
 
+export const RandomBtnWrapper = styled.div`
+  margin-top: 40px;
+  margin-bottom: 100px;
 
-
-
-
-
-
-
-
+  @media only screen and (min-width: 768px) {
+    margin-top: 48px;
+  }
+`;

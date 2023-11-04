@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 import {
   AuthTitle,
   BtnEyeStyled,
@@ -12,6 +13,8 @@ import {
   InputsWrapper,
   LuEyeOffStyled,
   LuEyeStyled,
+  StyledCloseBtn,
+  StyledModal,
 } from "../../../modules/AuthForms/LoginForm/LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
@@ -21,12 +24,13 @@ import {
   notifyVerifyEmail,
 } from "../../../shared/NotificationToastify/Toasts";
 import { registerUserThunk } from "../../../redux/user/userThunks";
-import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+// import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -56,13 +60,25 @@ const RegisterForm = () => {
         })
         .catch((error) => {
           notifyRegisterError(error);
+          navigate("/");
         });
-      dispatch(toggleShowAuthPage(""));
+      // dispatch(toggleShowAuthPage(""));
     },
   });
 
+  const handleClickBtnClose = () => {
+    document.body.classList.remove("no-scroll");
+    // dispatch(toggleShowAuthPage(""));
+    navigate("/");
+  };
+
   return (
     <>
+    <StyledModal>
+        <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
+          <AiOutlineClose size={28} fill="#FFFFFF" />
+        </StyledCloseBtn>
+
       <AuthTitle>Sign Up</AuthTitle>
       <FormStyled onSubmit={formik.handleSubmit}>
         <InputsWrapper>
@@ -101,7 +117,6 @@ const RegisterForm = () => {
               type={passwordShown ? "text" : "password"}
               value={formik.values.password}
               placeholder="Password"
-              // autoComplete="off"
               onChange={formik.handleChange}
               label="Password"
             />
@@ -129,6 +144,7 @@ const RegisterForm = () => {
       <Link to="/auth/loginForm">
         <BtnToggleFormAuth type="button">Login</BtnToggleFormAuth>
       </Link>
+      </StyledModal>
     </>
   );
 };

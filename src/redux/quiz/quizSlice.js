@@ -15,78 +15,6 @@ import {
   deleteQuizThunk,
 } from "./quizThunks";
 
-const quizzesArr = [
-  {
-    _id: "653b7ab5frvf4cc7fb04f0a2",
-    quizName: "Quiz 1",
-    rate: 5.0,
-    totalPassed: 10,
-    categoryName: "Science",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f1tr44cc7fb04f0a2",
-    quizName: "Quiz 2",
-    rate: 4.6,
-    totalPassed: 15,
-    categoryName: "Science",
-    quizType: "adult",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18hjkcc7fb04f0a2",
-    quizName: "Quiz 3",
-    rate: 4.3,
-    totalPassed: 20,
-    categoryName: "Sport",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18b4rerefb04f0a2",
-    quizName: "Quiz 4",
-    rate: 4.0,
-    totalPassed: 12,
-    categoryName: "Sport",
-    quizType: "adult",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18b4tyrer7fb04f0a2",
-    quizName: "Quiz 5",
-    rate: 3.0,
-    totalPassed: 18,
-    categoryName: "Comics",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18berr7fb04f0a2",
-    quizName: "Quiz 6",
-    rate: 4.9,
-    totalPassed: 9,
-    categoryName: "Comics",
-    quizType: "adult",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-  {
-    _id: "653b7ab5f18b4cc7fb04frr",
-    quizName: "Quiz 7",
-    rate: 5.0,
-    totalPassed: 22,
-    categoryName: "Books",
-    quizType: "children",
-    quizCategory: "65398da95191746edd434971",
-    isFavorite: true,
-  },
-];
 const initialState = {
   quizzes: {
     current: null,
@@ -94,13 +22,16 @@ const initialState = {
       adult: [],
       children: [],
     },
-    filtered: quizzesArr,
+    // filtered: quizzesArr,
+    filtered: null,
     passed: [],
-    ownQuizes: quizzesArr,
-    favorites: quizzesArr,    
+    ownQuizes: [],
+    favorites: [], 
     total: 129865,
   },
-  filters: null,
+  filters: null,  
+
+  allCategories: null,
 
   categoryType: {
     adult: [
@@ -117,6 +48,11 @@ const initialState = {
       {
         _id: "65398bdb5191746edd434952",
         categoryName: "Science",
+        categoryType: "adults",
+      },
+      {
+        _id: "65398beb5191746edd434955",
+        categoryName: "History",
         categoryType: "adults",
       },
     ],
@@ -147,29 +83,45 @@ const quizSlice = createSlice({
     setFilter: (state, action) => {
       state.filters = action.payload;
     },
+    updateFavorite: (state, action) => {      
+      state.quizzes.favorites = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(getRandomQuizzesThunk.fulfilled, (state, action) => {
-        const allQuizzes = action.payload;
-        allQuizzes.forEach((quiz) => {
-          if (quiz.quizType === "adults") state.quizzes.random.adult.push(quiz);
-          if (quiz.quizType === "children")
-            state.quizzes.random.children.push(quiz);
-        });
+        const allQuizzes = action.payload; 
+        //console.log(allQuizzes);
+        //console.log(allQuizzes.adults.quizzes);
+        state.quizzes.random.adult.push(...allQuizzes.adults.quizzes)
+        state.quizzes.random.children.push(...allQuizzes.children.quizzes)
+        // allQuizzes.forEach((quiz) => {
+        //   if (quiz.quizType === "adults") state.quizzes.random.adult.push(quiz);
+        //   if (quiz.quizType === "children")
+        //     state.quizzes.random.children.push(quiz);
+        // });
       })
+      // .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
+      //   console.log("123", action.payload);
+      //   state.quizzes.filtered.push(action.payload);
+      // })
       .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.filtered.push(action.payload);
+        state.quizzes.filtered = action.payload;
       })
+      // .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
+      //   console.log('action', action.payload);
+      //   state.categories.adult = action.payload.categoriesAdults;
+      //   state.categories.children = action.payload.categoriesChildren;
+      // })
       .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
-        state.categories.adult = action.payload.categoriesAdults;
-        state.categories.children = action.payload.categoriesChildren;
+        // console.log(action.payload);        
+        state.allCategories = action.payload;
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.passed.push(action.payload);
       })
-      .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.user.push(action.payload);
+      .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {        
+        state.quizzes.ownQuizes = action.payload;        
       })
       .addCase(getTotalPassedThunk.fulfilled, (state, action) => {
         state.quizzes.total = action.payload;
@@ -177,8 +129,8 @@ const quizSlice = createSlice({
       .addCase(getQuizThunk.fulfilled, (state, action) => {
         state.quizzes.current = action.payload;
       })
-      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.favorites.push(action.payload);
+      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {        
+        state.quizzes.favorites = action.payload.data;
       })
       .addCase(createQuizThunk.fulfilled, (state, action) => {
         state.quizzes.user.push(action.payload);
@@ -195,16 +147,24 @@ const quizSlice = createSlice({
         );
         state.quizzes.user = [...newUserQuizzes, action.payload];
       })
+
+      // .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {
+      //   console.log('actionThunk: ', action);
+      //   const favoriteIdx = state.quizzes.favorites.find(
+      //     (quiz) => quiz.id === action.payload.id
+      //   );
+      //   if (favoriteIdx >= 0) {
+      //     state.quizzes.favorites.splice(favoriteIdx, 1);
+      //   } else {
+      //     state.quizzes.favorites.push(action.payload);
+      //   }
+      // })
       .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {
-        const favoriteIdx = state.quizzes.favorites.find(
-          (quiz) => quiz.id === action.payload.id
-        );
-        if (favoriteIdx >= 0) {
-          state.quizzes.favorites.splice(favoriteIdx, 1);
-        } else {
-          state.quizzes.favorites.push(action.payload);
-        }
-      })
+        // console.log('actionThunk: ', action);
+
+      })//здається вона не потрібна
+
+
       .addCase(deleteQuizThunk.fulfilled, (state, action) => {
         state.quizzes.user = state.quizzes.user.filter(
           (quiz) => quiz.id !== action.payload.id
@@ -213,5 +173,5 @@ const quizSlice = createSlice({
   },
 });
 
-export const { setFilter } = quizSlice.actions;
+export const { setFilter, updateFavorite } = quizSlice.actions;
 export const quizReducer = quizSlice.reducer;

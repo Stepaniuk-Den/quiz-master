@@ -16,23 +16,26 @@ import {
   BoxAuth,
 } from "./HeaderStyled";
 import React, { useEffect, useRef, useState } from "react";
-import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleShowAuthPage, toggleShowBurgerModal } from "../../../redux/Modal/modalSlice";
-import { selectIsAuth } from "../../../redux/user/userSelectors";
+import {
+  // toggleShowAuthPage,
+  toggleShowBurgerModal,
+} from "../../../redux/Modal/modalSlice";
+import { selectIsAuth, selectUser } from "../../../redux/user/userSelectors";
 
 import { useMediaQuery } from "react-responsive";
 import BtnBurger from "../BtnBurger/BtnBurger";
 import ModalBurger from "../ModalBurger/ModalBurger";
 import BtnRegister from "../components/ButtonRegister/ButtonRegister";
 import BtnLogin from "../components/ButtonLogin/ButtonLogin";
+import Avatar from "../../../shared/components/Avatar/Avatar";
 
 const Header = () => {
-
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  const infoUser = useSelector(selectUser)
 
   const location = useLocation();
 
@@ -41,9 +44,9 @@ const Header = () => {
   const hasToken = useSelector(selectIsAuth);
 
   const dispatch = useDispatch();
-  const handleOpenModal = (e) => {
-    dispatch(toggleShowAuthPage(e.currentTarget.name));
-  };
+  // const handleOpenModal = (e) => {
+  //   dispatch(toggleShowAuthPage(e.currentTarget.name));
+  // };
 
   const isMobile = useMediaQuery({
     query: "(max-width: 767px)",
@@ -106,16 +109,24 @@ const Header = () => {
           <>{generateNavLinks(hasToken)}</>
         ) : (
           <>
-            <NavItem
-              className={location.pathname === "/ownquiz" ? "active" : ""}
-            >
-              For Adults
-            </NavItem>
-            <NavItem
-              className={location.pathname === "/ownquiz" ? "active" : ""}
-            >
-              For Children
-            </NavItem>
+            <Link to="/randomquiz/Adults">
+              <NavItem
+                className={
+                  location.pathname === "/randomquiz/Adults" ? "active" : ""
+                }
+              >
+                For Adults
+              </NavItem>
+            </Link>
+            <Link to="/randomquiz/Children">
+              <NavItem
+                className={
+                  location.pathname === "/randomquiz/Children" ? "active" : ""
+                }
+              >
+                For Children
+              </NavItem>
+            </Link>
           </>
         )}
       </NavList>
@@ -123,8 +134,10 @@ const Header = () => {
       {hasToken && !isMobile ? (
         <DropdownContainer ref={dropdownRef}>
           <DropdownButton onClick={toggleDropdown}>
-            <img src={infoUser.avatar} alt="" width={40} height={40} />
-            <UserName>{infoUser.userName}</UserName>
+            {infoUser ? (
+  <Avatar size="small" src={infoUser.userAvatar} alt="Photo" width="40px" />
+) : null}
+            {infoUser ?<UserName>{infoUser.name}</UserName> : null}
             {isDropdownOpen ? <Up /> : <Down />}
           </DropdownButton>
           <DropdownList open={isDropdownOpen}>
@@ -154,14 +167,26 @@ const Header = () => {
         <>
           <BtnBurger openBurgerMenu={openBurgerMenu} />
           <ModalBurger />
-          </>
+        </>
       ) : (
         <BoxAuth>
-          <Link to="/auth/registerForm">
-            <BtnRegister handleOpenModal={handleOpenModal}>Register</BtnRegister>
+          {/* <Link to="/auth/registerForm">
+            <BtnRegister handleOpenModal={handleOpenModal}>
+              Register
+            </BtnRegister>
           </Link>
           <Link to="/auth/loginForm">
             <BtnLogin handleOpenModal={handleOpenModal}>Login</BtnLogin>
+          </Link> */}
+
+          {/* <NavLink to="/auth/registerForm">Register</NavLink>
+          <NavLink to="/auth/loginForm">Login</NavLink> */}
+
+          <Link to="/auth/registerForm">
+            <BtnRegister>Register</BtnRegister>
+          </Link>
+          <Link to="/auth/loginForm">
+            <BtnLogin>Login</BtnLogin>
           </Link>
         </BoxAuth>
       )}

@@ -1,26 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  getRandomQuizzes,
-  getFilteredQuizzes,
-  getQuizCategories,
-  getPassedQuizzes,
-  getUserQuizzes,
-  getTotalPassed,
-  getQuiz,
-  getFavoriteQuizzes,
-  createQuiz,
-  quizResult,
-  updateQuiz,
-  updateFavoriteQuiz,
-  deleteQuiz,
+    getRandomQuizzes,
+    getFilteredQuizzes,
+    getQuizCategories,
+    getPassedQuizzes,
+    getUserQuizzes,
+    getTotalPassed,
+    getQuiz,
+    getFavoriteQuizzes,
+    createQuiz,
+    quizResult,
+    updateQuiz,
+    updateFavoriteQuiz,
+    deleteQuiz,
 } from "../../api/quiz";
 
 export const getRandomQuizzesThunk = createAsyncThunk(
     'quiz/getRandom',
     async (params, thunkAPI) => {
         try {
-           const data = await getRandomQuizzes(params);
-           return data;
+            const data = await getRandomQuizzes(params);
+            return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
@@ -31,19 +31,30 @@ export const getFilteredQuizzesThunk = createAsyncThunk(
     'quiz/getFiltered',
     async (params, thunkAPI) => {
         try {
-           const data = await getFilteredQuizzes(params);
-           return data;
+            const data = await getFilteredQuizzes(params);
+            return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
 );
 
+// export const getQuizCategoriesThunk = createAsyncThunk(
+//     'quiz/getCategories',
+//     async (audience, thunkAPI) => {
+//         try {
+//             const data = await getQuizCategories(audience);
+//             return data;
+//         } catch (error) {
+//             return thunkAPI.rejectWithValue(error.response.data);
+//         }
+//     }
+// );
 export const getQuizCategoriesThunk = createAsyncThunk(
     'quiz/getCategories',
-    async (audience, thunkAPI) => {
+    async (_, thunkAPI) => {
         try {
-            const data = await getQuizCategories(audience);
+            const data = await getQuizCategories();
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -102,7 +113,7 @@ export const getQuizThunk = createAsyncThunk(
 export const getFavoriteQuizzesThunk = createAsyncThunk(
     'quiz/getFavorite',
     async (params, thunkAPI) => {
-        try {
+        try {            
             const data = await getFavoriteQuizzes(params);
             return data;
         } catch (error) {

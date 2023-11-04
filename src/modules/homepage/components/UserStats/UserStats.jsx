@@ -1,43 +1,45 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Avatar from "../../../../shared/components/Avatar/Avatar";
-import { InfoText, Line, LineHeight, PassedBox, TitleText, UserAvatar, UserCard, UserName } from "./UserStatsStyled";
-import {infoUser} from "./info/infoUser";
-import { selectUserAvatar } from "../../../../redux/user/userSelectors";
-import { getTotalPassedThunk } from "../../../../redux/quiz/quizThunks";
-import { useEffect, useState } from "react";
-import { currentUserThunk } from "../../../../redux/user/userThunks";
+import {
+  InfoText,
+  Line,
+  LineHeight,
+  PassedBox,
+  TitleText,
+  // UserAvatar,
+  UserCard,
+  UserName,
+} from "./UserStatsStyled";
+import { selectUser } from "../../../../redux/user/userSelectors";
 
 const UserStats = () => {
-  const dispatch = useDispatch();
-  const [fetchedData, setFetchedData] = useState(null);
-
-  useEffect(() => {
-    dispatch(currentUserThunk()).then((data) => {
-      setFetchedData(data.payload);
-    });
-  }, [dispatch]);
-
-const averageSuccess = fetchedData ? Math.round(fetchedData.average) : '';
+  const userInfo = useSelector(selectUser);
+  const averageSuccess = userInfo ? Math.round(userInfo.average) : "";
 
   return (
     <UserCard>
-      <Avatar size="large" src={fetchedData ? fetchedData.avatar : ''} alt="User avatar" width="100px" />
-      <UserName>{fetchedData ? fetchedData.name : ''}</UserName>
+      <Avatar
+        size="large"
+        src={userInfo ? userInfo.userAvatar : ""}
+        alt="User avatar"
+        width="100px"
+      />
+      <UserName>{userInfo ? userInfo.name : ""}</UserName>
       <PassedBox>
         <div>
           <TitleText>Passed quizzes</TitleText>
-          <InfoText>{fetchedData ? fetchedData.passedQuizzes.length : ''}</InfoText>
+          <InfoText>{userInfo ? userInfo.passedQuizzes.length : ""}</InfoText>
         </div>
-          
+
         <Line />
-        <LineHeight/>
+        <LineHeight />
         <div>
           <TitleText>Average success</TitleText>
-          <InfoText>{fetchedData ? `${averageSuccess}%` : ''}</InfoText>
+          <InfoText>{userInfo ? `${averageSuccess}%` : ""}</InfoText>
         </div>
       </PassedBox>
     </UserCard>
   );
-}
+};
 
 export default UserStats;

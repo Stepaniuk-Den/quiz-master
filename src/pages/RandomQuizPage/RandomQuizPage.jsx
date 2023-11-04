@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../../shared/components/PageTitle/PageTitle";
 import {
+  RandomBtnWrapper,
   RandomPageDesc,
   RandomPageWrapper,
   RandomSectionWrapper,
-  RandomTitleWrapper,
 } from "./RandomQuizPageStyled";
-import { useSelector } from "react-redux";
-import { selectFavorite } from "../../redux/selectors";
-import QuizesList from "../../shared/components/QuizesList/QuizesList";
+import { useDispatch, useSelector } from "react-redux";
+import { selectRandomAdult, selectRandomChildren } from "../../redux/selectors";
+//import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { useParams } from "react-router-dom";
 import Paragraph from "../../shared/components/Paragraph/Paragraph";
+import RandomQuiz from "../../modules/randomQuizPage/components/RandomQuiz";
+import { getRandomQuizzesThunk } from "../../redux/quiz/quizThunks";
+import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 
 const RandomQuizPage = () => {
   const { ageType } = useParams();
-
+  const dispatch = useDispatch();
   const adults = ageType === "Adults";
   const children = ageType === "Children";
 
-  //console.log(ageType);
+  const randomAdultsQuizzes = useSelector(selectRandomAdult);
+  const randomChildrenQuizzes = useSelector(selectRandomChildren);
+
+  useEffect(() => {
+    if (randomAdultsQuizzes.length === 0 || randomChildrenQuizzes === 0) {
+      dispatch(getRandomQuizzesThunk({ page: 1, limit: 8 }));
+    }
+  }, [dispatch, randomAdultsQuizzes, randomChildrenQuizzes]);
+
+  const loadMore = () => {
+    console.log("u cliked Load more btn");
+  };
+  //console.log("random-adults =>", randomAdultsQuizzes);
+  //console.log("random-children =>", randomChildrenQuizzes);
   return (
     <RandomPageWrapper>
       <PageTitle>For {ageType}</PageTitle>
@@ -42,6 +58,11 @@ const RandomQuizPage = () => {
       </RandomPageDesc>
       <RandomSectionWrapper>
         {/* <QuizesList quizzesArr={randomChildrenQuiz} /> */}
+        {adults && <RandomQuiz adultsQuiz={randomAdultsQuizzes} />}
+        {children && <RandomQuiz childrenQuiz={randomChildrenQuizzes} />}
+        <RandomBtnWrapper>
+          <BtnLoadMore handleLoadMore={loadMore} />
+        </RandomBtnWrapper>
       </RandomSectionWrapper>
     </RandomPageWrapper>
   );

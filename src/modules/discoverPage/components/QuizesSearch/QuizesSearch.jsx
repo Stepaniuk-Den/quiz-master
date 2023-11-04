@@ -2,34 +2,49 @@ import { useSelector } from "react-redux";
 import UserTestsSearch from "../../discoverFavoriteOwnquizCommonComponents/UserTestsSearch/UserTestsSearch";
 import IconFilter from "../IconFilter/IconFilter";
 import QuizSelect from "../QuizSelect/QuizSelect";
-import { BtnSearch, FiSearchS, FormWrapper, SelectWrapper } from "./QuizesSearchStyled";
-import { selectDiscoverAdult, selectDiscoverChildren } from "../../../../redux/selectors";
+import {
+  BtnSearch,
+  FiSearchS,
+  FormWrapper,
+  SelectWrapper,
+} from "./QuizesSearchStyled";
+import {  
+  selectDiscoverAllCategories,  
+} from "../../../../redux/selectors";
 
-const QuizeSearch = () => {
-  const allAdultCategories = useSelector(selectDiscoverAdult)
-  console.log('allAdultCategories: ', allAdultCategories);
-  const allChildrenCategories = useSelector(selectDiscoverChildren)
+const QuizeSearch = ({handleCategorySelection}) => {
+  const allCategories = useSelector(selectDiscoverAllCategories);
+  // console.log('allCategories: ', allCategories);
+
   
+
+  const onFormSubmit = (evt) => {
+    evt.preventDefault();
+    console.log("form submited");
+  };
+  // temporary div
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={onFormSubmit}>
       <SelectWrapper>
-      <BtnSearch type="submit">
-        <FiSearchS />
-      </BtnSearch>
-        
+        <BtnSearch type="submit">
+          <FiSearchS />
+        </BtnSearch>
+
         <UserTestsSearch />
 
-        <IconFilter  />        
-        
+        <IconFilter />
+
         <QuizSelect
           className="forChildren"
           selectTitle="For children"
-          options={allChildrenCategories}
+          options={allCategories?.children}
+          handleCategorySelection={handleCategorySelection}
         />
         <QuizSelect
           className="forAdults"
           selectTitle="For adults"
-          options={allAdultCategories}
+          options={allCategories?.adults}
+          handleCategorySelection={handleCategorySelection}
         />
       </SelectWrapper>
     </FormWrapper>

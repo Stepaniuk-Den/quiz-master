@@ -1,7 +1,5 @@
-import { useLocation } from "react-router";
 import {
-  CardWrapper,
-  FiHeartS,
+  CardWrapper,  
   FiUsersS,
   GeneralScienceS,
   IconUsersWrapper,  
@@ -13,34 +11,30 @@ import {
 } from "./QuizListItemStyled";
 import BtnStart from "../Buttons/BtnStart";
 import RatingStars from "../RatingStars/RatingStars";
+import BtnHeart from "../Buttons/BtnHeart/BtnHeart";
+import { Link } from "react-router-dom";
 
-const QuizListItem = ({ quiz }) => {
-  const { categoryName, quizName, rate, totalPassed } = quiz;
-  const location = useLocation();
-
-  const newClassName = location.pathname === "/favorite" ? "favorite" : "";
+const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
+  const { _id, quizCategory, quizName, rate, totalPassed, owner } = quiz;  
+  
   return (
     <>
       <CardWrapper>
         <TopIconBox>
           <IconUsersWrapper>
-            <FiUsersS />
-            {/* <UsersNumber>485</UsersNumber> */}
+            <FiUsersS />            
             <UsersNumber>{totalPassed}</UsersNumber>
-          </IconUsersWrapper>
-          <FiHeartS className={newClassName} />
+          </IconUsersWrapper>          
+          <BtnHeart id={_id} owner={owner} updateFavoriteQuizes={updateFavoriteQuizes}/>
         </TopIconBox>
         <TextRatingWrapper>
-          <TextWrapper>
-            {/* <ThemesS>Themes</ThemesS> */}
-            <ThemesS>{categoryName}</ThemesS>
-            {/* <GeneralScienceS>General Science</GeneralScienceS> */}
+          <TextWrapper>            
+            <ThemesS>{quizCategory?.categoryName}</ThemesS>            
             <GeneralScienceS>{quizName}</GeneralScienceS>
-          </TextWrapper>
-          {/* <RatingStars>*****</RatingStars> */}          
+          </TextWrapper>            
           <RatingStars rate={rate}/>
         </TextRatingWrapper>
-        <BtnStart />
+        <Link to={`/quiz/${quiz._id}`}><BtnStart /></Link>
       </CardWrapper>
     </>
   );

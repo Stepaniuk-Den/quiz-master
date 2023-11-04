@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
     const isAuth = useSelector(selectIsAuth);
-  return isAuth ? children : <Navigate to="/auth/registerForm" />
+  return isAuth ? children : <Navigate to="/" />
 //   /registerForm
 // /auth/registerForm
 };

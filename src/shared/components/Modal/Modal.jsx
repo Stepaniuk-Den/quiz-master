@@ -1,22 +1,25 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineClose } from "react-icons/ai";
-import { StyledCloseBtn, StyledModal, StyledOverlay } from "./Modal.styled";
-import { selectIsShowAuthPage } from "../../../redux/Modal/modalSelectors";
-import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+import { StyledOverlay } from "./Modal.styled";
+// import { selectIsShowAuthPage } from "../../../redux/Modal/modalSelectors";
+// import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
+import { createPortal } from "react-dom";
 
-const Modal = ({ children }) => {
-  const dispatch = useDispatch();
-  const isShowAuthPage = useSelector(selectIsShowAuthPage);
+const modalRoot = document.querySelector('#modal-root');
+
+const Modal = ({ children, modalClose }) => {
+  // const dispatch = useDispatch();
+  // const isShowAuthPage = useSelector(selectIsShowAuthPage);
 
   useEffect(() => {
-    if (!isShowAuthPage) return;
+    // if (!isShowAuthPage) return;
     document.body.classList.add("no-scroll");
 
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
         document.body.classList.remove("no-scroll");
-        dispatch(toggleShowAuthPage(""));
+        // dispatch(toggleShowAuthPage(""));
+        modalClose();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -24,31 +27,27 @@ const Modal = ({ children }) => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.classList.remove("no-scroll");
     };
-  }, [dispatch, isShowAuthPage]);
+  }, [
+    // dispatch, 
+    // isShowAuthPage, 
+    modalClose]);
 
   const handleClickOverlay = (e) => {
     if (e.target === e.currentTarget) {
       document.body.classList.remove("no-scroll");
-      dispatch(toggleShowAuthPage(""));
+      // dispatch(toggleShowAuthPage(""));
+      modalClose();
     }
   };
 
-  const handleClickBtnClose = () => {
-    document.body.classList.remove("no-scroll");
-    dispatch(toggleShowAuthPage(""));
-  };
 
-  return (
-    isShowAuthPage && (
+  return createPortal (
+    // isShowAuthPage && (
       <StyledOverlay onClick={handleClickOverlay}>
-        <StyledModal>
-          <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
-            <AiOutlineClose size={28} fill="#FFFFFF" />
-          </StyledCloseBtn>
-          {children}
-        </StyledModal>
-      </StyledOverlay>
-    )
+        {children}
+      </StyledOverlay>,
+    // ),
+    modalRoot
   );
 };
 
