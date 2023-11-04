@@ -1,6 +1,6 @@
 import React from "react";
 import QuizesList from "../../../shared/components/QuizesList/QuizesList";
-import CreateQuizCard from "./CreateQuizCard/CreateQuizCard";
+//import CreateQuizCard from "./CreateQuizCard/CreateQuizCard";
 import EmptyBlock from "../../../shared/components/EmptyBlock/EmptyBlock";
 //import BtnLoadMore from "../../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 
@@ -9,9 +9,8 @@ const RandomQuiz = ({ adultsQuiz, childrenQuiz }) => {
   //console.log("adults quiz =>", adultsQuiz);
   return (
     <>
-      <div>
-        <CreateQuizCard />
-      </div>
+      {/* <CreateQuizCard /> */}
+
       {adultsQuiz?.length === 0 && (
         <EmptyBlock>No available quizzes</EmptyBlock>
       )}

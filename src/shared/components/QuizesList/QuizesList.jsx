@@ -1,22 +1,27 @@
 //import { v4 as uuidv4 } from 'uuid';
+import { Link, useLocation } from "react-router-dom";
 import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
+import CreateQuizCard from "../../../modules/randomQuizPage/components/CreateQuizCard/CreateQuizCard";
 
 const QuizesList = ({ quizzesArr, className, updateFavoriteQuizes }) => {
   // console.log('quizzesArr: ', quizzesArr);
+  const location = useLocation();
+
+  const randomQuizzes =
+    location.pathname === "/randomquiz/Adults" ||
+    location.pathname === "/randomquiz/Children";
   return (
     <>
       <CardList className={className}>
-        {/* <QuizListItem/>
-        <QuizListItem/>
-        <QuizListItem/> */}
+        {randomQuizzes && <CreateQuizCard />}
         {quizzesArr?.length > 0 &&
           quizzesArr.map((quiz) => (
             <li key={quiz._id}>
               <QuizListItem
                 key={quiz._id}
                 quiz={quiz}
-                updateFavoriteQuizes={updateFavoriteQuizes}                
+                updateFavoriteQuizes={updateFavoriteQuizes}
               />
             </li>
           ))}
