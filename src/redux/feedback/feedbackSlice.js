@@ -83,7 +83,7 @@ const feedbackSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllReviewsThunk.fulfilled, (state, action) => {
-        state.reviews.push(...action.payload);
+        state.reviews.push(...action.payload.feedbacks);
         state.page += 1;
       })
       .addCase(createReviewThunk.fulfilled, (state, action) => {
