@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getUserQuizzesThunk,
-  updateFavoriteQuizThunk,
-} from "../../redux/quiz/quizThunks";
+import { getUserQuizzesThunk } from "../../redux/quiz/quizThunks";
 import { selectOwnQuizes } from "../../redux/selectors";
 import QuizeFilterTools from "../../modules/ownQuizPage/components/QuizFilterTools/QuizFilterTools";
 import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
@@ -19,7 +16,7 @@ const OwnQuizPage = () => {
 
   const allOwnQuizes = useSelector(selectOwnQuizes);
   const [ownQuizesArr, setOwnQuizesArr] = useState();
-
+  
   useEffect(() => {
     setOwnQuizesArr(allOwnQuizes);
   }, [allOwnQuizes]);
@@ -31,27 +28,6 @@ const OwnQuizPage = () => {
     setOwnQuizesArr(filteredNames);
   };
 
-  const updateFavoriteQuizes = (id) => {
-    const quizId = {
-      favorites: id,
-    };
-    dispatch(updateFavoriteQuizThunk(quizId));
-
-    const updatedOwnQuizesArr = ownQuizesArr.map((quiz) => {
-      if (quiz._id === id) {
-        return {
-          ...quiz,
-          owner: {
-            ...quiz.owner,
-            favorites: !quiz.owner.favorites,
-          },
-        };
-      }
-      return quiz;
-    });
-    setOwnQuizesArr(updatedOwnQuizesArr);
-  };
-
   const handleLoadMore = () => {
     console.log("BtnLoadMore");
   };
@@ -61,11 +37,7 @@ const OwnQuizPage = () => {
       <SectionWrapper>
         <PageTopBar titlePage="My quiz" />
         <QuizeFilterTools filteredQuizeCards={filteredQuizeCards} />
-        <QuizesList
-          quizzesArr={ownQuizesArr}
-          className={"bottomVariant"}
-          updateFavoriteQuizes={updateFavoriteQuizes}
-        />
+        <QuizesList quizzesArr={ownQuizesArr} className={"bottomVariant"} />
         <BtnLoadMore handleLoadMore={handleLoadMore} />
       </SectionWrapper>
     </PageWrapper>
