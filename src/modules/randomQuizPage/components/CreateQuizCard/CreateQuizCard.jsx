@@ -1,5 +1,6 @@
 import React from "react";
-//import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   BiPlusRed,
   ButtonRedStyled,
@@ -11,7 +12,12 @@ import {
 
 const CreateQuizCard = () => {
   const handlePushMessage = () => {
-    console.log("This function is available only for authorized users :)");
+    toast.info("This function is available only for authorized users :)", {
+      autoClose: 3000,
+      theme: "dark",
+      position: toast.POSITION.TOP_CENTER,
+    });
+    //console.log("This function is available only for authorized users :)");
   };
   return (
     <CardRedirecionWrapper>
@@ -23,6 +29,7 @@ const CreateQuizCard = () => {
         </ButtonRedStyled>
         <RandomPageCardTitle>Create quiz</RandomPageCardTitle>
       </RedirectionButtonWrap>
+      <ToastContainer />
     </CardRedirecionWrapper>
   );
 };
