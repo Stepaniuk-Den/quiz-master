@@ -9,13 +9,12 @@ const QuizesList = ({ quizzesArr, className, updateFavoriteQuizes }) => {
       <CardList className={className}>
         {quizzesArr?.length > 0 && quizzesArr.map(quiz =>
           <li key={quiz._id}>
-          <Link to={`/quiz/${quiz._id}`}>
+          
             <QuizListItem
               key={quiz._id}
               quiz={quiz}
               updateFavoriteQuizes={updateFavoriteQuizes}
             />
-          </Link>
         </li>)}
       </CardList>
     </>
