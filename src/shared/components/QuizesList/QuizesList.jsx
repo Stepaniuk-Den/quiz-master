@@ -1,4 +1,3 @@
-//import { v4 as uuidv4 } from 'uuid';
 import { Link } from "react-router-dom";
 import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
