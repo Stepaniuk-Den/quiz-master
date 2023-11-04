@@ -8,8 +8,85 @@ export const PageWrapper = styled.div`
 `;
 
 export const QuizeBox = styled.div`
-    width: 580px;
-    height: 448px;
-    background-color: #205BF1;
-    border-radius: 20px;
+  position: relative;
+  max-width: 580px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 60px;
+  background-color: var(--blue-background);
+  border-radius: 20px;
+
+  @media screen and (max-width: 768px) {
+    max-width: 335px;
+    padding: 80px;
+  }
+`;
+
+export const ResultTitleS = styled.h2`
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-family: "GilroyBold";
+  line-height: 1.1;
+  color: var(--text-color-100);
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+`;
+
+export const ResultTextS = styled.p`
+  margin-bottom: 12px;
+  color: var(--text-color-60);
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+`;
+
+export const AnswersResultS = styled.p`
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-family: "GilroyBold";
+  line-height: 1.3;
+  color: var(--text-color-100);
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+`;
+
+export const BtnWriteReview = styled.button`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 75px;
+  max-width: 169px;
+  width: 100%;
+  height: 48px;
+  font-family: "GilroyBold";
+  border: 1px solid var(--text-color-60);
+  border-radius: 30px;
+  background: transparent;
+  color: var(--text-color-100);
+  transform: scale(1);
+  transition: transform 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-top: 32px;
+    max-width: 156px;
+    font-size: 14px;
+    line-height: 1.1;
+  }
 `;
