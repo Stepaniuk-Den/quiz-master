@@ -1,5 +1,4 @@
-//import { v4 as uuidv4 } from 'uuid';
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
 import CreateQuizCard from "../../../modules/randomQuizPage/components/CreateQuizCard/CreateQuizCard";

@@ -23,26 +23,26 @@ export const StyledModal = styled.div`
   }
 `;
 
-export const StyledCloseBtn = styled.button`
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+// export const StyledCloseBtn = styled.button`
+//   position: absolute;
+//   top: 24px;
+//   right: 24px;
+//   width: 28px;
+//   height: 28px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: transparent;
+//   border: none;
+//   cursor: pointer;
 
-  @media screen and (max-width: 768px) {
-    width: 24px;
-    height: 24px;
-    top: 16px;
-    right: 16px;
-  }
-`;
+//   @media screen and (max-width: 768px) {
+//     width: 24px;
+//     height: 24px;
+//     top: 16px;
+//     right: 16px;
+//   }
+// `;
 
 
 // ================================
