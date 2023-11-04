@@ -9,8 +9,6 @@ export const BtnConfirmAuthS = styled.button`
   height: 48px;
   border-radius: 30px;
   font-family: "GilroyBold";
-  font-size: 16px;
-  line-height: 1;
   color: var(--text-color-100);
   background-color: var(--blue-background);
   margin: 0 auto;

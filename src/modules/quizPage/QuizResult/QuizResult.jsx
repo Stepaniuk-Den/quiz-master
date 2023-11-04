@@ -1,16 +1,24 @@
 import React from 'react';
-import { PageWrapper, QuizeBox } from './QuizResultStyled';
+import { AnswersResultS, BtnWriteReview, PageWrapper, QuizeBox, ResultTextS, ResultTitleS, } from './QuizResultStyled';
 import RatingStars from '../../../shared/components/RatingStars/RatingStars';
+import BtnClose from '../../../shared/components/Buttons/BtnClose/BtnClose';
 
 const QuizResult =({ message }) => {
   return (
     <PageWrapper>
           <QuizeBox>
-              <h2>The results</h2>
-              <p>Correct answers</p>
-              <p>{message}</p>
-              <p>Rate the quiz</p>
-              <RatingStars rate={1} />
+          <BtnClose type="button" 
+          // onClick={handleClickBtnClose} 
+          />
+              <ResultTitleS>The results</ResultTitleS>
+              
+              <ResultTextS>Correct answers</ResultTextS>
+              <AnswersResultS>{message}</AnswersResultS>
+             
+              <ResultTextS>Rate the quiz</ResultTextS>
+              <RatingStars rate={1}/> 
+
+              <BtnWriteReview>Write a review</BtnWriteReview>
       </QuizeBox>
     </PageWrapper>
   );
