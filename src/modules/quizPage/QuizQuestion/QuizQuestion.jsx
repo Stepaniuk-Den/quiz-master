@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { NextButton, StyledButton, TitleQuestion } from './QuizQuestionStyled';
-import AnswerList from '../AnswerList/AnswerList';
 import Time from '../Time/Time';
 import { useNavigate } from 'react-router';
 
