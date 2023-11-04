@@ -20,7 +20,7 @@ const FavoritePage = () => {
 
   const allFavoriteQuizes = useSelector(selectFavorite);
   const [favoriteQuizesArr, setFavoriteQuizesArr] = useState(allFavoriteQuizes);
-
+  
   useEffect(() => {
     setFavoriteQuizesArr(allFavoriteQuizes);
   }, [allFavoriteQuizes]);
@@ -32,7 +32,8 @@ const FavoritePage = () => {
     setFavoriteQuizesArr(filteredNames);
   };
 
-  const updateFavoriteQuizes = (id) => {
+  const updateFavoriteQuizes = (evt) => {
+    const id = evt.currentTarget.id
     const quizId = {
       favorites: id,
     };

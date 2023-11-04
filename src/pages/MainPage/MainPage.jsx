@@ -4,6 +4,7 @@ import {
   selectReviews,
   selectRandomAdult,
   selectRandomChildren,
+  selectTotalReviews
 } from "../../redux/selectors";
 import { selectIsAuth } from "../../redux/user/userSelectors";
 import {
@@ -19,6 +20,7 @@ const MainPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const reviews = useSelector(selectReviews);
+  const totalReviews = useSelector(selectTotalReviews);
   const randomAdultQuizzes = useSelector(selectRandomAdult);
   const randomChildrenQuizzes = useSelector(selectRandomChildren);
   const user = useSelector(selectIsAuth);
@@ -62,6 +64,7 @@ const MainPage = () => {
       data={{
         user,
         reviews,
+        totalReviews,
         randomAdultQuizzes,
         randomChildrenQuizzes,
         handleChooseTest,

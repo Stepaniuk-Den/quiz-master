@@ -56,7 +56,7 @@ const RegisterForm = () => {
       dispatch(registerUserThunk(values))
         .unwrap()
         .then(() => {
-          notifyVerifyEmail();
+          // notifyVerifyEmail();
         })
         .catch((error) => {
           notifyRegisterError(error);

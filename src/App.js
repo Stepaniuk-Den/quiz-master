@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectToken } from "./redux/user/userSelectors";
 import { currentUserThunk } from "./redux/user/userThunks";
 import Notification from "./shared/NotificationToastify/Notification";
+import { useAuth } from "./hooks/useAuth";
 
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"));
@@ -33,6 +34,7 @@ const RandomQuizPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
+  const {isRefreshing} = useAuth();
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -50,11 +52,9 @@ function App() {
             <Route path="auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route>
             </Route>
 
-            {/* <Route path="auth/:type" element={<PublicRoute><AuthPage /></ PublicRoute>}></Route> */}
-
-            <Route path="/randomquiz/:ageType" element={<PublicRoute><RandomQuizPage /></ PublicRoute>}></Route>
-            <Route path="/quiz/:quizId" element={<PublicRoute><QuizePage /></ PublicRoute>}></Route>
-            <Route path="/quizresult" element={<PublicRoute><QuizResult /></ PublicRoute>}></Route>
+            <Route path="/randomquiz/:ageType" element={<RandomQuizPage />}></Route>
+            <Route path="/quiz/:quizId" element={<QuizePage />}></Route>
+            <Route path="/quizresult" element={<QuizResult />}></Route>
             
             <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
             <Route path="/lastquiz" element={<PrivateRoute><LastQuizesPage /></PrivateRoute>}></Route>
