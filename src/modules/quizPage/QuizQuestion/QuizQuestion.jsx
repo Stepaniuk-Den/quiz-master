@@ -17,8 +17,6 @@ function QuizQuestion({ questions }) {
     const answers = questions[currentQuestion].answers;
 
     const handleButtonClick = (answer, index) => {
-
-
         const isCorrect = answer.correctAnswer;
 
         // Зупинка лічильника часу
@@ -51,7 +49,7 @@ function QuizQuestion({ questions }) {
         } else {
             setIsTestCompleted(true);
             if (isTestCompleted) {
-                navigate(`/quizresult?correctAnswersCount=${correctAnswersCount}`);
+                navigate(`/quizresult?correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`);
             }
         }
     };
@@ -100,7 +98,3 @@ function QuizQuestion({ questions }) {
 }
 
 export default QuizQuestion;
-
-// const location = useLocation();
-    // const searchParams = new URLSearchParams(location.search);
-    // const correctAnswersCount = searchParams.get('correctAnswersCount');
