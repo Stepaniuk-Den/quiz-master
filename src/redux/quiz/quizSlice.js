@@ -95,7 +95,7 @@ const initialState = {
       children: [],
     },
     filtered: quizzesArr,
-    passed: quizzesArr,
+    passed: [],
     ownQuizes: quizzesArr,
     favorites: quizzesArr,    
     total: 129865,

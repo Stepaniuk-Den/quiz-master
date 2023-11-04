@@ -20,7 +20,7 @@ export const StyledReviews = styled.section`
     background: var(--star-color-100);
   }
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 767.9px) {
     .swiper {
       max-width: 335px;
     }
@@ -32,7 +32,7 @@ export const StyledReviews = styled.section`
     h2 {
       margin-bottom: 48px;
     }
-
+    
     .swiper {
       width: 704px;
     }

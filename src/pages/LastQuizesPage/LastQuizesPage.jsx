@@ -4,12 +4,18 @@ import PageTopBar from "../../shared/components/PageTopBar/PageTopBar"
 import QuizesList from "../../shared/components/QuizesList/QuizesList"
 import { selectPassed } from "../../redux/selectors";
 import { ContainerLastPassed } from "./LastQuizesPageStyled";
-import { getTotalPassedThunk } from "../../redux/quiz/quizThunks";
+import { getPassedQuizzesThunk } from "../../redux/quiz/quizThunks";
+import { useEffect } from "react";
 
 const LastQuizesPage = () => {
-  // const dispatch = useDispatch()
-  const passedQuizzes = useSelector(selectPassed);
-  // console.log(dispatch(getTotalPassedThunk({page: 1, limit: 8})))
+  const dispatch = useDispatch()
+  const [passedQuizzes] = useSelector(selectPassed);
+
+    //  useEffect(() => {
+     
+    //     dispatch(getPassedQuizzesThunk())
+
+    // }, [dispatch, passedQuizzes]);
   return (
     <ContainerLastPassed>
       <PageTopBar titlePage="Last passed quizzes" />
