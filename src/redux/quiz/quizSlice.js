@@ -90,11 +90,11 @@ const quizSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getRandomQuizzesThunk.fulfilled, (state, action) => {
-        const allQuizzes = action.payload;
+        const allQuizzes = action.payload; 
         //console.log(allQuizzes);
         //console.log(allQuizzes.adults.quizzes);
-        state.quizzes.random.adult = allQuizzes.adults.quizzes
-        state.quizzes.random.children = allQuizzes.children.quizzes
+        state.quizzes.random.adult.push(...allQuizzes.adults.quizzes)
+        state.quizzes.random.children.push(...allQuizzes.children.quizzes)
         // allQuizzes.forEach((quiz) => {
         //   if (quiz.quizType === "adults") state.quizzes.random.adult.push(quiz);
         //   if (quiz.quizType === "children")

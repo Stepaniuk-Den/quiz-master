@@ -15,6 +15,7 @@ const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"));
 //const QuizListPage = lazy(() => import("./pages/QuizListPage"));
 const QuizePage = lazy(() => import("./pages/QuizePage/QuizePage"));
+const QuizResult = lazy(()=> import("./modules/quizPage/QuizResult"))
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const LastQuizesPage = lazy(() =>
   import("./pages/LastQuizesPage/LastQuizesPage")
@@ -55,6 +56,10 @@ function App() {
 
             <Route path="/randomquiz/:ageType" element={<RandomQuizPage />}></Route>
             <Route path="/quiz" element={<QuizePage />}></Route>
+            <Route path="/randomquiz/:ageType" element={<PublicRoute><RandomQuizPage /></ PublicRoute>}></Route>
+            <Route path="/quiz/:quizId" element={<PublicRoute><QuizePage /></ PublicRoute>}></Route>
+            <Route path="/quizresult" element={<PublicRoute><QuizResult /></ PublicRoute>}></Route>
+            
             <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
             <Route path="/lastquiz" element={<PrivateRoute><LastQuizesPage /></PrivateRoute>}></Route>
             <Route path="/discover" element={<PrivateRoute><DiscoverPage /></PrivateRoute>}></Route>

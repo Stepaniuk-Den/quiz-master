@@ -2,6 +2,7 @@ import { instance } from "./auth";
 
 export async function getRandomQuizzes(params) {
   const { data } = await instance.get("/quizzes/random", { params });
+  console.log(data);
   return data;
 }
 ///////////////////////////////////////////////////////////////

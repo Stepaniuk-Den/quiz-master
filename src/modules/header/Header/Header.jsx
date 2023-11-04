@@ -134,8 +134,10 @@ const Header = () => {
       {hasToken && !isMobile ? (
         <DropdownContainer ref={dropdownRef}>
           <DropdownButton onClick={toggleDropdown}>
-            <Avatar size="small" src={infoUser.userAvatar} alt="Photo" width="40px" />
-            <UserName>{infoUser.name}</UserName>
+            {infoUser ? (
+  <Avatar size="small" src={infoUser.userAvatar} alt="Photo" width="40px" />
+) : null}
+            {infoUser ?<UserName>{infoUser.name}</UserName> : null}
             {isDropdownOpen ? <Up /> : <Down />}
           </DropdownButton>
           <DropdownList open={isDropdownOpen}>
