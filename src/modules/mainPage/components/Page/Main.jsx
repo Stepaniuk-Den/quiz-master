@@ -7,7 +7,7 @@ import Reviews from "../Reviews/Reviews.jsx";
 import { Outlet } from "react-router-dom";
 
 function Main({data}) {
-  const { reviews, randomAdultQuizzes, randomChildrenQuizzes, handleChooseTest, handleCreateTest } = data;
+  const { reviews, totalReviews, randomAdultQuizzes, randomChildrenQuizzes, handleChooseTest, handleCreateTest } = data;
 
   return (
     <>
@@ -15,7 +15,7 @@ function Main({data}) {
       <Advantages />
       <Quizzes adultQuizzes={randomAdultQuizzes} childrenQuizzes={randomChildrenQuizzes}/>
       <NavBlock handlerChoose={handleChooseTest} handlerCreate={handleCreateTest}/>
-      <Reviews reviews={reviews}/>
+      <Reviews reviews={reviews} totalReviews={totalReviews}/>
       <Outlet />
     </>
   );
