@@ -4,7 +4,7 @@ export const instance = axios.create({
     baseURL: 'https://quiz-backend-vq56.onrender.com/api',
 });
 
-export const setToken = token => {console.log(token);
+export const setToken = token => {
     instance.defaults.headers.Authorization = `Bearer ${token}`;
 };
 

@@ -5,14 +5,13 @@ export const BtnHeartS = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
+  background-color: transparent;  
 `;
 
 export const FiHeartS = styled(FiHeart)`
   width: 20px;
   height: 20px;
-  stroke: var(--text-color-100);
-  // and add class for fill//
+  stroke: var(--text-color-100);  
   &.favorite {
     fill: var(--text-color-100);
   }
