@@ -1,13 +1,12 @@
+import React from 'react';
 import { ButtonS } from "./BtnLoadMoreStyled";
 
-const BtnLoadMore = ({ /*handleLoadMore */}) => {
-  
+const BtnLoadMore = ({ handleLoadMore}) => {
+
   return (
-    <>
-      <ButtonS type="button" /*onClick={handleLoadMore} */>
-        Load more
-      </ButtonS>
-    </>
+    <ButtonS type="button" onClick={handleLoadMore}>
+      Load more
+    </ButtonS>
   );
 };
 
