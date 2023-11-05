@@ -7,6 +7,9 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import {
   AvatarImg,
+  AddButton,
+  IconPlus,
+  IconWrapper,
   BtnEyeStyled,
   ErrorsStyled,
   InputPasswWrapStyled,
@@ -22,6 +25,7 @@ import {
   TitleWrapper,
 } from "./SettingsPageStyled";
 import { useSelector } from 'react-redux';
+import { selectUser } from "../../redux/user/userSelectors";
 import { selectUserAvatar } from "../../redux/user/userSelectors";
 import BtnConfirmSettings from "../../shared/components/Buttons/BtnConfirmSettings";
 
@@ -42,6 +46,7 @@ const userName = firstLetterNameToAvatar(" d");
 // }
 
 const SettingsPage = () => {
+  const userInfo = useSelector(selectUser);
   const userAvatar = useSelector(selectUserAvatar);
   // console.log(userAvatar);
 
@@ -56,7 +61,9 @@ const SettingsPage = () => {
     },
 
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
+      name: Yup.string()
+        .min(3, "The name must consist of at least 3 characters")
+        .required("Name is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email address is required"),
@@ -84,16 +91,20 @@ const SettingsPage = () => {
           <SettingForm>
             <AvatarImg>
             {userAvatar ?      
-              <Avatar size="large" src="userAvatar" alt="User avatar" width="100px"/>
+              <Avatar size="large" src={userInfo ? userInfo.userAvatar : ""} alt="User avatar" width="100px"/>
             :
             <p>{userName}</p>}
+            <AddButton type="submit">
+        <IconWrapper className="bi-wrapper">
+            <IconPlus className="bi-btn"/>
+        </IconWrapper></AddButton>
             </AvatarImg>
       <form onSubmit={formik.handleSubmit}>
         <InputsWrapper>
           <InputStyled
             name="name"
             type="name"
-            // id="idName"
+            id="idName"
             value={formik.values.name}
             placeholder="Name"
             autoComplete="off"
