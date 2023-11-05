@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { BiPlus } from "react-icons/bi";
 
 export const PageWrapper = styled.div`
   /* outline: 1px solid green; */
@@ -32,6 +33,7 @@ export const TitleWrapper = styled.div`
 
 export const AvatarImg = styled.div`
   display: inline-block;
+  position: relative;
   width: 100px;
   height: 100px;
   font-family: GilroyBold;
@@ -46,6 +48,43 @@ export const AvatarImg = styled.div`
     color: var(--text-color-100);
   }
 `;
+
+export const AddButton = styled.button`
+  position: absolute;
+  left: 35px;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color-100);
+  background-color: var(--blue-background);
+  border-radius: 50%;
+  border-color: var(--text-color-100);
+  cursor: pointer;
+    &:hover {
+    & .bi-btn {
+      scale: 1.2;
+    }
+  }
+`
+export const IconPlus = styled(BiPlus)`
+  width: 24px;
+  height: 24px;
+  fill: #f4f4f4;
+`;
+
+export const IconWrapper = styled.div`
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `;
 
 export const InputsWrapper = styled.div`
   display: flex;
