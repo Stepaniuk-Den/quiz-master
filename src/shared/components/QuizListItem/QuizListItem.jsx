@@ -15,7 +15,9 @@ import BtnHeart from "../Buttons/BtnHeart/BtnHeart";
 import { Link } from "react-router-dom";
 
 const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
-  const { _id, quizCategory, quizName, rate, totalPassed, owner } = quiz;  
+  const { _id, quizCategory, quizName, rate, totalPassed, owner, correctAnswers,
+    quantityQuestions
+ } = quiz;  
   
   return (
     <>
@@ -34,7 +36,7 @@ const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
           </TextWrapper>            
           <RatingStars rate={rate}/>
         </TextRatingWrapper>
-        <Link to={`/quiz/${quiz._id}`}><BtnStart /></Link>
+        <Link to={`/quiz/${quiz._id}`}><BtnStart correctAnswers={correctAnswers} quantityQuestions={quantityQuestions} /></Link>
       </CardWrapper>
     </>
   );
