@@ -17,6 +17,21 @@ position: relative;
   }
 `;
 
+export const AvatarImg = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  font-family: GilroyBold;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: center;
+  background-color: var(--pink-color);
+  border-radius: 50%;
+color: var(--text-color-100);
+`;
+
+
 export const Logo = styled.div`
   color: var(--text-color-100);
   font-size: 24px;
