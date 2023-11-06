@@ -57,7 +57,7 @@ const RegisterForm = () => {
       dispatch(registerUserThunk(values))
         .unwrap()
         .then(() => {
-          // notifyVerifyEmail();
+          notifyVerifyEmail();
         })
         .catch((error) => {
           notifyRegisterError(error);
@@ -76,10 +76,6 @@ const RegisterForm = () => {
   return (
     <>
     <StyledModal>
-        {/* <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
-          <AiOutlineClose size={28} fill="#FFFFFF" />
-        </StyledCloseBtn> */}
-
         <BtnClose onClick={handleClickBtnClose} />
 
       <AuthTitle>Sign Up</AuthTitle>

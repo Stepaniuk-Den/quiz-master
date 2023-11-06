@@ -74,9 +74,6 @@ const LogInForm = ({ modalClose}) => {
     <>
       <StyledModal>
         <BtnClose onClick={handleClickBtnClose} />
-        {/* <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
-          <AiOutlineClose size={28} fill="#FFFFFF" />
-        </StyledCloseBtn> */}
         <AuthTitle>Login</AuthTitle>
         <FormStyled onSubmit={formik.handleSubmit}>
           <InputsWrapper>
