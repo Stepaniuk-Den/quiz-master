@@ -1,3 +1,4 @@
+import QuestionCard from "../../modules/createQuizPage/components/QuestionCard/QuestionCard.jsx";
 import QuestionsList from "../../modules/createQuizPage/components/QuestionsList/QuestionsList.jsx";
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar.jsx";
 // import SelectCustom from "../../shared/components/Select/Select.jsx";
@@ -9,10 +10,7 @@ const CreateQuizPage = () => {
       <PageTopBar titlePage="Create quize" />
       <SectionWrapper>
         <QuestionsList/>
-        <div>
-          <input type="text" placeholder="Quiz theme" />
-          <div>formQuiz</div>
-        </div>
+        <QuestionCard/>
         <div>
           <div>
           <p>Audience</p>
