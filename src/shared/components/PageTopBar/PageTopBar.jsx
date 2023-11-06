@@ -8,7 +8,7 @@ const PageTopBar = ({titlePage}) => {
     <>
       <PageTopBarBox>
         <PageTitle>{titlePage}</PageTitle>
-        <BtnCreateQuiz />
+        {titlePage !== "Create quize" ? <BtnCreateQuiz /> : null}
       </PageTopBarBox>
     </>
   );
