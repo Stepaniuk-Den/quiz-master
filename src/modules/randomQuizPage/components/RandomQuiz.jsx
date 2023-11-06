@@ -5,8 +5,6 @@ import EmptyBlock from "../../../shared/components/EmptyBlock/EmptyBlock";
 //import BtnLoadMore from "../../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 
 const RandomQuiz = ({ adultsQuiz, childrenQuiz }) => {
-  //console.log("children quiz =>", childrenQuiz);
-  //console.log("adults quiz =>", adultsQuiz);
   return (
     <>
       {/* <CreateQuizCard /> */}
