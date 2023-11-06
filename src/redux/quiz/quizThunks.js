@@ -14,6 +14,7 @@ import {
     updateFavoriteQuiz,
     deleteQuiz,
 } from "../../api/quiz";
+import { notifyBtnHeartSuccess } from "../../shared/NotificationToastify/Toasts";
 
 export const getRandomQuizzesThunk = createAsyncThunk(
     'quiz/getRandom',
@@ -112,9 +113,10 @@ export const getQuizThunk = createAsyncThunk(
 
 export const getFavoriteQuizzesThunk = createAsyncThunk(
     'quiz/getFavorite',
-    async (params, thunkAPI) => {
+    async (setTotal, thunkAPI) => {
         try {            
-            const data = await getFavoriteQuizzes(params);
+            const data = await getFavoriteQuizzes();            
+            setTotal(data.totalFavorites)
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -161,9 +163,15 @@ export const updateQuizThunk = createAsyncThunk(
 export const updateFavoriteQuizThunk = createAsyncThunk(
     'quiz/updateFavorite',
     async (id, thunkAPI) => {
+        const {quizId, setTotal} = id;
         try {
-            const data = await updateFavoriteQuiz(id);
-            return data;
+            const data = await updateFavoriteQuiz(quizId);
+            notifyBtnHeartSuccess()
+            console.log('data123: ', data);
+            // return data;
+            //await updateFavoriteQuiz(quizId);
+            setTotal(data?.favorites?.length)
+            return quizId.favorites;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }

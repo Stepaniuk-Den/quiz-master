@@ -105,8 +105,7 @@ export async function updateQuiz(quiz) {
   return data;
 }
 
-export async function updateFavoriteQuiz(quizId) {  
-  // const { data } = await instance.patch(`/user/favorites/${quizId}`);  
+export async function updateFavoriteQuiz(quizId) {     
   const { data } = await instance.patch(`/users/favorites`, quizId);
   return data;
 }

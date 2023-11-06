@@ -82,10 +82,7 @@ const quizSlice = createSlice({
   reducers: {
     setFilter: (state, action) => {
       state.filters = action.payload;
-    },
-    updateFavorite: (state, action) => {
-      state.quizzes.favorites = action.payload;
-    },
+    },    
     updateFiltered: (state, action) => {      
       state.quizzes.filtered = action.payload;
     }
@@ -105,8 +102,7 @@ const quizSlice = createSlice({
       //   console.log("123", action.payload);
       //   state.quizzes.filtered.push(action.payload);
       // })
-      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
-        // console.log('action: ', action.payload);
+      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {        
         state.quizzes.filtered = action.payload;
       })
       // .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
@@ -129,7 +125,7 @@ const quizSlice = createSlice({
       .addCase(getQuizThunk.fulfilled, (state, action) => {
         state.quizzes.current = action.payload;
       })
-      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {
+      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {                
         state.quizzes.favorites = action.payload.data;
       })
       .addCase(createQuizThunk.fulfilled, (state, action) => {
@@ -146,23 +142,11 @@ const quizSlice = createSlice({
           (quiz) => quiz.id !== action.payload.id
         );
         state.quizzes.user = [...newUserQuizzes, action.payload];
-      })
-
-      // .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {
-      //   console.log('actionThunk: ', action);
-      //   const favoriteIdx = state.quizzes.favorites.find(
-      //     (quiz) => quiz.id === action.payload.id
-      //   );
-      //   if (favoriteIdx >= 0) {
-      //     state.quizzes.favorites.splice(favoriteIdx, 1);
-      //   } else {
-      //     state.quizzes.favorites.push(action.payload);
-      //   }
-      // })
+      })      
       .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {
-        // console.log('actionThunk: ', action);
-      }) //здається вона не потрібна
-
+        console.log('actionThunk: ', action.payload);
+        state.quizzes.favorites = state.quizzes.favorites.filter(quiz=>quiz._id !== action.payload);
+      })
       .addCase(deleteQuizThunk.fulfilled, (state, action) => {
         state.quizzes.user = state.quizzes.user.filter(
           (quiz) => quiz.id !== action.payload.id
