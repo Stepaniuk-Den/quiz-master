@@ -137,7 +137,7 @@ const Header = () => {
           <DropdownButton onClick={toggleDropdown}>
             {infoUser && infoUser.userAvatar ? (
                 <Avatar
-                  size="large"
+                  size="small"
                   src={infoUser.userAvatar}
                   alt="Photo"
                   width="40px"

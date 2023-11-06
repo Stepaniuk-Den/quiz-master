@@ -80,9 +80,14 @@ export async function createQuiz(quiz) {
 }
 
 export async function quizResult({ quizId, result }) {
-  const { data } = await instance.post(`/quizzes/${quizId}`, result);
+  const { data } = await instance.patch(`/quizzes/${quizId}`, result);
   return data;
 }
+
+// export async function patchPassedQuiz({ quizId, quantityQuestions, correctAnswers }) {
+//   const { data } = await instance.patch(`users/passed-quiz`, result);
+//   return data;
+// }
 
 export async function updateQuiz(quiz) {
   const { data } = await instance.patch(`/quizzes/${quiz.id}`, quiz);
