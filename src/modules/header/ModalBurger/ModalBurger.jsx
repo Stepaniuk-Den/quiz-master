@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BoxAuth,
-  Down,
   DropdownButton,
   DropdownContainer,
   DropdownItem,
@@ -17,8 +16,6 @@ import {
   StyledCloseBtn,
   StyledModal,
   StyledOverlay,
-  Up,
-  UserName,
 } from "./ModalBurger.styled";
 import { AiOutlineClose } from "react-icons/ai";
 import { selectIsShowBurgerModal } from "../../../redux/Modal/modalSelectors";
@@ -31,7 +28,6 @@ import BtnRegister from "../components/ButtonRegister/ButtonRegister";
 import BtnLogin from "../components/ButtonLogin/ButtonLogin";
 import { selectIsAuth } from "../../../redux/user/userSelectors";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
-import { infoUser } from "../../homepage/components/UserStats/info/infoUser";
 
 const ModalBurger = () => {
   const dispatch = useDispatch();
@@ -81,7 +77,6 @@ const ModalBurger = () => {
 
   const handleClickOverlay = (e) => {
     if (e.target === e.currentTarget) {
-      // document.body.classList.remove("no-scroll");
       setDropdownOpen(false);
     }
   };

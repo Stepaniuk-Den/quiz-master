@@ -1,20 +1,21 @@
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar.jsx";
-import { PageWrapper, SectionWrapper } from "./CreateQuizPage.styled.js";
+import SelectCustom from "../../shared/components/Select/Select.jsx";
+import { PageWrapper, QuestionList, QuestionsWrapper, SectionWrapper } from "./CreateQuizPage.styled.js";
 
 const CreateQuizPage = () => {
   return (
     <PageWrapper>
       <PageTopBar titlePage="Create quize" />
       <SectionWrapper>
-        <div>
+        <QuestionsWrapper>
           <p>Questions</p>
-          <ul>
+          <QuestionList>
             <li>quiz</li>
-          </ul>
-          <select name="create" id="">
+          </QuestionList>
+          <SelectCustom name="create" id="" selectTitle={'selectTitle'}>
             create
-          </select>
-        </div>
+          </SelectCustom>
+        </QuestionsWrapper>
         <div>
           <input type="text" placeholder="Quiz theme" />
           <div>formQuiz</div>
@@ -28,6 +29,12 @@ const CreateQuizPage = () => {
           <div>
           <p>Categories</p>
           <select name="categories" id=""></select>
+          </div>
+          <div>
+          <p>Background</p>
+          <div><input type="radio" /></div>
+          <div><input type="radio" /></div>
+          <div><input type="radio" /></div>
           </div>
         </div>
       </SectionWrapper>
