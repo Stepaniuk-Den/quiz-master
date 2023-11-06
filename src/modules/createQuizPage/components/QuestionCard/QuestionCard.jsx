@@ -1,10 +1,16 @@
 import React from "react";
+import { ImageWrapper, StyledPlus } from "./QuestionCard.styled";
 
 const QuestionCard = () => {
   return (
     <div>
       <input type="text" placeholder="Quiz theme" />
-      <div>formQuiz</div>
+      <div>
+        <ImageWrapper>
+          <StyledPlus />
+        </ImageWrapper>
+      </div>
+      
     </div>
   );
 };
