@@ -1,31 +1,37 @@
-import React from 'react';
-import Countdown from 'react-countdown';
+import React from "react";
+import { StyledCountdown, TimeText } from "./Time.styled";
+import Countdown from "react-countdown";
 
-const Time = ({ nextQuestion, question,currentQuestion }) => {
-  const onCountdownComplete = () => {
-    nextQuestion(); 
-  };
-
+const Time = ({ question, currentQuestion, isAnswerSelected }) => {
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   return (
-      <div>
-        <p>Time: 
-        <Countdown
-          date={Date.now() + question.time * 1000}
-          key={currentQuestion}
-          onComplete={onCountdownComplete}
-                  renderer={({ minutes, seconds, completed }) => {
-              
-              return <span>{formatTime(minutes * 60 + seconds)}</span>;
-
-          }}
-        /></p>
-      </div>
+    <>
+      <TimeText>
+        Time:
+        <StyledCountdown>
+          <Countdown
+            date={Date.now() + question.time * 1000}
+            key={currentQuestion}
+            renderer={({ minutes, seconds, completed }) => {
+              if (completed || isAnswerSelected) {
+                // Якщо таймер завершено або ви обрали відповідь, зупиняємо лічильник
+                return <span>{formatTime(0)}</span>;
+              } else {
+                return <span>{formatTime(minutes * 60 + seconds)}</span>;
+              }
+            }}
+          />
+        </StyledCountdown>
+      </TimeText>
+    </>
   );
 };
 

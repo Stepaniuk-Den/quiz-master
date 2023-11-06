@@ -1,65 +1,27 @@
-import React, { useRef, useState } from "react";
-import {
-  AnswersResultS,
-  BtnWriteReview,
-  BtnWriteReviewLink,
-  PageWrapper,
-  QuizeBox,
-  RatingBox,
-  RatingS,
-  ResultTextS,
-  ResultTitleS,
-} from "./QuizResultStyled";
-import RatingStars from "../../../shared/components/RatingStars/RatingStars";
-import BtnClose from "../../../shared/components/Buttons/BtnClose/BtnClose";
+import React from 'react';
+import { AnswersResultS, BtnWriteReview, BtnWriteReviewLink, PageWrapper, QuizeBox, ResultTextS, ResultTitleS, } from './QuizResultStyled';
+import RatingStars from '../../../shared/components/RatingStars/RatingStars';
+import BtnClose from '../../../shared/components/Buttons/BtnClose/BtnClose';
+import { useLocation } from 'react-router';
 
-import StarIcon from "@mui/icons-material/Star";
-import { Box, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
-
-const QuizResult = ({ message, quiz }) => {
-  const dispatch = useDispatch();
-  const [value, setValue] = useState(0);
-  console.log(value)
-  const navigate = useNavigate();
-  const location = useLocation();
-  const backLink = useRef(location.state?.from);
-
-
- 
-
-  // console.log(location)
-
-  // const handleRatingChange = (value) => {
-  //   setValue(Number(value));
-  // };
-
-//   const handleSendRating = () => {
-//     if (value > 0) {
-//       dispatch(createReviewQuizThunk(value))
-//   }
-//   return;
-// }
-
- const handleClickBtnClose = () => {
-// dispatch
-// dispatch
-  
-navigate(backLink.current ?? '/');
-};
- 
-
-
+const QuizResult = () => {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const correctAnswersCount = searchParams.get('correctAnswersCount');
+    const totalQuestions = searchParams.get('totalQuestions');
   return (
     <PageWrapper>
-      <QuizeBox>
-        <BtnClose
-          type="submit"
-          onClick={handleClickBtnClose}
-        />
-        <ResultTitleS>The results</ResultTitleS>
+          <QuizeBox>
+          <BtnClose type="button" 
+          // onClick={handleClickBtnClose} 
+          />
+              <ResultTitleS>The results</ResultTitleS>
+              
+              <ResultTextS>Correct answers</ResultTextS>
+              <AnswersResultS>{correctAnswersCount}/{totalQuestions}</AnswersResultS>
+             
+              <ResultTextS>Rate the quiz</ResultTextS>
+              <RatingStars rate={1}/> 
 
         <ResultTextS>Correct answers</ResultTextS>
         <AnswersResultS>
@@ -67,7 +29,7 @@ navigate(backLink.current ?? '/');
           </AnswersResultS>
 
         <ResultTextS>Rate the quiz</ResultTextS>
-        <RatingStars rate={rate}/> 
+        <RatingStars rate={1}/> 
 
         {/* <div className="star-rating">
           {[...Array(5)].map((star) => {

@@ -75,7 +75,6 @@ export const TextRatingWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 32px;
 `;
 
 export const TextWrapper = styled.div`

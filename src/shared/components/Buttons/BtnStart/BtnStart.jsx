@@ -1,15 +1,28 @@
-import { BtnStartS } from "./BtnStartStyled";
+import { Answers, BtnStartS, TextAnswers } from "./BtnStartStyled";
+import { useLocation } from 'react-router-dom';
 
-const BtnStart = () => {
-const handleBtnStart = () => {
-    console.log("BtnStart clicked!");
-}
+const BtnStart = ({quantityQuestions,correctAnswers}) => {
+  const location = useLocation();
+
+  const isLastQuizOrHome = location.pathname === '/lastquiz' || location.pathname === '/home';
+
+  const handleBtnStart = () => {
+  }
 
   return (
     <>
-      <BtnStartS type="button" onClick={handleBtnStart}>
-        Start
-      </BtnStartS>
+      {isLastQuizOrHome ? (
+        <>
+          <TextAnswers>Correct answers:<Answers>{correctAnswers}/{quantityQuestions}</Answers></TextAnswers>
+          <BtnStartS type="button" onClick={handleBtnStart}>
+            Pass again
+          </BtnStartS>
+        </>
+      ) : (
+        <BtnStartS type="button" onClick={handleBtnStart}>
+          Start
+        </BtnStartS>
+      )}
     </>
   );
 };

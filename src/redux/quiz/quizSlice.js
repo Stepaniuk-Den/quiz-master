@@ -115,8 +115,8 @@ const quizSlice = createSlice({
         state.allCategories = action.payload;
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.passed.push(action.payload);
-      })
+                state.quizzes.passed = action.payload;
+            })
       .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.ownQuizes = action.payload;
       })
