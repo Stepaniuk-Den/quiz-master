@@ -13,6 +13,8 @@ import {
   updateQuizThunk,
   updateFavoriteQuizThunk,
   deleteQuizThunk,
+  passedUsersQuiz,
+  updateUsersQuiz
 } from "./quizThunks";
 
 const initialState = {
@@ -89,6 +91,10 @@ const quizSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(passedUsersQuiz.fulfilled, (state, action) => {
+      })
+      .addCase(updateUsersQuiz.fulfilled,(state, action)=> {
+      })
       .addCase(getRandomQuizzesThunk.fulfilled, (state, action) => {
         const allQuizzes = action.payload;
         if (allQuizzes.adults.quizzes) {
@@ -116,7 +122,7 @@ const quizSlice = createSlice({
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
                 state.quizzes.passed = action.payload;
-            })
+      })
       .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.ownQuizes = action.payload;
       })
@@ -139,10 +145,11 @@ const quizSlice = createSlice({
         state.quizzes.total += 1;
       })
       .addCase(updateQuizThunk.fulfilled, (state, action) => {
-        const newUserQuizzes = state.quizzes.user.filter(
-          (quiz) => quiz.id !== action.payload.id
-        );
-        state.quizzes.user = [...newUserQuizzes, action.payload];
+        // console.log(action.payload)
+        // const newUserQuizzes = state.quizzes.user.filter(
+        //   (quiz) => quiz.id !== action.payload.id
+        // );
+        // state.quizzes.user = [...newUserQuizzes, action.payload];
       })
 
       // .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {

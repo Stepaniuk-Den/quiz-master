@@ -1,1 +1,1 @@
-export {default} from './BtnStart.jsx'
+export { default } from './BtnStart.jsx';
