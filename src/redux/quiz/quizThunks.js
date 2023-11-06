@@ -50,6 +50,7 @@ export const getFilteredQuizzesThunk = createAsyncThunk(
 //         }
 //     }
 // );
+
 export const getQuizCategoriesThunk = createAsyncThunk(
     'quiz/getCategories',
     async (_, thunkAPI) => {
