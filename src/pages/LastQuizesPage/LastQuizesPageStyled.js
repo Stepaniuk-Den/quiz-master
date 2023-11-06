@@ -11,3 +11,8 @@ display: flex;
     text-align: center;
   }
 `
+
+export const ContainerBtn = styled.div`
+margin-top: 32px;
+margin-bottom: 100px;
+`
