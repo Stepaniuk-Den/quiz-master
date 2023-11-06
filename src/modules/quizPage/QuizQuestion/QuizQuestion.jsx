@@ -57,12 +57,13 @@ function QuizQuestion({ questions,quizId }) {
       setPreviousQuestion(currentQuestion); // Устанавливаем индекс предыдущего вопроса
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setIsTestCompleted(true);
+  
       if (isTestCompleted) {
         navigate(
           `/quizresult?quizId=${quizId}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
         );
       }
+      setIsTestCompleted(true);
     }
   };
 

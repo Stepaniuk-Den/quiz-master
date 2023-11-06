@@ -74,7 +74,11 @@ export const AnswersCounter = styled.p`
 export const StyledButton = styled.button.withConfig({
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
-  width: 222px;
+  width: 295px;
+  @media (min-width: 768px) {
+    width: 222px;
+  }
+
   text-align: left;
   padding: 14px 0 14px 18px;
   border-radius: 30px;
