@@ -60,7 +60,7 @@ export const ToMainPageBtn = styled.button`
 
   &:hover,
   &:focus {
-    transform: scale(0.98);
+    transform: scale(1.1);
   }
 
   @media (min-width: 768px) {
