@@ -29,7 +29,7 @@ export const getRandomQuizzesThunk = createAsyncThunk(
 
 export const getFilteredQuizzesThunk = createAsyncThunk(
     'quiz/getFiltered',
-    async (params, thunkAPI) => {
+    async (params, thunkAPI) => {        
         try {
             const data = await getFilteredQuizzes(params);
             return data;

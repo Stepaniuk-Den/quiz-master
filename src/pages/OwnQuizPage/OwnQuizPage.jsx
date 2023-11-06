@@ -16,6 +16,7 @@ const OwnQuizPage = () => {
 
   const allOwnQuizes = useSelector(selectOwnQuizes);
   const [ownQuizesArr, setOwnQuizesArr] = useState();
+  console.log('ownQuizesArr: ', ownQuizesArr);
   
   useEffect(() => {
     setOwnQuizesArr(allOwnQuizes);

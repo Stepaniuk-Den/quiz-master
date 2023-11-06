@@ -86,6 +86,9 @@ const quizSlice = createSlice({
     updateFavorite: (state, action) => {
       state.quizzes.favorites = action.payload;
     },
+    updateFiltered: (state, action) => {      
+      state.quizzes.filtered = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -103,6 +106,7 @@ const quizSlice = createSlice({
       //   state.quizzes.filtered.push(action.payload);
       // })
       .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
+        // console.log('action: ', action.payload);
         state.quizzes.filtered = action.payload;
       })
       // .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
@@ -110,8 +114,7 @@ const quizSlice = createSlice({
       //   state.categories.adult = action.payload.categoriesAdults;
       //   state.categories.children = action.payload.categoriesChildren;
       // })
-      .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
-        // console.log(action.payload);
+      .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {        
         state.allCategories = action.payload;
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
@@ -168,5 +171,5 @@ const quizSlice = createSlice({
   },
 });
 
-export const { setFilter, updateFavorite } = quizSlice.actions;
+export const { setFilter, updateFavorite, updateFiltered } = quizSlice.actions;
 export const quizReducer = quizSlice.reducer;

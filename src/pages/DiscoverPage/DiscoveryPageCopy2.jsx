@@ -14,10 +14,8 @@ import { updateFiltered } from "../../redux/quiz/quizSlice";
 
 const DiscoverPage = () => {
   console.log("render");
-  const dispatch = useDispatch();
   const filteredQuizes = useSelector(selectDiscoverFilteredQuizes);
-  // console.log("filteredQuizes: ", filteredQuizes); 
-
+  console.log('filteredQuizes: ', filteredQuizes);
   const [discoverRender, setDiscoverRender] = useState(null);
   const [categoryNames, setCategoryNames] = useState([]);
   const [childrenCategoryNames, setChildrenCategoryNames] = useState([]);
@@ -26,6 +24,11 @@ const DiscoverPage = () => {
     ratingStars: null,
     categoryNames: [],
   });
+  // console.log('selectTitles: ', selectTitles);
+  // console.log("categoryNames: ", categoryNames);
+  // console.log("commonFilter: ", commonFilter);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(1);
@@ -33,49 +36,38 @@ const DiscoverPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!commonFilter.ratingStars && !commonFilter.categoryNames.length) return;    
+    if (!commonFilter.ratingStars && !commonFilter.categoryNames.length) return;
+    console.log("commonFilter changed");
     dispatch(getFilteredQuizzesThunk(commonFilter));
   }, [dispatch, commonFilter]);
 
   useEffect(() => {
     if (!categoryNames?.length) {
-      dispatch(updateFiltered([]));
-      setDiscoverRender(null);
-      // setCommonFilter((prevCommonFilter) => ({
-      //   ...prevCommonFilter,
-      //   categoryNames: [],
-      // }));
+      dispatch(updateFiltered([]))
+      setCommonFilter((prevCommonFilter) => ({
+        ...prevCommonFilter,
+        categoryNames: [],
+      }));
       return;
     }
-    // console.log(2);
+    console.log(2);
     setCommonFilter((prevCommonFilter) => ({
       ...prevCommonFilter,
       categoryNames: categoryNames,
     }));
+
+    // dispatch(getFilteredQuizzesThunk(categoryNames))
   }, [dispatch, categoryNames]);
 
   const handleCategorySelection = (data, selectTitle) => {
-    const isChecked = data.target.checked;    
+    const isChecked = data.target.checked;
     const selectedCategoryName = data.target.value;
-
-    filteredQuizes.length ? console.log(filteredQuizes.length) : console.log("no");; 
-
-    // if(filteredQuizes.length){
-    //   const localFilteredCategories = filteredQuizes.filter((quiz)=>quiz.quizCategory.categoryName.includes(selectedCategoryName))
-    //   console.log('localFilteredCategories: ', localFilteredCategories);
-    //   if (isChecked) {
-    //     setDiscoverRender(localFilteredCategories)
-    //   }else{
-    //     setDiscoverRender(null)
-    //   }
-
-    // }
 
     if (isChecked) {
       setCategoryNames((prevCategoryNames) => [
         ...prevCategoryNames,
         selectedCategoryName,
-      ]);
+      ]);      
       if (selectTitle === "For children") {
         setChildrenCategoryNames((prevChildrenCategoryNames) => [
           ...prevChildrenCategoryNames,
@@ -108,18 +100,18 @@ const DiscoverPage = () => {
   };
 
   const handleStarSelection = (starsQty) => {
-    if (categoryNames.length) {
-      const localStarsFiltered = filteredQuizes.filter(
-        (quiz) => Math.round(quiz.rate) === starsQty
-      );
-      if (starsQty) {
-        setDiscoverRender(localStarsFiltered);
-      } else {
-        setDiscoverRender(null);
+    if(categoryNames.length){
+      const localStarsFiltered = filteredQuizes.filter((quiz)=>Math.round(quiz.rate) === starsQty);
+      console.log('filteredQuizes: ', filteredQuizes);
+      console.log('localStarsFiltered: ', localStarsFiltered);
+      if(starsQty > 1){
+        setDiscoverRender(localStarsFiltered)
+      }else{
+        setDiscoverRender(filteredQuizes) 
       }
-      return;
-    } else {
-      console.log("no length");
+      //dispatch(updateFiltered(localStarsFiltered))
+      return
+    }else{
       setCommonFilter((prevCommonFilter) => ({
         ...prevCommonFilter,
         ratingStars: starsQty,
@@ -139,15 +131,10 @@ const DiscoverPage = () => {
         <QuizeFilterTools
           handleStarSelection={handleStarSelection}
           handleCategorySelection={handleCategorySelection}
-          totalResults={
-            discoverRender ? discoverRender.length : filteredQuizes?.length
-          }
+          totalResults={discoverRender? discoverRender.length : filteredQuizes?.length}
           selectedCategoryNames={selectedCategoryNames}
         />
-        <QuizesList
-          quizzesArr={discoverRender ? discoverRender : filteredQuizes}
-          className={"bottomVariant"}
-        />
+        <QuizesList quizzesArr={discoverRender? discoverRender : filteredQuizes} className={"bottomVariant"} />
         <BtnLoadMore />
       </SectionWrapper>
     </PageWrapper>

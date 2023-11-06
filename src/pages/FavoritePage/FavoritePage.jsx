@@ -20,6 +20,7 @@ const FavoritePage = () => {
 
   const allFavoriteQuizes = useSelector(selectFavorite);
   const [favoriteQuizesArr, setFavoriteQuizesArr] = useState(allFavoriteQuizes);
+  console.log('favoriteQuizesArr: ', favoriteQuizesArr);
   
   useEffect(() => {
     setFavoriteQuizesArr(allFavoriteQuizes);
