@@ -8,7 +8,8 @@ const QuizResult = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const correctAnswersCount = searchParams.get('correctAnswersCount');
-    const totalQuestions = searchParams.get('totalQuestions');
+  const totalQuestions = searchParams.get('totalQuestions');
+  const quizId = searchParams.get('quizId');
   return (
     <PageWrapper>
           <QuizeBox>
