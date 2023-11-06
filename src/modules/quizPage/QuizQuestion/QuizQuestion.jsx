@@ -13,7 +13,7 @@ import {
 import Time from "../Time/Time";
 import { useNavigate } from "react-router";
 
-function QuizQuestion({ questions }) {
+function QuizQuestion({ questions,quizId }) {
   const navigate = useNavigate();
   const answerLabels = ["A", "B", "C", "D"];
 
@@ -60,7 +60,7 @@ function QuizQuestion({ questions }) {
       setIsTestCompleted(true);
       if (isTestCompleted) {
         navigate(
-          `/quizresult?correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
+          `/quizresult?quizId=${quizId}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
         );
       }
     }

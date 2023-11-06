@@ -17,7 +17,6 @@ const QuizePage = () => {
       setQuizData(data.payload);
     });
   }, [dispatch, quizId]);
-
   return (
     <>
       <BackBox>
@@ -25,7 +24,7 @@ const QuizePage = () => {
       </BackBox>
       <PageWrapper>
         <QuizeBox>
-          {quizData.length > 0 && <QuizQuestion questions={quizData} />}
+          {quizData.length > 0 && <QuizQuestion questions={quizData} quizId={quizId} />}
         </QuizeBox>
       </PageWrapper>
     </>
