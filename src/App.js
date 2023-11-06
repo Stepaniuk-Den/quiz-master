@@ -34,7 +34,6 @@ const RandomQuizPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const {isRefreshing} = useAuth();
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -63,7 +62,6 @@ function App() {
             <Route path="/ownquiz" element={<PrivateRoute><OwnQuizPage /></PrivateRoute>}></Route>
             <Route path="/createquiz" element={<PrivateRoute><CreateQuizPage /></PrivateRoute>}></Route>
             <Route path="/settings" element={<PrivateRoute><SettingsPage /></PrivateRoute>}></Route>
-
             <Route path="/feedback" element={<FeedbackPage />}></Route>
 
             <Route path="*" element={<Navigate to="/" replace />}></Route>
