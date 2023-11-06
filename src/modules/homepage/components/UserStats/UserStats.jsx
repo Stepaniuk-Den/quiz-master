@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import Avatar from "../../../../shared/components/Avatar/Avatar";
 import {
+  AvatarImg,
   InfoText,
   Line,
   LineHeight,
@@ -18,12 +19,20 @@ const UserStats = () => {
 
   return (
     <UserCard>
-      <Avatar
-        size="large"
-        src={userInfo ? userInfo.userAvatar : ""}
-        alt="User avatar"
-        width="100px"
-      />
+{userInfo && userInfo.userAvatar ? (
+                <Avatar
+                  size="large"
+                  src={userInfo.userAvatar}
+                  alt="Photo"
+                  width="100px"
+                />
+              ) : (
+                <AvatarImg>
+                  {userInfo && userInfo.name
+                    ? userInfo.name.trim().charAt(0).toUpperCase()
+                    : ""}
+                </AvatarImg>
+              )}
       <UserName>{userInfo ? userInfo.name : ""}</UserName>
       <PassedBox>
         <div>
