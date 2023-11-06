@@ -7,21 +7,30 @@ import {
   FaChevronDownS,
 } from "./QuizSelectStyled";
 
-const QuizSelect = ({ className, selectTitle, options, handleCategorySelection}) => {    
-  const [openSelect, setOpenSelect] = useState(false);  
-  
+const QuizSelect = ({
+  className,
+  selectTitle,
+  options,
+  handleCategorySelection,
+}) => {
+  const [openSelect, setOpenSelect] = useState(false);
+
   const handleOnClickSelect = () => {
     setOpenSelect(!openSelect);
   };
 
-  const handleCheckboxChange = (event) => {    
-    handleCategorySelection(event, selectTitle)    
+  const handleCheckboxChange = (event) => {
+    handleCategorySelection(event, selectTitle);
   };
 
   return (
     <>
       <SelectWrapper>
-        <ButtonStyled type="button" className={className} onClick={handleOnClickSelect}>
+        <ButtonStyled
+          type="button"
+          className={className}
+          onClick={handleOnClickSelect}
+        >
           <p>{selectTitle}</p>
           <FaChevronDownS />
         </ButtonStyled>
@@ -35,8 +44,9 @@ const QuizSelect = ({ className, selectTitle, options, handleCategorySelection})
                 value={option?.categoryName}
                 onChange={handleCheckboxChange}
               />
-              <label htmlFor={option?._id}></label>
-              <p>{option?.categoryName}</p>
+              <label htmlFor={option?._id}>
+                <p>{option?.categoryName}</p>
+              </label>
             </OptionS>
           ))}
         </OptionsList>
