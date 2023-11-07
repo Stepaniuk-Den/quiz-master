@@ -15,14 +15,30 @@ export async function getFilteredQuizzes(categories) {
   categoryNames.forEach((categoryName) => {
     params.append("category", categoryName);
   });
-  // const { data } = await instance.get(`/quizzes?${params}`, config);
-  // const { data } = await instance.get(
-  //   `/quizzes?category=History&category=Fauna`,
-  //   config
-  // );
-  const { data } = await instance.get(
-    `/quizzes?rate=${ratingStars}`);
-  return data;
+  if(categoryNames.length){
+    const { data } = await instance.get(`/quizzes?${params}`);
+    console.log('data1: ', data);
+    return data;
+  }else if(ratingStars){
+    const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
+    console.log('data2: ', data);
+    return data;
+  }
+
+  // if(ratingStars&&categoryNames.length){
+  //   const { data } = await instance.get(`/quizzes?${params}&&rate=${ratingStars}`);
+  //   console.log('data1: ', data);
+  //   return data;
+  // }else if(ratingStars&&!categoryNames.length){
+  //   const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
+  //   console.log('data2: ', data);
+  //   return data;
+  // }else if(!ratingStars && categoryNames.length){
+  //   const { data } = await instance.get(`/quizzes?${params}`);
+  //   console.log('data3: ', data);
+  //   return data;
+  // }
+  
 }
 
 // export async function getQuizCategories(audience) {
@@ -99,8 +115,7 @@ export async function updateQuiz(quizId) {
   return data;
 }
 
-export async function updateFavoriteQuiz(quizId) {  
-  // const { data } = await instance.patch(`/user/favorites/${quizId}`);  
+export async function updateFavoriteQuiz(quizId) {     
   const { data } = await instance.patch(`/users/favorites`, quizId);
   return data;
 }
