@@ -6,7 +6,7 @@ import "./App.css";
 import PublicRoute from "./Guard/PublicRoute";
 import PrivateRoute from "./Guard/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { selectToken } from "./redux/user/userSelectors";
+import { selectIsAuth, selectToken } from "./redux/user/userSelectors";
 import { currentUserThunk } from "./redux/user/userThunks";
 import Notification from "./shared/NotificationToastify/Notification";
 import { useAuth } from "./hooks/useAuth";
@@ -34,7 +34,7 @@ const RandomQuizPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
+  const token = useSelector(selectIsAuth);
 
   useEffect(() => {
     if (!token) return;
