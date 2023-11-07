@@ -51,9 +51,7 @@ const QuestionCard = () => {
         </ImageWrapper>
         <StyledQuestion>
           <StyledTimeWrapper>
-            <label htmlFor="time">Time:</label>
-            {/* <input type="text" name="time" id="time" /> */}
-            {/* <StyledSelectTime name="time" id="time"></StyledSelectTime> */}
+            <p>Time:</p>
             <DropdownContainer ref={dropdownRef}>
               <DropdownButton onClick={toggleDropdown}>
                 {isDropdownTimeOpen ? <Up /> : <Down />}

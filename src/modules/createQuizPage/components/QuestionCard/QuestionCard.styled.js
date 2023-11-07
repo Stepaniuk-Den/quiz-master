@@ -64,7 +64,7 @@ export const StyledTimeWrapper = styled.div`
   align-items: center;
   margin-bottom: 32px;
   gap: 14px;
-  & label {
+  & p {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
