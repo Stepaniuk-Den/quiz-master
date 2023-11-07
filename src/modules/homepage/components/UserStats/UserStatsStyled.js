@@ -1,5 +1,22 @@
 import styled from 'styled-components';
 
+export const AvatarImg = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  font-family: GilroyBold;
+  font-size: 64px;
+  line-height: 100px;
+  text-align: center;
+  background-color: var(--pink-color);
+  border-radius: 50%;
+
+  & > p {
+    color: var(--text-color-100);
+  }
+`;
+
 export const UserCard = styled.div`
   max-width: 292px;
   height: 420px;

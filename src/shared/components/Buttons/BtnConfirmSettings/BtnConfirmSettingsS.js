@@ -10,7 +10,6 @@ export const BtnConfirmSettingsS = styled.button`
   border-radius: 30px;
   font-family: "GilroyBold";
   font-size: 16px;
-  /* line-height: 1; */
   color: var(--text-color-100);
   background-color: var(--blue-background);
   margin: 0 auto;
@@ -20,7 +19,7 @@ export const BtnConfirmSettingsS = styled.button`
   
   &:hover,
   &:focus {
-    transform: scale(0.98);
+    transform: scale(1.1);
   }
 
   @media screen and (max-width: 768px) {

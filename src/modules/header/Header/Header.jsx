@@ -14,6 +14,7 @@ import {
   Down,
   UserName,
   BoxAuth,
+  AvatarImg,
 } from "./HeaderStyled";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -134,9 +135,20 @@ const Header = () => {
       {hasToken && !isMobile ? (
         <DropdownContainer ref={dropdownRef}>
           <DropdownButton onClick={toggleDropdown}>
-            {infoUser ? (
-  <Avatar size="small" src={infoUser.userAvatar} alt="Photo" width="40px" />
-) : null}
+            {infoUser && infoUser.userAvatar ? (
+                <Avatar
+                  size="small"
+                  src={infoUser.userAvatar}
+                  alt="Photo"
+                  width="40px"
+                />
+              ) : (
+                <AvatarImg>
+                  {infoUser && infoUser.name
+                    ? infoUser.name.trim().charAt(0).toUpperCase()
+                    : ""}
+                </AvatarImg>
+              )}
             {infoUser ?<UserName>{infoUser.name}</UserName> : null}
             {isDropdownOpen ? <Up /> : <Down />}
           </DropdownButton>
@@ -170,18 +182,6 @@ const Header = () => {
         </>
       ) : (
         <BoxAuth>
-          {/* <Link to="/auth/registerForm">
-            <BtnRegister handleOpenModal={handleOpenModal}>
-              Register
-            </BtnRegister>
-          </Link>
-          <Link to="/auth/loginForm">
-            <BtnLogin handleOpenModal={handleOpenModal}>Login</BtnLogin>
-          </Link> */}
-
-          {/* <NavLink to="/auth/registerForm">Register</NavLink>
-          <NavLink to="/auth/loginForm">Login</NavLink> */}
-
           <Link to="/auth/registerForm">
             <BtnRegister>Register</BtnRegister>
           </Link>

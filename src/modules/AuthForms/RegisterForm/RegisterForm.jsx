@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai";
+// import { AiOutlineClose } from "react-icons/ai";
 import {
   AuthTitle,
   BtnEyeStyled,
@@ -13,7 +13,7 @@ import {
   InputsWrapper,
   LuEyeOffStyled,
   LuEyeStyled,
-  StyledCloseBtn,
+  // StyledCloseBtn,
   StyledModal,
 } from "../../../modules/AuthForms/LoginForm/LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
@@ -24,6 +24,7 @@ import {
   notifyVerifyEmail,
 } from "../../../shared/NotificationToastify/Toasts";
 import { registerUserThunk } from "../../../redux/user/userThunks";
+import BtnClose from "../../../shared/components/Buttons/BtnClose";
 // import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
 const RegisterForm = () => {
@@ -75,9 +76,7 @@ const RegisterForm = () => {
   return (
     <>
     <StyledModal>
-        <StyledCloseBtn type="button" onClick={handleClickBtnClose}>
-          <AiOutlineClose size={28} fill="#FFFFFF" />
-        </StyledCloseBtn>
+        <BtnClose onClick={handleClickBtnClose} />
 
       <AuthTitle>Sign Up</AuthTitle>
       <FormStyled onSubmit={formik.handleSubmit}>

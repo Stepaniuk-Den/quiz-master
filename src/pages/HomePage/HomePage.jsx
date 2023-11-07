@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ButtonSeeAll from "../../shared/components/Buttons/ButtonSeeAll";
 import UserStats from "../../modules/homepage/components/UserStats"
@@ -13,18 +13,17 @@ const HomePage = () => {
   const seeAllLink = "/lastquiz"; 
   const dispatch = useDispatch();
   const passedQuizzes = useSelector(selectPassed);
+  const [hasFetchedData, setHasFetchedData] = useState(false);
 
   useEffect(() => {
-    if (passedQuizzes.length === 0) {
-        dispatch(getPassedQuizzesThunk({ page: 1, limit: 8 }))
-      }
-        
-    }, [dispatch, passedQuizzes]);
+    if (!hasFetchedData) {
+      dispatch(getPassedQuizzesThunk({ page: 1, limit: 3 }));
+      setHasFetchedData(true);
+    }
+  }, [dispatch, hasFetchedData]);
   
-
-
-  const shouldDisplaySeeAll = passedQuizzes[0]?.length < 3;
-
+  const shouldDisplaySeeAll = passedQuizzes?.length < 3;
+  
   return (
     <Container>
       <PageTopBar titlePage="Home"/>
@@ -38,7 +37,7 @@ const HomePage = () => {
           </BoxLastPassed>
           <MediaQuery minWidth={1440}>
             {matches => (
-              <QuizesList quizzesArr={matches ? passedQuizzes[0]?.slice(0, 3) : passedQuizzes[0]?.slice(0, 2)} />
+              <QuizesList quizzesArr={matches ? passedQuizzes?.slice(0, 3) : passedQuizzes?.slice(0, 2)} />
             )}
           </MediaQuery>
          

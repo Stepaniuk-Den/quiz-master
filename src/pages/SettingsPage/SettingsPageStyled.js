@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { BiPlus } from "react-icons/bi";
 
 export const PageWrapper = styled.div`
   /* outline: 1px solid green; */
@@ -32,6 +33,7 @@ export const TitleWrapper = styled.div`
 
 export const AvatarImg = styled.div`
   display: inline-block;
+  position: relative;
   width: 100px;
   height: 100px;
   font-family: GilroyBold;
@@ -40,11 +42,53 @@ export const AvatarImg = styled.div`
   text-align: center;
   background-color: var(--pink-color);
   border-radius: 50%;
-  margin-bottom: 47px;
 
   & > p {
     color: var(--text-color-100);
   }
+`;
+
+export const AvatarWrapper = styled.div`
+  margin-bottom: 47px;
+  position: relative;
+`;
+
+export const AddButton = styled.button`
+  position: absolute;
+  left: 35px;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color-100);
+  background-color: var(--blue-background);
+  border-radius: 50%;
+  border-color: var(--text-color-100);
+  cursor: pointer;
+  &:hover {
+    & .bi-btn {
+      scale: 1.2;
+    }
+  }
+`;
+
+export const IconPlus = styled(BiPlus)`
+  width: 24px;
+  height: 24px;
+  fill: #f4f4f4;
+`;
+
+export const IconWrapper = styled.div`
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const InputsWrapper = styled.div`
@@ -67,7 +111,7 @@ export const InputStyled = styled.input`
   width: 278px;
   height: 44px;
   border-radius: 30px;
-  border: 1px solid var(--text-color-60);
+  border: 1px solid var(--border-color-30);
   /* outline: 1px solid transparent; */
   background: var(--second-background-color);
   color: var(--text-color-100);
@@ -124,6 +168,7 @@ export const ErrorsStyled = styled.div`
   line-height: 1.1;
   color: var(--pink-color);
 `;
+
 export const SettingForm = styled.div`
   display: flex;
   justify-content: center;
@@ -133,6 +178,7 @@ export const SettingForm = styled.div`
   border: 1px solid var(--text-color-30);
   border-radius: 20px;
   background-color: var(--second-background);
+  margin-bottom: 53px;
 
   @media screen and (max-width: 768px) {
     padding: 40px 20px;
