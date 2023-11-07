@@ -41,13 +41,16 @@ const SettingsPage = () => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setAvatarPreview(e.target.result);
-    };
-    reader.readAsDataURL(file);
+    if (file) {
+      setSelectedFile(file);
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setAvatarPreview(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const formik = useFormik({
@@ -156,7 +159,7 @@ const SettingsPage = () => {
                   <InputStyled
                     name="password"
                     type={passwordShown ? "text" : "password"}
-                    value={formik.values.name}
+                    value={formik.values.password}
                     placeholder="Password"
                     autoComplete="off"
                     onChange={formik.handleChange}
