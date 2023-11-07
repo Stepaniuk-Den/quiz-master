@@ -33,7 +33,6 @@ const RandomQuizPage = () => {
       {childrenRoute && (
         <RandomChildrenQuiz childrenRandomQuizzes={randomChildrenQuizzes} />
       )}
-      ; ;
     </>
   );
 };

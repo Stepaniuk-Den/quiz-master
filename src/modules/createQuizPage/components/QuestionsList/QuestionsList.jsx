@@ -1,6 +1,6 @@
 import React from 'react'
 import { QuestionList, QuestionsWrapper } from './QuestionsList.styled'
-import SelectCustom from '../../../../shared/components/Select/Select'
+// import SelectCustom from '../../../../shared/components/Select/Select'
 
 const QuestionsList = () => {
   return (
@@ -9,9 +9,9 @@ const QuestionsList = () => {
           <QuestionList>
             <li>quiz</li>
           </QuestionList>
-          <SelectCustom name="create" id="" selectTitle={'selectTitle'}>
+          {/* <SelectCustom name="create" id="" selectTitle={'Create'}>
             create
-          </SelectCustom>
+          </SelectCustom> */}
         </QuestionsWrapper>
   )
 }

@@ -15,47 +15,41 @@ import { getRandomQuizzesThunk } from "../../../../redux/quiz/quizThunks";
 
 const RandomAdultsQuiz = ({ adultsRandomQuizzes }) => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
+  //const [page, setPage] = useState(1);
   const [visibleQuizzes, setVisibleQuizzes] = useState(7);
   //const randomAdultsQuizzes = useSelector(selectRandomAdult);
 
   useEffect(() => {
     if (adultsRandomQuizzes.length === 0) {
-      dispatch(
-        getRandomQuizzesThunk({ audience: "adults", page: 1, limit: 8 })
-      );
+      dispatch(getRandomQuizzesThunk({ audience: "adults", limit: 8 }));
     }
   }, [dispatch, adultsRandomQuizzes]);
 
   useEffect(() => {
-    if (page > 1) {
-      dispatch(
-        getRandomQuizzesThunk({ audience: "adults", page: page, limit: 8 })
-      );
-    }
-  }, [dispatch, page]);
+    dispatch(getRandomQuizzesThunk({ audience: "adults", limit: 8 }));
+  }, [dispatch]);
 
   const loadMore = () => {
-    setPage((page) => page + 1);
+    //setPage((page) => page + 1);
     setVisibleQuizzes(visibleQuizzes + 8);
     console.log("u cliked Load more btn");
   };
 
-  const filter = (quizzes) => {
-    const uniqueQuizzes = [];
-    const seenIds = new Set();
+  // const filter = (quizzes) => {
+  //   const uniqueQuizzes = [];
+  //   const seenIds = new Set();
 
-    for (const randomQuiz of quizzes) {
-      if (!seenIds.has(randomQuiz._id)) {
-        uniqueQuizzes.push(randomQuiz);
-        seenIds.add(randomQuiz._id);
-      }
-    }
-    return uniqueQuizzes;
-  };
-  const uniqueAdultsRandomQuizzes = filter(adultsRandomQuizzes);
-  console.log(uniqueAdultsRandomQuizzes);
-  const shouldLoadMore = uniqueAdultsRandomQuizzes?.length < 7;
+  //   for (const randomQuiz of quizzes) {
+  //     if (!seenIds.has(randomQuiz._id)) {
+  //       uniqueQuizzes.push(randomQuiz);
+  //       seenIds.add(randomQuiz._id);
+  //     }
+  //   }
+  //   return uniqueQuizzes;
+  // };
+  // const uniqueAdultsRandomQuizzes = filter(adultsRandomQuizzes);
+  // console.log(uniqueAdultsRandomQuizzes);
+  // const shouldLoadMore = uniqueAdultsRandomQuizzes?.length < 7;
 
   return (
     <RandomAPageWrapper>
@@ -69,12 +63,10 @@ const RandomAdultsQuiz = ({ adultsRandomQuizzes }) => {
         </Paragraph>
       </RandomAPageDesc>
       <RandomASectionWrapper>
-        <QuizesList
-          quizzesArr={uniqueAdultsRandomQuizzes.slice(0, visibleQuizzes)}
-        />
+        <QuizesList quizzesArr={adultsRandomQuizzes.slice(0, visibleQuizzes)} />
         <RandomABtnWrapper>
-          {shouldLoadMore ? null : <BtnLoadMore handleLoadMore={loadMore} />}
-          {/* <BtnLoadMore handleLoadMore={loadMore} /> */}
+          {/* {shouldLoadMore ? null : <BtnLoadMore handleLoadMore={loadMore} />} */}
+          <BtnLoadMore handleLoadMore={loadMore} />
         </RandomABtnWrapper>
       </RandomASectionWrapper>
     </RandomAPageWrapper>

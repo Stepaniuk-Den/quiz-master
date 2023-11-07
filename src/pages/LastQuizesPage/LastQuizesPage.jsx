@@ -31,7 +31,7 @@ const LastQuizesPage = () => {
     <ContainerLastPassed>
       <PageTopBar titlePage="Last passed quizzes" />
     
-      <QuizesList quizzesArr={passedQuizzes} />
+      <QuizesList quizzesArr={passedQuizzes.data} />
         <ContainerBtn>
       {passedQuizzes.length % limitPerPage === 0 && (
         <BtnLoadMore handleLoadMore={handleLoadMore} />

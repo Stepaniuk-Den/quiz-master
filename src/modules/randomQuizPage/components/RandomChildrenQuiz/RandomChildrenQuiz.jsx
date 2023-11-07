@@ -15,45 +15,39 @@ import { getRandomQuizzesThunk } from "../../../../redux/quiz/quizThunks";
 
 const RandomChildrenQuiz = ({ childrenRandomQuizzes }) => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
+  //const [page, setPage] = useState(1);
   const [visibleQuizzes, setVisibleQuizzes] = useState(7);
   //const randomChildrenQuizzes = useSelector(selectRandomChildren);
 
   useEffect(() => {
     if (childrenRandomQuizzes.length === 0) {
-      dispatch(
-        getRandomQuizzesThunk({ audience: "children", page: 1, limit: 8 })
-      );
+      dispatch(getRandomQuizzesThunk({ audience: "children", limit: 8 }));
     }
   }, [dispatch, childrenRandomQuizzes]);
 
   useEffect(() => {
-    if (page > 1) {
-      dispatch(
-        getRandomQuizzesThunk({ audience: "children", page: page, limit: 8 })
-      );
-    }
-  }, [dispatch, page]);
+    dispatch(getRandomQuizzesThunk({ audience: "children", limit: 8 }));
+  }, [dispatch]);
 
   const loadMore = () => {
-    setPage((page) => page + 1);
+    //setPage((page) => page + 1);
     setVisibleQuizzes(visibleQuizzes + 8);
     console.log("u cliked Load more btn");
   };
 
-  const filter = (quizzes) => {
-    const uniqueQuizzes = [];
-    const seenIds = new Set();
+  // const filter = (quizzes) => {
+  //   const uniqueQuizzes = [];
+  //   const seenIds = new Set();
 
-    for (const randomQuiz of quizzes) {
-      if (!seenIds.has(randomQuiz._id)) {
-        uniqueQuizzes.push(randomQuiz);
-        seenIds.add(randomQuiz._id);
-      }
-    }
-    return uniqueQuizzes;
-  };
-  const uniqueChildrenRandomQuizzes = filter(childrenRandomQuizzes);
+  //   for (const randomQuiz of quizzes) {
+  //     if (!seenIds.has(randomQuiz._id)) {
+  //       uniqueQuizzes.push(randomQuiz);
+  //       seenIds.add(randomQuiz._id);
+  //     }
+  //   }
+  //   return uniqueQuizzes;
+  // };
+  // const uniqueChildrenRandomQuizzes = filter(childrenRandomQuizzes);
 
   return (
     <RandomAPageWrapper>
@@ -68,7 +62,7 @@ const RandomChildrenQuiz = ({ childrenRandomQuizzes }) => {
       </RandomAPageDesc>
       <RandomASectionWrapper>
         <QuizesList
-          quizzesArr={uniqueChildrenRandomQuizzes.slice(0, visibleQuizzes)}
+          quizzesArr={childrenRandomQuizzes.slice(0, visibleQuizzes)}
         />
         <RandomABtnWrapper>
           <BtnLoadMore handleLoadMore={loadMore} />

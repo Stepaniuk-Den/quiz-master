@@ -20,11 +20,14 @@ import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 
 import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const FeedbackFormNoAuth = ({ onSendClick, to }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const quizId = searchParams.get("quizId");
 
   const handleClick = () => {
     if (to) {
@@ -51,8 +54,8 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
         userName: "Artem",
         rate: values.rating,
         comment: values.feedback,
-        quizId: "654360c3d1c10f1b61d9d92c",
-        // quizId:
+        quizId: quizId,
+        // quizId: "653b7f41b96bb14670aac9ed",
       };
       console.log(reviewData);
       try {
