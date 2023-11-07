@@ -144,11 +144,11 @@ const quizSlice = createSlice({
         state.quizzes.total += 1;
       })
       .addCase(updateQuizThunk.fulfilled, (state, action) => {
-        const newUserQuizzes = state.quizzes.user.filter(
-          (quiz) => quiz.id !== action.payload.id
-        );
-        state.quizzes.user = [...newUserQuizzes, action.payload];
-      })
+        // const newUserQuizzes = state.quizzes.user.filter(
+        //   (quiz) => quiz.id !== action.payload.id
+        // );
+        // state.quizzes.user = [...newUserQuizzes, action.payload];
+      })      
       .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {
         console.log('actionThunk: ', action.payload);
         state.quizzes.favorites = state.quizzes.favorites.filter(quiz => quiz._id !== action.payload);
