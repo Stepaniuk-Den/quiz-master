@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BiPlus } from "react-icons/bi";
 
-export const CardRedirecionWrapper = styled.div`
+export const CardRedirecionWrapper = styled.button`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -49,7 +49,7 @@ export const RedIconWrapper = styled.div`
   transition: all 0.3s ease-in-out;
 `;
 
-export const ButtonRedStyled = styled.button`
+export const ButtonRedStyled = styled.div`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -61,16 +61,6 @@ export const ButtonRedStyled = styled.button`
   gap: 16px;
   border: transparent;
   background-color: transparent;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    & .bi-btn {
-      scale: 2;
-      transform: rotateZ(90deg);
-    }
-    & .bi-wrapper {
-      border: 3px solid #205bf1;
-    }
-  }
 `;
 
 export const BiPlusRed = styled(BiPlus)`
@@ -81,7 +71,7 @@ export const BiPlusRed = styled(BiPlus)`
 `;
 
 export const RandomPageCardTitle = styled.h3`
-
+ color: #F4F4F4;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;

@@ -11,6 +11,8 @@ import { useMediaQuery } from "react-responsive";
 import { StyledQuizzes } from "./Quizzes.styled";
 import EmptyBlock from "../../../../shared/components/EmptyBlock/EmptyBlock";
 
+import { v4 as uuidv4 } from "uuid";
+
 function Quizzes({ adultQuizzes, childrenQuizzes }) {
   const isDesktop = useMediaQuery({
     query: "(min-width: 1440px)",
@@ -54,7 +56,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {adultQuizzes?.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
+              <SwiperSlide key={uuidv4()}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
@@ -70,7 +72,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {adultQuizzes?.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
+              <SwiperSlide key={uuidv4()}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
@@ -104,7 +106,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {childrenQuizzes?.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
+              <SwiperSlide key={uuidv4()}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}
@@ -120,7 +122,7 @@ function Quizzes({ adultQuizzes, childrenQuizzes }) {
             modules={[Pagination]}
           >
             {childrenQuizzes?.map((quiz) => (
-              <SwiperSlide key={quiz._id}>
+              <SwiperSlide key={uuidv4()}>
                 <QuizListItem quiz={quiz} />
               </SwiperSlide>
             ))}

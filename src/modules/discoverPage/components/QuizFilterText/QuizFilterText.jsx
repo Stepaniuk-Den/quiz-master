@@ -19,7 +19,7 @@ const QuizFilterText = ({handleStarSelection, totalResults = 0, selectedCategory
         <RatingBox>
           <SpanStyled>Specify the desired rating:</SpanStyled>
           <RatingStarsRadio
-           handleStarSelection={handleStarSelection}
+           handleStarSelection={handleStarSelection}           
            />
         </RatingBox>
       </TextWrapper>

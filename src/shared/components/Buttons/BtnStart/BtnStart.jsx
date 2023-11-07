@@ -1,13 +1,14 @@
 import { Answers, BtnStartS, TextAnswers } from "./BtnStartStyled";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const BtnStart = ({quantityQuestions,correctAnswers}) => {
+const BtnStart = ({quantityQuestions,correctAnswers, id, category}) => {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const isLastQuizOrHome = location.pathname === '/lastquiz' || location.pathname === '/home';
 
   const handleBtnStart = () => {
-  }
+    navigate(`/basequizform?quizId=${id}&category=${category}`)
+  };
 
   return (
     <>

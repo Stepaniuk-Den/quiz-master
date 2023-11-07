@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   NextButton,
-  BackButton, // Добавляем кнопку "Назад"
+  BackButton,
   StyledButton,
   TitleQuestion,
   AnswersContainer,
@@ -10,22 +10,26 @@ import {
   AnswersCounter,
   AnswerLabels
 } from "./QuizQuestionStyled";
-import Time from "../Time/Time";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { getPassedQuizzesThunk, passedUsersQuiz, updateQuizThunk, updateUsersQuiz } from "../../../redux/quiz/quizThunks";
+import { StyledCountdown, TimeText } from "../Time/Time.styled";
+import { useAuth } from "../../../hooks/useAuth";
 
-function QuizQuestion({ questions,quizId }) {
+function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const answerLabels = ["A", "B", "C", "D"];
-
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1);
-  const [incorrectAnswerIndex, setIncorrectAnswerIndex] = useState(-1);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [previousQuestion, setPreviousQuestion] = useState(null); // Добавляем состояние для предыдущего вопроса
-  const [isTestCompleted, setIsTestCompleted] = useState(false);
+  const [previousQuestion, setPreviousQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
+  const [userAnswers, setUserAnswers] = useState({});
+
   const answers = questions[currentQuestion].answers;
+  const question = questions[currentQuestion];
+  const { isAuth } = useAuth();
 
   const handleButtonClick = (answer, index) => {
     const isCorrect = answer.correctAnswer;
@@ -37,80 +41,154 @@ function QuizQuestion({ questions,quizId }) {
       isCorrect: isCorrect ? "correct" : "incorrect",
     });
 
+    setUserAnswers((prevAnswers) => {
+      const questionId = questions[currentQuestion]._id;
+
+      return {
+        ...prevAnswers,
+        [questionId]: {
+          true: answers.findIndex((ans) => ans.correctAnswer === true),
+          false: !isCorrect ? index : answer.correctAnswer ? index : prevAnswers[questionId]?.false,
+          time: timeRemaining,
+        },
+      };
+    });
+
     if (isCorrect) {
       setCorrectAnswersCount((prevCount) => prevCount + 1);
-      setCorrectAnswerIndex(index);
-      setIncorrectAnswerIndex(-1);
-    } else {
-      setIncorrectAnswerIndex(index);
-
-      const correctIndex = answers.findIndex((answer) => answer.correctAnswer);
-      if (correctIndex !== -1) {
-        setCorrectAnswerIndex(correctIndex);
-      }
     }
   };
 
   const handleNextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
       setIsAnswerSelected(false);
-      setPreviousQuestion(currentQuestion); // Устанавливаем индекс предыдущего вопроса
+      setPreviousQuestion(currentQuestion);
       setCurrentQuestion(currentQuestion + 1);
     } else {
-  
-      if (isTestCompleted) {
-        navigate(
-          `/quizresult?quizId=${quizId}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
-        );
+      navigate(
+        `/quizresult?quizId=${quizId}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
+      );
+      const quizData = {
+        result: {
+          quizId: quizId,
+          quantityQuestions: questions.length,
+          correctAnswers: correctAnswersCount,
+        },
+      };
+
+      dispatch(updateQuizThunk(quizId));
+      if (isAuth) {
+        dispatch(getPassedQuizzesThunk())
+          .then((arr) => {
+            const totalPassed = arr.payload;
+            if (totalPassed.data.some((item) => item._id === quizId)) {
+              dispatch(updateUsersQuiz(quizData));
+            } else {
+              dispatch(passedUsersQuiz(quizData));
+            }
+          });
       }
-      setIsTestCompleted(true);
     }
   };
 
   const handlePreviousQuestion = () => {
     if (previousQuestion !== null) {
       setIsAnswerSelected(false);
-      setCurrentQuestion(previousQuestion); // Возвращаемся к предыдущему вопросу
-      setPreviousQuestion(previousQuestion - 1); // Устанавливаем предыдущий вопрос
+      setCurrentQuestion(previousQuestion);
+      setPreviousQuestion(previousQuestion - 1);
+
+      const prevQuestionId = questions[previousQuestion]._id;
+      const prevUserAnswer = userAnswers[prevQuestionId];
+
+      if (prevUserAnswer && prevUserAnswer.time) {
+        setTimeRemaining(prevUserAnswer.time);
+      } else {
+        setTimeRemaining(question.time);
+      }
     }
   };
 
+  const isAnswerTrue = userAnswers[questions[currentQuestion]._id]?.true;
+  const isAnswerFalse = userAnswers[questions[currentQuestion]._id]?.false;
+
+  const getButtonClass = (index) => {
+    if (index === isAnswerTrue && index === isAnswerFalse) {
+      return "correct";
+    } else if (index === isAnswerTrue) {
+      return "correct";
+    } else if (index === isAnswerFalse) {
+      return "incorrect";
+    } else {
+      return "normal";
+    }
+  };
+
+  const [timeRemaining, setTimeRemaining] = useState(question.time);
+
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  };
+
   useEffect(() => {
-    setCorrectAnswerIndex(-1);
-    setIncorrectAnswerIndex(-1);
-  }, [answers]);
+    setTimeRemaining(question.time);
+  }, [question, currentQuestion]);
+
+  useEffect(() => {
+    let timer;
+
+    if (!isAnswerSelected && timeRemaining > 0) {
+      timer = setTimeout(() => {
+        setTimeRemaining((prevTime) => prevTime - 1);
+      }, 1000);
+    }
+
+    if (isAnswerSelected) {
+      clearTimeout(timer);
+      console.log(userAnswers[questions[currentQuestion]._id])
+    }
+    
+    return () => {
+      clearTimeout(timer);
+    };
+  });
 
   return (
     <>
       <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
-      <Time
-        question={questions[currentQuestion]}
-        currentQuestion={currentQuestion}
-        isAnswerSelected={isAnswerSelected}
-      />
+      <TimeText>
+        Time:
+       <StyledCountdown>
+    <span>
+      {userAnswers[questions[currentQuestion]._id] ? (
+        formatTime(userAnswers[questions[currentQuestion]._id].time)
+      ) : (
+        formatTime(timeRemaining)
+      )}
+    </span>
+  </StyledCountdown>
+      </TimeText>
       <div>
         <AnswersContainer>
           {answers.map((answer, index) => (
             <li key={index}>
               <StyledButton
                 onClick={() => handleButtonClick(answer, index)}
-                isCorrect={
-                  index === incorrectAnswerIndex
-                    ? "incorrect"
-                    : index === correctAnswerIndex
-                    ? "correct"
-                    : "normal"
-                }
-                disabled={isAnswerSelected}
+                isCorrect={getButtonClass(index)}
+                disabled={userAnswers[questions[currentQuestion]._id]}
               >
-                <ButtonText><AnswerLabels>{answerLabels[index]} : </AnswerLabels>{`${answer.answer}`}</ButtonText>
+                <ButtonText>
+                  <AnswerLabels>{answerLabels[index]} : </AnswerLabels>
+                  {`${answer.answer}`}
+                </ButtonText>
               </StyledButton>
             </li>
           ))}
         </AnswersContainer>
       </div>
       <DownContainer>
-        <AnswersCounter style={{ textAlign: "right" }}>
+        <AnswersCounter>
           {currentQuestion + 1}/{questions.length}
         </AnswersCounter>
         <NextButton
@@ -119,7 +197,7 @@ function QuizQuestion({ questions,quizId }) {
         >
           Next
         </NextButton>
-        {currentQuestion > 0 && ( // Отображаем кнопку "Назад" если не на первом вопросе
+        {currentQuestion > 0 && (
           <BackButton onClick={handlePreviousQuestion}>
             Back
           </BackButton>
