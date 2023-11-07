@@ -19,9 +19,9 @@ const CreateQuizCard = () => {
     });
   };
   return (
-    <CardRedirecionWrapper>
+    <CardRedirecionWrapper type="button" onClick={handlePushMessage}>
       <RedirectionButtonWrap>
-        <ButtonRedStyled type="button" onClick={handlePushMessage}>
+        <ButtonRedStyled>
           <RedIconWrapper>
             <BiPlusRed />
           </RedIconWrapper>

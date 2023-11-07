@@ -8,7 +8,6 @@ import {
 } from "./RandomQuizPageStyled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRandomAdult, selectRandomChildren } from "../../redux/selectors";
-//import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { useParams } from "react-router-dom";
 import Paragraph from "../../shared/components/Paragraph/Paragraph";
 import RandomQuiz from "../../modules/randomQuizPage/components/RandomQuiz";
@@ -20,71 +19,92 @@ const RandomQuizPage = () => {
   const dispatch = useDispatch();
   const adultsRoute = ageType === "Adults";
   const childrenRoute = ageType === "Children";
+
+  //==============================================//
   const [visibleQuizzes, setVisibleQuizzes] = useState(7);
-  const [page, setPage] = useState(1);
-  // const [childrenRandom, setChildrenRandom] = useState([]);
-  // const [adultsRandom, setAdultsRandom] = useState([]);
-
-  // useEffect(() => {
-  //   const adultsData = dispatch(
-  //     getRandomQuizzesThunk({ audience: "adults", page: 1, limit: 8 })
-  //   );
-  //   selectRandomAdult(adultsData);
-  // });
-
-  // console.log(adultsRandom);
+  const [adultsPage, setAdultsPage] = useState(1);
+  const [childrenPage, setChildrenPage] = useState(1);
+  //==============================================//
 
   const randomAdultsQuizzes = useSelector(selectRandomAdult);
   const randomChildrenQuizzes = useSelector(selectRandomChildren);
 
-  useEffect(() => {
-    if (randomAdultsQuizzes.length === 0 || randomChildrenQuizzes === 0) {
-      dispatch(getRandomQuizzesThunk({ page: page, limit: 8 }));
+  const filter = (quizzes) => {
+    const uniqueQuizzes = [];
+    const seenIds = new Set();
+
+    for (const randomQuiz of quizzes) {
+      if (!seenIds.has(randomQuiz._id)) {
+        uniqueQuizzes.push(randomQuiz);
+        seenIds.add(randomQuiz._id);
+      }
     }
-  }, [dispatch, randomAdultsQuizzes, randomChildrenQuizzes, page]);
+    return uniqueQuizzes;
+  };
 
-  // const NewQuizzes = () => {
-  //   useEffect(() => {
-  //     dispatch(getRandomQuizzesThunk({ page: page, limit: 4 }));
-  //   }, [dispatch, page]);
-  // };
-
-  // useEffect(() => {
-  //   if (randomAdultsQuizzes.length === 0) {
-  //     dispatch(
-  //       getRandomQuizzesThunk({ audience: "adults", page: 1, limit: 8 })
-  //     );
-  //   }
-  // }, [dispatch, randomAdultsQuizzes]);
+  const uniqueAdultsRandomQuizzes = filter(randomAdultsQuizzes);
+  const uniqueChildrenRandomQuizzes = filter(randomChildrenQuizzes);
+  //console.log(uniqueAdultsRandomQuizzes);
+  //console.log(uniqueChildrenRandomQuizzes);
 
   // useEffect(() => {
-  //   if (randomChildrenQuizzes.length === 0) {
-  //     dispatch(
-  //       getRandomQuizzesThunk({ audience: "children", page: 1, limit: 8 })
-  //     );
-  //   }
-  // }, [dispatch, randomChildrenQuizzes]);
-
-  // useEffect(() => {
-  //   if (randomAdultsQuizzes.length === 0) {
-  //     dispatch(
-  //       getRandomQuizzesThunk({ audience: "adults", page: 1, limit: 8 })
-  //     );
-  //   } else if (randomChildrenQuizzes.length === 0) {
-  //     dispatch(
-  //       getRandomQuizzesThunk({ audience: "chhildren", page: 1, limit: 8 })
-  //     );
+  //   if (randomAdultsQuizzes.length === 0 || randomChildrenQuizzes === 0) {
+  //     dispatch(getRandomQuizzesThunk({ page: 1, limit: 8 }));
   //   }
   // }, [dispatch, randomAdultsQuizzes, randomChildrenQuizzes]);
 
-  const loadMore = () => {
-    setPage((page) => page + 1);
+  useEffect(() => {
+    if (randomAdultsQuizzes.length === 0) {
+      dispatch(
+        getRandomQuizzesThunk({ audience: "adults", page: 1, limit: 8 })
+      );
+    }
+  }, [dispatch, randomAdultsQuizzes]);
+
+  useEffect(() => {
+    if (randomChildrenQuizzes.length === 0) {
+      dispatch(
+        getRandomQuizzesThunk({ audience: "children", page: 1, limit: 8 })
+      );
+    }
+  }, [dispatch, randomChildrenQuizzes]);
+
+  useEffect(() => {
+    if (adultsPage > 1) {
+      dispatch(
+        getRandomQuizzesThunk({
+          audience: "adults",
+          page: adultsPage,
+          limit: 8,
+        })
+      );
+    }
+  }, [dispatch, adultsPage]);
+
+  useEffect(() => {
+    if (childrenPage > 1) {
+      dispatch(
+        getRandomQuizzesThunk({
+          audience: "children",
+          page: childrenPage,
+          limit: 8,
+        })
+      );
+    }
+  }, [dispatch, childrenPage]);
+
+  const adultsLoadMore = () => {
+    setAdultsPage((page) => page + 1);
     setVisibleQuizzes(visibleQuizzes + 8);
     console.log("u cliked Load more btn");
   };
-  console.log(page);
-  //console.log("random-adults =>", randomAdultsQuizzes);
-  //console.log("random-children =>", randomChildrenQuizzes);
+
+  const childrenLoadMore = () => {
+    setChildrenPage((page) => page + 1);
+    setVisibleQuizzes(visibleQuizzes + 8);
+    console.log("u cliked Load more btn");
+  };
+
   return (
     <RandomPageWrapper>
       <PageTitle>For {ageType}</PageTitle>
@@ -107,19 +127,19 @@ const RandomQuizPage = () => {
         )}
       </RandomPageDesc>
       <RandomSectionWrapper>
-        {/* <QuizesList quizzesArr={randomChildrenQuiz} /> */}
         {adultsRoute && (
           <RandomQuiz
-            adultsQuiz={randomAdultsQuizzes.slice(0, visibleQuizzes)}
+            adultsQuiz={uniqueAdultsRandomQuizzes.slice(0, visibleQuizzes)}
           />
         )}
         {childrenRoute && (
           <RandomQuiz
-            childrenQuiz={randomChildrenQuizzes.slice(0, visibleQuizzes)}
+            childrenQuiz={uniqueChildrenRandomQuizzes.slice(0, visibleQuizzes)}
           />
         )}
         <RandomBtnWrapper>
-          <BtnLoadMore handleLoadMore={loadMore} />
+          {adultsRoute && <BtnLoadMore handleLoadMore={adultsLoadMore} />}
+          {childrenRoute && <BtnLoadMore handleLoadMore={childrenLoadMore} />}
         </RandomBtnWrapper>
       </RandomSectionWrapper>
     </RandomPageWrapper>
