@@ -117,6 +117,7 @@ export const OptionS = styled.li`
   }
   p {
     display: block;
+    cursor: pointer;
     font-family: GilroyRegular, sans-serif;
     font-size: 14px;
     line-height: 1.29; /* 128.571% */

@@ -16,7 +16,7 @@ const QuizeFilterTools = ({
       <QuizFilterText
          handleStarSelection={handleStarSelection}
          totalResults={totalResults}
-         selectedCategoryNames={selectedCategoryNames}
+         selectedCategoryNames={selectedCategoryNames}         
       />
     </FormFiltersWrapper>
   );
