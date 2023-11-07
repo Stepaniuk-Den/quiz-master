@@ -25,7 +25,7 @@ const SelectAttributeCard = () => {
           <div><input type="radio" id='#E65368' name='Background'/></div>
           </div>
         </div>
-  )
+  )      
 }
 
 export default SelectAttributeCard
