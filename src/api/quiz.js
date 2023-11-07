@@ -4,72 +4,62 @@ export async function getRandomQuizzes(params) {
   const { data } = await instance.get("/quizzes/random", { params });
   return data;
 }
-///////////////////////////////////////////////////////////////
-// export async function getFilteredQuizzes(params) {
-//   const { data } = await instance.get("/quizzes", { params });
-//   return data;
-// }
-export async function getFilteredQuizzes(categories) {
-  const { ratingStars, categoryNames } = categories;
-  const params = new URLSearchParams();
-  categoryNames.forEach((categoryName) => {
-    params.append("category", categoryName);
-  });
-  if(categoryNames.length){
-    const { data } = await instance.get(`/quizzes?${params}`);
-    console.log('data1: ', data);
+
+export async function getFilteredQuizzes(params) {  
+  console.log('params: ', params);
+  const { ratingStars, categoryNames, inputValue } = params;  
+  console.log('inputValue: ', Boolean(inputValue));
+  const categoryIds = categoryNames?.join("+")
+    
+  if(inputValue&&categoryNames.length&&(ratingStars || ratingStars===0)){
+    console.log('inputValue111: ', inputValue);
+    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}&rate=${ratingStars}`);
+    console.log('dataText: ', data);
     return data;
-  }else if(ratingStars){
-    const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
-    console.log('data2: ', data);
+  }else if(inputValue&&!categoryNames.length&&(ratingStars || ratingStars===0)){
+    console.log('inputValue222: ', inputValue);
+    const { data } = await instance.get(`/quizzes?q=${inputValue}&rate=${ratingStars}`);
+    console.log('dataText: ', data);
+    return data;
+  }else if(inputValue&&categoryNames.length&&!(ratingStars || ratingStars===0)){
+    console.log('inputValue333: ', inputValue);
+    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}`);
+    console.log('dataText: ', data);
+    return data;
+  }else if(inputValue){
+    console.log('inputValue444: ', inputValue);
+    const { data } = await instance.get(`/quizzes?q=${inputValue}`);
+    console.log('dataText: ', data);
     return data;
   }
 
-  // if(ratingStars&&categoryNames.length){
-  //   const { data } = await instance.get(`/quizzes?${params}&&rate=${ratingStars}`);
-  //   console.log('data1: ', data);
-  //   return data;
-  // }else if(ratingStars&&!categoryNames.length){
-  //   const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
-  //   console.log('data2: ', data);
-  //   return data;
-  // }else if(!ratingStars && categoryNames.length){
-  //   const { data } = await instance.get(`/quizzes?${params}`);
-  //   console.log('data3: ', data);
-  //   return data;
-  // }
-  
+  if(categoryNames.length&&(ratingStars || ratingStars===0)){
+    const { data } = await instance.get(`/quizzes?category=${categoryIds}&rate=${ratingStars}`);
+    console.log('data1: ', data);
+    return data;
+  }
+  else if(categoryNames.length&&!ratingStars){    
+    const { data } = await instance.get(`/quizzes?category=${categoryIds}`);
+    console.log('data2: ', data);
+    return data;
+  }else if(!categoryNames.length && (ratingStars || ratingStars===0)){
+    // console.log('ratingStars123: ', ratingStars);
+    const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
+    console.log('data3: ', data);
+    return data;
+  }  
 }
 
-// export async function getQuizCategories(audience) {
-//   const { data } = await instance.get(`/categories/${audience}`);
-//   return data;
-// }
-// export async function getQuizCategories(audience) {
-//   console.log(audience);
-//   const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDNkODlmMGMxZmNhYTUwY2I2NTlhZCIsImlhdCI6MTY5ODk0NTIyMSwiZXhwIjoxNjk4OTg4NDIxfQ.kDwUeNbhNGfoMZ3TBfpswMmVbs_WkJTKWNGOLgmKVY8';
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${accessToken}`,
-//     },
-//   };
-//   const { data } = await instance.get(`/categories?audience=${audience}`, config);
-//   return data;
-// }
 export async function getQuizCategories() {
   const { data } = await instance.get(`/categories`);
   return data;
 }
-////////////////////////////////////////////////////////////////////////////
+
 export async function getPassedQuizzes(params) {
   const { data } = await instance.get("/quizzes/passedquiz", { params });
   return data;
 }
-//////////////////////////////////////////////////////////////////////////////////////////////
-// export async function getUserQuizzes() {
-//   const { data } = await instance.get("/quizzes/user");
-//   return data;
-// }
+
 export async function getUserQuizzes() {
   const { data } = await instance.get("/quizzes/myQuiz");
   return data;

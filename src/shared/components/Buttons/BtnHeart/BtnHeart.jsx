@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BtnHeartS, FiHeartS } from "./BtnHeartStyled";
 import { updateFavoriteQuizThunk } from "../../../../redux/quiz/quizThunks";
 import { selectToken } from "../../../../redux/user/userSelectors";
-import { notifyBtnHeartReject, notifyBtnHeartSuccess } from "../../../NotificationToastify/Toasts";
+import { notifyBtnHeartReject } from "../../../NotificationToastify/Toasts";
 
 const BtnHeart = ({ id, owner, updateFavoriteQuizes }) => {
   const dispatch = useDispatch();
