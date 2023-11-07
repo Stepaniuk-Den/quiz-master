@@ -12,17 +12,18 @@ import {
 } from "./QuizQuestionStyled";
 import Time from "../Time/Time";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { getPassedQuizzesThunk, passedUsersQuiz, updateQuizThunk, updateUsersQuiz } from "../../../redux/quiz/quizThunks";
 
 function QuizQuestion({ questions,quizId }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const answerLabels = ["A", "B", "C", "D"];
-
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1);
   const [incorrectAnswerIndex, setIncorrectAnswerIndex] = useState(-1);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [previousQuestion, setPreviousQuestion] = useState(null); // Добавляем состояние для предыдущего вопроса
-  const [isTestCompleted, setIsTestCompleted] = useState(false);
+  const [previousQuestion, setPreviousQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
   const answers = questions[currentQuestion].answers;
@@ -52,25 +53,42 @@ function QuizQuestion({ questions,quizId }) {
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < questions.length-1) {
       setIsAnswerSelected(false);
-      setPreviousQuestion(currentQuestion); // Устанавливаем индекс предыдущего вопроса
+      setPreviousQuestion(currentQuestion);
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setIsTestCompleted(true);
-      if (isTestCompleted) {
         navigate(
           `/quizresult?quizId=${quizId}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
         );
-      }
+      const quizData = {
+        result: {
+          quizId: quizId,
+          quantityQuestions: questions.length,
+          correctAnswers: correctAnswersCount,
+        },
+      };
+
+      dispatch(updateQuizThunk(quizId))
+
+      dispatch(getPassedQuizzesThunk())
+        .then(arr => {
+        const totalPassed = arr.payload;
+        if (totalPassed.some(item => item._id === quizId)) {
+          dispatch(updateUsersQuiz(quizData))
+        } else {
+          dispatch(passedUsersQuiz(quizData))
+        }
+      })
     }
   };
+
 
   const handlePreviousQuestion = () => {
     if (previousQuestion !== null) {
       setIsAnswerSelected(false);
-      setCurrentQuestion(previousQuestion); // Возвращаемся к предыдущему вопросу
-      setPreviousQuestion(previousQuestion - 1); // Устанавливаем предыдущий вопрос
+      setCurrentQuestion(previousQuestion); 
+      setPreviousQuestion(previousQuestion - 1); 
     }
   };
 
@@ -118,7 +136,7 @@ function QuizQuestion({ questions,quizId }) {
         >
           Next
         </NextButton>
-        {currentQuestion > 0 && ( // Отображаем кнопку "Назад" если не на первом вопросе
+        {currentQuestion > 0 && (
           <BackButton onClick={handlePreviousQuestion}>
             Back
           </BackButton>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   BiPlusRed,
@@ -17,7 +17,6 @@ const CreateQuizCard = () => {
       theme: "dark",
       position: toast.POSITION.TOP_CENTER,
     });
-    //console.log("This function is available only for authorized users :)");
   };
   return (
     <CardRedirecionWrapper>
@@ -29,7 +28,6 @@ const CreateQuizCard = () => {
         </ButtonRedStyled>
         <RandomPageCardTitle>Create quiz</RandomPageCardTitle>
       </RedirectionButtonWrap>
-      <ToastContainer />
     </CardRedirecionWrapper>
   );
 };

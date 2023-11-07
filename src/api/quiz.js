@@ -15,14 +15,30 @@ export async function getFilteredQuizzes(categories) {
   categoryNames.forEach((categoryName) => {
     params.append("category", categoryName);
   });
-  // const { data } = await instance.get(`/quizzes?${params}`, config);
-  // const { data } = await instance.get(
-  //   `/quizzes?category=History&category=Fauna`,
-  //   config
-  // );
-  const { data } = await instance.get(
-    `/quizzes?rate=${ratingStars}`);
-  return data;
+  if(categoryNames.length){
+    const { data } = await instance.get(`/quizzes?${params}`);
+    console.log('data1: ', data);
+    return data;
+  }else if(ratingStars){
+    const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
+    console.log('data2: ', data);
+    return data;
+  }
+
+  // if(ratingStars&&categoryNames.length){
+  //   const { data } = await instance.get(`/quizzes?${params}&&rate=${ratingStars}`);
+  //   console.log('data1: ', data);
+  //   return data;
+  // }else if(ratingStars&&!categoryNames.length){
+  //   const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
+  //   console.log('data2: ', data);
+  //   return data;
+  // }else if(!ratingStars && categoryNames.length){
+  //   const { data } = await instance.get(`/quizzes?${params}`);
+  //   console.log('data3: ', data);
+  //   return data;
+  // }
+  
 }
 
 // export async function getQuizCategories(audience) {
@@ -84,18 +100,22 @@ export async function quizResult({ quizId, result }) {
   return data;
 }
 
-// export async function patchPassedQuiz({ quizId, quantityQuestions, correctAnswers }) {
-//   const { data } = await instance.patch(`users/passed-quiz`, result);
-//   return data;
-// }
-
-export async function updateQuiz(quiz) {
-  const { data } = await instance.patch(`/quizzes/${quiz.id}`, quiz);
+export async function patchPassedQuiz({result}) {
+  const { data } = await instance.patch(`users/passed-quiz`, result);
   return data;
 }
 
-export async function updateFavoriteQuiz(quizId) {  
-  // const { data } = await instance.patch(`/user/favorites/${quizId}`);  
+export async function retakePassedQuiz({result}) {
+  const { data } = await instance.patch(`users/retake-passed-quiz`, result);
+  return data;
+}
+
+export async function updateQuiz(quizId) {
+  const { data } = await instance.patch(`/quizzes/${quizId}`);
+  return data;
+}
+
+export async function updateFavoriteQuiz(quizId) {     
   const { data } = await instance.patch(`/users/favorites`, quizId);
   return data;
 }
