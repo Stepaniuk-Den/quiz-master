@@ -35,7 +35,7 @@ const HomePage = () => {
           </BoxLastPassed>
           <MediaQuery minWidth={1440}>
             {matches => (
-              <QuizesList quizzesArr={matches ? passedQuizzes?.slice(0, 3) : passedQuizzes?.slice(0, 2)} />
+              <QuizesList quizzesArr={matches ? passedQuizzes.data?.slice(0, 3) : passedQuizzes.data?.slice(0, 2)} />
             )}
           </MediaQuery>
          

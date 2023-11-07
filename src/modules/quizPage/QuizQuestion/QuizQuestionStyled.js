@@ -66,6 +66,7 @@ export const DownContainer = styled.div`
 
 export const AnswersCounter = styled.p`
   position: absolute;
+  text-align: "right";
   bottom: 0;
   right: 0;
   margin: 0; /* Убираем внешние отступы */
