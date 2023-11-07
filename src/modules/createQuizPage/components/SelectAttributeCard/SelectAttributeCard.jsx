@@ -7,11 +7,11 @@ const SelectAttributeCard = () => {
           <p>Audience</p>
           <div>
           <input type="radio" id='children' name='Audience'/>
-          <label for="children" >For children</label>
+          <label htmlFor="children" >For children</label>
           </div>
           <div>
           <input type="radio" id='adults' name='Audience'/>
-          <label for="adults">For adults</label>
+          <label htmlFor="adults">For adults</label>
           </div>
           </div>
           <div>
