@@ -53,27 +53,11 @@ function QuestionsList() {
               <FiTrash2 />
             </span>
           </QuestionList>
-        ))}
-      </ul>
-
-      <SelectStyledQuiz
-        value={selectedOption}
-        onChange={handleOptionChange}
-        onClick={handleSelectChange}
-      >
-        <option value="Create">Create</option>
-        <option value="Quiz">
-          Quiz <span className="up-icon">{isDropdownOpen ? <Up /> : ""}</span>{" "}
-          <span className="down-icon">{isDropdownOpen ? "" : <Down />}</span>
-        </option>
-        <option value="True or false">
-          True or false{" "}
-          <span className="up-icon">{isDropdownOpen ? <Up /> : ""}</span>{" "}
-          <span className="down-icon">{isDropdownOpen ? "" : <Down />}</span>
-        </option>
-      </SelectStyledQuiz>
-    </QuestionsWrapper>
-  );
+          <SelectCustom name="create" id="" selectTitle={'selectTitle'}>
+            create
+          </SelectCustom>
+        </QuestionsWrapper>
+  )
 }
 
 export default QuestionsList;
