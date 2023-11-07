@@ -1,14 +1,10 @@
 import React from "react";
 import QuizesList from "../../../shared/components/QuizesList/QuizesList";
-//import CreateQuizCard from "./CreateQuizCard/CreateQuizCard";
 import EmptyBlock from "../../../shared/components/EmptyBlock/EmptyBlock";
-//import BtnLoadMore from "../../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 
 const RandomQuiz = ({ adultsQuiz, childrenQuiz }) => {
   return (
     <>
-      {/* <CreateQuizCard /> */}
-
       {adultsQuiz?.length === 0 && (
         <EmptyBlock>No available quizzes</EmptyBlock>
       )}
@@ -17,8 +13,6 @@ const RandomQuiz = ({ adultsQuiz, childrenQuiz }) => {
         <EmptyBlock>No available quizzes</EmptyBlock>
       )}
       {childrenQuiz?.length > 0 && <QuizesList quizzesArr={childrenQuiz} />}
-
-      {/* <BtnLoadMore /> */}
     </>
   );
 };
