@@ -2,9 +2,9 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const PublicRoute = ({ children }) => {
-  const { hasToken } = useAuth();
+  const { isAuth } = useAuth();
 
-  return !hasToken ? children : <Navigate to="/home" />;
+  return !isAuth ? children : <Navigate to="/home" />;
 };
 
 export default PublicRoute;

@@ -13,14 +13,12 @@ const HomePage = () => {
   const seeAllLink = "/lastquiz"; 
   const dispatch = useDispatch();
   const passedQuizzes = useSelector(selectPassed);
-  const [hasFetchedData, setHasFetchedData] = useState(false);
 
   useEffect(() => {
-    if (!hasFetchedData) {
-      dispatch(getPassedQuizzesThunk({ page: 1, limit: 3 }));
-      setHasFetchedData(true);
+    if (passedQuizzes.length === 0) {
+      dispatch(getPassedQuizzesThunk({ page: 1, limit: 8 }));
     }
-  }, [dispatch, hasFetchedData]);
+  }, [dispatch, passedQuizzes]);
   
   const shouldDisplaySeeAll = passedQuizzes?.length < 3;
   
