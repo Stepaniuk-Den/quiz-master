@@ -11,7 +11,7 @@ import {
 const initialState = {
   user: { name: null, email: null, _id: null },
   token: null,
-  isAuth: false,
+  // isAuth: false,
   isRefreshing: false,
   statistics: null,
   avatar: null,
