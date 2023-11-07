@@ -1,24 +1,31 @@
-import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
-import { PageWrapper, SectionWrapper } from "./DiscoverPageStyled";
-import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
-import QuizesList from "../../shared/components/QuizesList/QuizesList";
-import QuizeFilterTools from "../../modules/discoverPage/components/QuizFilterTools/QuizFilterTools";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilteredQuizzesThunk } from "../../redux/quiz/quizThunks";
-import { selectDiscoverFilteredQuizes } from "../../redux/selectors";
+import { updateFavorite } from "../../redux/quiz/quizSlice";
+import {
+  selectDiscoverFilteredQty,
+  selectDiscoverFilteredQuizes,
+} from "../../redux/selectors";
+import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
+import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
+import QuizesList from "../../shared/components/QuizesList/QuizesList";
+import QuizeFilterTools from "../../modules/discoverPage/components/QuizFilterTools/QuizFilterTools";
+import { PageWrapper, SectionWrapper } from "./DiscoverPageStyled";
 
 const DiscoverPage = () => {
   const dispatch = useDispatch();
 
   const filteredQuizes = useSelector(selectDiscoverFilteredQuizes);
-  const [totalQty, setTotalQty] = useState("");
+  // console.log('filteredQuizes: ', filteredQuizes);
+  const totalQty = useSelector(selectDiscoverFilteredQty);
+  // console.log('totalQty: ', totalQty);
   const [childrenCategoryNames, setChildrenCategoryNames] = useState([]);
   const [adultCategoryNames, setAdultCategoryNames] = useState([]);
   const [commonFilter, setCommonFilter] = useState({
     ratingStars: null,
     categoryNames: [],
   });
+  let page = 1;
 
   useEffect(() => {
     if (
@@ -27,7 +34,11 @@ const DiscoverPage = () => {
       !commonFilter.categoryNames.length
     )
       return;
-    dispatch(getFilteredQuizzesThunk({ setTotalQty, ...commonFilter }));
+    dispatch(getFilteredQuizzesThunk({ ...commonFilter }));
+
+    return () => {
+      dispatch(updateFavorite([]));
+    };
   }, [dispatch, commonFilter]);
 
   const handleCategorySelection = (data, selectTitle) => {
@@ -55,8 +66,6 @@ const DiscoverPage = () => {
       const updatedCategoryName = commonFilter.categoryNames.filter(
         (name) => name !== selectedCategoryId
       );
-      console.log("categoryNames: ", commonFilter.categoryNames);
-      console.log("updatedCategoryName: ", updatedCategoryName);
       setCommonFilter((prevCommonFilter) => ({
         ...prevCommonFilter,
         categoryNames: updatedCategoryName,
@@ -88,6 +97,11 @@ const DiscoverPage = () => {
     adultCategoryNames,
   };
 
+  const handleLoadMore = () => {
+    page += 1;
+    dispatch(getFilteredQuizzesThunk({ page, ...commonFilter }));
+  };
+
   return (
     <PageWrapper>
       <SectionWrapper>
@@ -100,7 +114,9 @@ const DiscoverPage = () => {
           commonFilter={commonFilter}
         />
         <QuizesList quizzesArr={filteredQuizes} className={"bottomVariant"} />
-        {totalQty > 8 && <BtnLoadMore />}
+        {totalQty > 8 && filteredQuizes.length !== totalQty && (
+          <BtnLoadMore handleLoadMore={handleLoadMore} />
+        )}
       </SectionWrapper>
     </PageWrapper>
   );

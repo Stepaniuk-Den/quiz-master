@@ -32,10 +32,9 @@ export const getRandomQuizzesThunk = createAsyncThunk(
 
 export const getFilteredQuizzesThunk = createAsyncThunk(
     'quiz/getFiltered',
-    async (params, thunkAPI) => {                
+    async (params, thunkAPI) => {
         try {
             const data = await getFilteredQuizzes(params);
-            console.log('data: ', data);
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -108,7 +107,7 @@ export const getFavoriteQuizzesThunk = createAsyncThunk(
     async (params, thunkAPI) => {        
         const {setTotal, page} = params;
         try {            
-            const data = await getFavoriteQuizzes(page);                        
+            const data = await getFavoriteQuizzes(page);            
             console.log('data: ', data);
             setTotal(data.totalFavorites)
             return data;

@@ -5,35 +5,15 @@ export async function getRandomQuizzes(params) {
   return data;
 }
 
-export async function getFilteredQuizzes(params) {    
-  const { ratingStars, categoryNames, inputValue } = params;    
-  const categoryIds = categoryNames?.join("+")
-    
-  if(inputValue&&categoryNames.length&&(ratingStars || ratingStars===0)){    
-    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}&rate=${ratingStars}`);    
-    return data;
-  }else if(inputValue&&!categoryNames.length&&(ratingStars || ratingStars===0)){    
-    const { data } = await instance.get(`/quizzes?q=${inputValue}&rate=${ratingStars}`);    
-    return data;
-  }else if(inputValue&&categoryNames.length&&!(ratingStars || ratingStars===0)){    
-    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}`);    
-    return data;
-  }else if(inputValue){    
-    const { data } = await instance.get(`/quizzes?q=${inputValue}`);    
-    return data;
-  }
-
-  if(categoryNames.length&&(ratingStars || ratingStars===0)){
-    const { data } = await instance.get(`/quizzes?category=${categoryIds}&rate=${ratingStars}`);    
-    return data;
-  }
-  else if(categoryNames.length&&!ratingStars){    
-    const { data } = await instance.get(`/quizzes?category=${categoryIds}`);    
-    return data;
-  }else if(!categoryNames.length && (ratingStars || ratingStars===0)){    
-    const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);    
-    return data;
-  }  
+export async function getFilteredQuizzes(params) {
+  const { ratingStars, categoryNames, inputValue, page=1 } = params;
+  const categoryIds = categoryNames?.join("+");
+  const { data } = await instance.get(
+    `/quizzes?page=${page}${inputValue ? `&q=${inputValue}` : ""}${
+      categoryIds ? `&category=${categoryIds}` : ""
+    }${ratingStars || ratingStars === 0 ? `&rate=${ratingStars}` : ""}`
+  );
+  return data;
 }
 
 export async function getQuizCategories() {
@@ -61,8 +41,8 @@ export async function getQuiz(id) {
   return data;
 }
 
-export async function getFavoriteQuizzes(page=1) {  
-  const { data } = await instance.get(`/users/favorites?page=${page}`);  
+export async function getFavoriteQuizzes(page = 1) {
+  const { data } = await instance.get(`/users/favorites?page=${page}`);
   return data;
 }
 
@@ -76,12 +56,12 @@ export async function quizResult({ quizId, result }) {
   return data;
 }
 
-export async function patchPassedQuiz({result}) {
+export async function patchPassedQuiz({ result }) {
   const { data } = await instance.patch(`users/passed-quiz`, result);
   return data;
 }
 
-export async function retakePassedQuiz({result}) {
+export async function retakePassedQuiz({ result }) {
   const { data } = await instance.patch(`users/retake-passed-quiz`, result);
   return data;
 }
@@ -91,7 +71,7 @@ export async function updateQuiz(quizId) {
   return data;
 }
 
-export async function updateFavoriteQuiz(quizId) {     
+export async function updateFavoriteQuiz(quizId) {
   const { data } = await instance.patch(`/users/favorites`, quizId);
   return data;
 }

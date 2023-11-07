@@ -4,7 +4,6 @@ import { CardList } from "./QuizesListStyled";
 import CreateQuizCard from "../../../modules/randomQuizPage/components/CreateQuizCard/CreateQuizCard";
 
 const QuizesList = ({ quizzesArr, className, updateFavoriteQuizes }) => {
-  // console.log('quizzesArr: ', quizzesArr);
   const location = useLocation();
 
   const randomQuizzes =

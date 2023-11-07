@@ -12,51 +12,47 @@ import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { PageWrapper, SectionWrapper } from "./FavoritePageStyled";
 
 const FavoritePage = () => {
-  // console.log("render");
   const dispatch = useDispatch();
-  const allFavoriteQuizes = useSelector(selectFavorite);  
-  console.log('allFavoriteQuizes: ', allFavoriteQuizes);
+  const allFavoriteQuizes = useSelector(selectFavorite);
+  // console.log("allFavoriteQuizes: ", allFavoriteQuizes);
   const [search, setSearch] = useState("");
-  const [total, setTotal] = useState("");    
+  const [total, setTotal] = useState("");
   let page = 1;
 
   useEffect(() => {
-    dispatch(getFavoriteQuizzesThunk({setTotal}));
+    dispatch(getFavoriteQuizzesThunk({ setTotal }));
   }, [dispatch]);
 
   const filteredQuizeCards = useMemo(() => {
-    return allFavoriteQuizes.filter((quiz) =>
-      quiz.quizName?.includes(search)
-    );    
-  }, [search, allFavoriteQuizes])
+    return allFavoriteQuizes.filter((quiz) => quiz.quizName?.includes(search));
+  }, [search, allFavoriteQuizes]);
 
   const updateFavoriteQuizes = (evt) => {
     const id = evt.currentTarget.id;
     const quizId = {
       favorites: id,
     };
-    dispatch(updateFavoriteQuizThunk({quizId, setTotal}));    
+    dispatch(updateFavoriteQuizThunk({ quizId, setTotal }));
   };
 
-  const handleLoadMore = () => {    
+  const handleLoadMore = () => {
     page += 1;
-    dispatch(getFavoriteQuizzesThunk({page, setTotal}));
+    dispatch(getFavoriteQuizzesThunk({ page, setTotal }));
   };
 
   return (
     <PageWrapper>
       <SectionWrapper>
         <PageTopBar titlePage="Favorite quize" />
-        <QuizeFilterTools          
-          search={search}
-          setSearch={setSearch}
-        />
+        <QuizeFilterTools search={search} setSearch={setSearch} />
         <QuizesList
           quizzesArr={filteredQuizeCards}
           className={"bottomVariant"}
           updateFavoriteQuizes={updateFavoriteQuizes}
         />
-        {total > 8 && <BtnLoadMore handleLoadMore={handleLoadMore} />}
+        {total > 8 && filteredQuizeCards.length !== total && (
+          <BtnLoadMore handleLoadMore={handleLoadMore} />
+        )}
       </SectionWrapper>
     </PageWrapper>
   );

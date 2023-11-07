@@ -26,6 +26,7 @@ const initialState = {
     },
     // filtered: quizzesArr,
     filtered: null,
+    filteredQty: null,
     passed: [],
     ownQuizes: [],
     favorites: [],
@@ -87,6 +88,9 @@ const quizSlice = createSlice({
     },
     updateFiltered: (state, action) => {
       state.quizzes.filtered = action.payload;
+    },
+    updateFavorite: (state, action) => {
+      state.quizzes.filtered = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -103,13 +107,10 @@ const quizSlice = createSlice({
         if (allQuizzes.children) {
           state.quizzes.random.children.push(...allQuizzes.children.quizzes);
         }
-      })
-      // .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
-      //   console.log("123", action.payload);
-      //   state.quizzes.filtered.push(action.payload);
-      // })
-      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {
+      })      
+      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {        
         state.quizzes.filtered = action.payload;
+        state.quizzes.filteredQty = action.payload.length;
       })
       // .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
       //   console.log('action', action.payload);
