@@ -61,8 +61,8 @@ export async function getQuiz(id) {
   return data;
 }
 
-export async function getFavoriteQuizzes() {  
-  const { data } = await instance.get(`/users/favorites`);  
+export async function getFavoriteQuizzes(page=1) {  
+  const { data } = await instance.get(`/users/favorites?page=${page}`);  
   return data;
 }
 

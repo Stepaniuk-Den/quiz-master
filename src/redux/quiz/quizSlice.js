@@ -37,43 +37,43 @@ const initialState = {
 
   categoryType: {
     adult: [
-      {
-        _id: "65398ba45191746edd43494c",
-        categoryName: "Cars",
-        categoryType: "adults",
-      },
-      {
-        _id: "65398bca5191746edd43494f",
-        categoryName: "Architecture",
-        categoryType: "adults",
-      },
-      {
-        _id: "65398bdb5191746edd434952",
-        categoryName: "Science",
-        categoryType: "adults",
-      },
-      {
-        _id: "65398beb5191746edd434955",
-        categoryName: "History",
-        categoryType: "adults",
-      },
+      // {
+      //   _id: "65398ba45191746edd43494c",
+      //   categoryName: "Cars",
+      //   categoryType: "adults",
+      // },
+      // {
+      //   _id: "65398bca5191746edd43494f",
+      //   categoryName: "Architecture",
+      //   categoryType: "adults",
+      // },
+      // {
+      //   _id: "65398bdb5191746edd434952",
+      //   categoryName: "Science",
+      //   categoryType: "adults",
+      // },
+      // {
+      //   _id: "65398beb5191746edd434955",
+      //   categoryName: "History",
+      //   categoryType: "adults",
+      // },
     ],
     children: [
-      {
-        _id: "65398dc95191746edd434974",
-        categoryName: "Nature",
-        categoryType: "children",
-      },
-      {
-        _id: "65398e175191746edd43497d",
-        categoryName: "Comics",
-        categoryType: "children",
-      },
-      {
-        _id: "65398e365191746edd434980",
-        categoryName: "Literature",
-        categoryType: "children",
-      },
+      // {
+      //   _id: "65398dc95191746edd434974",
+      //   categoryName: "Nature",
+      //   categoryType: "children",
+      // },
+      // {
+      //   _id: "65398e175191746edd43497d",
+      //   categoryName: "Comics",
+      //   categoryType: "children",
+      // },
+      // {
+      //   _id: "65398e365191746edd434980",
+      //   categoryName: "Literature",
+      //   categoryType: "children",
+      // },
     ],
   },
 };
@@ -132,7 +132,9 @@ const quizSlice = createSlice({
         state.quizzes.current = action.payload;
       })
       .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.favorites = action.payload.data;
+        console.log('action: ', action.payload.data);
+        // state.quizzes.favorites = action.payload.data;
+        state.quizzes.favorites = [...state.quizzes.favorites, ...action.payload.data];
       })
       .addCase(createQuizThunk.fulfilled, (state, action) => {
         state.quizzes.user.push(action.payload);
@@ -149,8 +151,7 @@ const quizSlice = createSlice({
         // );
         // state.quizzes.user = [...newUserQuizzes, action.payload];
       })      
-      .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {
-        console.log('actionThunk: ', action.payload);
+      .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {        
         state.quizzes.favorites = state.quizzes.favorites.filter(quiz => quiz._id !== action.payload);
       })
       .addCase(deleteQuizThunk.fulfilled, (state, action) => {

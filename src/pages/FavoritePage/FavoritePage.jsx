@@ -12,16 +12,18 @@ import QuizesList from "../../shared/components/QuizesList/QuizesList";
 import { PageWrapper, SectionWrapper } from "./FavoritePageStyled";
 
 const FavoritePage = () => {
+  // console.log("render");
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getFavoriteQuizzesThunk(setTotal));
-  }, [dispatch]);
-// console.log("render");
-  const allFavoriteQuizes = useSelector(selectFavorite);
-  
+  const allFavoriteQuizes = useSelector(selectFavorite);  
+  console.log('allFavoriteQuizes: ', allFavoriteQuizes);
   const [search, setSearch] = useState("");
-  const [total, setTotal] = useState("");  
-  
+  const [total, setTotal] = useState("");    
+  let page = 1;
+
+  useEffect(() => {
+    dispatch(getFavoriteQuizzesThunk({setTotal}));
+  }, [dispatch]);
+
   const filteredQuizeCards = useMemo(() => {
     return allFavoriteQuizes.filter((quiz) =>
       quiz.quizName?.includes(search)
@@ -36,8 +38,9 @@ const FavoritePage = () => {
     dispatch(updateFavoriteQuizThunk({quizId, setTotal}));    
   };
 
-  const handleLoadMore = () => {
-    console.log("BtnLoadMore");
+  const handleLoadMore = () => {    
+    page += 1;
+    dispatch(getFavoriteQuizzesThunk({page, setTotal}));
   };
 
   return (

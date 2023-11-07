@@ -35,6 +35,7 @@ export const getFilteredQuizzesThunk = createAsyncThunk(
     async (params, thunkAPI) => {                
         try {
             const data = await getFilteredQuizzes(params);
+            console.log('data: ', data);
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -104,9 +105,11 @@ export const getQuizThunk = createAsyncThunk(
 
 export const getFavoriteQuizzesThunk = createAsyncThunk(
     'quiz/getFavorite',
-    async (setTotal, thunkAPI) => {
+    async (params, thunkAPI) => {        
+        const {setTotal, page} = params;
         try {            
-            const data = await getFavoriteQuizzes();            
+            const data = await getFavoriteQuizzes(page);                        
+            console.log('data: ', data);
             setTotal(data.totalFavorites)
             return data;
         } catch (error) {
@@ -181,11 +184,10 @@ export const updateFavoriteQuizThunk = createAsyncThunk(
         const {quizId, setTotal} = id;
         try {
             const data = await updateFavoriteQuiz(quizId);
-            notifyBtnHeartSuccess()
-            console.log('data123: ', data);
+            notifyBtnHeartSuccess()            
             // return data;
             //await updateFavoriteQuiz(quizId);
-            setTotal(data?.favorites?.length)
+            setTotal(data.totalFavorites)
             return quizId.favorites;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
