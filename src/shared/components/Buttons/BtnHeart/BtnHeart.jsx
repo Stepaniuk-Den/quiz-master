@@ -3,8 +3,9 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { BtnHeartS, FiHeartS } from "./BtnHeartStyled";
 import { updateFavoriteQuizThunk } from "../../../../redux/quiz/quizThunks";
+import { notifyBtnHeartReject } from "../../../NotificationToastify/Toasts";
 import { selectIsAuth } from "../../../../redux/user/userSelectors";
-import { notifyBtnHeartReject, notifyBtnHeartSuccess } from "../../../NotificationToastify/Toasts";
+
 
 const BtnHeart = ({ id, owner, updateFavoriteQuizes }) => {
   const dispatch = useDispatch();

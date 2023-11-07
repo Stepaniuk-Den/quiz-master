@@ -6,12 +6,15 @@ const QuizeFilterTools = ({
   handleStarSelection,
   handleCategorySelection,
   totalResults,    
-  selectedCategoryNames,  
+  selectedCategoryNames,
+  commonFilter,
+      
 }) => {
   return (
     <FormFiltersWrapper>
       <QuizeSearch
        handleCategorySelection={handleCategorySelection}
+       commonFilter={commonFilter}
         />
       <QuizFilterText
          handleStarSelection={handleStarSelection}
