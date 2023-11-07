@@ -16,7 +16,6 @@ import { selectUser } from "../../../../redux/user/userSelectors";
 const UserStats = () => {
   const userInfo = useSelector(selectUser);
   const averageSuccess = userInfo ? Math.round(userInfo.average) : "";
-
   return (
     <UserCard>
 {userInfo && userInfo.userAvatar ? (
@@ -37,7 +36,7 @@ const UserStats = () => {
       <PassedBox>
         <div>
           <TitleText>Passed quizzes</TitleText>
-          <InfoText>{userInfo ? userInfo.passedQuizzes.length : ""}</InfoText>
+          <InfoText>{userInfo.passedQuizzes ? userInfo.passedQuizzes.length : ""}</InfoText>
         </div>
 
         <Line />

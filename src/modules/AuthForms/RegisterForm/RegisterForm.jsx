@@ -58,6 +58,7 @@ const RegisterForm = () => {
         .unwrap()
         .then(() => {
           notifyVerifyEmail();
+          navigate("/");
         })
         .catch((error) => {
           notifyRegisterError(error);

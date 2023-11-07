@@ -4,7 +4,7 @@ import {
   selectReviews,
   selectRandomAdult,
   selectRandomChildren,
-  selectTotalReviews
+  selectTotalReviews,
 } from "../../redux/selectors";
 import { selectIsAuth } from "../../redux/user/userSelectors";
 import {
@@ -32,7 +32,7 @@ const MainPage = () => {
     if (user) {
       navigate("/discover");
     } else {
-      navigate("/randomquiz");
+      navigate("/randomquiz/Adults");
     }
   };
 

@@ -6,12 +6,7 @@ import {
   InputStyled,
 } from "./QuizSearchStyled";
 
-const QuizeSearch = ({ filteredQuizeCards }) => {  
-  // const [quizCollectionName, setQuizCollectionName] = useState("");  
-
-  const handleFilterNames = (name) => {    
-    filteredQuizeCards(name);    
-  };
+const QuizeSearch = ({search, setSearch }) => {  
 
   return (
     <FormWrapper>
@@ -21,11 +16,11 @@ const QuizeSearch = ({ filteredQuizeCards }) => {
       <InputStyled
         placeholder="Search"
         name="quizCollectionName"
-        // value={quizCollectionName}
+        value={search}
         type="text"
         autoComplete="on"
         autoFocus
-        onChange={(evt) => handleFilterNames(evt.target.value)}
+        onChange={(evt) => setSearch(evt.target.value)}
       />
     </FormWrapper>
   );

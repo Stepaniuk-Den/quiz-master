@@ -8,3 +8,7 @@ export const notifyLoginSuccess = (data) => toast.success(`Wellcome, ${data.user
 
 export const notifyError = (error) => toast.error(`${error.message}`);
 
+export const notifyBtnHeartReject = () => toast.info("To proceed please log in")
+
+export const notifyBtnHeartSuccess = () => toast.success("Favorites changed successfully!")
+
