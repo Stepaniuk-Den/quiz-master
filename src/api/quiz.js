@@ -96,12 +96,22 @@ export async function createQuiz(quiz) {
 }
 
 export async function quizResult({ quizId, result }) {
-  const { data } = await instance.post(`/quizzes/${quizId}`, result);
+  const { data } = await instance.patch(`/quizzes/${quizId}`, result);
   return data;
 }
 
-export async function updateQuiz(quiz) {
-  const { data } = await instance.patch(`/quizzes/${quiz.id}`, quiz);
+export async function patchPassedQuiz({result}) {
+  const { data } = await instance.patch(`users/passed-quiz`, result);
+  return data;
+}
+
+export async function retakePassedQuiz({result}) {
+  const { data } = await instance.patch(`users/retake-passed-quiz`, result);
+  return data;
+}
+
+export async function updateQuiz(quizId) {
+  const { data } = await instance.patch(`/quizzes/${quizId}`);
   return data;
 }
 

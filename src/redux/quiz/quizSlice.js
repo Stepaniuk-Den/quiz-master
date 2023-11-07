@@ -13,6 +13,8 @@ import {
   updateQuizThunk,
   updateFavoriteQuizThunk,
   deleteQuizThunk,
+  passedUsersQuiz,
+  updateUsersQuiz
 } from "./quizThunks";
 
 const initialState = {
@@ -89,6 +91,10 @@ const quizSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(passedUsersQuiz.fulfilled, (state, action) => {
+      })
+      .addCase(updateUsersQuiz.fulfilled,(state, action)=> {
+      })
       .addCase(getRandomQuizzesThunk.fulfilled, (state, action) => {
         const allQuizzes = action.payload;
         if (allQuizzes.adults.quizzes) {
@@ -115,7 +121,7 @@ const quizSlice = createSlice({
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
                 state.quizzes.passed = action.payload;
-            })
+      })
       .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.ownQuizes = action.payload;
       })

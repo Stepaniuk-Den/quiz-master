@@ -13,6 +13,8 @@ import {
     updateQuiz,
     updateFavoriteQuiz,
     deleteQuiz,
+    patchPassedQuiz,
+    retakePassedQuiz,
 } from "../../api/quiz";
 import { notifyBtnHeartSuccess } from "../../shared/NotificationToastify/Toasts";
 
@@ -51,6 +53,7 @@ export const getFilteredQuizzesThunk = createAsyncThunk(
 //         }
 //     }
 // );
+
 export const getQuizCategoriesThunk = createAsyncThunk(
     'quiz/getCategories',
     async (_, thunkAPI) => {
@@ -141,6 +144,30 @@ export const quizResultThunk = createAsyncThunk(
     async (quiz, thunkAPI) => {
         try {
             const data = await quizResult(quiz);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const passedUsersQuiz = createAsyncThunk(
+    'quiz/passedUsersQuiz',
+    async (quiz, thunkAPI) => {
+        try {
+            const data = await patchPassedQuiz(quiz);
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const updateUsersQuiz = createAsyncThunk(
+    'quiz/retakeUsersQuiz',
+    async (quiz, thunkAPI) => {
+        try {
+            const data = await retakePassedQuiz(quiz);
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);

@@ -1,1 +1,1 @@
-export {default} from "./BtnClose"
+export {default} from "./BtnClose";

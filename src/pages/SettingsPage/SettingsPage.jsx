@@ -33,9 +33,22 @@ import { notifyError } from "../../shared/NotificationToastify/Toasts";
 const SettingsPage = () => {
   const dispatch = useDispatch();
   const infoUser = useSelector(selectUser);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordShown = () => setPasswordShown((show) => !show);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setAvatarPreview(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -58,7 +71,12 @@ const SettingsPage = () => {
     }),
 
     onSubmit: (values) => {
-      dispatch(updateUserThunk(values)).catch((error) => {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      if (selectedFile) {
+        formData.append("avatar", selectedFile);
+      }
+      dispatch(updateUserThunk(formData)).catch((error) => {
         notifyError(error);
       });
       console.log(values);
@@ -75,10 +93,10 @@ const SettingsPage = () => {
           </TitleWrapper>
           <SettingForm>
             <AvatarWrapper>
-              {infoUser && infoUser.userAvatar ? (
+              {avatarPreview || infoUser.userAvatar ? (
                 <Avatar
                   size="large"
-                  src={infoUser.userAvatar}
+                  src={avatarPreview || infoUser.userAvatar}
                   alt="Photo"
                   width="100px"
                 />
@@ -90,9 +108,18 @@ const SettingsPage = () => {
                 </AvatarImg>
               )}
               <AddButton type="submit">
-                <IconWrapper className="bi-wrapper">
-                  <IconPlus className="bi-btn" />
-                </IconWrapper>
+                <label htmlFor="avatar-upload">
+                  <IconWrapper className="bi-wrapper">
+                    <IconPlus className="bi-btn" />
+                  </IconWrapper>
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="avatar-upload"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
               </AddButton>
             </AvatarWrapper>
             <form onSubmit={formik.handleSubmit}>
@@ -129,7 +156,7 @@ const SettingsPage = () => {
                   <InputStyled
                     name="password"
                     type={passwordShown ? "text" : "password"}
-                    value={formik.values.password}
+                    value={formik.values.name}
                     placeholder="Password"
                     autoComplete="off"
                     onChange={formik.handleChange}
