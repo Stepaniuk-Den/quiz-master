@@ -59,8 +59,7 @@ const DiscoverPage = () => {
     }));
   }, [dispatch, categoryNames]);
 
-  const handleCategorySelection = (data, selectTitle) => {
-    console.log("data: ", data.target.id);
+  const handleCategorySelection = (data, selectTitle) => {    
     const isChecked = data.target.checked;
     const selectedCategoryName = data.target.value;
     const selectedCategoryId = data.target.id;

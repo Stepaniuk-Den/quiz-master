@@ -22,13 +22,11 @@ const QuizeSearch = ({ handleCategorySelection, commonFilter }) => {
   
 
   const onFormSubmit = (evt) => {
-    evt.preventDefault();
-    console.log("form submited");    
-    // dispatch(getFilteredQuizzesThunk(commonFilter))
+    evt.preventDefault();        
     dispatch(getFilteredQuizzesThunk({inputValue, ...commonFilter}))
-    // setInputValue("");
+    setInputValue("");
   };
-  // temporary div
+  
   return (
     <FormWrapper onSubmit={onFormSubmit}>
       <SelectWrapper>

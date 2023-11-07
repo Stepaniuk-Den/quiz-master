@@ -5,47 +5,33 @@ export async function getRandomQuizzes(params) {
   return data;
 }
 
-export async function getFilteredQuizzes(params) {  
-  console.log('params: ', params);
-  const { ratingStars, categoryNames, inputValue } = params;  
-  console.log('inputValue: ', Boolean(inputValue));
+export async function getFilteredQuizzes(params) {    
+  const { ratingStars, categoryNames, inputValue } = params;    
   const categoryIds = categoryNames?.join("+")
     
-  if(inputValue&&categoryNames.length&&(ratingStars || ratingStars===0)){
-    console.log('inputValue111: ', inputValue);
-    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}&rate=${ratingStars}`);
-    console.log('dataText: ', data);
+  if(inputValue&&categoryNames.length&&(ratingStars || ratingStars===0)){    
+    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}&rate=${ratingStars}`);    
     return data;
-  }else if(inputValue&&!categoryNames.length&&(ratingStars || ratingStars===0)){
-    console.log('inputValue222: ', inputValue);
-    const { data } = await instance.get(`/quizzes?q=${inputValue}&rate=${ratingStars}`);
-    console.log('dataText: ', data);
+  }else if(inputValue&&!categoryNames.length&&(ratingStars || ratingStars===0)){    
+    const { data } = await instance.get(`/quizzes?q=${inputValue}&rate=${ratingStars}`);    
     return data;
-  }else if(inputValue&&categoryNames.length&&!(ratingStars || ratingStars===0)){
-    console.log('inputValue333: ', inputValue);
-    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}`);
-    console.log('dataText: ', data);
+  }else if(inputValue&&categoryNames.length&&!(ratingStars || ratingStars===0)){    
+    const { data } = await instance.get(`/quizzes?q=${inputValue}&category=${categoryIds}`);    
     return data;
-  }else if(inputValue){
-    console.log('inputValue444: ', inputValue);
-    const { data } = await instance.get(`/quizzes?q=${inputValue}`);
-    console.log('dataText: ', data);
+  }else if(inputValue){    
+    const { data } = await instance.get(`/quizzes?q=${inputValue}`);    
     return data;
   }
 
   if(categoryNames.length&&(ratingStars || ratingStars===0)){
-    const { data } = await instance.get(`/quizzes?category=${categoryIds}&rate=${ratingStars}`);
-    console.log('data1: ', data);
+    const { data } = await instance.get(`/quizzes?category=${categoryIds}&rate=${ratingStars}`);    
     return data;
   }
   else if(categoryNames.length&&!ratingStars){    
-    const { data } = await instance.get(`/quizzes?category=${categoryIds}`);
-    console.log('data2: ', data);
+    const { data } = await instance.get(`/quizzes?category=${categoryIds}`);    
     return data;
-  }else if(!categoryNames.length && (ratingStars || ratingStars===0)){
-    // console.log('ratingStars123: ', ratingStars);
-    const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);
-    console.log('data3: ', data);
+  }else if(!categoryNames.length && (ratingStars || ratingStars===0)){    
+    const { data } = await instance.get(`/quizzes?rate=${ratingStars}`);    
     return data;
   }  
 }

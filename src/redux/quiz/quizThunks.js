@@ -42,18 +42,6 @@ export const getFilteredQuizzesThunk = createAsyncThunk(
     }
 );
 
-// export const getQuizCategoriesThunk = createAsyncThunk(
-//     'quiz/getCategories',
-//     async (audience, thunkAPI) => {
-//         try {
-//             const data = await getQuizCategories(audience);
-//             return data;
-//         } catch (error) {
-//             return thunkAPI.rejectWithValue(error.response.data);
-//         }
-//     }
-// );
-
 export const getQuizCategoriesThunk = createAsyncThunk(
     'quiz/getCategories',
     async (_, thunkAPI) => {
