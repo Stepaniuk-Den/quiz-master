@@ -108,7 +108,6 @@ export const getFavoriteQuizzesThunk = createAsyncThunk(
         const {setTotal, page} = params;
         try {            
             const data = await getFavoriteQuizzes(page);            
-            console.log('data: ', data);
             setTotal(data.totalFavorites)
             return data;
         } catch (error) {

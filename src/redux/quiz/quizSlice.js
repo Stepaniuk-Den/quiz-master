@@ -132,9 +132,7 @@ const quizSlice = createSlice({
       .addCase(getQuizThunk.fulfilled, (state, action) => {
         state.quizzes.current = action.payload;
       })
-      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {
-        console.log('action: ', action.payload.data);
-        // state.quizzes.favorites = action.payload.data;
+      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {        
         state.quizzes.favorites = [...state.quizzes.favorites, ...action.payload.data];
       })
       .addCase(createQuizThunk.fulfilled, (state, action) => {
