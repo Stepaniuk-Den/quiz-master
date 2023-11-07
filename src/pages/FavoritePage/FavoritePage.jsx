@@ -16,7 +16,7 @@ const FavoritePage = () => {
   useEffect(() => {
     dispatch(getFavoriteQuizzesThunk(setTotal));
   }, [dispatch]);
-console.log("render");
+// console.log("render");
   const allFavoriteQuizes = useSelector(selectFavorite);
   
   const [search, setSearch] = useState("");

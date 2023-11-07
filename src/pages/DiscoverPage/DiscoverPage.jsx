@@ -13,7 +13,7 @@ import { selectDiscoverFilteredQuizes } from "../../redux/selectors";
 import { updateFiltered } from "../../redux/quiz/quizSlice";
 
 const DiscoverPage = () => {
-  console.log("render");
+  // console.log("render");
   const dispatch = useDispatch();
   const filteredQuizes = useSelector(selectDiscoverFilteredQuizes);
   // console.log("filteredQuizes: ", filteredQuizes); 
@@ -28,7 +28,7 @@ const DiscoverPage = () => {
   });
 
   useEffect(() => {
-    console.log(1);
+    // console.log(1);
     dispatch(getQuizCategoriesThunk());
   }, [dispatch]);
 
