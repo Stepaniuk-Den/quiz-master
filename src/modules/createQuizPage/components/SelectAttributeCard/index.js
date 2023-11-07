@@ -1,1 +1,1 @@
-export {default} from './SelectAttributeCard';
+export { default } from './SelectAttributeCard';
