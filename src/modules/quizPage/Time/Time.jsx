@@ -11,12 +11,20 @@ const Time = ({ question, currentQuestion, isAnswerSelected }) => {
   };
 
   useEffect(() => {
+    setTimeRemaining(question.time);
+  }, [question, currentQuestion]);
+
+  useEffect(() => {
     let timer;
 
     if (!isAnswerSelected && timeRemaining > 0) {
       timer = setTimeout(() => {
         setTimeRemaining((prevTime) => prevTime - 1);
       }, 1000);
+    }
+
+    if (isAnswerSelected) {
+      clearTimeout(timer);
     }
 
     return () => {
@@ -29,11 +37,7 @@ const Time = ({ question, currentQuestion, isAnswerSelected }) => {
       <TimeText>
         Time:
         <StyledCountdown>
-          {isAnswerSelected || timeRemaining <= 0 ? (
-            <span>{formatTime(0)}</span>
-          ) : (
-            <span>{formatTime(timeRemaining)}</span>
-          )}
+          <span>{formatTime(timeRemaining)}</span>
         </StyledCountdown>
       </TimeText>
     </>
