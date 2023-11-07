@@ -34,6 +34,7 @@ const FeedbackForm = ({ onSendClick }) => {
     onSubmit: async (values) => {
       const reviewData = {
         userName: infoUser.name,
+        userAvatar: infoUser.userAvatar,
         rate: values.rating,
         comment: values.feedback,
       };
