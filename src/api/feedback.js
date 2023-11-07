@@ -12,7 +12,10 @@ export async function createReview(review) {
   return data;
 }
 
-export async function createReviewQuiz(quizId, review) {
-  const { data } = await instance.post(`/feedback/${quizId}`, review);
+export async function createReviewQuiz(quizId, {review}) {
+  const { data } = await instance.post(`/feedback/${quizId}`, {review});
   return data;
 }
+
+
+
