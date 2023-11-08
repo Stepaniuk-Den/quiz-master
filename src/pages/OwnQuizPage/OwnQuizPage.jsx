@@ -15,8 +15,10 @@ const OwnQuizPage = () => {
   }, [dispatch]);
 
   const allOwnQuizes = useSelector(selectOwnQuizes);
+  // console.log('allOwnQuizes: ', allOwnQuizes);
   const [ownQuizesArr, setOwnQuizesArr] = useState();
   // console.log('ownQuizesArr: ', ownQuizesArr);
+  //let page = 1;
   
   useEffect(() => {
     setOwnQuizesArr(allOwnQuizes);
@@ -31,6 +33,8 @@ const OwnQuizPage = () => {
 
   const handleLoadMore = () => {
     console.log("BtnLoadMore");
+    //page += 1;
+    // dispatch(setOwnQuizesArr({ page, ...commonFilter })); //змінити санку
   };
 
   return (
@@ -39,7 +43,10 @@ const OwnQuizPage = () => {
         <PageTopBar titlePage="My quiz" />
         <QuizeFilterTools filteredQuizeCards={filteredQuizeCards} />
         <QuizesList quizzesArr={ownQuizesArr} className={"bottomVariant"} />
-        <BtnLoadMore handleLoadMore={handleLoadMore} />
+        {/* {totalQty > 8 && filteredQuizes.length !== totalQty && (
+          <BtnLoadMore handleLoadMore={handleLoadMore} />
+        )} */}        
+          <BtnLoadMore handleLoadMore={handleLoadMore} />        
       </SectionWrapper>
     </PageWrapper>
   );

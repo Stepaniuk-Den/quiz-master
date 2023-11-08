@@ -15,12 +15,13 @@ import {
 } from "./FeedbackFormNoAuthStyled";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
+import { useDispatch, useSelector } from "react-redux";
+import { createQuizReviewThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 
 import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
 import { useLocation, useNavigate } from "react-router";
+import { selectUser } from "../../../redux/user/userSelectors";
 
 const FeedbackFormNoAuth = ({ onSendClick, to }) => {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const quizId = searchParams.get("quizId");
+  const userName = searchParams.get("userName");
+  const infoUser = useSelector(selectUser);
 
   const handleClick = () => {
     if (to) {
@@ -51,15 +54,15 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
 
     onSubmit: async (values) => {
       const reviewData = {
-        userName: "Artem",
+        userName: userName ? userName : infoUser.name,
+        userAvatar: infoUser.userAvatar,
         rate: values.rating,
         comment: values.feedback,
         quizId: quizId,
-        // quizId: "653b7f41b96bb14670aac9ed",
       };
       console.log(reviewData);
       try {
-        await dispatch(createReviewQuizThunk(reviewData));
+        await dispatch(createQuizReviewThunk(reviewData));
         onSendClick();
       } catch (error) {
         notifyError(error);
@@ -82,8 +85,7 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
               name="name"
               placeholder="Name"
               onChange={formik.handleChange}
-              value="Artem"
-              // value={formik.values.name}
+              value={userName ? userName : infoUser.name}
             />
           </InputWrapper>
           <RatingWrapper>

@@ -3,7 +3,6 @@ import { useAuth } from "../hooks/useAuth";
 
 const PublicRoute = ({ children }) => {
   const { isAuth } = useAuth();
-
   return !isAuth ? children : <Navigate to="/home" />;
 };
 
