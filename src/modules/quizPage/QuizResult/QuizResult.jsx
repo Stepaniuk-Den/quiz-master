@@ -20,7 +20,6 @@ import {
   notifyRateAddSuccess,
 } from "../../../shared/NotificationToastify/Toasts";
 
-
 const QuizResult = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -28,6 +27,7 @@ const QuizResult = () => {
   const correctAnswersCount = searchParams.get("correctAnswersCount");
   const totalQuestions = searchParams.get("totalQuestions");
   const quizId = searchParams.get("quizId");
+  const userName = searchParams.get("userName");
   const [value, setValue] = useState(0);
 
   // const navigate = useNavigate();
@@ -75,7 +75,11 @@ const QuizResult = () => {
           />
         </RatingBox>
 
-        <BtnWriteReviewLink to="/feedback">Write a review</BtnWriteReviewLink>
+        <BtnWriteReviewLink
+          to={`/feedback?quizId=${quizId}&userName=${userName}`}
+        >
+          Write a review
+        </BtnWriteReviewLink>
       </QuizeBox>
     </PageWrapper>
   );
