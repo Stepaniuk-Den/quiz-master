@@ -1,14 +1,14 @@
 import { InputStyled } from "./UserTestSearch";
 
-const UserTestsSearch = ({inputValue, setInputValue}) => {
+const UserTestsSearch = ({ inputValue, setInputValue }) => {
   return (
     <>
       <InputStyled
-        placeholder="Search"        
+        placeholder="Search"
         name="quizCollectionName"
         value={inputValue}
         type="text"
-        autoComplete="on"        
+        autoComplete="on"
         onChange={(evt) => setInputValue(evt.target.value)}
       />
     </>

@@ -12,3 +12,5 @@ export const notifyBtnHeartReject = () => toast.info("To proceed please log in")
 
 export const notifyBtnHeartSuccess = () => toast.success("Favorites changed successfully!")
 
+export const notifyQuizDeletedSuccess = (name) => toast.info(`Quiz "${name}" deleted`)
+

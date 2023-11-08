@@ -1,10 +1,10 @@
 import { FormFiltersWrapper } from "./QuizFilterToolsStyled";
 import QuizeSearch from "../QuizSearch/QuizSearch";
 
-const QuizeFilterTools = ({filteredQuizeCards}) => {  
+const QuizeFilterTools = ({ filteredQuizeCards }) => {
   return (
     <FormFiltersWrapper>
-      <QuizeSearch filteredQuizeCards={filteredQuizeCards}/>
+      <QuizeSearch filteredQuizeCards={filteredQuizeCards} />
     </FormFiltersWrapper>
   );
 };
