@@ -120,6 +120,11 @@ export const RatingS = styled(Rating)({
   //   size:"large",
   // }
   
+  // .MuiRating-sizeLarge
+  // .MuiRating-icon
+  // "& .emptyIcon": {
+  //   fontSize: "large",
+  // }
 });
 
 // ================================

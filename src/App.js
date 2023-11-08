@@ -6,10 +6,9 @@ import "./App.css";
 import PublicRoute from "./Guard/PublicRoute";
 import PrivateRoute from "./Guard/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuth, selectToken } from "./redux/user/userSelectors";
+import { selectIsAuth } from "./redux/user/userSelectors";
 import { currentUserThunk } from "./redux/user/userThunks";
 import Notification from "./shared/NotificationToastify/Notification";
-import { useAuth } from "./hooks/useAuth";
 
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"));
