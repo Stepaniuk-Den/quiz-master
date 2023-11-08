@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilteredQuizzesThunk } from "../../redux/quiz/quizThunks";
-import { updateFavorite } from "../../redux/quiz/quizSlice";
+import { updateFiltered } from "../../redux/quiz/quizSlice";
 import {
   selectDiscoverFilteredQty,
   selectDiscoverFilteredQuizes,
@@ -16,16 +16,14 @@ const DiscoverPage = () => {
   const dispatch = useDispatch();
 
   const filteredQuizes = useSelector(selectDiscoverFilteredQuizes);
-  // console.log('filteredQuizes: ', filteredQuizes);
   const totalQty = useSelector(selectDiscoverFilteredQty);
-  // console.log('totalQty: ', totalQty);
   const [childrenCategoryNames, setChildrenCategoryNames] = useState([]);
   const [adultCategoryNames, setAdultCategoryNames] = useState([]);
+  const [page, setPage] = useState(2);
   const [commonFilter, setCommonFilter] = useState({
     ratingStars: null,
     categoryNames: [],
   });
-  let page = 1;
 
   useEffect(() => {
     if (
@@ -34,10 +32,11 @@ const DiscoverPage = () => {
       !commonFilter.categoryNames.length
     )
       return;
+    dispatch(updateFiltered([]));
     dispatch(getFilteredQuizzesThunk({ ...commonFilter }));
 
     return () => {
-      dispatch(updateFavorite([]));
+      dispatch(updateFiltered([]));
     };
   }, [dispatch, commonFilter]);
 
@@ -98,8 +97,8 @@ const DiscoverPage = () => {
   };
 
   const handleLoadMore = () => {
-    page += 1;
     dispatch(getFilteredQuizzesThunk({ page, ...commonFilter }));
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
@@ -108,8 +107,8 @@ const DiscoverPage = () => {
         <PageTopBar titlePage="Discover" />
         <QuizeFilterTools
           handleStarSelection={handleStarSelection}
-          handleCategorySelection={handleCategorySelection}
-          totalResults={filteredQuizes?.length}
+          handleCategorySelection={handleCategorySelection}          
+          totalResults={totalQty}
           selectedCategoryNames={selectedCategoryNames}
           commonFilter={commonFilter}
         />

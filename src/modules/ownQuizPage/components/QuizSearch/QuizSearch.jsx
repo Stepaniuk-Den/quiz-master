@@ -1,12 +1,14 @@
-//import { useState } from "react";
-import { BtnSearch, FiSearchS, FormWrapper, InputStyled } from "./QuizSearchStyled";
+import {
+  BtnSearch,
+  FiSearchS,
+  FormWrapper,
+  InputStyled,
+} from "./QuizSearchStyled";
 
-const QuizeSearch = ({filteredQuizeCards}) => {  
-  // const [quizCollectionName, setQuizCollectionName] = useState("");
-  
-  const handleSearchBtnClick =()=>{
+const QuizeSearch = ({ filteredQuizeCards }) => {
+  const handleSearchBtnClick = () => {
     console.log("handleSearchBtnClick");
-  }
+  };
   return (
     <FormWrapper>
       <BtnSearch type="button" onClick={handleSearchBtnClick}>
@@ -18,7 +20,7 @@ const QuizeSearch = ({filteredQuizeCards}) => {
         // value={quizCollectionName}
         type="text"
         autoComplete="on"
-        autoFocus        
+        autoFocus
         onChange={(evt) => filteredQuizeCards(evt.target.value)}
       />
     </FormWrapper>

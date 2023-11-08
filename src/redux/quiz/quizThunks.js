@@ -16,7 +16,6 @@ import {
     patchPassedQuiz,
     retakePassedQuiz,
 } from "../../api/quiz";
-import { notifyBtnHeartSuccess } from "../../shared/NotificationToastify/Toasts";
 
 export const getRandomQuizzesThunk = createAsyncThunk(
     'quiz/getRandom',
@@ -68,9 +67,9 @@ export const getPassedQuizzesThunk = createAsyncThunk(
 
 export const getUserQuizzesThunk = createAsyncThunk(
     'quiz/getUserQuizzes',
-    async (params, thunkAPI) => {
+    async (params, thunkAPI) => {        
         try {
-            const data = await getUserQuizzes(params);
+            const data = await getUserQuizzes(params);                        
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -104,12 +103,9 @@ export const getQuizThunk = createAsyncThunk(
 
 export const getFavoriteQuizzesThunk = createAsyncThunk(
     'quiz/getFavorite',
-    async (params, thunkAPI) => {        
-        const {setTotal, page} = params;
+    async (params, thunkAPI) => {         
         try {            
-            const data = await getFavoriteQuizzes(page);            
-            console.log('data: ', data);
-            setTotal(data.totalFavorites)
+            const data = await getFavoriteQuizzes(params);                                    
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -179,15 +175,10 @@ export const updateQuizThunk = createAsyncThunk(
 
 export const updateFavoriteQuizThunk = createAsyncThunk(
     'quiz/updateFavorite',
-    async (id, thunkAPI) => {
-        const {quizId, setTotal} = id;
+    async (params, thunkAPI) => {         
         try {
-            const data = await updateFavoriteQuiz(quizId);
-            notifyBtnHeartSuccess()            
-            // return data;
-            //await updateFavoriteQuiz(quizId);
-            setTotal(data.totalFavorites)
-            return quizId.favorites;
+            await updateFavoriteQuiz(params);            
+            return params.favorites;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
@@ -198,8 +189,8 @@ export const deleteQuizThunk = createAsyncThunk(
     'quiz/deleteQuiz',
     async (id, thunkAPI) => {
         try {
-            const data = await deleteQuiz(id);
-            return data;
+            await deleteQuiz(id);            
+            return id;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }

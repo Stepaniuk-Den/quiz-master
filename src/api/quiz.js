@@ -26,8 +26,8 @@ export async function getPassedQuizzes(params) {
   return data;
 }
 
-export async function getUserQuizzes() {
-  const { data } = await instance.get("/quizzes/myQuiz");
+export async function getUserQuizzes(page=1) {
+  const { data } = await instance.get(`/quizzes/myQuiz?page=${page}`);
   return data;
 }
 
@@ -41,7 +41,7 @@ export async function getQuiz(id) {
   return data;
 }
 
-export async function getFavoriteQuizzes(page = 1) {
+export async function getFavoriteQuizzes(page = 1) {  
   const { data } = await instance.get(`/users/favorites?page=${page}`);
   return data;
 }

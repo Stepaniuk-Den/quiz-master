@@ -8,7 +8,7 @@ export const SelectWrapper = styled.div`
   gap: 8px;
 `;
 
-export const ButtonStyled = styled.button`  
+export const ButtonStyled = styled.button`
   width: 100%;
   max-width: 335px;
   height: 50px;
@@ -66,12 +66,12 @@ export const OptionsList = styled.ul`
     color: var(--text-color-100);
   }
   &::-webkit-scrollbar {
-  width: 5px;
-  scrollbar-width: thin; 
-}
-&::-webkit-scrollbar-thumb {
-  background-color: #0077FF;
-}
+    width: 5px;
+    scrollbar-width: thin;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #0077ff;
+  }
 `;
 
 export const OptionS = styled.li`
