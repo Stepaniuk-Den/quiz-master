@@ -1,20 +1,26 @@
 import { Answers, BtnStartS, TextAnswers } from "./BtnStartStyled";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 
-const BtnStart = ({quantityQuestions,correctAnswers, id, category}) => {
+const BtnStart = ({ quantityQuestions, correctAnswers, id, category }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isLastQuizOrHome = location.pathname === '/lastquiz' || location.pathname === '/home';
+  const isLastQuizOrHome =
+    location.pathname === "/lastquiz" || location.pathname === "/home";
 
   const handleBtnStart = () => {
-    navigate(`/basequizform?quizId=${id}&category=${category}`)
+    navigate(`/quiz/${id}/baseQuizForm?category=${category}`);
   };
 
   return (
     <>
       {isLastQuizOrHome ? (
         <>
-          <TextAnswers>Correct answers:<Answers>{correctAnswers}/{quantityQuestions}</Answers></TextAnswers>
+          <TextAnswers>
+            Correct answers:
+            <Answers>
+              {correctAnswers}/{quantityQuestions}
+            </Answers>
+          </TextAnswers>
           <BtnStartS type="button" onClick={handleBtnStart}>
             Pass again
           </BtnStartS>
