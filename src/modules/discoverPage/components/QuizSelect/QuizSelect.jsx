@@ -15,29 +15,26 @@ const QuizSelect = ({
 }) => {
   const [openSelect, setOpenSelect] = useState(false);
 
-  // const backgroundRef = useRef(null);
-  // useEffect(() => {
-  //   const handleDocumentClick = (event) => {
-  //     console.log(1, openSelect);
-  //     console.log(2, backgroundRef.current);
-  //     console.log(3, !backgroundRef.current?.contains(event.target));
-  //     if (
-  //       // openSelect &&
-  //       // backgroundRef.current &&
-  //       // !backgroundRef.current.contains(event.target)
-  //       openSelect &&
-  //       backgroundRef.current &&
-  //       !backgroundRef.current?.contains(event.target)
-  //     ) {
-  //       // setOpenSelect(false);
-  //     }
-  //   };
-  //   document.addEventListener("click", handleDocumentClick);
+  const backgroundRef = useRef(null);
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      // console.log(1, openSelect);
+      // console.log(2, backgroundRef.current);
+      // console.log(3, !backgroundRef.current?.contains(event.target));
+      if (        
+        openSelect &&
+        backgroundRef.current &&
+        !backgroundRef.current?.contains(event.target)
+      ) {
+         setOpenSelect(false);
+      }
+    };
+    document.addEventListener("click", handleDocumentClick);
 
-  //   return () => {
-  //     document.removeEventListener("click", handleDocumentClick);
-  //   };
-  // }, [openSelect]);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [openSelect]);
 
   const handleOnClickSelect = () => {
     setOpenSelect(!openSelect);
@@ -47,19 +44,10 @@ const QuizSelect = ({
     handleCategorySelection(event, selectTitle);
   };
 
-  // const handleClickBackground = (event) => {
-  //   if (event.target === event.currentTarget) {
-  //     document.body.classList.remove("openSelect");      
-  //   }
-  // };
-  // document.addEventListener('click', handleClickBackground);
-  // document.removeEventListener('click', handleClickBackground)
-  
-
   return (
     <>
       <SelectWrapper
-       //ref={backgroundRef}
+       ref={backgroundRef}
        >
         <ButtonStyled
           type="button"

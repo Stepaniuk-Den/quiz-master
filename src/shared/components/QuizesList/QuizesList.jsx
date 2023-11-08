@@ -6,7 +6,6 @@ import CreateQuizCard from "../../../modules/randomQuizPage/components/CreateQui
 import { v4 as uuidv4 } from "uuid";
 
 const QuizesList = ({ quizzesArr, className, updateFavoriteQuizes }) => {
-  // console.log('quizzesArr: ', quizzesArr);
   const location = useLocation();
 
   const randomQuizzes =
