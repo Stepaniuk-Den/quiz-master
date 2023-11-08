@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FiMessageCircle, FiLogOut, FiSettings, FiChevronDown, FiChevronUp } from "react-icons/fi"
+import { FiChevronDown, FiChevronUp } from "react-icons/fi"
 
 export const QuestionsWrapper = styled.div`
   display: flex;
@@ -26,7 +26,9 @@ export const QuestionList = styled.ul`
   align-items: center;
   margin: 8px 0;
   list-style-type: none;
-  border-bottom: 1px solid #ccc;
+  &:not(:last-child) {
+    border-bottom: 1px solid #ccc; /* додаємо підкреслення для всіх елементів, окрім останнього. */
+  }
 `;
 
 export const SelectStyledQuiz = styled.select`
@@ -36,7 +38,6 @@ export const SelectStyledQuiz = styled.select`
   height: 48px;
   padding: 15px 18px;
   border-radius: 30px;
-
   border: 1px solid var(--border-color-30);
   background-color: transparent;
   color: #f4f4f4;
@@ -68,3 +69,4 @@ export const DropdownList = styled.ul`
   border-radius: 20px;
   background: var(--blue-background);
 `;
+
