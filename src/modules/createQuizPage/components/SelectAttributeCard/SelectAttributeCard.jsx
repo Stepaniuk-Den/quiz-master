@@ -10,19 +10,36 @@ import {
   SetAttributeDiv,
 } from "./SelectAttributeCard.styled";
 
-const SelectAttributeCard = () => {
+const SelectAttributeCard = ({
+  audience,
+  changeAttribute,
+  changeCategory,
+  color,
+}) => {
   return (
     <SetAttributeDiv>
       <SelectAudienceDiv>
         <AttributeTitles>Audience</AttributeTitles>
         <InputsWrapper>
           <ChooseAudienceLabel htmlFor="children">
-            <input type="radio" id="children" name="Audience" />
+            <input
+              type="radio"
+              id="children"
+              name="Audience"
+              checked={audience === "children"}
+              onChange={changeAttribute}
+            />
             For Children
             <span></span>
           </ChooseAudienceLabel>
           <ChooseAudienceLabel htmlFor="adults">
-            <input type="radio" id="adults" name="Audience" />
+            <input
+              type="radio"
+              id="adults"
+              name="Audience"
+              checked={audience === "adults"}
+              onChange={changeAttribute}
+            />
             For Adults
             <span></span>
           </ChooseAudienceLabel>
@@ -32,22 +49,45 @@ const SelectAttributeCard = () => {
         <AttributeTitles>Categories</AttributeTitles>
         <AttributeCategorySelect
           name="categories"
-          id=""
-        ></AttributeCategorySelect>
+          id="selectOption"
+          defaultValue={audience}
+        >
+          <option value={audience} disabled hidden>
+            {`For ${audience}`}
+          </option>
+        </AttributeCategorySelect>
       </div>
       <div>
         <AttributeTitles>Background</AttributeTitles>
         <SelectColorDiv>
           <ColorLabel>
-            <input type="radio" id="#43A8D3" name="Background" />
+            <input
+              type="radio"
+              id="#43A8D3"
+              name="Background"
+              checked={color === "#43A8D3"}
+              onChange={changeAttribute}
+            />
             <span className="blue"></span>
           </ColorLabel>
           <ColorLabel>
-            <input type="radio" id="#6636C5" name="Background" />
+            <input
+              type="radio"
+              id="#6636C5"
+              name="Background"
+              checked={color === "#6636C5"}
+              onChange={changeAttribute}
+            />
             <span className="viola"></span>
           </ColorLabel>
           <ColorLabel>
-            <input type="radio" id="#E65368" name="Background" />
+            <input
+              type="radio"
+              id="#E65368"
+              name="Background"
+              checked={color === "#E65368"}
+              onChange={changeAttribute}
+            />
             <span className="orange"></span>
           </ColorLabel>
         </SelectColorDiv>
