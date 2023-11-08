@@ -59,3 +59,18 @@ export const StyledReview = styled.div`
   }
   }
 `;
+
+export const AvatarImg = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  font-family: GilroyBold;
+  padding-left:13px ;
+  font-size: 24px;
+  line-height: 25px;
+  text-align: center;
+  background-color: var(--pink-color);
+  border-radius: 50%;
+color: var(--text-color-100);
+`;
