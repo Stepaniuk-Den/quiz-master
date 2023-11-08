@@ -1,4 +1,3 @@
-//import { useState } from "react";
 import {
   BtnSearch,
   FiSearchS,
@@ -6,8 +5,7 @@ import {
   InputStyled,
 } from "./QuizSearchStyled";
 
-const QuizeSearch = ({search, setSearch }) => {  
-
+const QuizeSearch = ({ search, setSearch }) => {
   return (
     <FormWrapper>
       <BtnSearch type="submit">

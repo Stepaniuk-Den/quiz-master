@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import QuestionCard from "../../modules/createQuizPage/components/QuestionCard/QuestionCard.jsx";
 import QuestionsList from "../../modules/createQuizPage/components/QuestionsList/QuestionsList.jsx";
@@ -14,6 +15,8 @@ const CreateQuizPage = () => {
   const [categoryName, setCategoryName] = useState("");
   const allCategories = useSelector(selectDiscoverAllCategories);
   const dispatch = useDispatch();
+  const location = useLocation()
+  console.log('location: ', location.state.data);//id quiz
 
   useEffect(() => {
     if (allCategories) return;
