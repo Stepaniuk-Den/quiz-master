@@ -8,17 +8,23 @@ import {
   ButtonText,
   DownContainer,
   AnswersCounter,
-  AnswerLabels
+  AnswerLabels,
 } from "./QuizQuestionStyled";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { getPassedQuizzesThunk, passedUsersQuiz, updateQuizThunk, updateUsersQuiz } from "../../../redux/quiz/quizThunks";
+import {
+  getPassedQuizzesThunk,
+  passedUsersQuiz,
+  updateQuizThunk,
+  updateUsersQuiz,
+} from "../../../redux/quiz/quizThunks";
 import { StyledCountdown, TimeText } from "../Time/Time.styled";
 import { useAuth } from "../../../hooks/useAuth";
 
 function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const answerLabels = ["A", "B", "C", "D"];
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -26,6 +32,8 @@ function QuizQuestion({ questions, quizId }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
   const [userAnswers, setUserAnswers] = useState({});
+  const searchParams = new URLSearchParams(location.search);
+  const userName = searchParams.get("userName");
 
   const answers = questions[currentQuestion].answers;
   const question = questions[currentQuestion];
@@ -48,7 +56,11 @@ function QuizQuestion({ questions, quizId }) {
         ...prevAnswers,
         [questionId]: {
           true: answers.findIndex((ans) => ans.correctAnswer === true),
-          false: !isCorrect ? index : answer.correctAnswer ? index : prevAnswers[questionId]?.false,
+          false: !isCorrect
+            ? index
+            : answer.correctAnswer
+            ? index
+            : prevAnswers[questionId]?.false,
           time: timeRemaining,
         },
       };
@@ -66,7 +78,7 @@ function QuizQuestion({ questions, quizId }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       navigate(
-        `/quizresult?quizId=${quizId}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
+        `/quizresult?quizId=${quizId}&userName=${userName}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
       );
       const quizData = {
         result: {
@@ -78,15 +90,14 @@ function QuizQuestion({ questions, quizId }) {
 
       dispatch(updateQuizThunk(quizId));
       if (isAuth) {
-        dispatch(getPassedQuizzesThunk())
-          .then((arr) => {
-            const totalPassed = arr.payload;
-            if (totalPassed.data.some((item) => item._id === quizId)) {
-              dispatch(updateUsersQuiz(quizData));
-            } else {
-              dispatch(passedUsersQuiz(quizData));
-            }
-          });
+        dispatch(getPassedQuizzesThunk()).then((arr) => {
+          const totalPassed = arr.payload;
+          if (totalPassed.data.some((item) => item._id === quizId)) {
+            dispatch(updateUsersQuiz(quizData));
+          } else {
+            dispatch(passedUsersQuiz(quizData));
+          }
+        });
       }
     }
   };
@@ -128,7 +139,10 @@ function QuizQuestion({ questions, quizId }) {
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   useEffect(() => {
@@ -146,9 +160,9 @@ function QuizQuestion({ questions, quizId }) {
 
     if (isAnswerSelected) {
       clearTimeout(timer);
-      console.log(userAnswers[questions[currentQuestion]._id])
+      console.log(userAnswers[questions[currentQuestion]._id]);
     }
-    
+
     return () => {
       clearTimeout(timer);
     };
@@ -159,15 +173,13 @@ function QuizQuestion({ questions, quizId }) {
       <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
       <TimeText>
         Time:
-       <StyledCountdown>
-    <span>
-      {userAnswers[questions[currentQuestion]._id] ? (
-        formatTime(userAnswers[questions[currentQuestion]._id].time)
-      ) : (
-        formatTime(timeRemaining)
-      )}
-    </span>
-  </StyledCountdown>
+        <StyledCountdown>
+          <span>
+            {userAnswers[questions[currentQuestion]._id]
+              ? formatTime(userAnswers[questions[currentQuestion]._id].time)
+              : formatTime(timeRemaining)}
+          </span>
+        </StyledCountdown>
       </TimeText>
       <div>
         <AnswersContainer>
@@ -198,9 +210,7 @@ function QuizQuestion({ questions, quizId }) {
           Next
         </NextButton>
         {currentQuestion > 0 && (
-          <BackButton onClick={handlePreviousQuestion}>
-            Back
-          </BackButton>
+          <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
         )}
       </DownContainer>
     </>
