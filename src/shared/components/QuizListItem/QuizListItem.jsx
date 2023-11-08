@@ -14,7 +14,7 @@ import RatingStars from "../RatingStars/RatingStars";
 import BtnHeart from "../Buttons/BtnHeart/BtnHeart";
 
 const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
-  const { _id, quizCategory, quizName, rate, totalPassed, owner, correctAnswers,
+  const { _id, quizCategory, quizName, rate, totalPassed, isFavorite, correctAnswers,
     quantityQuestions
   } = quiz;
 
@@ -28,7 +28,7 @@ const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
             <FiUsersS />            
             <UsersNumber>{totalPassed}</UsersNumber>
           </IconUsersWrapper>          
-          <BtnHeart id={_id} owner={owner} updateFavoriteQuizes={updateFavoriteQuizes}/>
+          <BtnHeart id={_id} isFavorite={isFavorite} updateFavoriteQuizes={updateFavoriteQuizes}/>
         </TopIconBox>
         <TextRatingWrapper>
           <TextWrapper>            
