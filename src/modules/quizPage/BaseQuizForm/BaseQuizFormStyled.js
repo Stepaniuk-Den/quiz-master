@@ -12,6 +12,7 @@ export const QuizeBox = styled.div`
   background-color: var(--second-background);
   padding: 40px 20px;
   border-radius: 20px;
+      text-align: center;
   @media (min-width: 768px) {
     width: 580px;
     background-color: var(--second-background);
@@ -48,6 +49,7 @@ width: 100%;
   color: #F4F4F4;
   font-size: 16px;
   font-weight: 400;
+  margin-bottom: 16px;
 
 
   &::placeholder {
@@ -60,3 +62,13 @@ width: 100%;
     box-shadow: none;
   }
 `;
+
+export const ButtonStart = styled.button`
+border-radius: 30px;
+background: #205BF1;
+padding: 16px;
+width: 100%;
+color: ${(props) => (props.disabled ? "rgba(244, 244, 244, 0.20)" : "#F4F4F4")};
+font-size: 16px;
+font-weight: 700;
+`
