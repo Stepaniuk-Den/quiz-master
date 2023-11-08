@@ -11,7 +11,7 @@ import {
   AnswerLabels,
   QuizeBox,
 } from "./QuizQuestionStyled";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import {
   getPassedQuizzesThunk,
@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const answerLabels = ["A", "B", "C", "D"];
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -33,6 +34,8 @@ function QuizQuestion({ questions, quizId }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
   const [userAnswers, setUserAnswers] = useState({});
+  const searchParams = new URLSearchParams(location.search);
+  const userName = searchParams.get("userName");
 
   const answers = questions[currentQuestion].answers;
   const question = questions[currentQuestion];

@@ -16,6 +16,7 @@ import {
   passedUsersQuiz,
   updateUsersQuiz
 } from "./quizThunks";
+import { notifyBtnHeartSuccess, notifyQuizDeletedSuccess } from "../../shared/NotificationToastify/Toasts";
 
 const initialState = {
   quizzes: {
@@ -23,13 +24,14 @@ const initialState = {
     random: {
       adult: [],
       children: [],
-    },
-    // filtered: quizzesArr,
-    filtered: null,
+    },    
+    filtered: [],
     filteredQty: null,
     passed: [],
     ownQuizes: [],
+    ownQuizesQty: null,
     favorites: [],
+    favoritesQty: null,
     total: 129865,
   },
   filters: null,
@@ -86,12 +88,16 @@ const quizSlice = createSlice({
     setFilter: (state, action) => {
       state.filters = action.payload;
     },
-    updateFiltered: (state, action) => {
+    updateFiltered: (state, action) => {      
       state.quizzes.filtered = action.payload;
     },
-    updateFavorite: (state, action) => {
-      state.quizzes.filtered = action.payload;
+    updateFavorite: (state, action) => {      
+      state.quizzes.favorites = action.payload;
+    },
+    updateOwnQuizes: (state, action) => {      
+      state.quizzes.ownQuizes = action.payload;
     }
+
   },
   extraReducers: (builder) => {
     builder
@@ -108,23 +114,19 @@ const quizSlice = createSlice({
           state.quizzes.random.children.push(...allQuizzes.children.quizzes);
         }
       })      
-      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {        
-        state.quizzes.filtered = action.payload;
-        state.quizzes.filteredQty = action.payload.length;
-      })
-      // .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
-      //   console.log('action', action.payload);
-      //   state.categories.adult = action.payload.categoriesAdults;
-      //   state.categories.children = action.payload.categoriesChildren;
-      // })
+      .addCase(getFilteredQuizzesThunk.fulfilled, (state, action) => {                
+        state.quizzes.filtered = [...state.quizzes.filtered, ...action.payload.data];
+        state.quizzes.filteredQty = action.payload.totalQuiz;
+      })      
       .addCase(getQuizCategoriesThunk.fulfilled, (state, action) => {
         state.allCategories = action.payload;
       })
       .addCase(getPassedQuizzesThunk.fulfilled, (state, action) => {
         state.quizzes.passed = action.payload;
       })
-      .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {
-        state.quizzes.ownQuizes = action.payload;
+      .addCase(getUserQuizzesThunk.fulfilled, (state, action) => {        
+        state.quizzes.ownQuizes = [...state.quizzes.ownQuizes, ...action.payload.data];        
+        state.quizzes.ownQuizesQty = action.payload.totalQuiz;
       })
       .addCase(getTotalPassedThunk.fulfilled, (state, action) => {
         state.quizzes.total = action.payload;
@@ -132,10 +134,9 @@ const quizSlice = createSlice({
       .addCase(getQuizThunk.fulfilled, (state, action) => {
         state.quizzes.current = action.payload;
       })
-      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {
-        console.log('action: ', action.payload.data);
-        // state.quizzes.favorites = action.payload.data;
-        state.quizzes.favorites = [...state.quizzes.favorites, ...action.payload.data];
+      .addCase(getFavoriteQuizzesThunk.fulfilled, (state, action) => {        
+        state.quizzes.favorites = [...state.quizzes.favorites, ...action.payload.data];        
+        state.quizzes.favoritesQty = action.payload.totalFavorites;
       })
       .addCase(createQuizThunk.fulfilled, (state, action) => {
         state.quizzes.user.push(action.payload);
@@ -153,15 +154,18 @@ const quizSlice = createSlice({
         // state.quizzes.user = [...newUserQuizzes, action.payload];
       })      
       .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {        
+        notifyBtnHeartSuccess()
         state.quizzes.favorites = state.quizzes.favorites.filter(quiz => quiz._id !== action.payload);
+        state.quizzes.favoritesQty = state.quizzes.favoritesQty-1;
       })
       .addCase(deleteQuizThunk.fulfilled, (state, action) => {
-        state.quizzes.user = state.quizzes.user.filter(
-          (quiz) => quiz.id !== action.payload.id
-        );
+        const quizNameToDelete = state.quizzes.ownQuizes.find(quiz => quiz._id === action.payload);        
+        notifyQuizDeletedSuccess(quizNameToDelete.quizName);
+        state.quizzes.ownQuizes = state.quizzes.ownQuizes.filter(quiz => quiz._id !== action.payload);
+        state.quizzes.ownQuizesQty = state.quizzes.ownQuizesQty-1;        
       });
   },
 });
 
-export const { setFilter, updateFavorite, updateFiltered } = quizSlice.actions;
+export const { setFilter, updateFiltered, updateFavorite, updateOwnQuizes } = quizSlice.actions;
 export const quizReducer = quizSlice.reducer;

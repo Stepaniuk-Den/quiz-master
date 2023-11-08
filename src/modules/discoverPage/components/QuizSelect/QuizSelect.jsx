@@ -18,15 +18,12 @@ const QuizSelect = ({
   const backgroundRef = useRef(null);
   useEffect(() => {
     const handleDocumentClick = (event) => {
-      // console.log(1, openSelect);
-      // console.log(2, backgroundRef.current);
-      // console.log(3, !backgroundRef.current?.contains(event.target));
-      if (        
+      if (
         openSelect &&
         backgroundRef.current &&
         !backgroundRef.current?.contains(event.target)
       ) {
-         setOpenSelect(false);
+        setOpenSelect(false);
       }
     };
     document.addEventListener("click", handleDocumentClick);
@@ -46,9 +43,7 @@ const QuizSelect = ({
 
   return (
     <>
-      <SelectWrapper
-       ref={backgroundRef}
-       >
+      <SelectWrapper ref={backgroundRef}>
         <ButtonStyled
           type="button"
           className={className}

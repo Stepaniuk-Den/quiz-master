@@ -30,6 +30,7 @@ const BaseQuizForm = () => {
     setInputValue(value);
   };
 
+
   return (
     <PageWrapper>
       <QuizeBox>
@@ -49,5 +50,5 @@ const BaseQuizForm = () => {
     </PageWrapper>
   );
 };
-
+// disabled = { isButtonDisabled };
 export default BaseQuizForm;

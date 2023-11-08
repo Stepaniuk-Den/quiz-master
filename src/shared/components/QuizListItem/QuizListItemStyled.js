@@ -15,7 +15,6 @@ export const CardWrapper = styled.div`
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.02);
   background-color: var(--white-background);
-  /* background-color: rgba(0, 0, 0, 0.8); */
 
   @media (min-width: 768px) {
     width: 340px;
@@ -26,8 +25,7 @@ export const CardWrapper = styled.div`
     height: 364px;
   }
 `;
-export const TopIconBox = styled.div`
-  /* outline: 1px solid black; */
+export const TopIconBox = styled.div`  
   width: 100%;
   height: 20px;
   margin-bottom: 59px;
@@ -55,8 +53,7 @@ export const FiUsersS = styled(FiUsers)`
 export const UsersNumber = styled.p`
   margin: 0;
   padding: 0;
-  display: block;
-  /* color: #f4f4f4; */
+  display: block;  
   color: var(--text-color-100);
   font-size: 14px;
   font-style: normal;
@@ -67,6 +64,13 @@ export const UsersNumber = styled.p`
     font-size: 16px;
     line-height: 1.25;
   }
+`;
+
+export const IconsBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 `;
 
 export const TextRatingWrapper = styled.div`
@@ -106,10 +110,10 @@ export const ThemesS = styled.h4`
 
 export const GeneralScienceS = styled.h3`
   margin: 0;
-  padding: 0;  
+  padding: 0;
   color: var(--text-color-100);
   font-family: GilroyBold, sans-serif;
-  font-size: 20px;  
+  font-size: 20px;
   line-height: 1.4;
 
   @media (min-width: 768px) {

@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-export const PageWrapper = styled.div`  
+export const PageWrapper = styled.div`
   padding: 80px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     padding: 80px 0 100px 0;
   }
 `;
 
-export const SectionWrapper = styled.section`  
+export const SectionWrapper = styled.section`
   width: 100%;
   max-width: 1240px;
   display: flex;
@@ -21,13 +21,12 @@ export const SectionWrapper = styled.section`
 export const TitleIconBox = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   margin-bottom: 40px;
-  @media (min-width:768px){
+  @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 48px;
-    
   }
 `;
 
@@ -36,7 +35,7 @@ export const TitleS = styled.h2`
   padding: 0;
   color: var(--text-color-100);
   font-family: GilroyBold;
-  font-size: 32px;  
+  font-size: 32px;
   line-height: 1.19;
   letter-spacing: -0.32px;
 

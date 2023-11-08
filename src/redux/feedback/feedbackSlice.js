@@ -3,6 +3,7 @@ import {
   getAllReviewsThunk,
   createReviewThunk,
   createReviewQuizThunk,
+  createQuizReviewThunk,
 } from "./feedbackThunks";
 
 // const reviews =[
@@ -92,6 +93,9 @@ const feedbackSlice = createSlice({
         state.reviews.push(action.payload);
       })
       .addCase(createReviewQuizThunk.fulfilled, (state, action) => {
+        state.reviews.push(action.payload);
+      })
+      .addCase(createQuizReviewThunk.fulfilled, (state, action) => {
         state.reviews.push(action.payload);
       });
   },
