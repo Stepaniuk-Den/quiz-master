@@ -20,7 +20,10 @@ function QuestionsList() {
     const newOption = event.target.value;
 
     if (newOption) {
-      setSelectedOptions([...selectedOptions, { id: uuidv4(), value: newOption }]);
+      setSelectedOptions([
+        ...selectedOptions,
+        { id: uuidv4(), value: newOption },
+      ]);
       setSelectedOption("Create");
     }
   };
@@ -56,7 +59,7 @@ function QuestionsList() {
       <SelectStyledQuiz
         value={selectedOption}
         onChange={handleOptionChange}
-        isdropdownopen={isDropdownOpen}
+        // isdropdownopen={isDropdownOpen}
       >
         <option value="Create">Create</option>
         <option value="Quiz">Quiz</option>
