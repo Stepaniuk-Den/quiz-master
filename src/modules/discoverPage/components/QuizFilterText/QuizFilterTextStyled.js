@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
 export const TextWrapper = styled.div`
-  /* outline: 1px solid yellow; */
-  /* height: 20px; */
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* align-items: center; */
   justify-content: space-between;
   @media (min-width: 768px) {
     gap: 24px;
@@ -17,8 +14,6 @@ export const TextWrapper = styled.div`
 `;
 
 export const ResultBox = styled.div`
-  /* outline: 1px solid red; */
-  /* width: 100%; */
   height: 20px;
   display: flex;
   align-items: center;
@@ -46,7 +41,6 @@ export const PStyled = styled.p`
 `;
 
 export const RatingBox = styled.div`
-  /* outline: 1px solid red; */
   height: 20px;
   display: flex;
   align-items: center;
