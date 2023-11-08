@@ -22,11 +22,6 @@ export const StyledInputAnswer = styled.input`
   border: none;
   background-color: transparent;
   color: var(--text-color-100);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  letter-spacing: -0.16px;
   &::placeholder {
     color: var(--text-color-100);
   }

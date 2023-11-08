@@ -47,7 +47,7 @@ const QuestionCard = () => {
   };
 
   const timeInSeconds = [30, 45, 60, 75, 90, 105, 120];
-  const selectAnswers = ['A', 'B', 'C', 'D'];
+  const selectAnswers = ['A', 'C', 'B', 'D'];
 
   useEffect(() => {
     const handleDocumentTimeClick = (event) => {
@@ -134,7 +134,7 @@ const QuestionCard = () => {
           />
           <AnswerCardContainer>
         {selectAnswers.map((el) => (
-          <AnswerCard key={el} />))}
+          <AnswerCard key={el} letter={el}/>))}
         </AnswerCardContainer>
         </StyledQuestion>
       </StyledQuestionCard>

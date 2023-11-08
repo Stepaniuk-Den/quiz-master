@@ -14,11 +14,7 @@ export const StyledImageNumberBlock = styled.div`
 
   & p {
     color: var(--text-color-100);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px; /* 100% */
-    letter-spacing: -0.16px;
+    font-family: 'GilroyBold';
   }
 `;
 
@@ -62,11 +58,7 @@ export const StyledInputTheme = styled.input`
   border: 1px solid var(--border-color-30);
   background-color: transparent;
   color: var(--text-color-100);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  letter-spacing: -0.16px;
+
   &::placeholder {
     color: var(--text-color-100);
   }
@@ -79,11 +71,6 @@ export const StyledTimeWrapper = styled.div`
   margin-bottom: 32px;
   gap: 14px;
   & p {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; /* 100% */
-    letter-spacing: -0.16px;
     color: var(--text-color-60);
   }
 `;
@@ -106,11 +93,6 @@ export const StyledInputQuestion = styled.input`
   border: 1px solid var(--border-color-60);
   background-color: transparent;
   color: var(--text-color-100);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  letter-spacing: -0.16px;
   &::placeholder {
     color: var(--text-color-100);
   }
@@ -137,8 +119,7 @@ export const DropdownButton = styled.button`
   & p {
     color: var(--text-color-100);
     font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
+    font-family: 'GilroyBold';
     line-height: 18px; /* 128.571% */
   }
 `;
