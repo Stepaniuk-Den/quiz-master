@@ -27,6 +27,8 @@ const LastQuizesPage = () => {
        
   // }, [dispatch, passedQuizzes]);  
 
+  
+  
   return (
     <ContainerLastPassed>
       <PageTopBar titlePage="Last passed quizzes" />

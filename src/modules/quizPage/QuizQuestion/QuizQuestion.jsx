@@ -25,7 +25,7 @@ function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const answerLabels = ["A", "B", "C", "D"];
+  const answerLabels = ["A", "C", "B", "D"];
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [previousQuestion, setPreviousQuestion] = useState(null);

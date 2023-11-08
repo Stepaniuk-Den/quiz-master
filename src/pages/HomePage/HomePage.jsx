@@ -16,7 +16,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (passedQuizzes.length === 0) {
-      dispatch(getPassedQuizzesThunk({ page: 1, limit: 8 }));
+      dispatch(getPassedQuizzesThunk({ page: 1, limit: 9 }));
     }
   }, [dispatch, passedQuizzes]);
   

@@ -69,7 +69,7 @@ export const AnswersCounter = styled.p`
   text-align: "right";
   bottom: 0;
   right: 0;
-  margin: 0; /* Убираем внешние отступы */
+  margin: 0;
 `;
 
 export const StyledButton = styled.button.withConfig({

@@ -17,7 +17,7 @@ import {
   AvatarImg,
 } from "./HeaderStyled";
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 import { useDispatch, useSelector } from "react-redux";
 import {toggleShowBurgerModal} from "../../../redux/Modal/modalSlice";
