@@ -62,11 +62,51 @@ export const Up = styled(FiChevronUp)`
 `;
 
 export const DropdownList = styled.ul`
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   display: ${({ open }) => (open ? 'block' : 'none')};
   padding: 24px;
-  border-radius: 20px;
+  border-radius: 15px;
   background: var(--blue-background);
 `;
 
+export const DropdownContainer = styled.div`
+  display: inline-block;
+  position: relative;
+`;
+
+export const DropdownButton = styled.button`
+  display: flex;
+  /* align-items: center; */
+  /* width: 83px; */
+
+  margin-top: 32px;
+  width: 100%;
+  max-width: 335px;
+  height: 48px;
+  padding: 15px 18px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color-30);
+  background-color: transparent;
+  color: #f4f4f4;
+  color: var(--text-color-100);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29; /* 128.571% */
+  letter-spacing: -0.14px;
+
+  cursor: pointer;
+  /* background: none;
+  border-radius: 30px;
+  border: 1px solid var(--border-color-30); */
+`;
+
+export const DropdownItem = styled.li`
+  margin-bottom: 14px;
+  color: var(--text-color-100);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+`;
