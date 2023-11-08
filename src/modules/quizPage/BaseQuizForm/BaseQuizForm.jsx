@@ -37,7 +37,7 @@ const BaseQuizForm = () => {
   };
 
   const isButtonDisabled =
-    inputValue.length < 3 || (!hasToken && userName.length < 3);
+    inputValue.length < 3
 
   return (
     <PageWrapper>
