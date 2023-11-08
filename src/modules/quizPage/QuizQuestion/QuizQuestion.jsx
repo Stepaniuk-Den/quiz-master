@@ -92,9 +92,12 @@ function QuizQuestion({ questions, quizId }) {
       if (isAuth) {
         dispatch(getPassedQuizzesThunk()).then((arr) => {
           const totalPassed = arr.payload;
-          if (totalPassed.data.some((item) => item._id === quizId)) {
+        console.log(totalPassed)
+          if (totalPassed.length === 0 ) {
+            dispatch(passedUsersQuiz(quizData));
+          } else if (totalPassed.data.some((item) => item._id === quizId)) {
             dispatch(updateUsersQuiz(quizData));
-          } else {
+          }else {
             dispatch(passedUsersQuiz(quizData));
           }
         });
