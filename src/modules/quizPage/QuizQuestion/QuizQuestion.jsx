@@ -8,13 +8,20 @@ import {
   ButtonText,
   DownContainer,
   AnswersCounter,
-  AnswerLabels
+  AnswerLabels,
+  QuizeBox,
 } from "./QuizQuestionStyled";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { getPassedQuizzesThunk, passedUsersQuiz, updateQuizThunk, updateUsersQuiz } from "../../../redux/quiz/quizThunks";
+import {
+  getPassedQuizzesThunk,
+  passedUsersQuiz,
+  updateQuizThunk,
+  updateUsersQuiz,
+} from "../../../redux/quiz/quizThunks";
 import { StyledCountdown, TimeText } from "../Time/Time.styled";
 import { useAuth } from "../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
@@ -48,7 +55,11 @@ function QuizQuestion({ questions, quizId }) {
         ...prevAnswers,
         [questionId]: {
           true: answers.findIndex((ans) => ans.correctAnswer === true),
-          false: !isCorrect ? index : answer.correctAnswer ? index : prevAnswers[questionId]?.false,
+          false: !isCorrect
+            ? index
+            : answer.correctAnswer
+            ? index
+            : prevAnswers[questionId]?.false,
           time: timeRemaining,
         },
       };
@@ -66,8 +77,9 @@ function QuizQuestion({ questions, quizId }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       navigate(
-        `/quizresult?quizId=${quizId}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
+        `/quiz/${quizId}/quizResult?correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
       );
+
       const quizData = {
         result: {
           quizId: quizId,
@@ -78,15 +90,14 @@ function QuizQuestion({ questions, quizId }) {
 
       dispatch(updateQuizThunk(quizId));
       if (isAuth) {
-        dispatch(getPassedQuizzesThunk())
-          .then((arr) => {
-            const totalPassed = arr.payload;
-            if (totalPassed.data.some((item) => item._id === quizId)) {
-              dispatch(updateUsersQuiz(quizData));
-            } else {
-              dispatch(passedUsersQuiz(quizData));
-            }
-          });
+        dispatch(getPassedQuizzesThunk()).then((arr) => {
+          const totalPassed = arr.payload;
+          if (totalPassed.data.some((item) => item._id === quizId)) {
+            dispatch(updateUsersQuiz(quizData));
+          } else {
+            dispatch(passedUsersQuiz(quizData));
+          }
+        });
       }
     }
   };
@@ -128,7 +139,10 @@ function QuizQuestion({ questions, quizId }) {
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   useEffect(() => {
@@ -146,9 +160,9 @@ function QuizQuestion({ questions, quizId }) {
 
     if (isAnswerSelected) {
       clearTimeout(timer);
-      console.log(userAnswers[questions[currentQuestion]._id])
+      console.log(userAnswers[questions[currentQuestion]._id]);
     }
-    
+
     return () => {
       clearTimeout(timer);
     };
@@ -156,53 +170,50 @@ function QuizQuestion({ questions, quizId }) {
 
   return (
     <>
-      <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
-      <TimeText>
-        Time:
-       <StyledCountdown>
-    <span>
-      {userAnswers[questions[currentQuestion]._id] ? (
-        formatTime(userAnswers[questions[currentQuestion]._id].time)
-      ) : (
-        formatTime(timeRemaining)
-      )}
-    </span>
-  </StyledCountdown>
-      </TimeText>
-      <div>
-        <AnswersContainer>
-          {answers.map((answer, index) => (
-            <li key={index}>
-              <StyledButton
-                onClick={() => handleButtonClick(answer, index)}
-                isCorrect={getButtonClass(index)}
-                disabled={userAnswers[questions[currentQuestion]._id]}
-              >
-                <ButtonText>
-                  <AnswerLabels>{answerLabels[index]} : </AnswerLabels>
-                  {`${answer.answer}`}
-                </ButtonText>
-              </StyledButton>
-            </li>
-          ))}
-        </AnswersContainer>
-      </div>
-      <DownContainer>
-        <AnswersCounter>
-          {currentQuestion + 1}/{questions.length}
-        </AnswersCounter>
-        <NextButton
-          onClick={handleNextQuestion}
-          disabled={selectedAnswer === null}
-        >
-          Next
-        </NextButton>
-        {currentQuestion > 0 && (
-          <BackButton onClick={handlePreviousQuestion}>
-            Back
-          </BackButton>
-        )}
-      </DownContainer>
+      <QuizeBox>
+        <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
+        <TimeText>
+          Time:
+          <StyledCountdown>
+            <span>
+              {userAnswers[questions[currentQuestion]._id]
+                ? formatTime(userAnswers[questions[currentQuestion]._id].time)
+                : formatTime(timeRemaining)}
+            </span>
+          </StyledCountdown>
+        </TimeText>
+        <div>
+          <AnswersContainer>
+            {answers.map((answer, index) => (
+              <li key={index}>
+                <StyledButton
+                  onClick={() => handleButtonClick(answer, index)}
+                  isCorrect={getButtonClass(index)}
+                  disabled={userAnswers[questions[currentQuestion]._id]}
+                >
+                  <ButtonText>
+                    <AnswerLabels>{answerLabels[index]} : </AnswerLabels>
+                    {`${answer.answer}`}
+                  </ButtonText>
+                </StyledButton>
+              </li>
+            ))}
+          </AnswersContainer>
+        </div>
+        <DownContainer>
+          <AnswersCounter>
+            {currentQuestion + 1}/{questions.length}
+          </AnswersCounter>
+          <NextButton
+            onClick={handleNextQuestion}
+            disabled={selectedAnswer === null}
+          >
+            Next
+          </NextButton>
+          {currentQuestion > 0 && (
+            <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
+        </DownContainer>
+      </QuizeBox>
     </>
   );
 }

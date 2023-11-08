@@ -1,1 +1,1 @@
-export { default } from "./AnswerList.js";
+export { default } from "./AnswerList";

@@ -1,31 +1,27 @@
-import { useDispatch } from "react-redux";
-import QuizQuestion from "../../modules/quizPage/QuizQuestion/QuizQuestion";
 import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
-import { PageWrapper, QuizeBox, BackBox } from "./QuizePage.styled";
-
-import { useParams } from "react-router-dom";
-import { getQuizThunk } from "../../redux/quiz/quizThunks";
-import { useEffect, useState } from "react";
+import { PageWrapper, BackBox } from "./QuizePage.styled";
+import { Outlet, useParams } from "react-router-dom";
+import BaseQuizForm from "../../modules/quizPage/BaseQuizForm";
+import QuizResult from "../../modules/quizPage/QuizResult";
+import FeedbackPage from "../FeedbackPage/FeedbackPage";
+import AnswerList from "../../modules/quizPage/AnswerList";
 
 const QuizePage = () => {
   const { quizId } = useParams();
-  const dispatch = useDispatch();
-  const [quizData, setQuizData] = useState([]);
+  const { category } = useParams();
 
-  useEffect(() => {
-    dispatch(getQuizThunk(quizId)).then((data) => {
-      setQuizData(data.payload);
-    });
-  }, [dispatch, quizId]);
   return (
     <>
       <BackBox>
         <GoBackBtn to="/" />
       </BackBox>
       <PageWrapper>
-        <QuizeBox>
-          {quizData.length > 0 && <QuizQuestion questions={quizData} quizId={quizId} />}
-        </QuizeBox>
+        <Outlet>
+          <BaseQuizForm quizId={quizId} category={category} />
+          <AnswerList quizId={quizId} />
+          <QuizResult quizId={quizId} />
+          <FeedbackPage quizId={quizId} />
+        </Outlet>
       </PageWrapper>
     </>
   );
