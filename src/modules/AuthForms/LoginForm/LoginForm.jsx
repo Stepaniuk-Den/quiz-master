@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import { AiOutlineClose } from "react-icons/ai";
 import {
   InputsWrapper,
   RestoreStyled,
@@ -15,18 +14,13 @@ import {
   ErrorsStyled,
   FormStyled,
   StyledModal,
-  // StyledCloseBtn,
 } from "./LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
 import BtnConfirmAuth from "../../../shared/components/Buttons/BtnConfirmAuth";
 import InputDefault from "../../../shared/components/InputDefault/InputDefault";
-import {
-  notifyLoginSuccess,
-  notifyRegisterError,
-} from "../../../shared/NotificationToastify/Toasts";
+import {notifyRegisterError} from "../../../shared/NotificationToastify/Toasts";
 import { loginUserThunk } from "../../../redux/user/userThunks";
 import BtnClose from "../../../shared/components/Buttons/BtnClose";
-// import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
 const LogInForm = ({ modalClose}) => {
   const dispatch = useDispatch();
@@ -60,13 +54,11 @@ const LogInForm = ({ modalClose}) => {
           notifyRegisterError(error);
           navigate("/");
         });
-      // dispatch(toggleShowAuthPage(""));
     },
   });
 
   const handleClickBtnClose = () => {
     document.body.classList.remove("no-scroll");
-    // dispatch(toggleShowAuthPage(""));
     navigate("/");
   };
 
