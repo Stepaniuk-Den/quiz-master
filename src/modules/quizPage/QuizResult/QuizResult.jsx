@@ -14,8 +14,11 @@ import {
 import { useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
-import { Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import {
+  notifyError,
+  notifyRateAddSuccess,
+} from "../../../shared/NotificationToastify/Toasts";
 
 const QuizResult = () => {
   const dispatch = useDispatch();
@@ -24,80 +27,62 @@ const QuizResult = () => {
   const correctAnswersCount = searchParams.get("correctAnswersCount");
   const totalQuestions = searchParams.get("totalQuestions");
   const quizId = searchParams.get("quizId");
+  const userName = searchParams.get("userName");
   const [value, setValue] = useState(0);
 
-
   // const navigate = useNavigate();
-
   // const backLink = useRef(location.state?.from);
-  // const [allQuiz, setAllQuiz] = useState([]);
-  // useEffect(()=> {
-  // dispatch(getRandomQuizzesThunk()).then(data=> console.log(data))
-  // })
-
-  // const handleStarChange = (starsQty) => {    
-  //   setValue(starsQty);
-  //   // handleStarSelection(starsQty);
-  // };
+  // navigate(backLink.current ?? '/');
 
   const handleClickBtnClose = (value) => {
-    // if (value > 0) {
-
-      dispatch(createReviewQuizThunk(quizId, {rate: value}))
-      .then(data => console.log(quizId, {rate: value}));
-
-    // }
-    // navigate(backLink.current ?? '/');
+    if (value > 0) {
+      dispatch(createReviewQuizThunk({ id: quizId, rate: value }))
+        .then(() => {
+          notifyRateAddSuccess();
+          window.history.back();
+        })
+        .catch((error) => {
+          notifyError(error);
+          window.history.back();
+        });
+    } else {
+      window.history.back();
+    }
   };
 
   return (
     <PageWrapper>
       <QuizeBox>
-        <BtnCloseS type="submit" onClick={()=>handleClickBtnClose(value)} ><AiOutlineCloseS/></BtnCloseS>
+        <BtnCloseS type="submit" onClick={() => handleClickBtnClose(value)}>
+          <AiOutlineCloseS />
+        </BtnCloseS>
         <ResultTitleS>The results</ResultTitleS>
-
         <ResultTextS>Correct answers</ResultTextS>
         <AnswersResultS>
           {correctAnswersCount}/{totalQuestions}
         </AnswersResultS>
 
-        {/* <ResultTextS>Rate the quiz</ResultTextS>
-              <RatingStars rate={1}/>  */}
-
-        {/* <div className="star-rating">
-          {[...Array(5)].map((star) => {
-            return <span className="star">&#9733;</span>;
-          })}
-        </div> */}
-
-        {/* ============================================ */}
-        <RatingBox
-        //  onSubmit={handleSendRating}
-        // sx={{'& > legend': { mt: 2 },}}
-        >
-          {/* <BtnCloseS type="submit" onClick={()=>handleClickBtnClose(value)} ><AiOutlineCloseS/></BtnCloseS> */}
-
-          <Typography component="legend">Rate the quiz</Typography>
+        <ResultTextS>Rate the quiz</ResultTextS>
+        <RatingBox>
           <RatingS
             name="simple-controlled"
             value={value}
-            size="large"
-            onChange={(event, newValue) => {
+            // size="large"
+            onChange={(_, newValue) => {
               setValue(newValue);
             }}
-        //     onChange={(evt, newValue) => {
-        //   handleStarChange(newValue);
-        // }}
             emptyIcon={<StarIcon />}
           />
         </RatingBox>
-        {/* ========================================= */}
 
-        <BtnWriteReviewLink to="/feedback">Write a review</BtnWriteReviewLink>
+        <BtnWriteReviewLink
+          to={`/feedback?quizId=${quizId}&userName=${userName}`}
+        >
+          Write a review
+        </BtnWriteReviewLink>
       </QuizeBox>
     </PageWrapper>
   );
 };
 
 export default QuizResult;
-

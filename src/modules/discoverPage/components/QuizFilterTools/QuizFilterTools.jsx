@@ -4,7 +4,7 @@ import QuizFilterText from "../QuizFilterText/QuizFilterText";
 
 const QuizeFilterTools = ({
   handleStarSelection,
-  handleCategorySelection,
+  handleCategorySelection,  
   totalResults,    
   selectedCategoryNames,
   commonFilter,
