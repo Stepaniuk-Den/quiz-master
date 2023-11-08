@@ -12,13 +12,14 @@ import {
 import BtnStart from "../Buttons/BtnStart";
 import RatingStars from "../RatingStars/RatingStars";
 import BtnHeart from "../Buttons/BtnHeart/BtnHeart";
-import { Link } from "react-router-dom";
 
 const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
-  const { _id, quizCategory, quizName, rate, totalPassed, owner, correctAnswers,
+  const { _id, quizCategory, quizName, rate, totalPassed, isFavorite, correctAnswers,
     quantityQuestions
- } = quiz;  
-  
+  } = quiz;
+
+
+
   return (
     <>
       <CardWrapper>
@@ -27,7 +28,7 @@ const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
             <FiUsersS />            
             <UsersNumber>{totalPassed}</UsersNumber>
           </IconUsersWrapper>          
-          <BtnHeart id={_id} owner={owner} updateFavoriteQuizes={updateFavoriteQuizes}/>
+          <BtnHeart id={_id} isFavorite={isFavorite} updateFavoriteQuizes={updateFavoriteQuizes}/>
         </TopIconBox>
         <TextRatingWrapper>
           <TextWrapper>            
@@ -36,7 +37,7 @@ const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
           </TextWrapper>            
           <RatingStars rate={rate}/>
         </TextRatingWrapper>
-        <Link to={`/quiz/${quiz._id}`}><BtnStart correctAnswers={correctAnswers} quantityQuestions={quantityQuestions} /></Link>
+        <BtnStart id={quiz._id} category={quizCategory.categoryName} correctAnswers={correctAnswers} quantityQuestions={quantityQuestions} />
       </CardWrapper>
     </>
   );

@@ -32,7 +32,7 @@ export const getRandomQuizzesThunk = createAsyncThunk(
 
 export const getFilteredQuizzesThunk = createAsyncThunk(
     'quiz/getFiltered',
-    async (params, thunkAPI) => {        
+    async (params, thunkAPI) => {
         try {
             const data = await getFilteredQuizzes(params);
             return data;
@@ -41,18 +41,6 @@ export const getFilteredQuizzesThunk = createAsyncThunk(
         }
     }
 );
-
-// export const getQuizCategoriesThunk = createAsyncThunk(
-//     'quiz/getCategories',
-//     async (audience, thunkAPI) => {
-//         try {
-//             const data = await getQuizCategories(audience);
-//             return data;
-//         } catch (error) {
-//             return thunkAPI.rejectWithValue(error.response.data);
-//         }
-//     }
-// );
 
 export const getQuizCategoriesThunk = createAsyncThunk(
     'quiz/getCategories',
@@ -116,9 +104,11 @@ export const getQuizThunk = createAsyncThunk(
 
 export const getFavoriteQuizzesThunk = createAsyncThunk(
     'quiz/getFavorite',
-    async (setTotal, thunkAPI) => {
+    async (params, thunkAPI) => {        
+        const {setTotal, page} = params;
         try {            
-            const data = await getFavoriteQuizzes();            
+            const data = await getFavoriteQuizzes(page);            
+            console.log('data: ', data);
             setTotal(data.totalFavorites)
             return data;
         } catch (error) {
@@ -193,11 +183,10 @@ export const updateFavoriteQuizThunk = createAsyncThunk(
         const {quizId, setTotal} = id;
         try {
             const data = await updateFavoriteQuiz(quizId);
-            notifyBtnHeartSuccess()
-            console.log('data123: ', data);
+            notifyBtnHeartSuccess()            
             // return data;
             //await updateFavoriteQuiz(quizId);
-            setTotal(data?.favorites?.length)
+            setTotal(data.totalFavorites)
             return quizId.favorites;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);

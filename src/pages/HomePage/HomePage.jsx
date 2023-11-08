@@ -13,14 +13,12 @@ const HomePage = () => {
   const seeAllLink = "/lastquiz"; 
   const dispatch = useDispatch();
   const passedQuizzes = useSelector(selectPassed);
-  const [hasFetchedData, setHasFetchedData] = useState(false);
 
   useEffect(() => {
-    if (!hasFetchedData) {
-      dispatch(getPassedQuizzesThunk({ page: 1, limit: 3 }));
-      setHasFetchedData(true);
+    if (passedQuizzes.length === 0) {
+      dispatch(getPassedQuizzesThunk({ page: 1, limit: 8 }));
     }
-  }, [dispatch, hasFetchedData]);
+  }, [dispatch, passedQuizzes]);
   
   const shouldDisplaySeeAll = passedQuizzes?.length < 3;
   
@@ -37,7 +35,7 @@ const HomePage = () => {
           </BoxLastPassed>
           <MediaQuery minWidth={1440}>
             {matches => (
-              <QuizesList quizzesArr={matches ? passedQuizzes?.slice(0, 3) : passedQuizzes?.slice(0, 2)} />
+              <QuizesList quizzesArr={matches ? passedQuizzes.data?.slice(0, 3) : passedQuizzes.data?.slice(0, 2)} />
             )}
           </MediaQuery>
          

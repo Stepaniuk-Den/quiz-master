@@ -13,6 +13,7 @@ import Notification from "./shared/NotificationToastify/Notification";
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"));
 //const QuizListPage = lazy(() => import("./pages/QuizListPage"));
+const BaseQuizForm = lazy(() => import("./modules/quizPage/BaseQuizForm"));
 const QuizePage = lazy(() => import("./pages/QuizePage/QuizePage"));
 const QuizResult = lazy(()=> import("./modules/quizPage/QuizResult"))
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -53,7 +54,7 @@ function App() {
             <Route path="/randomquiz/:ageType" element={<RandomQuizPage />}></Route>
             <Route path="/quiz/:quizId" element={<QuizePage />}></Route>
             <Route path="/quizresult" element={<QuizResult />}></Route>
-            
+            <Route path = "/basequizform" element={<BaseQuizForm/>}></Route>
             <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
             <Route path="/lastquiz" element={<PrivateRoute><LastQuizesPage /></PrivateRoute>}></Route>
             <Route path="/discover" element={<PrivateRoute><DiscoverPage /></PrivateRoute>}></Route>

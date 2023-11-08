@@ -1,36 +1,42 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserTestsSearch from "../../discoverFavoriteOwnquizCommonComponents/UserTestsSearch/UserTestsSearch";
 import IconFilter from "../IconFilter/IconFilter";
 import QuizSelect from "../QuizSelect/QuizSelect";
 import {
   BtnSearch,
-  FiSearchS,
+  IconS,
   FormWrapper,
   SelectWrapper,
 } from "./QuizesSearchStyled";
-import {  
-  selectDiscoverAllCategories,  
-} from "../../../../redux/selectors";
+import { selectDiscoverAllCategories } from "../../../../redux/selectors";
+import { useEffect, useState } from "react";
+import { getFilteredQuizzesThunk, getQuizCategoriesThunk } from "../../../../redux/quiz/quizThunks";
 
-const QuizeSearch = ({handleCategorySelection}) => {
-  const allCategories = useSelector(selectDiscoverAllCategories);
-  // console.log('allCategories: ', allCategories);
-
+const QuizeSearch = ({ handleCategorySelection, commonFilter }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getQuizCategoriesThunk());
+  }, [dispatch]);
+  const allCategories = useSelector(selectDiscoverAllCategories);  
+  const [inputValue, setInputValue] = useState("");
   
 
   const onFormSubmit = (evt) => {
-    evt.preventDefault();
-    console.log("form submited");
+    evt.preventDefault();        
+    dispatch(getFilteredQuizzesThunk({inputValue, ...commonFilter}))
+    setInputValue("");
   };
-  // temporary div
+  
   return (
     <FormWrapper onSubmit={onFormSubmit}>
       <SelectWrapper>
         <BtnSearch type="submit">
-          <FiSearchS />
+          <IconS />
         </BtnSearch>
-
-        <UserTestsSearch />
+        <UserTestsSearch
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />
 
         <IconFilter />
 
