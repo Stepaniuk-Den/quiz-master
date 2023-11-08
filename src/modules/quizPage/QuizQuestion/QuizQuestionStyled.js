@@ -99,3 +99,17 @@ export const StyledButton = styled.button.withConfig({
       ? "white"
       : "black"};
 `;
+// ==================================
+
+export const QuizeBox = styled.div`
+  width: 335px;
+  background-color: var(--second-background);
+  padding: 40px 20px;
+  border-radius: 20px;
+  @media (min-width: 768px) {
+    width: 580px;
+    background-color: var(--second-background);
+    padding: 60px;
+    border-radius: 20px;
+  }
+`;

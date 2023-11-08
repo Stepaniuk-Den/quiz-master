@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   ButtonStart,
   Category,
@@ -15,11 +15,9 @@ const BaseQuizForm = () => {
   const [inputValue, setInputValue] = useState("");
   const hasToken = useSelector(selectIsAuth);
   const name = useSelector(selectUser);
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const quizId = searchParams.get("quizId");
-  const category = searchParams.get("category");
-  const [userName, setUserName] = useState("");
+  const { quizId } = useParams();
+  const { category } = useParams();
+  console.log(quizId)
 
   useEffect(() => {
     if (hasToken && name.name) {
@@ -32,37 +30,21 @@ const BaseQuizForm = () => {
     setInputValue(value);
   };
 
-  const UserNameChange = (event) => {
-    setUserName(event.target.value);
-  };
-
-  const isButtonDisabled =
-    inputValue.length < 3
 
   return (
     <PageWrapper>
       <QuizeBox>
         <Title>Log in to take the quiz</Title>
         <Category>{category}</Category>
-        {hasToken && (
-          <InputName
-            type="text"
-            placeholder="Name"
-            onChange={handleInputChange}
-            value={inputValue}
-            readOnly={hasToken && name.name}
-          />
-        )}
-        {!hasToken && (
-          <InputName
-            type="text"
-            placeholder="Name"
-            value={userName}
-            onChange={UserNameChange}
-          />
-        )}
-        <Link to={`/quiz/${quizId}?userName=${userName}`}>
-          <ButtonStart disabled={isButtonDisabled}>Start</ButtonStart>
+        <InputName
+          type="text"
+          placeholder="Name"
+          value={inputValue}
+          onChange={handleInputChange}
+          readOnly={hasToken && name.name}
+        />
+        <Link to={`/quiz/${quizId}/quizQuestion`}>
+          <ButtonStart disabled={inputValue.length < 3}>Start</ButtonStart>
         </Link>
       </QuizeBox>
     </PageWrapper>
