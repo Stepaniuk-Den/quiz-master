@@ -8,8 +8,7 @@ export const SelectWrapper = styled.div`
   gap: 8px;
 `;
 
-export const ButtonStyled = styled.button`
-  /* position: relative; */
+export const ButtonStyled = styled.button`  
   width: 100%;
   max-width: 335px;
   height: 50px;
@@ -25,7 +24,7 @@ export const ButtonStyled = styled.button`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.29; /* 128.571% */
+  line-height: 1.29;
   letter-spacing: -0.14px;
 
   &.forChildren {
@@ -67,11 +66,11 @@ export const OptionsList = styled.ul`
     color: var(--text-color-100);
   }
   &::-webkit-scrollbar {
-  width: 6px; /* Ширина скроллбара */ 
+  width: 5px;
   scrollbar-width: thin; 
 }
 &::-webkit-scrollbar-thumb {
-  background-color: #0077FF; /* Цвет ползунка скроллбара */
+  background-color: #0077FF;
 }
 `;
 
@@ -120,7 +119,7 @@ export const OptionS = styled.li`
     cursor: pointer;
     font-family: GilroyRegular, sans-serif;
     font-size: 14px;
-    line-height: 1.29; /* 128.571% */
+    line-height: 1.29;
     letter-spacing: -0.14px;
   }
 `;

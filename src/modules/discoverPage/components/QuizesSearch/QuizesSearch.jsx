@@ -4,7 +4,7 @@ import IconFilter from "../IconFilter/IconFilter";
 import QuizSelect from "../QuizSelect/QuizSelect";
 import {
   BtnSearch,
-  FiSearchS,
+  IconS,
   FormWrapper,
   SelectWrapper,
 } from "./QuizesSearchStyled";
@@ -31,7 +31,7 @@ const QuizeSearch = ({ handleCategorySelection, commonFilter }) => {
     <FormWrapper onSubmit={onFormSubmit}>
       <SelectWrapper>
         <BtnSearch type="submit">
-          <FiSearchS />
+          <IconS />
         </BtnSearch>
         <UserTestsSearch
           inputValue={inputValue}
