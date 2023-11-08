@@ -212,6 +212,7 @@ function QuizQuestion({ questions, quizId }) {
           </NextButton>
           {currentQuestion > 0 && (
             <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
+          )}
         </DownContainer>
       </QuizeBox>
     </>
