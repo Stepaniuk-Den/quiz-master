@@ -18,7 +18,8 @@ export const QuestionsWrapper = styled.div`
   }
 
   @media only screen and (min-width: 768px) {
-   
+    width: 240px;
+  height: 630px;
   }
 
   @media only screen and (min-width: 1440px) {

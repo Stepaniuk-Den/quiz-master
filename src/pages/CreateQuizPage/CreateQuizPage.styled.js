@@ -18,11 +18,12 @@ export const SectionWrapper = styled.section`
   width: clamp(280px, 335px, 100%);
   display: flex;
   flex-wrap: wrap;
+  column-gap:24px;
   flex-direction: row;
   align-items: center;
 
   @media only screen and (min-width: 768px) {
-    width: 702px;
+    width: 704px;
   }
 
   @media only screen and (min-width: 1440px) {

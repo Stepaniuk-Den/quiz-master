@@ -192,6 +192,7 @@ export const StyledQuestion = styled.div`
   @media only screen and (min-width: 1440px) {
     margin-left: 32px;
     width: 460px;
+    height: 100%;
   }
 `;
 

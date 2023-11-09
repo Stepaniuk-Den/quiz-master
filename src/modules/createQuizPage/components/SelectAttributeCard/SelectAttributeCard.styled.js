@@ -15,21 +15,22 @@ export const SetAttributeDiv = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 40px;
-  width: 100%;
-  min-width: 260px;
-  max-width: 260px;
+  width: 260px;
+  /* width: 100%; */
+  /* min-width: 260px;
+  max-width: 260px; */
   margin-top: 40px;
   margin-bottom: 40px;
 
   @media only screen and (min-width: 768px) {
-    max-width: 474px;
+    width: 474px;
     column-gap: 64px;
     flex-wrap: nowrap;
     margin-top: 32px;
     margin-bottom: 32px;
   }
   @media only screen and (min-width: 1440px) {
-    max-width: 110px;
+    width: 110px;
     flex-direction: column;
     row-gap: 64px;
     margin: 0;
