@@ -21,15 +21,16 @@ import {
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
 
-const QuestionCard = ({ changeAttribute }) => {
+const QuestionCard = ({
+  currentQuestion,
+  setCurrentQuestion,
+  handleQuizChange,
+  // handleChangeAnswer,
+  // currentValue,
+}) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
-  const [isCurrentQuestion, setIsCurrentQuestion] = useState({
-    theme: "",
-    time: null,
-    question: "",
-    quizType: "quiz",
-  });
+  const [isChecked, setChecked] = useState("");
 
   const questionNumber = 7;
   const allQuestions = 10;
@@ -50,8 +51,9 @@ const QuestionCard = ({ changeAttribute }) => {
   };
 
   const timeInSeconds = [30, 45, 60, 75, 90, 105, 120];
-  const selectAnswers = isCurrentQuestion.quizType === "quiz" ?  ["A", "C", "B", "D"] : ["A", "C"];
-// const selectAnswers = quizType === "quiz" ?  ["A", "C", "B", "D"] : ["A", "C"];
+  const selectAnswers =
+    currentQuestion.quizType === "quiz" ? ["A", "C", "B", "D"] : ["A", "C"];
+
   useEffect(() => {
     const handleDocumentTimeClick = (event) => {
       if (
@@ -74,24 +76,25 @@ const QuestionCard = ({ changeAttribute }) => {
     const currentTimeId = evt.target.id;
 
     setIsCurrentTime(currentTime);
-    setIsCurrentQuestion((prevState) => ({
+    setCurrentQuestion((prevState) => ({
       ...prevState,
       time: currentTimeId,
     }));
   };
 
-  const handleSubmit = (evt, field) => {
-    setIsCurrentQuestion((prevState) => ({
-      ...prevState,
-      [field]: evt.target.value,
-    }));
-  };
-
-  const [isChecked, setChecked] = useState("");
-
   const handleRadioChange = (event) => {
     const value = event.target.id;
     setChecked(value);
+    const test = selectAnswers.map((item) => {
+      return {
+        answer: item === "A" ? "True" : "False",
+        correctAnswer: value === item ? true : false,
+      };
+    });
+    setCurrentQuestion((prevState) => ({
+      ...prevState,
+      answers: test,
+    }));
   };
 
   return (
@@ -100,8 +103,8 @@ const QuestionCard = ({ changeAttribute }) => {
         type="text"
         placeholder="Quiz theme"
         name="theme"
-        value={isCurrentQuestion.theme}
-        onChange={(evt) => handleSubmit(evt, "theme")}
+        value={currentQuestion.theme}
+        onChange={(evt) => handleQuizChange(evt, "theme")}
       />
       <StyledQuestionCard>
         <StyledImageNumberBlock>
@@ -141,8 +144,8 @@ const QuestionCard = ({ changeAttribute }) => {
             type="text"
             name="question"
             placeholder="Enter a question"
-            value={isCurrentQuestion.question}
-            onChange={(evt) => handleSubmit(evt, "question")}
+            value={currentQuestion.question}
+            onChange={(evt) => handleQuizChange(evt, "question")}
           />
           <AnswerCardContainer>
             {selectAnswers.map((el) => (
@@ -151,6 +154,9 @@ const QuestionCard = ({ changeAttribute }) => {
                 letter={el}
                 checked={isChecked}
                 changeAttribute={handleRadioChange}
+                quizType={currentQuestion.quizType}
+                // changeAnswer={handleChangeAnswer}
+                // currentValue={currentValue}
               />
             ))}
           </AnswerCardContainer>

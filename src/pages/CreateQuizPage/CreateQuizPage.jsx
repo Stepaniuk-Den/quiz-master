@@ -8,6 +8,7 @@ import { PageWrapper, SectionWrapper } from "./CreateQuizPage.styled.js";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuizCategoriesThunk } from "../../redux/quiz/quizThunks.js";
 import { selectDiscoverAllCategories } from "../../redux/selectors.js";
+import { boolean } from "yup";
 
 const CreateQuizPage = () => {
   const [audience, setAudience] = useState("adults");
@@ -17,7 +18,21 @@ const CreateQuizPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   // console.log('location: ', location.state.data);//id quiz
+  const [currentQuestion, setCurrentQuestion] = useState({
+    theme: "",
+    time: null,
+    question: "",
+    quizType: "quiz",
+    answers: [],
+  });
+console.log(currentQuestion)
+// const [isValue, setIsValue] = useState('');
 
+// const handleChangeAnswer = (evt) => {
+// const currentAnswer = evt.target.value
+// setIsValue(currentAnswer)
+// console.log(currentAnswer)
+// };
   useEffect(() => {
     if (allCategories) return;
     dispatch(getQuizCategoriesThunk());
@@ -37,12 +52,24 @@ const CreateQuizPage = () => {
     setCategoryName(event.target.value);
   };
 
+  const handleQuizChange = (evt, field) => {
+    setCurrentQuestion((prevState) => ({
+      ...prevState,
+      [field]: evt.target.value,
+    }));
+  };
   return (
     <PageWrapper>
       <PageTopBar titlePage="Create quize" />
       <SectionWrapper>
         <QuestionsList />
-        <QuestionCard />
+        <QuestionCard
+          currentQuestion={currentQuestion}
+          setCurrentQuestion={setCurrentQuestion}
+          handleQuizChange={handleQuizChange}
+          // handleChangeAnswer={handleChangeAnswer}
+          // currentValue={isValue}
+        />
         <SelectAttributeCard
           audience={audience}
           changeAttribute={handleRadioChange}
