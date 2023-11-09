@@ -12,28 +12,32 @@ import { boolean } from "yup";
 import { useMediaQuery } from "react-responsive";
 
 const CreateQuizPage = () => {
-  const [audience, setAudience] = useState("adults");
-  const [color, setColor] = useState(null);
-  const [categoryName, setCategoryName] = useState("");
+  const [currentQuiz, setCurrentQuiz] = useState({
+    quizType: "adults",
+    quizName: "",
+  });
+  const [currentQuestion, setCurrentQuestion] = useState({
+    question: "",
+    quizType: "quize",
+    /* 'true or false' */
+  });
   const allCategories = useSelector(selectDiscoverAllCategories);
   const dispatch = useDispatch();
   const location = useLocation();
   // console.log('location: ', location.state.data);//id quiz
-  const [currentQuestion, setCurrentQuestion] = useState({
-    theme: "",
-    time: null,
-    question: "",
-    quizType: "quiz",
-    answers: [],
-  });
-  console.log(currentQuestion);
-  // const [isValue, setIsValue] = useState('');
 
-  // const handleChangeAnswer = (evt) => {
-  // const currentAnswer = evt.target.value
-  // setIsValue(currentAnswer)
-  // console.log(currentAnswer)
-  // };
+  const [isValue, setIsValue] = useState("");
+
+  console.log("currentQuiz: ", currentQuiz);
+  console.log("currentQuestion: ", currentQuestion);
+  // console.log("isValue: ", isValue);
+
+  const handleChangeAnswer = (evt) => {
+    const currentAnswer = evt.target.value;
+    setIsValue(currentAnswer);
+    console.log(currentAnswer);
+  };
+
   useEffect(() => {
     if (allCategories) return;
     dispatch(getQuizCategoriesThunk());
@@ -43,21 +47,29 @@ const CreateQuizPage = () => {
     const value = event.target.id;
 
     if (value === "children" || value === "adults") {
-      // setCategoryName("");
-      setAudience(value);
+      setCurrentQuiz((prevState) => ({ ...prevState, quizType: value }));
     }
-    setColor(value);
+    setCurrentQuestion((prevState) => ({ ...prevState, background: value }));
   };
 
   const handleSelectCategory = (event) => {
-    setCategoryName(event.target.value);
+    setCurrentQuiz((prevState) => ({
+      ...prevState,
+      quizCategory: event.target.value,
+    }));
   };
 
-  const handleQuizChange = (evt, field) => {
-    setCurrentQuestion((prevState) => ({
-      ...prevState,
-      [field]: evt.target.value,
-    }));
+  const handleQuizChange = (event) => {
+    event.target.name === "quiz" &&
+      setCurrentQuiz((prevState) => ({
+        ...prevState,
+        quizName: event.target.value,
+      }));
+    event.target.name === "question" &&
+      setCurrentQuestion((prevState) => ({
+        ...prevState,
+        question: event.target.value,
+      }));
   };
 
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
@@ -75,12 +87,11 @@ const CreateQuizPage = () => {
               // currentValue={isValue}
             />
             <SelectAttributeCard
-              audience={audience}
               changeAttribute={handleRadioChange}
               changeCategory={handleSelectCategory}
-              color={color}
               categories={allCategories}
-              categoryName={categoryName}
+              quiz={currentQuiz}
+              question={currentQuestion}
             />
             <QuestionsList />
           </>
@@ -90,16 +101,16 @@ const CreateQuizPage = () => {
           currentQuestion={currentQuestion}
           setCurrentQuestion={setCurrentQuestion}
           handleQuizChange={handleQuizChange}
-          // handleChangeAnswer={handleChangeAnswer}
-          // currentValue={isValue}
+          quiz={currentQuiz}
+          handleChangeAnswer={handleChangeAnswer}
+          currentValue={isValue}
         />
         <SelectAttributeCard
-          audience={audience}
+          quiz={currentQuiz}
+          question={currentQuestion}
           changeAttribute={handleRadioChange}
           changeCategory={handleSelectCategory}
-          color={color}
           categories={allCategories}
-          categoryName={categoryName}
         />
       </SectionWrapper>
     </PageWrapper>

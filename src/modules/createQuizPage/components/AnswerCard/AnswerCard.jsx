@@ -12,12 +12,9 @@ const AnswerCard = ({
   changeAttribute,
   checked,
   quizType,
-  // changeAnswer,
-  // currentValue,
+  changeAnswer,
+  currentValue,
 }) => {
-
-  
-
   return (
     <StyledAnswerWrapper quiz={quizType === "quiz" ? "quiz" : null}>
       <StyledLabelAnswer htmlFor={letter}>
@@ -27,8 +24,8 @@ const AnswerCard = ({
             type="text"
             id={letter}
             placeholder="Enter answer"
-            // value={currentValue}
-            // onChange={changeAnswer}
+            value={currentValue}
+            onChange={changeAnswer}
           />
         ) : (
           <StyledAnswerBoolean>
@@ -37,7 +34,7 @@ const AnswerCard = ({
         )}
         <StyledInputRadio
           type="radio"
-          name={letter}
+          name="answer"
           id={letter}
           checked={checked === letter}
           onChange={changeAttribute}

@@ -25,8 +25,9 @@ const QuestionCard = ({
   currentQuestion,
   setCurrentQuestion,
   handleQuizChange,
-  // handleChangeAnswer,
-  // currentValue,
+  quiz,
+  handleChangeAnswer,
+  currentValue,
 }) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
@@ -85,15 +86,18 @@ const QuestionCard = ({
   const handleRadioChange = (event) => {
     const value = event.target.id;
     setChecked(value);
-    const test = selectAnswers.map((item) => {
-      return {
-        answer: item === "A" ? "True" : "False",
-        correctAnswer: value === item ? true : false,
-      };
-    });
+    let fields = {};
+    selectAnswers.forEach(
+      (item, idx) =>
+        (fields = {
+          ...fields,
+          [`answers[${idx}][answer]`]: idx === 0 ? "True" : "False",
+          [`answers[${idx}][correctAnswer]`]: value === item ? true : false,
+        })
+    );
     setCurrentQuestion((prevState) => ({
       ...prevState,
-      answers: test,
+      ...fields,
     }));
   };
 
@@ -102,9 +106,9 @@ const QuestionCard = ({
       <StyledInputTheme
         type="text"
         placeholder="Quiz theme"
-        name="theme"
-        value={currentQuestion.theme}
-        onChange={(evt) => handleQuizChange(evt, "theme")}
+        name="quiz"
+        value={quiz.quizName}
+        onChange={handleQuizChange}
       />
       <StyledQuestionCard>
         <StyledImageNumberBlock>
@@ -145,7 +149,7 @@ const QuestionCard = ({
             name="question"
             placeholder="Enter a question"
             value={currentQuestion.question}
-            onChange={(evt) => handleQuizChange(evt, "question")}
+            onChange={handleQuizChange}
           />
           <AnswerCardContainer>
             {selectAnswers.map((el) => (
@@ -155,8 +159,8 @@ const QuestionCard = ({
                 checked={isChecked}
                 changeAttribute={handleRadioChange}
                 quizType={currentQuestion.quizType}
-                // changeAnswer={handleChangeAnswer}
-                // currentValue={currentValue}
+                changeAnswer={handleChangeAnswer}
+                currentValue={currentValue}
               />
             ))}
           </AnswerCardContainer>
