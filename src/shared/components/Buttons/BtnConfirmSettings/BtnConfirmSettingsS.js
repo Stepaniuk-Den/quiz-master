@@ -16,17 +16,20 @@ export const BtnConfirmSettingsS = styled.button`
   border: transparent;
   transform: scale(1);
   transition: transform 250ms linear;
-  
-  &.isDisabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-    }
-
+    
   &:hover,
   &:focus {
     transform: scale(1.1);
   }
 
+  &.isDisabled {
+    background-color: transparent;
+    cursor: not-allowed;
+    border: 1px solid var(--text-color-60);
+    font-size: 16px;;
+    transform: scale(1);
+    }
+  
   @media screen and (max-width: 768px) {
     max-width: 295px;
     font-size: 14px;
