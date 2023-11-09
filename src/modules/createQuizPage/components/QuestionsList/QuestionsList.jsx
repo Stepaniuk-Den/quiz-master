@@ -1,30 +1,28 @@
 import React, { useState } from "react";
+
 import { v4 as uuidv4 } from "uuid";
 import { FiTrash2 } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { HiArrowLongRight } from "react-icons/hi2";
 import {
   QuestionsWrapper,
   QuestionList,
   SelectStyledQuiz,
-  Up,
-  Down,
-  DropdownList, // компонент для випадаючого списку
+  DropdownList, 
 } from "./QuestionsList.styled";
 
+
 function QuestionsList() {
-  const maxVisibleOptions = 8; // Максимальна кількість видимих пунктів
-  const [selectedOption, setSelectedOption] = useState("Create");
+  const maxOptions = 10;
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleOptionChange = (event) => {
-    const newOption = event.target.value;
-
-    if (newOption) {
+  const handleAdd = (event) => {
+    if (selectedOptions.length < maxOptions) {
       setSelectedOptions([
         ...selectedOptions,
-        { id: uuidv4(), value: newOption },
+        { id: uuidv4(), value: event.target.textContent },
       ]);
-      setSelectedOption("Create");
     }
   };
 
@@ -36,8 +34,8 @@ function QuestionsList() {
   return (
     <QuestionsWrapper>
       <p>Questions</p>
-      <ul>
-        {selectedOptions.slice(0, maxVisibleOptions).map((option, index) => (
+      <ul style={{ maxHeight: isDropdownOpen ? "200px" : "auto", overflowY: "auto" }}>
+        {selectedOptions.map((option, index) => (
           <QuestionList key={option.id}>
             {index + 1}. {option.value}{" "}
             <span
@@ -49,30 +47,33 @@ function QuestionsList() {
             </span>
           </QuestionList>
         ))}
-        {selectedOptions.length > maxVisibleOptions && (
-          <QuestionList>
-            {selectedOptions.length - maxVisibleOptions} more...
-          </QuestionList>
-        )}
       </ul>
-
       <SelectStyledQuiz
-        value={selectedOption}
-        onChange={handleOptionChange}
-        // isdropdownopen={isDropdownOpen}
+        onClick={() => {
+          setIsDropdownOpen(!isDropdownOpen);
+        }}
       >
-        <option value="Create">Create</option>
-        <option value="Quiz">Quiz</option>
-        <option value="True or false">True or false</option>
+        Create
+        {isDropdownOpen ? (
+          <FiChevronDown size={14} />
+        ) : (
+          <FiChevronUp size={14} />
+        )}
       </SelectStyledQuiz>
-      {isDropdownOpen && ( // показувати випадаючий список, якщо isDropdownOpen = true
+      {isDropdownOpen && (
         <DropdownList>
-          <option value="Quiz">
-            Quiz {isDropdownOpen ? <Up /> : <Down />}
-          </option>
-          <option value="True or false">
-            True or false {isDropdownOpen ? <Up /> : <Down />}
-          </option>
+          <ul>
+            <li>
+              <button onClick={handleAdd}>
+                Quiz <HiArrowLongRight size={24} />
+              </button>
+            </li>
+            <li>
+              <button onClick={handleAdd}>
+                True or false <HiArrowLongRight size={24} />
+              </button>
+            </li>
+          </ul>
         </DropdownList>
       )}
     </QuestionsWrapper>
