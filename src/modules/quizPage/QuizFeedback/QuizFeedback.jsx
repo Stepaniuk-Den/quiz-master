@@ -1,3 +1,9 @@
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import {
   CloseBtn,
   CloseBtnContainer,
@@ -7,32 +13,29 @@ import {
   FormTitle,
   InputWrapper,
   NameInput,
-  RateStar,
   RatingWrapper,
   SendBtn,
   SplashImg,
   TextRating,
 } from "./QuizFeedbackStyled";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router";
+import StarIcon from "@mui/icons-material/Star";
 import { selectUser } from "../../../redux/user/userSelectors";
 import { createQuizReviewThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
 import { useAuth } from "../../../hooks/useAuth";
-import { useParams } from "react-router-dom";
+import { RatingS } from "../../discoverPage/components/RatingStarsRadio/RatingStarsRadioStyled";
 
 const QuizFeedback = ({ to }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const infoUser = useSelector(selectUser);
   const inputValue = searchParams.get("inputValue");
   const { isAuth } = useAuth();
   const { quizId } = useParams();
+  const infoUser = useSelector(selectUser);
+  const [value, setValue] = useState(0);
 
   const handleClick = () => {
     if (to) {
@@ -58,7 +61,7 @@ const QuizFeedback = ({ to }) => {
       const reviewData = {
         userName: inputValue,
         userAvatar: infoUser.userAvatar,
-        rate: values.rating,
+        rate: value,
         comment: values.feedback,
         quizId: quizId,
       };
@@ -71,7 +74,7 @@ const QuizFeedback = ({ to }) => {
       }
     },
   });
-  
+
   return (
     <>
       <SplashImg src={backgroundImg} alt="splash" loading="lazy" />
@@ -94,17 +97,14 @@ const QuizFeedback = ({ to }) => {
           </InputWrapper>
           <RatingWrapper>
             <TextRating>Rate the quiz</TextRating>
-            {Array.from({ length: 5 }, (_, index) => (
-              <label key={index}>
-                <RateStar
-                  selected={formik.values.rating >= index + 1}
-                  onClick={() => formik.setFieldValue("rating", index + 1)}
-                />
-              </label>
-            ))}
-            {formik.errors.rating && formik.touched.rating && (
-              <div>{formik.errors.rating}</div>
-            )}
+            <RatingS
+              name="simple-controlled"
+              value={value}
+              onChange={(_, newValue) => {
+                setValue(newValue);
+              }}
+              emptyIcon={<StarIcon />}
+            />
           </RatingWrapper>
           <InputWrapper
             className={
