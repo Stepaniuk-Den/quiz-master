@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ButtonStart, Category, InputName, PageWrapper, QuizeBox, Title } from './BaseQuizFormStyled';
-import { useSelector } from 'react-redux';
-import { selectIsAuth, selectUser } from '../../../redux/user/userSelectors';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  ButtonStart,
+  Category,
+  InputName,
+  PageWrapper,
+  QuizeBox,
+  Title,
+} from "./BaseQuizFormStyled";
+import { useSelector } from "react-redux";
+import { selectIsAuth, selectUser } from "../../../redux/user/userSelectors";
 
 const BaseQuizForm = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const hasToken = useSelector(selectIsAuth);
   const name = useSelector(selectUser);
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const quizId = searchParams.get('quizId');
-  const category = searchParams.get('category');
+  const { quizId } = useParams();
+  const { category } = useParams();
+  console.log(quizId)
 
   useEffect(() => {
     if (hasToken && name.name) {
@@ -23,6 +29,7 @@ const BaseQuizForm = () => {
     const value = event.target.value;
     setInputValue(value);
   };
+
 
   return (
     <PageWrapper>
@@ -36,12 +43,12 @@ const BaseQuizForm = () => {
           onChange={handleInputChange}
           readOnly={hasToken && name.name}
         />
-        <Link to={`/quiz/${quizId}`}>
+        <Link to={`/quiz/${quizId}/quizQuestion`}>
           <ButtonStart disabled={inputValue.length < 3}>Start</ButtonStart>
         </Link>
       </QuizeBox>
     </PageWrapper>
   );
 };
-
+// disabled = { isButtonDisabled };
 export default BaseQuizForm;

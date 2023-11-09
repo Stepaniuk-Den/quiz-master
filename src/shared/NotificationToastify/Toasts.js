@@ -15,3 +15,5 @@ export const notifyBtnHeartSuccess = () => toast.success("Favorites changed succ
 export const notifyRateAddSuccess = () => toast.success("Rating added successfully!");
 
 
+export const notifyQuizDeletedSuccess = (name) => toast.info(`Quiz "${name}" deleted`)
+

@@ -13,9 +13,14 @@ export async function createReview(review) {
 }
 
 export async function createReviewQuiz({id, rate}) {
-  const { data } = await instance.post(`/feedback/${id}`, {rate});
+  const { data } = await instance.post(`/feedback/${id.quizId}`, {rate});
   return data;
 }
 
-
-
+export async function createQuizReview(reviewData) {
+  const { data } = await instance.post(
+    `/feedback/${reviewData.quizId}`,
+    reviewData
+  );
+  return data;
+}

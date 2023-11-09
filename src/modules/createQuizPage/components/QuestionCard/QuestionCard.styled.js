@@ -1,11 +1,22 @@
 import styled from "styled-components";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiChevronDown } from "react-icons/fi";
 import { PiPlus } from "react-icons/pi";
+import { BtnConfirmAuthS } from "../../../../shared/components/Buttons/BtnConfirmAuth/BtnConfirmAuthS";
 
 export const StyledQuestionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px;
+`;
+export const StyledImageNumberBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & p {
+    color: var(--text-color-100);
+    font-family: "GilroyBold";
+  }
 `;
 
 export const StyledQuestionCard = styled.div`
@@ -48,11 +59,7 @@ export const StyledInputTheme = styled.input`
   border: 1px solid var(--border-color-30);
   background-color: transparent;
   color: var(--text-color-100);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  letter-spacing: -0.16px;
+
   &::placeholder {
     color: var(--text-color-100);
   }
@@ -65,34 +72,13 @@ export const StyledTimeWrapper = styled.div`
   margin-bottom: 32px;
   gap: 14px;
   & p {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; /* 100% */
-    letter-spacing: -0.16px;
     color: var(--text-color-60);
   }
 `;
 
-export const StyledSelectTime = styled.select`
-  display: flex;
-  padding: 8px 18px;
-  min-width: 83px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  border-radius: 30px;
-  border: 1px solid var(--border-color-30);
-  background-color: transparent;
-
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 18px; /* 128.571% */
-`;
-
 export const StyledQuestion = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-left: 32px;
   width: 460px;
 `;
@@ -107,14 +93,9 @@ export const StyledInputQuestion = styled.input`
   gap: 10px;
 
   border-radius: 30px;
-  border: 1px solid var(--border-color-30);
+  border: 1px solid var(--border-color-60);
   background-color: transparent;
   color: var(--text-color-100);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 100% */
-  letter-spacing: -0.16px;
   &::placeholder {
     color: var(--text-color-100);
   }
@@ -127,41 +108,73 @@ export const DropdownContainer = styled.div`
 
 export const DropdownButton = styled.button`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  width: 83px;
-
+  min-width: 90px;
+  height: 36px;
+  padding: 8px 18px;
+  column-gap: 8px;
   cursor: pointer;
   background: none;
   border-radius: 30px;
-  border: 1px solid var(--border-color-30);
+  border: 1px solid var(--border-color-60);
+
+  & p {
+    color: var(--text-color-100);
+    font-size: 14px;
+    font-family: "GilroyBold";
+    line-height: 18px; /* 128.571% */
+  }
 `;
 
 export const DropdownList = styled.ul`
   position: absolute;
   left: 0;
-  display: ${({ open }) => (open ? "block" : "none")};
-  padding: 24px;
+  display: ${({ open }) => (open ? "flex" : "none")};
+  flex-direction: column;
+  gap: 12px;
+  width: 83px;
+  padding: 8px 32px 8px 18px;
   border-radius: 20px;
   background: var(--blue-background);
 `;
 
 export const DropdownItem = styled.li`
-  margin-bottom: 14px;
   color: var(--text-color-100);
   display: flex;
   align-items: center;
-  gap: 8px;
   cursor: pointer;
 `;
 
 export const Down = styled(FiChevronDown)`
-  width: 28px;
-  height: 28px;
+  width: 16px;
+  height: 16px;
   stroke: var(--text-color-100);
 `;
 
-export const Up = styled(FiChevronUp)`
-  width: 28px;
-  height: 28px;
-  stroke: var(--text-color-100);
+export const AnswerCardContainer = styled.ul`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0;
+`;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: auto;
+  gap: 14px;
+`;
+
+export const StyledBtnSave = styled(BtnConfirmAuthS)`
+  margin: 0;
+  width: min-content;
+  padding: 16px 32px;
+`;
+export const StyledBtnCancel = styled(StyledBtnSave)`
+  background-color: transparent;
+  border: 1px solid var(--border-color-60);
 `;

@@ -4,22 +4,21 @@ import QuizFilterText from "../QuizFilterText/QuizFilterText";
 
 const QuizeFilterTools = ({
   handleStarSelection,
-  handleCategorySelection,  
-  totalResults,    
+  handleCategorySelection,
+  totalResults,
   selectedCategoryNames,
   commonFilter,
-      
 }) => {
   return (
     <FormFiltersWrapper>
       <QuizeSearch
-       handleCategorySelection={handleCategorySelection}
-       commonFilter={commonFilter}
-        />
+        handleCategorySelection={handleCategorySelection}
+        commonFilter={commonFilter}
+      />
       <QuizFilterText
-         handleStarSelection={handleStarSelection}
-         totalResults={totalResults}
-         selectedCategoryNames={selectedCategoryNames}         
+        handleStarSelection={handleStarSelection}
+        totalResults={totalResults}
+        selectedCategoryNames={selectedCategoryNames}
       />
     </FormFiltersWrapper>
   );

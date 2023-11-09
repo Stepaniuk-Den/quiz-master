@@ -28,7 +28,7 @@ const BtnHeart = ({ id, isFavorite, updateFavoriteQuizes }) => {
     const quizId = {
       favorites: id,
     };    
-    dispatch(updateFavoriteQuizThunk({quizId}));
+    dispatch(updateFavoriteQuizThunk(quizId));
     setIsActive(!isActive);
   };
 

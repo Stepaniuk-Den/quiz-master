@@ -11,9 +11,10 @@ export const selectDiscoverAllCategories = state => state.quiz.allCategories
 export const selectDiscoverFilteredQuizes = state => state.quiz.quizzes.filtered
 export const selectDiscoverFilteredQty = state => state.quiz.quizzes.filteredQty
 export const selectFavorite = state => state.quiz.quizzes.favorites
+export const selectFavoriteQty = state => state.quiz.quizzes.favoritesQty
 export const selectOwnQuizes = state => state.quiz.quizzes.ownQuizes
+export const selectOwnQuizesQty = state => state.quiz.quizzes.ownQuizesQty
 export const selectPassed = state => state.quiz.quizzes.passed
-
 
 export const selectReview = state => state.feedback.reviews;
 export const selectReviewPage = state => state.feedback.page;

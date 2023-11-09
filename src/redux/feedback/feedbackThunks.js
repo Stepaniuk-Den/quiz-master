@@ -3,6 +3,7 @@ import {
   getAllReviews,
   createReview,
   createReviewQuiz,
+  createQuizReview,
 } from "../../api/feedback";
 
 export const getAllReviewsThunk = createAsyncThunk(
@@ -34,6 +35,18 @@ export const createReviewQuizThunk = createAsyncThunk(
   async (review, thunkAPI) => {
     try {
       const data = await createReviewQuiz(review);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const createQuizReviewThunk = createAsyncThunk(
+  "feedback/addQuizReview",
+  async (review, thunkAPI) => {
+    try {
+      const data = await createQuizReview(review);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
