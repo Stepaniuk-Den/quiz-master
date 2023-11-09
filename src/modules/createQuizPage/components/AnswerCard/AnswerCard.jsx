@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledAnswerBoolean,
   StyledAnswerWrapper,
-  StyledInputAnswer,
   StyledInputRadio,
   StyledLabelAnswer,
+  StyledTextareaAnswer,
 } from "./AnswerCard.styled";
 
 const AnswerCard = ({
@@ -21,9 +21,9 @@ const AnswerCard = ({
   return (
     <StyledAnswerWrapper quiz={quizType === "quiz" ? "quiz" : null}>
       <StyledLabelAnswer htmlFor={letter}>
-        <p>{letter}:</p>
+        <p className="letter">{letter}:</p>
         {quizType === "quiz" ? (
-          <StyledInputAnswer
+          <StyledTextareaAnswer
             type="text"
             id={letter}
             placeholder="Enter answer"
