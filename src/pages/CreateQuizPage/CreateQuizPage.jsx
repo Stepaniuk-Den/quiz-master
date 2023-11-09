@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQuizCategoriesThunk } from "../../redux/quiz/quizThunks.js";
 import { selectDiscoverAllCategories } from "../../redux/selectors.js";
 import { boolean } from "yup";
+import { useMediaQuery } from "react-responsive";
 
 const CreateQuizPage = () => {
   const [audience, setAudience] = useState("adults");
@@ -25,14 +26,14 @@ const CreateQuizPage = () => {
     quizType: "quiz",
     answers: [],
   });
-console.log(currentQuestion)
-// const [isValue, setIsValue] = useState('');
+  console.log(currentQuestion);
+  // const [isValue, setIsValue] = useState('');
 
-// const handleChangeAnswer = (evt) => {
-// const currentAnswer = evt.target.value
-// setIsValue(currentAnswer)
-// console.log(currentAnswer)
-// };
+  // const handleChangeAnswer = (evt) => {
+  // const currentAnswer = evt.target.value
+  // setIsValue(currentAnswer)
+  // console.log(currentAnswer)
+  // };
   useEffect(() => {
     if (allCategories) return;
     dispatch(getQuizCategoriesThunk());
@@ -58,10 +59,32 @@ console.log(currentQuestion)
       [field]: evt.target.value,
     }));
   };
+
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   return (
     <PageWrapper>
       <PageTopBar titlePage="Create quize" />
       <SectionWrapper>
+        {isMobile && (
+          <>
+            <QuestionCard
+              currentQuestion={currentQuestion}
+              setCurrentQuestion={setCurrentQuestion}
+              handleQuizChange={handleQuizChange}
+              // handleChangeAnswer={handleChangeAnswer}
+              // currentValue={isValue}
+            />
+            <SelectAttributeCard
+              audience={audience}
+              changeAttribute={handleRadioChange}
+              changeCategory={handleSelectCategory}
+              color={color}
+              categories={allCategories}
+              categoryName={categoryName}
+            />
+            <QuestionsList />
+          </>
+        )}
         <QuestionsList />
         <QuestionCard
           currentQuestion={currentQuestion}
