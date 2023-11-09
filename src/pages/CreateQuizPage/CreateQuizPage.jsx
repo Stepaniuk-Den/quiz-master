@@ -28,6 +28,7 @@ const CreateQuizPage = () => {
 
   const [isValue, setIsValue] = useState("");
 
+  console.log("currentQuiz: ", currentQuiz);
   console.log("currentQuestion: ", currentQuestion);
   // console.log("isValue: ", isValue);
 
@@ -86,12 +87,11 @@ const CreateQuizPage = () => {
               // currentValue={isValue}
             />
             <SelectAttributeCard
-              audience={audience}
               changeAttribute={handleRadioChange}
               changeCategory={handleSelectCategory}
-              color={color}
               categories={allCategories}
-              categoryName={categoryName}
+              quiz={currentQuiz}
+              question={currentQuestion}
             />
             <QuestionsList />
           </>
