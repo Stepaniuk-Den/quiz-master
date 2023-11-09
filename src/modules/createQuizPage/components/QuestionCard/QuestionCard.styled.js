@@ -15,7 +15,7 @@ export const StyledQuestionWrapper = styled.div`
 
   @media only screen and (min-width: 1440px) {
     width: 744px;
-    margin: 0 24px;
+    /* margin: 0 24px; */
   }
 `;
 
@@ -192,6 +192,7 @@ export const StyledQuestion = styled.div`
   @media only screen and (min-width: 1440px) {
     margin-left: 32px;
     width: 460px;
+    height: 100%;
   }
 `;
 
