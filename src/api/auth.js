@@ -27,7 +27,6 @@ export async function registerUser(userData) {
     // {name, email, password}
     const { data } = await instance.post('/auth/register', userData);
     setToken(data.token);
-    console.log(data.token);
     return data;
 }
 
@@ -35,10 +34,8 @@ export async function loginUser(userData) {
         //  {email, password}
     const { data } = await instance.post('/auth/login', userData);
     setToken(data.token);
-    console.log(data.token);
     return data;
 }
-
 
 export async function logOutUser() {
     const { data } = await instance.post('/auth/logout');
@@ -52,8 +49,6 @@ export async function updateUser(userData) {
     return data;
 }
 
-//password patch
-//email patch
 
 
 

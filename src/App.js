@@ -18,7 +18,8 @@ const QuizePage = lazy(() => import("./pages/QuizePage/QuizePage"));
 const BaseQuizForm = lazy(() => import("./modules/quizPage/BaseQuizForm"));
 const AnswerList = lazy(() => import("./modules/quizPage/AnswerList"));
 const QuizResult = lazy(()=> import("./modules/quizPage/QuizResult"));
-const FeedbackPage = lazy(() => import("./pages/FeedbackPage/FeedbackPage"));
+const QuizFeedback = lazy(()=> import("./modules/quizPage/QuizFeedback"));
+const AfterTestFeedback = lazy(()=> import("./modules/quizPage/AfterTestFeedback"));
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const LastQuizesPage = lazy(() => import("./pages/LastQuizesPage/LastQuizesPage"));
@@ -27,6 +28,7 @@ const FavoritePage = lazy(() => import("./pages/FavoritePage/FavoritePage"));
 const OwnQuizPage = lazy(() => import("./pages/OwnQuizPage/OwnQuizPage"));
 const CreateQuizPage = lazy(() => import("./pages/CreateQuizPage/CreateQuizPage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage/SettingsPage"));
+const FeedbackPage = lazy(() => import("./pages/FeedbackPage/FeedbackPage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -49,10 +51,11 @@ function App() {
             <Route path="/randomquiz/:ageType" element={<RandomQuizPage />}></Route>
             
             <Route path="/quiz/:quizId" element={<QuizePage />}>
-            <Route path = "/quiz/:quizId/baseQuizForm" element={<BaseQuizForm/>}/>
-            <Route path="/quiz/:quizId/quizQuestion" element={<AnswerList />}/>
-            <Route path="/quiz/:quizId/quizResult" element={<QuizResult />}/>
-            <Route path="/quiz/:quizId/quizFeedback" element={<FeedbackPage />}/>
+            <Route path = "/quiz/:quizId/basequizform" element={<BaseQuizForm/>}/>
+            <Route path="/quiz/:quizId/quizquestion" element={<AnswerList />}/>
+            <Route path="/quiz/:quizId/quizresult" element={<QuizResult />}/>
+            <Route path="/quiz/:quizId/quizfeedback" element={<QuizFeedback />}/>
+            <Route path="/quiz/:quizId/aftertestfeedback" element={<AfterTestFeedback />}/>
             </Route>
 
             <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
@@ -62,6 +65,7 @@ function App() {
             <Route path="/ownquiz" element={<PrivateRoute><OwnQuizPage /></PrivateRoute>}></Route>
             <Route path="/createquiz" element={<PrivateRoute><CreateQuizPage /></PrivateRoute>}></Route>
             <Route path="/settings" element={<PrivateRoute><SettingsPage /></PrivateRoute>}></Route>
+            <Route path="/feedback" element={<PrivateRoute><FeedbackPage /></PrivateRoute>}/>
 
             <Route path="*" element={<Navigate to="/" replace />}></Route>
           </Route>

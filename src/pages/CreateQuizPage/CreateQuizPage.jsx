@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQuizCategoriesThunk } from "../../redux/quiz/quizThunks.js";
 import { selectDiscoverAllCategories } from "../../redux/selectors.js";
 import { boolean } from "yup";
+import { useMediaQuery } from "react-responsive";
 
 const CreateQuizPage = () => {
   const [currentQuiz, setCurrentQuiz] = useState({
@@ -70,10 +71,31 @@ const CreateQuizPage = () => {
       }));
   };
 
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   return (
     <PageWrapper>
       <PageTopBar titlePage="Create quize" />
       <SectionWrapper>
+        {isMobile && (
+          <>
+            <QuestionCard
+              currentQuestion={currentQuestion}
+              setCurrentQuestion={setCurrentQuestion}
+              handleQuizChange={handleQuizChange}
+              // handleChangeAnswer={handleChangeAnswer}
+              // currentValue={isValue}
+            />
+            <SelectAttributeCard
+              audience={audience}
+              changeAttribute={handleRadioChange}
+              changeCategory={handleSelectCategory}
+              color={color}
+              categories={allCategories}
+              categoryName={categoryName}
+            />
+            <QuestionsList />
+          </>
+        )}
         <QuestionsList />
         <QuestionCard
           currentQuestion={currentQuestion}

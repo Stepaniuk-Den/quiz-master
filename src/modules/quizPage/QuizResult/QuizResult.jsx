@@ -14,7 +14,7 @@ import { useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
 import StarIcon from "@mui/icons-material/Star";
-import {notifyRateAddSuccess} from "../../../shared/NotificationToastify/Toasts";
+import { notifyRateAddSuccess } from "../../../shared/NotificationToastify/Toasts";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 
@@ -24,23 +24,20 @@ const QuizResult = () => {
   const searchParams = new URLSearchParams(location.search);
   const correctAnswersCount = searchParams.get("correctAnswersCount");
   const totalQuestions = searchParams.get("totalQuestions");
+  const inputValue = searchParams.get("inputValue");
+  const { quizId } = useParams();
   const [value, setValue] = useState(0);
-  const quizId = useParams();
-
   const navigate = useNavigate();
   const backLink = useRef(location.state?.from);
 
   const handleClickBtnClose = (value) => {
     if (value > 0) {
-      dispatch(createReviewQuizThunk({ id: quizId, rate: value })).then(() => {
+      dispatch(createReviewQuizThunk({ quizId, rate: value })).then(() => {
         notifyRateAddSuccess();
         navigate(backLink.current ?? "/");
-        console.log(quizId);
-        console.log(value);
       });
       // .catch((error) => {
       //   notifyError(error);
-      //   // window.history.back();
       // });
     } else {
       window.history.back();
@@ -48,7 +45,6 @@ const QuizResult = () => {
   };
 
   return (
-    // <PageWrapper>
     <QuizeBox>
       <BtnCloseS type="submit" onClick={() => handleClickBtnClose(value)}>
         <AiOutlineCloseS />
@@ -72,11 +68,12 @@ const QuizResult = () => {
         />
       </RatingBox>
 
-      <BtnWriteReviewLink to={`/quiz/${quizId}/quizFeedback`}>
+      <BtnWriteReviewLink
+        to={`/quiz/${quizId}/quizfeedback?inputValue=${inputValue}`}
+      >
         Write a review
       </BtnWriteReviewLink>
     </QuizeBox>
-    // </PageWrapper>
   );
 };
 

@@ -8,7 +8,7 @@ const BtnStart = ({ quantityQuestions, correctAnswers, id, category }) => {
     location.pathname === "/lastquiz" || location.pathname === "/home";
 
   const handleBtnStart = () => {
-    navigate(`/quiz/${id}/baseQuizForm?category=${category}`);
+    navigate(`/quiz/${id}/basequizform?category=${category}`);
   };
 
   return (
