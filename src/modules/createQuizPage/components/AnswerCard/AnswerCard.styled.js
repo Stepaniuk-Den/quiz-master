@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const StyledAnswerWrapper = styled.li`
   display: flex;
   width: 222px;
-  height: 68px;
-  height: ${(props) => (props.quiz ? '68px' : '44px')};
+  /* height: 68px; */
+  height: ${(props) => (props.quiz === "quiz" ? '68px' : '44px')};
   padding: 14px 18px;
   align-items: start;
 

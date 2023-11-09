@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledAnswerBoolean,
   StyledAnswerWrapper,
@@ -7,9 +7,19 @@ import {
   StyledLabelAnswer,
 } from "./AnswerCard.styled";
 
-const AnswerCard = ({ letter, changeAttribute, checked, quizType }) => {
+const AnswerCard = ({
+  letter,
+  changeAttribute,
+  checked,
+  quizType,
+  // changeAnswer,
+  // currentValue,
+}) => {
+
+  
+
   return (
-    <StyledAnswerWrapper quizType === "quiz" ? >
+    <StyledAnswerWrapper quiz={quizType === "quiz" ? "quiz" : null}>
       <StyledLabelAnswer htmlFor={letter}>
         <p>{letter}:</p>
         {quizType === "quiz" ? (
@@ -17,10 +27,13 @@ const AnswerCard = ({ letter, changeAttribute, checked, quizType }) => {
             type="text"
             id={letter}
             placeholder="Enter answer"
-        
+            // value={currentValue}
+            // onChange={changeAnswer}
           />
         ) : (
-          <StyledAnswerBoolean>{letter === "A" ? "True" : "False"}</StyledAnswerBoolean>
+          <StyledAnswerBoolean>
+            {letter === "A" ? "True" : "False"}
+          </StyledAnswerBoolean>
         )}
         <StyledInputRadio
           type="radio"

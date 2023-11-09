@@ -22,13 +22,17 @@ const CreateQuizPage = () => {
     theme: "",
     time: null,
     question: "",
-    quizType: "quizq",
-    // answers: [{
-    //   answer: null,
-    //   correctAnswer: boolean,
-    // }],
+    quizType: "quiz",
+    answers: [],
   });
 console.log(currentQuestion)
+// const [isValue, setIsValue] = useState('');
+
+// const handleChangeAnswer = (evt) => {
+// const currentAnswer = evt.target.value
+// setIsValue(currentAnswer)
+// console.log(currentAnswer)
+// };
   useEffect(() => {
     if (allCategories) return;
     dispatch(getQuizCategoriesThunk());
@@ -63,6 +67,8 @@ console.log(currentQuestion)
           currentQuestion={currentQuestion}
           setCurrentQuestion={setCurrentQuestion}
           handleQuizChange={handleQuizChange}
+          // handleChangeAnswer={handleChangeAnswer}
+          // currentValue={isValue}
         />
         <SelectAttributeCard
           audience={audience}

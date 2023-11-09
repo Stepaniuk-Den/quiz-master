@@ -21,15 +21,16 @@ import {
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
 
-const QuestionCard = ({ currentQuestion, setCurrentQuestion, handleQuizChange }) => {
+const QuestionCard = ({
+  currentQuestion,
+  setCurrentQuestion,
+  handleQuizChange,
+  // handleChangeAnswer,
+  // currentValue,
+}) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
-  // const [isCurrentQuestion, setIsCurrentQuestion] = useState({
-  //   theme: "",
-  //   time: null,
-  //   question: "",
-  //   quizType: "quiz",
-  // });
+  const [isChecked, setChecked] = useState("");
 
   const questionNumber = 7;
   const allQuestions = 10;
@@ -50,8 +51,9 @@ const QuestionCard = ({ currentQuestion, setCurrentQuestion, handleQuizChange })
   };
 
   const timeInSeconds = [30, 45, 60, 75, 90, 105, 120];
-  const selectAnswers = currentQuestion.quizType === "quiz" ?  ["A", "C", "B", "D"] : ["A", "C"];
-// const selectAnswers = quizType === "quiz" ?  ["A", "C", "B", "D"] : ["A", "C"];
+  const selectAnswers =
+    currentQuestion.quizType === "quiz" ? ["A", "C", "B", "D"] : ["A", "C"];
+
   useEffect(() => {
     const handleDocumentTimeClick = (event) => {
       if (
@@ -80,19 +82,19 @@ const QuestionCard = ({ currentQuestion, setCurrentQuestion, handleQuizChange })
     }));
   };
 
-  // const handleQuizChange = (evt, field) => {
-  //   setCurrentQuestion((prevState) => ({
-  //     ...prevState,
-  //     [field]: evt.target.value,
-  //   }));
-  // };
-
-  const [isChecked, setChecked] = useState("");
-
   const handleRadioChange = (event) => {
     const value = event.target.id;
     setChecked(value);
-    console.log(event.target.name)
+    const test = selectAnswers.map((item) => {
+      return {
+        answer: item === "A" ? "True" : "False",
+        correctAnswer: value === item ? true : false,
+      };
+    });
+    setCurrentQuestion((prevState) => ({
+      ...prevState,
+      answers: test,
+    }));
   };
 
   return (
@@ -153,6 +155,8 @@ const QuestionCard = ({ currentQuestion, setCurrentQuestion, handleQuizChange })
                 checked={isChecked}
                 changeAttribute={handleRadioChange}
                 quizType={currentQuestion.quizType}
+                // changeAnswer={handleChangeAnswer}
+                // currentValue={currentValue}
               />
             ))}
           </AnswerCardContainer>
