@@ -22,7 +22,6 @@ import { selectUser } from "../../../redux/user/userSelectors";
 import { createQuizReviewThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 import { useAuth } from "../../../hooks/useAuth";
-import { useParams } from "react-router-dom";
 import { useRef } from "react";
 import { RatingS } from "../../discoverPage/components/RatingStarsRadio/RatingStarsRadioStyled";
 
