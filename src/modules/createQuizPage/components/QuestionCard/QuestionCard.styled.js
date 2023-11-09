@@ -10,14 +10,11 @@ export const StyledQuestionWrapper = styled.div`
   
   @media only screen and (min-width: 768px) {
     max-width: 440px;
-    /* margin-left: 24px; */
   }
   
   @media only screen and (min-width: 1440px) {
     max-width: 1240px;
-    margin-left: 24px;
-    /* padding: 24px; */
-    /* flex-wrap: nowrap; */
+    margin: 0  24px;
   }
 `;
 
