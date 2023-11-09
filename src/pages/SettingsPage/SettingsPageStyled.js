@@ -3,7 +3,6 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import { BiPlus } from "react-icons/bi";
 
 export const PageWrapper = styled.div`
-  /* outline: 1px solid green; */
   padding: 64px 0 0;
   display: flex;
   flex-direction: column;
@@ -11,7 +10,6 @@ export const PageWrapper = styled.div`
 `;
 
 export const SectionWrapper = styled.section`
-  /* outline: 1px solid red; */
   width: 100%;
   max-width: 1240px;
   display: flex;
@@ -91,6 +89,10 @@ export const IconWrapper = styled.div`
   justify-content: center;
 `;
 
+export const FormStyled = styled.form`
+  width: 100%;
+`;
+
 export const InputsWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -98,39 +100,10 @@ export const InputsWrapper = styled.div`
   flex-direction: column;
   row-gap: 16px;
   margin-bottom: 32px;
-  width: 278px;
+  width: 100%;
 
   @media screen and (max-width: 768px) {
-    width: 293px;
-  }
-`;
-
-export const InputStyled = styled.input`
-  box-sizing: border-box;
-  padding: 14px 18px;
-  width: 278px;
-  height: 44px;
-  border-radius: 30px;
-  border: 1px solid var(--border-color-30);
-  /* outline: 1px solid transparent; */
-  background: var(--second-background-color);
-  color: var(--text-color-100);
-
-  @media screen and (max-width: 768px) {
-    width: 293px;
-  }
-
-  &::placeholder {
-    color: var(--text-color-40);
-  }
-
-  @media screen and (max-width: 768px) {
-    font-size: 14px;
-    line-height: 1;
-    &::placeholder {
-      font-size: 14px;
-      line-height: 1.1;
-    }
+    max-width: 295px;
   }
 `;
 
@@ -172,6 +145,8 @@ export const ErrorsStyled = styled.div`
 export const SettingForm = styled.div`
   display: flex;
   justify-content: center;
+  max-width: 580px;
+  width: 100%;
   align-items: center;
   flex-direction: column;
   padding: 50px 150px;
@@ -181,6 +156,7 @@ export const SettingForm = styled.div`
   margin-bottom: 53px;
 
   @media screen and (max-width: 768px) {
+    max-width: 335px;
     padding: 40px 20px;
   }
 `;
