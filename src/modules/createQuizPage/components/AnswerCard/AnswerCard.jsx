@@ -11,21 +11,30 @@ const AnswerCard = ({
   letter,
   changeAttribute,
   checked,
-  quizType,
-  changeAnswer,
-  currentValue,
+  type,
+  currentQuestion,
+  selectAnswers,
+  handleQuizChange,
 }) => {
+  const definedValueInput = () => {
+    const idxInput = selectAnswers.indexOf(letter);
+    for (let key in currentQuestion) {
+      if (key.includes(`[${idxInput}][answer]`)) return currentQuestion[key];
+    }
+  };
+
   return (
-    <StyledAnswerWrapper quiz={quizType === "quiz" ? "quiz" : null}>
+    <StyledAnswerWrapper quiz={type === "quiz" ? "quiz" : null}>
       <StyledLabelAnswer htmlFor={letter}>
         <p className="letter">{letter}:</p>
-        {quizType === "quiz" ? (
+        {type === "quiz" ? (
           <StyledTextareaAnswer
             type="text"
             id={letter}
+            name="answer"
             placeholder="Enter answer"
-            value={currentValue}
-            onChange={changeAnswer}
+            value={definedValueInput() ? definedValueInput() : ""}
+            onChange={handleQuizChange}
           />
         ) : (
           <StyledAnswerBoolean>
@@ -34,7 +43,7 @@ const AnswerCard = ({
         )}
         <StyledInputRadio
           type="radio"
-          name="answer"
+          name="answer radio"
           id={letter}
           checked={checked === letter}
           onChange={changeAttribute}

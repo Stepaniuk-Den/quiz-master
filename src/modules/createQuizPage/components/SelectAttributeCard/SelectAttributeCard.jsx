@@ -26,7 +26,7 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="children"
-              name="Audience"
+              name="children"
               checked={quiz.quizType === "children"}
               onChange={changeAttribute}
             />
@@ -37,7 +37,7 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="adults"
-              name="Audience"
+              name="adults"
               checked={quiz.quizType === "adults"}
               onChange={changeAttribute}
             />
@@ -92,7 +92,7 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="#E65368"
-              name="Background"
+              name="background"
               checked={question.background === "#E65368"}
               onChange={changeAttribute}
             />
