@@ -5,16 +5,17 @@ import { BtnConfirmAuthS } from "../../../../shared/components/Buttons/BtnConfir
 
 export const StyledQuestionWrapper = styled.div`
   display: flex;
-  max-width: 335px;
+  width: clamp(280px, 335px, 100%);
   flex-direction: column;
+  margin: 0 auto;
 
   @media only screen and (min-width: 768px) {
-    max-width: 440px;
+    width: 440px;
   }
 
   @media only screen and (min-width: 1440px) {
-    max-width: 744px;
-    margin: 0 24px;
+    width: 744px;
+    /* margin: 0 24px; */
   }
 `;
 
@@ -22,7 +23,7 @@ export const StyledQuestionCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 335px;
+  width: clamp(280px, 335px, 100%);
   height: 562px;
   margin-top: 20px;
   padding: 40px 20px;
@@ -30,16 +31,16 @@ export const StyledQuestionCard = styled.div`
   border-radius: 20px;
 
   @media only screen and (min-width: 768px) {
-    max-width: 440px;
+    width: 440px;
     padding: 32px 20px;
+    margin-top: 24px;
   }
 
   @media only screen and (min-width: 1440px) {
     flex-direction: row;
     align-items: start;
-    max-width: 744px;
+    width: 744px;
     height: 521px;
-    margin-top: 24px;
     padding: 64px 68px 64px 64px;
   }
 `;
@@ -83,15 +84,15 @@ export const StyledPlus = styled(PiPlus)`
 `;
 
 export const StyledInputTheme = styled.input`
-  display: inline-flex;
+  display: flex;
   padding: 14px 18px;
-  max-width: 335px;
+  width: clamp(270px, 335px, 100%);
   justify-content: center;
   align-items: center;
   gap: 10px;
 
   border-radius: 30px;
-  border: 1px solid var(--border-color-30);
+  border: 1px solid var(--border-color-60);
   background-color: transparent;
   color: var(--text-color-100);
 
@@ -100,7 +101,7 @@ export const StyledInputTheme = styled.input`
   }
 
   @media only screen and (min-width: 768px) {
-    max-width: 280px;
+    width: 280px;
   }
 `;
 
@@ -114,9 +115,6 @@ export const StyledTimeWrapper = styled.div`
   gap: 14px;
   & p {
     color: var(--text-color-60);
-  }
-
-  @media only screen and (min-width: 768px) {
   }
 
   @media only screen and (min-width: 1440px) {
@@ -180,26 +178,27 @@ export const Down = styled(FiChevronDown)`
 export const StyledQuestion = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 295px;
+  width: clamp(280px, 295px, 100%);
+  
   font-size: 14px;
   letter-spacing: -0.14px;
 
   @media only screen and (min-width: 768px) {
-    max-width: 376px;
+    width: 376px;
     font-size: 16px;
     letter-spacing: -0.16px;
   }
 
   @media only screen and (min-width: 1440px) {
     margin-left: 32px;
-    max-width: 460px;
+    width: 460px;
+    height: 100%;
   }
 `;
 
 export const StyledInputQuestion = styled.input`
   display: inline-flex;
   padding: 14px 18px;
-  /* max-width: 280px; */
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -221,27 +220,27 @@ export const AnswerCardContainer = styled.ul`
   flex-wrap: wrap;
   gap: 16px;
   margin: 16px 0;
-
-  @media only screen and (min-width: 768px) {
-
-  }
-
-  @media only screen and (min-width: 1440px) {
-    display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin: 16px 0;
-  }
 `;
 
 export const BtnContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   margin-top: auto;
   gap: 14px;
+
+  @media only screen and (min-width: 768px) {
+  }
+
+  @media only screen and (min-width: 1440px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: auto;
+    gap: 14px;
+  }
 `;
 
 export const StyledBtnSave = styled(BtnConfirmAuthS)`
@@ -252,4 +251,12 @@ export const StyledBtnSave = styled(BtnConfirmAuthS)`
 export const StyledBtnCancel = styled(StyledBtnSave)`
   background-color: transparent;
   border: 1px solid var(--border-color-60);
+`;
+
+export const StyledQuestionNumber = styled.p`
+  display: flex;
+  margin-right: auto;
+  font-size: 14px;
+  font-family: "GilroyBold";
+  line-height: 18px; /* 128.571% */
 `;

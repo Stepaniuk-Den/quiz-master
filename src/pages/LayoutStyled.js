@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import mobileBgImg from '../shared/images/mobile/main-mobile@1x.webp';
-import tabletBgImg from '../shared/images/tablet/main-tablet@1x.webp';
-import desktopBgImg from '../shared/images/desktop/main-desktop@1x.webp';
+import mobileBgImg from "../shared/images/mobile/main-mobile@1x.webp";
+import tabletBgImg from "../shared/images/tablet/main-tablet@1x.webp";
+import desktopBgImg from "../shared/images/desktop/main-desktop@1x.webp";
 import isPropValid from "@emotion/is-prop-valid";
 export const Container = styled.div.withConfig({
   shouldForwardProp: (prop) => isPropValid(prop),
@@ -35,7 +35,4 @@ export const Container = styled.div.withConfig({
     background-image: url(${desktopBgImg});
   }
   `}
-
 `;
-
-

@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const StyledAnswerWrapper = styled.li`
   display: flex;
-  align-items: start;
-  max-width: 139px;
+  width: 100%;
   height: ${(props) => (props.quiz === "quiz" ? '68px' : '44px')};
   padding: 14px 18px;
   font-size: 14px;
@@ -11,21 +10,20 @@ export const StyledAnswerWrapper = styled.li`
   border-radius: ${(props) => (props.quiz === "quiz" ? '15px' : '30px')};
   border: 1px solid var(--border-color-60);
 
+  @media only screen and (min-width: 375px) {
+    width: 139px;
+
+  }
+
   @media only screen and (min-width: 768px) {
-    max-width: 180px;
+    width: 180px;
     font-size: 16px;
     letter-spacing: -0.16px;
   }
 
   @media only screen and (min-width: 1440px) {
   align-items: start;
-  max-width: 222px;
-  height: ${(props) => (props.quiz === "quiz" ? '68px' : '44px')};
-  padding: 14px 18px;
-  font-size: 14px;
-    letter-spacing: -0.14px;
-  border-radius: ${(props) => (props.quiz === "quiz" ? '15px' : '30px')};
-  border: 1px solid var(--border-color-60);
+  width: 222px;
   }
 `;
 

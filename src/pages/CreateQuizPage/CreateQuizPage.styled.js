@@ -8,22 +8,26 @@ export const PageWrapper = styled.div`
   & h2 {
     margin: 0;
   }
+
+  @media only screen and (min-width: 768px) {
+  }
 `;
 
 export const SectionWrapper = styled.section`
-  width: 100%;
-  max-width: 335px;
+  /* width: 100%; */
+  width: clamp(280px, 335px, 100%);
   display: flex;
   flex-wrap: wrap;
+  column-gap:24px;
   flex-direction: row;
   align-items: center;
 
   @media only screen and (min-width: 768px) {
-    max-width: 702px;
+    width: 704px;
   }
 
   @media only screen and (min-width: 1440px) {
-    max-width: 1240px;
+    width: 1240px;
     flex-wrap: nowrap;
   }
 `;
