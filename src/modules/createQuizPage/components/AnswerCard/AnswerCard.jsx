@@ -1,18 +1,27 @@
 import React from "react";
 import {
+  StyledAnswerBoolean,
   StyledAnswerWrapper,
   StyledInputAnswer,
   StyledInputRadio,
   StyledLabelAnswer,
 } from "./AnswerCard.styled";
 
-const AnswerCard = ({ letter, changeAttribute, checked }) => {
-
+const AnswerCard = ({ letter, changeAttribute, checked, quizType }) => {
   return (
-    <StyledAnswerWrapper>
+    <StyledAnswerWrapper quizType === "quiz" ? >
       <StyledLabelAnswer htmlFor={letter}>
         <p>{letter}:</p>
-        <StyledInputAnswer type="text" id={letter} placeholder="Enter answer" />
+        {quizType === "quiz" ? (
+          <StyledInputAnswer
+            type="text"
+            id={letter}
+            placeholder="Enter answer"
+        
+          />
+        ) : (
+          <StyledAnswerBoolean>{letter === "A" ? "True" : "False"}</StyledAnswerBoolean>
+        )}
         <StyledInputRadio
           type="radio"
           name={letter}
