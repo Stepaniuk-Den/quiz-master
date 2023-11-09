@@ -17,6 +17,11 @@ export const BtnConfirmSettingsS = styled.button`
   transform: scale(1);
   transition: transform 250ms linear;
   
+  &.isDisabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    }
+
   &:hover,
   &:focus {
     transform: scale(1.1);
