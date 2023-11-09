@@ -1,17 +1,21 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CloseBtn, CloseBtnContainer, FormContainer, FormWrapper, SplashImg, TextThanks, TitleThanks, ToMainPageBtn } from "./AfterTestFeedbackStyled";
 import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
+import { useRef } from "react";
 
 
 const AfterTestFeedback = ({ to }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const backLink = useRef(location.state?.from);
 
   const handleClick = () => {
-    if (to) {
-      navigate(to);
-    } else {
-      navigate(-1);
-    }
+    // if (to) {
+    //   navigate(to);
+    // } else {
+    //   navigate(-1);
+    // }
+    navigate(backLink.current ?? "/");
   };
   return (
     <>

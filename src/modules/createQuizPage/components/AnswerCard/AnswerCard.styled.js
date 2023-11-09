@@ -2,13 +2,29 @@ import styled from "styled-components";
 
 export const StyledAnswerWrapper = styled.li`
   display: flex;
-  align-items: start;
-  width: 222px;
+  width: 100%;
   height: ${(props) => (props.quiz === "quiz" ? '68px' : '44px')};
   padding: 14px 18px;
-  /* border-radius: 15px; */
+  font-size: 14px;
+    letter-spacing: -0.14px;
   border-radius: ${(props) => (props.quiz === "quiz" ? '15px' : '30px')};
   border: 1px solid var(--border-color-60);
+
+  @media only screen and (min-width: 375px) {
+    width: 139px;
+
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 180px;
+    font-size: 16px;
+    letter-spacing: -0.16px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+  align-items: start;
+  width: 222px;
+  }
 `;
 
 export const StyledLabelAnswer = styled.label`

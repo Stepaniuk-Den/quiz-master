@@ -4,53 +4,44 @@ export const AttributeTitles = styled.p`
   color: #f4f4f4;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.25; /* 125% */
+  line-height: 1.25;
   letter-spacing: -0.16px;
 `;
 
 //=========================================
 
 export const SetAttributeDiv = styled.div`
-  //outline: 1px solid pink ;
   display: flex;
   flex-direction: row;
-  row-gap: 64px;
-  width: 100%;
-  margin-right: auto;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 260px;
+  /* width: 100%; */
+  /* min-width: 260px;
+  max-width: 260px; */
+  margin-top: 40px;
+  margin-bottom: 40px;
 
-  @media only screen and (min-width: 375px) {
-    max-width: 240px;
-    column-gap: 40px;
-      //flex-wrap: wrap;
-  }
   @media only screen and (min-width: 768px) {
-    max-width: 474px;
+    width: 474px;
     column-gap: 64px;
-        //flex-wrap: wrap;
+    flex-wrap: nowrap;
+    margin-top: 32px;
+    margin-bottom: 32px;
   }
   @media only screen and (min-width: 1440px) {
-    max-width: 110px;
+    width: 110px;
     flex-direction: column;
     row-gap: 64px;
-        //flex-wrap: nowrap;
+    margin: 0;
   }
-
-  //height: 450px;
-  //display: inline-flex;
-  //margin-left: 24px;
 `;
 
 export const SelectAudienceDiv = styled.div`
   width: 100%;
+  max-width: 110px;
 
-  @media only screen and (min-width: 375px) {
-    max-width: 110px;
-  }
-  @media only screen and (min-width: 768px) {
-    max-width: 110px;
-  }
   @media only screen and (min-width: 1440px) {
-    max-width: 110px;
     padding-top: 16px;
   }
 `;
@@ -60,7 +51,7 @@ export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
-   width: 100%;
+  width: 100%;
 
   @media only screen and (min-width: 375px) {
     max-width: 110px;
@@ -71,16 +62,14 @@ export const InputsWrapper = styled.div`
 `;
 
 export const ChooseAudienceLabel = styled.label`
-  //display: inline-block;
-  //vertical-align: middle;
   cursor: pointer;
   font-size: 14px;
   letter-spacing: -0.16px;
   position: relative;
   padding-left: 21px;
 
-    @media only screen and (min-width: 768px) {
-      font-size: 16px;
+  @media only screen and (min-width: 768px) {
+    font-size: 16px;
   }
 
   & input {
@@ -107,7 +96,6 @@ export const ChooseAudienceLabel = styled.label`
     position: absolute;
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
-    //transition: 300ms ease-in-out 0s;
     left: 50%;
     top: 50%;
   }
@@ -119,33 +107,10 @@ export const ChooseAudienceLabel = styled.label`
 
 //=========================================
 
-export const StyledSelectDiv = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 110px;
-
-  &::after {
-    content: url("../../../../shared/icons/icons.svg#icon-chevron-down");
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    transform: translate(-50%, -50%) scale(1);
-    pointer-events: none;
-    fill: white;
-    stroke: white;
-  }
-`;
-
 export const AttributeCategorySelect = styled.select`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
-  /* position: absolute;
-  top: 0;
-  left: 0; */
 
   width: 100%;
   max-width: 110px;
@@ -161,29 +126,27 @@ export const AttributeCategorySelect = styled.select`
   line-height: 1.29;
   letter-spacing: -0.14px;
   border: none;
+
+  & option {
+    background: var(--blue-background);
+    color: var(--text-color-100);
+    //border-radius: 15px;
+  }
 `;
 
 //=========================================
 
 export const SelectColorDiv = styled.div`
   display: flex;
+  flex-direction: row;
+  align-items: start;
+  column-gap: 8px;
   margin-top: 16px;
 
-  @media only screen and (min-width: 375px){
-      flex-direction: row;
+  @media only screen and (min-width: 1440px) {
+    flex-direction: column;
     align-items: start;
-      column-gap: 8px;
-  }
-  @media only screen and (min-width: 768px){
-      flex-direction: row;
-    align-items: start;
-      column-gap: 8px;
-  }
-
-  @media only screen and (min-width: 1440px){
-      flex-direction: column;
-    align-items: start;
-      row-gap: 8px;
+    row-gap: 8px;
   }
 `;
 

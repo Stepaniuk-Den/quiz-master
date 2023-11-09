@@ -99,7 +99,7 @@ const CreateQuizPage = () => {
     <PageWrapper>
       <PageTopBar titlePage="Create quize" />
       <SectionWrapper>
-        {isMobile && (
+        {isMobile ? (
           <>
             <QuestionCard
               currentQuestion={currentQuestion}
@@ -115,6 +115,25 @@ const CreateQuizPage = () => {
               question={currentQuestion}
             />
             <QuestionsList />
+          </>
+        ) : (
+          <>
+            <QuestionsList />
+            <QuestionCard
+              currentQuestion={currentQuestion}
+              setCurrentQuestion={setCurrentQuestion}
+              handleQuizChange={handleQuizChange}
+              quiz={currentQuiz}
+              handleChangeAnswer={handleChangeAnswer}
+              currentValue={isValue}
+            />
+            <SelectAttributeCard
+              quiz={currentQuiz}
+              question={currentQuestion}
+              changeAttribute={handleRadioChange}
+              changeCategory={handleSelectCategory}
+              categories={allCategories}
+            />
           </>
         )}
         <QuestionsList />

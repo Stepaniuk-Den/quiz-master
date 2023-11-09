@@ -16,10 +16,12 @@ import {
   StyledPlus,
   StyledQuestion,
   StyledQuestionCard,
+  StyledQuestionNumber,
   StyledQuestionWrapper,
   StyledTimeWrapper,
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
+import { useMediaQuery } from "react-responsive";
 
 const QuestionCard = ({
   currentQuestion,
@@ -108,6 +110,10 @@ const QuestionCard = ({
     }));
   };
 
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1439px)" });
+  const isDesktop = useMediaQuery({ query: "(min-width: 1440px)" });
+
   return (
     <StyledQuestionWrapper>
       <StyledInputTheme
@@ -118,14 +124,20 @@ const QuestionCard = ({
         onChange={handleQuizChange}
       />
       <StyledQuestionCard>
-        <StyledImageNumberBlock>
+        {isDesktop ? (
+          <StyledImageNumberBlock>
+            <ImageWrapper>
+              <StyledPlus />
+            </ImageWrapper>
+            <p>
+              {questionNumber}/{allQuestions}
+            </p>
+          </StyledImageNumberBlock>
+        ) : (
           <ImageWrapper>
             <StyledPlus />
           </ImageWrapper>
-          <p>
-            {questionNumber}/{allQuestions}
-          </p>
-        </StyledImageNumberBlock>
+        )}
         <StyledQuestion>
           <StyledTimeWrapper>
             <p>Time:</p>
@@ -172,11 +184,22 @@ const QuestionCard = ({
               />
             ))}
           </AnswerCardContainer>
+          {isDesktop ? (
+            <BtnContainer>
+              <StyledBtnSave>Save</StyledBtnSave>
+              <StyledBtnCancel>Cancel</StyledBtnCancel>
+            </BtnContainer>
+          ) : null}
+        </StyledQuestion>
+        {isDesktop ? null : (
           <BtnContainer>
+            <StyledQuestionNumber>
+              {questionNumber}/{allQuestions}
+            </StyledQuestionNumber>
             <StyledBtnSave>Save</StyledBtnSave>
             <StyledBtnCancel>Cancel</StyledBtnCancel>
           </BtnContainer>
-        </StyledQuestion>
+        )}
       </StyledQuestionCard>
     </StyledQuestionWrapper>
   );
