@@ -110,7 +110,7 @@ export const DropdownButton = styled.button`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  min-width: 90px;
+  min-width: 91px;
   height: 36px;
   padding: 8px 18px;
   column-gap: 8px;
@@ -129,11 +129,12 @@ export const DropdownButton = styled.button`
 
 export const DropdownList = styled.ul`
   position: absolute;
+  z-index: 2;
   left: 0;
   display: ${({ open }) => (open ? "flex" : "none")};
   flex-direction: column;
   gap: 12px;
-  width: 83px;
+  width: 91px;
   padding: 8px 32px 8px 18px;
   border-radius: 20px;
   background: var(--blue-background);
