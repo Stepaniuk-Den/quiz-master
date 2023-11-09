@@ -1,15 +1,29 @@
-import React from 'react'
-import { StyledAnswerWrapper, StyledInputAnswer, StyledInputCheckbox } from './AnswerCard.styled'
+import React from "react";
+import {
+  StyledAnswerWrapper,
+  StyledInputAnswer,
+  StyledInputRadio,
+  StyledLabelAnswer,
+} from "./AnswerCard.styled";
 
-const AnswerCard = ({letter}) => {
+const AnswerCard = ({ letter, changeAttribute, checked }) => {
+
   return (
     <StyledAnswerWrapper>
-      <label htmlFor="answer"><p>{letter}:</p></label>
-      <StyledInputAnswer type="text" id='answer' placeholder="Enter answer"/>
-      <StyledInputCheckbox type="checkbox" name="" id="answer" />
+      <StyledLabelAnswer htmlFor={letter}>
+        <p>{letter}:</p>
+        <StyledInputAnswer type="text" id={letter} placeholder="Enter answer" />
+        <StyledInputRadio
+          type="radio"
+          name={letter}
+          id={letter}
+          checked={checked === letter}
+          onChange={changeAttribute}
+        />
+        <span></span>
+      </StyledLabelAnswer>
+    </StyledAnswerWrapper>
+  );
+};
 
-      </StyledAnswerWrapper>
-  )
-}
-
-export default AnswerCard
+export default AnswerCard;

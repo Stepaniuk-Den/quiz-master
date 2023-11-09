@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   AnswerCardContainer,
+  BtnContainer,
   Down,
   DropdownButton,
   DropdownContainer,
   DropdownItem,
   DropdownList,
   ImageWrapper,
+  StyledBtnCancel,
+  StyledBtnSave,
   StyledImageNumberBlock,
   StyledInputQuestion,
   StyledInputTheme,
@@ -18,14 +21,14 @@ import {
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
 
-const QuestionCard = () => {
+const QuestionCard = ({ changeAttribute }) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
   const [isCurrentQuestion, setIsCurrentQuestion] = useState({
-    time: null,
     theme: "",
+    time: null,
     question: "",
-    quiz: true,
+    quizType: "quiz",
   });
 
   const questionNumber = 7;
@@ -47,8 +50,8 @@ const QuestionCard = () => {
   };
 
   const timeInSeconds = [30, 45, 60, 75, 90, 105, 120];
-  const selectAnswers = ['A', 'C', 'B', 'D'];
-
+  const selectAnswers = isCurrentQuestion.quizType === "quiz" ?  ["A", "C", "B", "D"] : ["A", "C"];
+// const selectAnswers = quizType === "quiz" ?  ["A", "C", "B", "D"] : ["A", "C"];
   useEffect(() => {
     const handleDocumentTimeClick = (event) => {
       if (
@@ -84,6 +87,13 @@ const QuestionCard = () => {
     }));
   };
 
+  const [isChecked, setChecked] = useState("");
+
+  const handleRadioChange = (event) => {
+    const value = event.target.id;
+    setChecked(value);
+  };
+
   return (
     <StyledQuestionWrapper>
       <StyledInputTheme
@@ -91,14 +101,16 @@ const QuestionCard = () => {
         placeholder="Quiz theme"
         name="theme"
         value={isCurrentQuestion.theme}
-        onChange={(evt)=> handleSubmit(evt, "theme")}
+        onChange={(evt) => handleSubmit(evt, "theme")}
       />
       <StyledQuestionCard>
         <StyledImageNumberBlock>
-        <ImageWrapper>
-          <StyledPlus />
-        </ImageWrapper>
-        <p>{questionNumber}/{allQuestions}</p>
+          <ImageWrapper>
+            <StyledPlus />
+          </ImageWrapper>
+          <p>
+            {questionNumber}/{allQuestions}
+          </p>
         </StyledImageNumberBlock>
         <StyledQuestion>
           <StyledTimeWrapper>
@@ -130,12 +142,22 @@ const QuestionCard = () => {
             name="question"
             placeholder="Enter a question"
             value={isCurrentQuestion.question}
-            onChange={(evt)=> handleSubmit(evt, "question")}
+            onChange={(evt) => handleSubmit(evt, "question")}
           />
           <AnswerCardContainer>
-        {selectAnswers.map((el) => (
-          <AnswerCard key={el} letter={el}/>))}
-        </AnswerCardContainer>
+            {selectAnswers.map((el) => (
+              <AnswerCard
+                key={el}
+                letter={el}
+                checked={isChecked}
+                changeAttribute={handleRadioChange}
+              />
+            ))}
+          </AnswerCardContainer>
+          <BtnContainer>
+            <StyledBtnSave>Save</StyledBtnSave>
+            <StyledBtnCancel>Cancel</StyledBtnCancel>
+          </BtnContainer>
         </StyledQuestion>
       </StyledQuestionCard>
     </StyledQuestionWrapper>
