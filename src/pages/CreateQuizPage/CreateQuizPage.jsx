@@ -8,7 +8,7 @@ import { PageWrapper, SectionWrapper } from "./CreateQuizPage.styled.js";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuizCategoriesThunk } from "../../redux/quiz/quizThunks.js";
 import { selectDiscoverAllCategories } from "../../redux/selectors.js";
-import { boolean } from "yup";
+//import { boolean } from "yup";
 import { useMediaQuery } from "react-responsive";
 
 const CreateQuizPage = () => {
@@ -77,14 +77,15 @@ const CreateQuizPage = () => {
     <PageWrapper>
       <PageTopBar titlePage="Create quize" />
       <SectionWrapper>
-        {isMobile && (
+        {isMobile ? (
           <>
             <QuestionCard
               currentQuestion={currentQuestion}
               setCurrentQuestion={setCurrentQuestion}
               handleQuizChange={handleQuizChange}
-              // handleChangeAnswer={handleChangeAnswer}
-              // currentValue={isValue}
+              quiz={currentQuiz}
+              handleChangeAnswer={handleChangeAnswer}
+              currentValue={isValue}
             />
             <SelectAttributeCard
               changeAttribute={handleRadioChange}
@@ -95,23 +96,26 @@ const CreateQuizPage = () => {
             />
             <QuestionsList />
           </>
+        ) : (
+          <>
+            <QuestionsList />
+            <QuestionCard
+              currentQuestion={currentQuestion}
+              setCurrentQuestion={setCurrentQuestion}
+              handleQuizChange={handleQuizChange}
+              quiz={currentQuiz}
+              handleChangeAnswer={handleChangeAnswer}
+              currentValue={isValue}
+            />
+            <SelectAttributeCard
+              quiz={currentQuiz}
+              question={currentQuestion}
+              changeAttribute={handleRadioChange}
+              changeCategory={handleSelectCategory}
+              categories={allCategories}
+            />
+          </>
         )}
-        <QuestionsList />
-        <QuestionCard
-          currentQuestion={currentQuestion}
-          setCurrentQuestion={setCurrentQuestion}
-          handleQuizChange={handleQuizChange}
-          quiz={currentQuiz}
-          handleChangeAnswer={handleChangeAnswer}
-          currentValue={isValue}
-        />
-        <SelectAttributeCard
-          quiz={currentQuiz}
-          question={currentQuestion}
-          changeAttribute={handleRadioChange}
-          changeCategory={handleSelectCategory}
-          categories={allCategories}
-        />
       </SectionWrapper>
     </PageWrapper>
   );
