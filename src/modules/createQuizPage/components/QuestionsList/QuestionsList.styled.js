@@ -6,15 +6,25 @@ export const QuestionsWrapper = styled.div`
   flex-direction: column;
   border-radius: 20px;
   background-color: var(--white-background);
-  width: 343px;
-  height: 589px;
-  padding: 32px;
+  width: 335px;
+  min-height: 320px;
+  padding: 40px 20px;
   & p {
     padding-bottom: 32px;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 32px; /* 133.333% */
+  }
+
+  @media only screen and (min-width: 768px) {
+   
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 343px;
+  height: 589px;
+  padding: 32px;
   }
 `;
 export const QuestionList = styled.li`

@@ -16,6 +16,7 @@ import {
   StyledPlus,
   StyledQuestion,
   StyledQuestionCard,
+  StyledQuestionNumber,
   StyledQuestionWrapper,
   StyledTimeWrapper,
 } from "./QuestionCard.styled";
@@ -175,15 +176,21 @@ const QuestionCard = ({
               />
             ))}
           </AnswerCardContainer>
+          {isDesktop ? (
+            <BtnContainer>
+              <StyledBtnSave>Save</StyledBtnSave>
+              <StyledBtnCancel>Cancel</StyledBtnCancel>
+            </BtnContainer>
+          ) : null}
+        </StyledQuestion>
+        {isDesktop ? null : (
           <BtnContainer>
+            <StyledQuestionNumber>
+              {questionNumber}/{allQuestions}
+            </StyledQuestionNumber>
             <StyledBtnSave>Save</StyledBtnSave>
             <StyledBtnCancel>Cancel</StyledBtnCancel>
           </BtnContainer>
-        </StyledQuestion>
-        {isDesktop ? null : (
-          <p>
-            {questionNumber}/{allQuestions}
-          </p>
         )}
       </StyledQuestionCard>
     </StyledQuestionWrapper>
