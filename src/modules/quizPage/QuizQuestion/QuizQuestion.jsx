@@ -32,12 +32,11 @@ function QuizQuestion({ questions, quizId }) {
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [previousQuestion, setPreviousQuestion] = useState(null);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(false);
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
   const [userAnswers, setUserAnswers] = useState({});
   const searchParams = new URLSearchParams(location.search);
   const userName = searchParams.get("userName");
-
 
   const answers = questions[currentQuestion].answers;
   const question = questions[currentQuestion];
@@ -48,10 +47,7 @@ function QuizQuestion({ questions, quizId }) {
 
     setIsAnswerSelected(true);
 
-    setSelectedAnswer({
-      answer,
-      isCorrect: isCorrect ? "correct" : "incorrect",
-    });
+    setSelectedAnswer(true);
 
     setUserAnswers((prevAnswers) => {
       const questionId = questions[currentQuestion]._id;
@@ -77,13 +73,12 @@ function QuizQuestion({ questions, quizId }) {
 
   const handleNextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
+      setSelectedAnswer(false);
       setIsAnswerSelected(false);
       setPreviousQuestion(currentQuestion);
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      navigate(
-      );
-
+      navigate();
       const quizData = {
         result: {
           quizId: quizId,
@@ -96,10 +91,9 @@ function QuizQuestion({ questions, quizId }) {
       if (isAuth) {
         dispatch(getPassedQuizzesThunk()).then((arr) => {
           const totalPassed = arr.payload;
-        console.log(totalPassed)
-          if (totalPassed.length === 0 ) {
+          if (totalPassed.length === 0) {
             dispatch(passedUsersQuiz(quizData));
-          } else if (totalPassed.data.some((item) => item._id === quizId)) {
+          } else if (totalPassed && totalPassed.data.some((item) => item._id === quizData.result.quizId)) {
             dispatch(updateUsersQuiz(quizData));
           }else {
             dispatch(passedUsersQuiz(quizData));
@@ -111,6 +105,7 @@ function QuizQuestion({ questions, quizId }) {
 
   const handlePreviousQuestion = () => {
     if (previousQuestion !== null) {
+      setSelectedAnswer(true);
       setIsAnswerSelected(false);
       setCurrentQuestion(previousQuestion);
       setPreviousQuestion(previousQuestion - 1);
@@ -120,6 +115,7 @@ function QuizQuestion({ questions, quizId }) {
 
       if (prevUserAnswer && prevUserAnswer.time) {
         setTimeRemaining(prevUserAnswer.time);
+          setSelectedAnswer(true);
       } else {
         setTimeRemaining(question.time);
       }
@@ -152,28 +148,41 @@ function QuizQuestion({ questions, quizId }) {
     )}`;
   };
 
-  useEffect(() => {
-    setTimeRemaining(question.time);
-  }, [question, currentQuestion]);
+ useEffect(() => {
+  setTimeRemaining(question.time);
+}, [question, currentQuestion]);
 
-  useEffect(() => {
-    let timer;
+useEffect(() => {
+  let timer;
+  if (!isAnswerSelected && timeRemaining > 0) {
+    timer = setTimeout(() => {
+      setTimeRemaining((prevTime) => prevTime - 1);
+    }, 1000);
+  } else if (timeRemaining === 0 && !isAnswerSelected) {
+    setTimeRemaining(null)
+    setUserAnswers((prevAnswers) => {
+      const questionId = questions[currentQuestion]._id;
 
-    if (!isAnswerSelected && timeRemaining > 0) {
-      timer = setTimeout(() => {
-        setTimeRemaining((prevTime) => prevTime - 1);
-      }, 1000);
-    }
+      return {
+        ...prevAnswers,
+        [questionId]: {
+          true: answers.findIndex((ans) => ans.correctAnswer === true),
+          false: true,
+          time: timeRemaining,
+        },
+      }
+    });
+  }
 
-    if (isAnswerSelected) {
-      clearTimeout(timer);
-      console.log(userAnswers[questions[currentQuestion]._id]);
-    }
+  if (isAnswerSelected) {
+    clearTimeout(timer);
+  } 
 
-    return () => {
-      clearTimeout(timer);
-    };
-  });
+  return () => {
+    clearTimeout(timer);
+  };
+}, [question, currentQuestion, isAnswerSelected, timeRemaining]);
+
 
   return (
     <>
@@ -213,12 +222,14 @@ function QuizQuestion({ questions, quizId }) {
           </AnswersCounter>
           <NextButton
             onClick={handleNextQuestion}
-            disabled={selectedAnswer === null}
+            disabled={!selectedAnswer && !userAnswers[questions[currentQuestion]._id]}
           >
             Next
           </NextButton>
           {currentQuestion > 0 && (
-            <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
+            <BackButton onClick={handlePreviousQuestion}
+              disabled={!selectedAnswer && !userAnswers[questions[currentQuestion]._id]}
+            >Back</BackButton>
           )}
         </DownContainer>
       </QuizeBox>
