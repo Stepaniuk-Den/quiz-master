@@ -56,7 +56,7 @@ function QuestionsList() {
       <SelectStyledQuiz
         value={selectedOption}
         onChange={handleOptionChange}
-        isdropdownopen={isDropdownOpen}
+        // isdropdownopen={isDropdownOpen}
       >
         <option value="Create">Create</option>
         <option value="Quiz">Quiz</option>
