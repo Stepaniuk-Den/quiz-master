@@ -180,6 +180,11 @@ const QuestionCard = ({
             <StyledBtnCancel>Cancel</StyledBtnCancel>
           </BtnContainer>
         </StyledQuestion>
+        {isDesktop ? null : (
+          <p>
+            {questionNumber}/{allQuestions}
+          </p>
+        )}
       </StyledQuestionCard>
     </StyledQuestionWrapper>
   );
