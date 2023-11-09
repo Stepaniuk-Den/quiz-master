@@ -9,7 +9,6 @@ import AfterTestFeedback from "../../modules/quizPage/AfterTestFeedback/AfterTes
 
 const QuizePage = () => {
   const { quizId } = useParams();
-  const { category } = useParams();
   const location = useLocation();
 
   const shouldShowGoBackBtn = () => {
@@ -30,7 +29,7 @@ const QuizePage = () => {
       )}
       <PageWrapper>
         <Outlet>
-          <BaseQuizForm quizId={quizId} category={category} />
+          <BaseQuizForm quizId={quizId} />
           <AnswerList quizId={quizId} />
           <QuizResult quizId={quizId} />
           <QuizFeedback quizId={quizId} />

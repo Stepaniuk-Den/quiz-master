@@ -39,7 +39,7 @@ const HomePage = () => {
           <MediaQuery minWidth={1440}>
             {matches => (
               passedQuizzes && passedQuizzes.length > 0 ? (
-                <QuizesList quizzesArr={matches ? passedQuizzes.slice(0, 3) : passedQuizzes.data?.slice(0, 2)} />
+                <QuizesList quizzesArr={matches ? passedQuizzes.slice(0, 3) : passedQuizzes.slice(0, 2)} />
               ) : null
             )}
           </MediaQuery>

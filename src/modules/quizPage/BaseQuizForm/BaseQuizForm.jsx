@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   ButtonStart,
   Category,
@@ -16,8 +16,10 @@ const BaseQuizForm = () => {
   const hasToken = useSelector(selectIsAuth);
   const name = useSelector(selectUser);
   const { quizId } = useParams();
-  const { category } = useParams();
-
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const category = searchParams.get("category")
+  
   useEffect(() => {
     if (hasToken && name.name) {
       setInputValue(name.name);
