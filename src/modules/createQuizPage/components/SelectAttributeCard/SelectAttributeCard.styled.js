@@ -1,5 +1,11 @@
 import styled from "styled-components";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
+
+const breakpoints = {
+    tablet: `@media only screen and (min-width: 768px)`,
+    desktop: `@media only screen and (min-width: 1279px)`,
+};
 
 export const AttributeTitles = styled.p`
 color: #F4F4F4;
@@ -79,14 +85,23 @@ display: none;
 //=========================================
 
 export const AttributeCategorySelect = styled.select`
-width: 100%;
-max-width: 110px;
-margin-top: 16px;
-//color: white;
-//background-color: transparent;
-border-radius: 15px;
-border:1px solid white;
-//border: none;
+ appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  max-width: 110px;
+  margin-top: 16px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--text-color-100);
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.14px;
+  border: none;
 `;
 
 //=========================================
@@ -130,4 +145,105 @@ display: none;
 
 export const CustomIcon = styled.span`
 
+`;
+
+//=========================================
+
+export const selectStyles = {
+    control: (styles, state) => ({
+        ...styles,
+        width: '95px',
+        maxHeight: '16px',
+        padding: ' 0px 0px 0px 5px',
+        fontSize: '16px',
+        color: '#F4F4F4',
+        backgroundColor: 'trasparent',
+        border: state.isFocused ? 0 : 0,
+        boxShadow: state.isFocused ? 0 : 0,
+        '&:hover': {
+            border: state.isFocused ? 0 : 0
+        },
+        cursor: 'pointer',
+        [breakpoints.tablet]: {
+            width: '105px',
+        },
+        [breakpoints.desktop]: {
+            width: '110px',
+        },
+    }),
+    valueContainer: styles => ({ ...styles, padding: '0', margin: '0', color: '#F4F4F4' }),
+    indicatorSeparator: styles => ({ ...styles, display: 'none' }),
+    dropdownIndicator: (styles, state) => ({
+        ...styles,
+        padding: '0',
+        color: '#F4F4F4',
+        transition: 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+        transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
+    }),
+    singleValue: styles => ({ ...styles, margin: '0', color: '#F4F4F4' }),
+    input: styles => ({ ...styles, padding: '0', margin: '0', color: '#F4F4F4' }),
+    menu: styles => ({
+        ...styles,
+        top: '90%',
+        width: '100%',
+        maxWidth: '95px',
+        maxHeight: '90px',
+        borderRadius: '15px',
+        colore: '#F4F4F4',
+        background: '#205BF1',
+        backdropFilter: `blur(50px)`,
+        overflow: 'auto',
+        [breakpoints.tablet]: {
+            maxWidth: '105px',
+        },
+        [breakpoints.desktop]: {
+            maxWidth: '110px',
+        },
+    }),
+    menuList: styles => ({
+        ...styles,
+        width: '100%',
+        colore: '#F4F4F4',
+        maxWidth: '95px',
+        height: '90px',
+        [breakpoints.tablet]: {
+            maxWidth: '105px',
+        },
+        [breakpoints.desktop]: {
+            maxWidth: '110px',
+        },
+        '::-webkit-scrollbar': {
+            width: '8px',
+            height: '0px',
+            borderRadius: '15px',
+        },
+        '::-webkit-scrollbar-track': {
+            backgroundColor: 'trasparent',
+        },
+        '::-webkit-scrollbar-thumb': {
+            backgroundColor: 'trasparent',
+        },
+        '::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: '#F4F4F4',
+        },
+    }),
+    option: (styles, state) => ({
+        ...styles,
+        cursor: 'pointer',
+        color: '#F4F4F4',
+        color: state.isSelected ? '#F4F4F4' : null,
+        backgroundColor: state.isSelected ? '#06236b' : null,
+        ':hover': {
+            color: '#F4F4F4',
+            backgroundColor: '#06236b',
+        },
+    }),
+};
+
+export const SelectIcon = styled(MdKeyboardArrowDown)`
+  color: #F4F4F4;
+  width: 14px;
+  height: 14px;
+
+ 
 `;

@@ -58,15 +58,15 @@ const SelectAttributeCard = (props) => {
         <AttributeCategorySelect
           name="categories"
           id="categories"
-          // value={categoryName}
+          value={categoryName}
           onChange={changeCategory}
-          defaultValue="defaultOption"
+          //defaultValue="defaultOption"
         >
-          <option value="defaultOption" disabled hidden>
+          <option value="defaultOption" hidden>
             {`For ${audience}`}
           </option>
           {arrOptions?.map((item) => (
-            <option key={uuidv4()} value={item.categoryName}>
+            <option key={uuidv4()} value={item._id}>
               {item.categoryName}
             </option>
           ))}
