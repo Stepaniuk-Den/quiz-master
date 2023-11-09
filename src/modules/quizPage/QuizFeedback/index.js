@@ -1,1 +1,1 @@
-export {default} from "./QuizFeedback ";
+export {default} from "./QuizFeedback";
