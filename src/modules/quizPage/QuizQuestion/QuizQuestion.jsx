@@ -9,6 +9,7 @@ import {
   DownContainer,
   AnswersCounter,
   AnswerLabels,
+  QuizeBox,
 } from "./QuizQuestionStyled";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
@@ -20,6 +21,7 @@ import {
 } from "../../../redux/quiz/quizThunks";
 import { StyledCountdown, TimeText } from "../Time/Time.styled";
 import { useAuth } from "../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
@@ -78,8 +80,9 @@ function QuizQuestion({ questions, quizId }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       navigate(
-        `/quizresult?quizId=${quizId}&userName=${userName}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
+        `/quiz/${quizId}/quizResult?correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
       );
+
       const quizData = {
         result: {
           quizId: quizId,
@@ -170,49 +173,51 @@ function QuizQuestion({ questions, quizId }) {
 
   return (
     <>
-      <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
-      <TimeText>
-        Time:
-        <StyledCountdown>
-          <span>
-            {userAnswers[questions[currentQuestion]._id]
-              ? formatTime(userAnswers[questions[currentQuestion]._id].time)
-              : formatTime(timeRemaining)}
-          </span>
-        </StyledCountdown>
-      </TimeText>
-      <div>
-        <AnswersContainer>
-          {answers.map((answer, index) => (
-            <li key={index}>
-              <StyledButton
-                onClick={() => handleButtonClick(answer, index)}
-                isCorrect={getButtonClass(index)}
-                disabled={userAnswers[questions[currentQuestion]._id]}
-              >
-                <ButtonText>
-                  <AnswerLabels>{answerLabels[index]} : </AnswerLabels>
-                  {`${answer.answer}`}
-                </ButtonText>
-              </StyledButton>
-            </li>
-          ))}
-        </AnswersContainer>
-      </div>
-      <DownContainer>
-        <AnswersCounter>
-          {currentQuestion + 1}/{questions.length}
-        </AnswersCounter>
-        <NextButton
-          onClick={handleNextQuestion}
-          disabled={selectedAnswer === null}
-        >
-          Next
-        </NextButton>
-        {currentQuestion > 0 && (
-          <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
-        )}
-      </DownContainer>
+      <QuizeBox>
+        <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
+        <TimeText>
+          Time:
+          <StyledCountdown>
+            <span>
+              {userAnswers[questions[currentQuestion]._id]
+                ? formatTime(userAnswers[questions[currentQuestion]._id].time)
+                : formatTime(timeRemaining)}
+            </span>
+          </StyledCountdown>
+        </TimeText>
+        <div>
+          <AnswersContainer>
+            {answers.map((answer, index) => (
+              <li key={index}>
+                <StyledButton
+                  onClick={() => handleButtonClick(answer, index)}
+                  isCorrect={getButtonClass(index)}
+                  disabled={userAnswers[questions[currentQuestion]._id]}
+                >
+                  <ButtonText>
+                    <AnswerLabels>{answerLabels[index]} : </AnswerLabels>
+                    {`${answer.answer}`}
+                  </ButtonText>
+                </StyledButton>
+              </li>
+            ))}
+          </AnswersContainer>
+        </div>
+        <DownContainer>
+          <AnswersCounter>
+            {currentQuestion + 1}/{questions.length}
+          </AnswersCounter>
+          <NextButton
+            onClick={handleNextQuestion}
+            disabled={selectedAnswer === null}
+          >
+            Next
+          </NextButton>
+          {currentQuestion > 0 && (
+            <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
+          )}
+        </DownContainer>
+      </QuizeBox>
     </>
   );
 }

@@ -6,18 +6,6 @@ export const PageWrapper = styled.div`
   align-items: center;
 `;
 
-export const QuizeBox = styled.div`
-  width: 335px;
-  background-color: var(--second-background);
-  padding: 40px 20px;
-  border-radius: 20px;
-  @media (min-width: 768px) {
-    width: 580px;
-    background-color: var(--second-background);
-    padding: 60px;
-    border-radius: 20px;
-  }
-`;
 
 export const BackBox = styled.div`
   margin: 48px 0 30px;

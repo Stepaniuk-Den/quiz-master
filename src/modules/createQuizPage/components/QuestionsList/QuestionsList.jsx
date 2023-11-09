@@ -20,7 +20,10 @@ function QuestionsList() {
     const newOption = event.target.value;
 
     if (newOption) {
-      setSelectedOptions([...selectedOptions, { id: uuidv4(), value: newOption }]);
+      setSelectedOptions([
+        ...selectedOptions,
+        { id: uuidv4(), value: newOption },
+      ]);
       setSelectedOption("Create");
     }
   };
