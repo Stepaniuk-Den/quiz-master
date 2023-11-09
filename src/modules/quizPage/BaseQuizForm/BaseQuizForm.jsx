@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   ButtonStart,
   Category,
@@ -17,7 +17,6 @@ const BaseQuizForm = () => {
   const name = useSelector(selectUser);
   const { quizId } = useParams();
   const { category } = useParams();
-  console.log(quizId)
 
   useEffect(() => {
     if (hasToken && name.name) {
@@ -29,7 +28,6 @@ const BaseQuizForm = () => {
     const value = event.target.value;
     setInputValue(value);
   };
-
 
   return (
     <PageWrapper>
@@ -43,7 +41,7 @@ const BaseQuizForm = () => {
           onChange={handleInputChange}
           readOnly={hasToken && name.name}
         />
-        <Link to={`/quiz/${quizId}/quizQuestion`}>
+        <Link to={`/quiz/${quizId}/quizquestion?inputValue=${inputValue}`}>
           <ButtonStart disabled={inputValue.length < 3}>Start</ButtonStart>
         </Link>
       </QuizeBox>

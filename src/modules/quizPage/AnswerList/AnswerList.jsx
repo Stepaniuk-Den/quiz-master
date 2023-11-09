@@ -8,8 +8,6 @@ const AnswerList = () => {
   const { quizId } = useParams();
   const dispatch = useDispatch();
   const [quizData, setQuizData] = useState([]);
-  console.log(quizId);
-  console.log(quizData);
 
   useEffect(() => {
     dispatch(getQuizThunk(quizId)).then((data) => {

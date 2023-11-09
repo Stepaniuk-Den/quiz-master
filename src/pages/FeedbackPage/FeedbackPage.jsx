@@ -1,8 +1,6 @@
 import { useState } from "react";
 import FeedbackForm from "../../modules/feedbackPage/FeedbackForm/FeedbackForm";
 import FeedbackThankYou from "../../modules/feedbackPage/FeedbackThankYou/FeedbackThankYou";
-import FeedbackFormNoAuth from "../../modules/feedbackPage/FeedbackFormNoAuth/FeedbackFormNoAuth";
-import FeedbackThankYouNoAuth from "../../modules/feedbackPage/FeedbackThankYouNoAuth/FeedbackThankYouNoAuth";
 import {
   PageWrapper,
   SectionWrapper,
@@ -10,12 +8,9 @@ import {
 } from "./FeedbackPageStyled";
 import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
 import PageTitle from "../../shared/components/PageTitle/PageTitle";
-import { selectIsAuth } from "../../redux/user/userSelectors";
-import { useSelector } from "react-redux";
 
 const FeedbackPage = () => {
   const [showThankYou, setShowThankYou] = useState(false);
-  const user = useSelector(selectIsAuth);
 
   const handleSendBtnClick = () => {
     setShowThankYou(true);
@@ -25,19 +20,13 @@ const FeedbackPage = () => {
     <PageWrapper>
       <SectionWrapper>
         <TitleWrapper>
-          {user ? <GoBackBtn to="/" /> : null}
-          {user ? <PageTitle children="Feedback" /> : null}
+          <GoBackBtn to="/" />
+          <PageTitle children="Feedback" />
         </TitleWrapper>
         {showThankYou ? (
-          user ? (
-            <FeedbackThankYou />
-          ) : (
-            <FeedbackThankYouNoAuth />
-          )
-        ) : user ? (
-          <FeedbackForm onSendClick={handleSendBtnClick} />
+          <FeedbackThankYou />
         ) : (
-          <FeedbackFormNoAuth onSendClick={handleSendBtnClick} />
+          <FeedbackForm onSendClick={handleSendBtnClick} />
         )}
       </SectionWrapper>
     </PageWrapper>
