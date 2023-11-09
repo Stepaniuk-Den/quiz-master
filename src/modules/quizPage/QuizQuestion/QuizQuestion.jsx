@@ -22,7 +22,6 @@ import {
   updateUsersQuiz,
 } from "../../../redux/quiz/quizThunks";
 import { useAuth } from "../../../hooks/useAuth";
-import { Link } from "react-router-dom";
 
 function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
@@ -36,7 +35,7 @@ function QuizQuestion({ questions, quizId }) {
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
   const [userAnswers, setUserAnswers] = useState({});
   const searchParams = new URLSearchParams(location.search);
-  const userName = searchParams.get("userName");
+  const inputValue = searchParams.get("inputValue");
 
   const answers = questions[currentQuestion].answers;
   const question = questions[currentQuestion];
@@ -78,7 +77,10 @@ function QuizQuestion({ questions, quizId }) {
       setPreviousQuestion(currentQuestion);
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      navigate();
+      navigate(
+        `/quiz/${quizId}/quizresult?correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}&inputValue=${inputValue}`
+      );
+
       const quizData = {
         result: {
           quizId: quizId,
@@ -91,11 +93,12 @@ function QuizQuestion({ questions, quizId }) {
       if (isAuth) {
         dispatch(getPassedQuizzesThunk()).then((arr) => {
           const totalPassed = arr.payload;
+          console.log(totalPassed);
           if (totalPassed.length === 0) {
             dispatch(passedUsersQuiz(quizData));
           } else if (totalPassed && totalPassed.data.some((item) => item._id === quizData.result.quizId)) {
             dispatch(updateUsersQuiz(quizData));
-          }else {
+          } else {
             dispatch(passedUsersQuiz(quizData));
           }
         });

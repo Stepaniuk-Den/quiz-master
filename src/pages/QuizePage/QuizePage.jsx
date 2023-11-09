@@ -3,8 +3,9 @@ import { PageWrapper, BackBox } from "./QuizePage.styled";
 import { Outlet, useParams } from "react-router-dom";
 import BaseQuizForm from "../../modules/quizPage/BaseQuizForm";
 import QuizResult from "../../modules/quizPage/QuizResult";
-import FeedbackPage from "../FeedbackPage/FeedbackPage";
 import AnswerList from "../../modules/quizPage/AnswerList";
+import QuizFeedback from "../../modules/quizPage/QuizFeedback";
+import AfterTestFeedback from "../../modules/quizPage/AfterTestFeedback/AfterTestFeedback";
 
 const QuizePage = () => {
   const { quizId } = useParams();
@@ -20,7 +21,8 @@ const QuizePage = () => {
           <BaseQuizForm quizId={quizId} category={category} />
           <AnswerList quizId={quizId} />
           <QuizResult quizId={quizId} />
-          <FeedbackPage quizId={quizId} />
+          <QuizFeedback quizId={quizId} />
+          <AfterTestFeedback />
         </Outlet>
       </PageWrapper>
     </>

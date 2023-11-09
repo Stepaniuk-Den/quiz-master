@@ -2,45 +2,48 @@ import styled from "styled-components";
 
 export const StyledAnswerWrapper = styled.li`
   display: flex;
-  width: 222px;
-  height: 68px;
-  padding: 14px 18px;
   align-items: start;
-
-  border-radius: 15px;
+  width: 222px;
+  height: ${(props) => (props.quiz === "quiz" ? '68px' : '44px')};
+  padding: 14px 18px;
+  /* border-radius: 15px; */
+  border-radius: ${(props) => (props.quiz === "quiz" ? '15px' : '30px')};
   border: 1px solid var(--border-color-60);
 `;
 
 export const StyledLabelAnswer = styled.label`
   position: relative;
   display: flex;
-  max-width: 100%;
   justify-content: start;
-  align-items: center;
+  align-items: baseline;
+  width: 100%;
 
+  & .letter {
+    font-family: "GilroyBold";
+  }
   & span {
-    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0px;
     height: 14px;
     width: 14px;
     border-radius: 4px;
     border: 1px solid var(--border-color-60);
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 1px;
+    cursor: pointer;
   }
 
   & span:after {
     content: "";
     position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
     height: 12px;
     width: 12px;
     background: #205bf1;
-    display: block;
     border-radius: 3px;
     transform: scale(0);
-    left: 50%;
-    top: 50%;
   }
 
   & input[type="radio"]:checked ~ span:after {
@@ -48,14 +51,21 @@ export const StyledLabelAnswer = styled.label`
   }
 `;
 
-export const StyledInputAnswer = styled.input`
+export const StyledAnswerBoolean = styled.p`
+display: flex;
+width: 80%;
+padding: 0 2px;
+margin-left: 2px;
+`;
+
+export const StyledTextareaAnswer = styled.textarea`
   display: flex;
-  /* flex-wrap: wrap; */
-  padding: 0 4px;
+  padding: 0 2px;
+  margin-left: 2px;
   width: 80%;
   justify-content: center;
   align-items: center;
-
+  resize: none;
   border: none;
   background-color: transparent;
   color: var(--text-color-100);

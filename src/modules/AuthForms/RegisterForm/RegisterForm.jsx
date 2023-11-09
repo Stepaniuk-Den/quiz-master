@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-// import { AiOutlineClose } from "react-icons/ai";
 import {
   AuthTitle,
   BtnEyeStyled,
@@ -13,7 +12,6 @@ import {
   InputsWrapper,
   LuEyeOffStyled,
   LuEyeStyled,
-  // StyledCloseBtn,
   StyledModal,
 } from "../../../modules/AuthForms/LoginForm/LoginForm.styled";
 import BtnToggleFormAuth from "../../../shared/components/Buttons/BtnToggleFormAuth";
@@ -25,7 +23,6 @@ import {
 } from "../../../shared/NotificationToastify/Toasts";
 import { registerUserThunk } from "../../../redux/user/userThunks";
 import BtnClose from "../../../shared/components/Buttons/BtnClose";
-// import { toggleShowAuthPage } from "../../../redux/Modal/modalSlice";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -64,86 +61,84 @@ const RegisterForm = () => {
           notifyRegisterError(error);
           navigate("/");
         });
-      // dispatch(toggleShowAuthPage(""));
     },
   });
 
   const handleClickBtnClose = () => {
     document.body.classList.remove("no-scroll");
-    // dispatch(toggleShowAuthPage(""));
     navigate("/");
   };
 
   return (
     <>
-    <StyledModal>
+      <StyledModal>
         <BtnClose onClick={handleClickBtnClose} />
 
-      <AuthTitle>Sign Up</AuthTitle>
-      <FormStyled onSubmit={formik.handleSubmit}>
-        <InputsWrapper>
-          <InputDefault
-            name="name"
-            type="name"
-            value={formik.values.name}
-            placeholder="Name"
-            // autoComplete="off"
-            onChange={formik.handleChange}
-            label="Name"
-          />
-
-          {formik.touched.name && formik.errors.name ? (
-            <ErrorsStyled>{formik.errors.name}</ErrorsStyled>
-          ) : null}
-
-          <InputDefault
-            name="email"
-            type="email"
-            value={formik.values.email}
-            placeholder="Email"
-            // autoComplete="off"
-            onChange={formik.handleChange}
-            label="Email"
-          />
-
-          {formik.touched.email && formik.errors.email ? (
-            <ErrorsStyled>{formik.errors.email}</ErrorsStyled>
-          ) : null}
-
-          <InputPasswWrapStyled>
+        <AuthTitle>Sign Up</AuthTitle>
+        <FormStyled onSubmit={formik.handleSubmit}>
+          <InputsWrapper>
             <InputDefault
-              variant="input-password"
-              name="password"
-              type={passwordShown ? "text" : "password"}
-              value={formik.values.password}
-              placeholder="Password"
+              name="name"
+              type="name"
+              value={formik.values.name}
+              placeholder="Name"
+              // autoComplete="off"
               onChange={formik.handleChange}
-              label="Password"
+              label="Name"
             />
-            <BtnEyeStyled
-              type="button"
-              onClick={togglePasswordShown}
-              name="togglePassword"
-              aria-label="Toggle password visibility"
-            >
-              {passwordShown ? (
-                <LuEyeStyled size={18} />
-              ) : (
-                <LuEyeOffStyled size={18} />
-              )}
-            </BtnEyeStyled>
-          </InputPasswWrapStyled>
 
-          {formik.touched.password && formik.errors.password ? (
-            <ErrorsStyled>{formik.errors.password}</ErrorsStyled>
-          ) : null}
-        </InputsWrapper>
-        <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
-      </FormStyled>
+            {formik.touched.name && formik.errors.name ? (
+              <ErrorsStyled>{formik.errors.name}</ErrorsStyled>
+            ) : null}
 
-      <Link to="/auth/loginForm">
-        <BtnToggleFormAuth type="button">Login</BtnToggleFormAuth>
-      </Link>
+            <InputDefault
+              name="email"
+              type="email"
+              value={formik.values.email}
+              placeholder="Email"
+              // autoComplete="off"
+              onChange={formik.handleChange}
+              label="Email"
+            />
+
+            {formik.touched.email && formik.errors.email ? (
+              <ErrorsStyled>{formik.errors.email}</ErrorsStyled>
+            ) : null}
+
+            <InputPasswWrapStyled>
+              <InputDefault
+                variant="input-password"
+                name="password"
+                type={passwordShown ? "text" : "password"}
+                value={formik.values.password}
+                placeholder="Password"
+                onChange={formik.handleChange}
+                label="Password"
+              />
+              <BtnEyeStyled
+                type="button"
+                onClick={togglePasswordShown}
+                name="togglePassword"
+                aria-label="Toggle password visibility"
+              >
+                {passwordShown ? (
+                  <LuEyeStyled size={18} />
+                ) : (
+                  <LuEyeOffStyled size={18} />
+                )}
+              </BtnEyeStyled>
+            </InputPasswWrapStyled>
+
+            {formik.touched.password && formik.errors.password ? (
+              <ErrorsStyled>{formik.errors.password}</ErrorsStyled>
+            ) : null}
+          </InputsWrapper>
+          <BtnConfirmAuth type="submit">Enter</BtnConfirmAuth>
+        </FormStyled>
+
+        <Link to="/auth/loginForm">
+          <BtnToggleFormAuth type="button">Login</BtnToggleFormAuth>
+        </Link>
       </StyledModal>
     </>
   );
