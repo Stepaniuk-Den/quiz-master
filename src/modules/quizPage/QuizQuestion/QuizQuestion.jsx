@@ -130,9 +130,14 @@ function QuizQuestion({ questions, quizId }) {
       return "correct";
     } else if (index === isAnswerTrue) {
       return "correct";
-    } else if (index === isAnswerFalse) {
-      return "incorrect";
-    } else {
+    } else if (Array.isArray(isAnswerFalse)) {
+      if (isAnswerFalse.includes(index)) {
+        return "incorrect"
+      }
+    } else if(index === isAnswerFalse){
+        return "incorrect"
+      }
+     else {
       return "normal";
     }
   };
@@ -162,12 +167,15 @@ useEffect(() => {
     setTimeRemaining(null)
     setUserAnswers((prevAnswers) => {
       const questionId = questions[currentQuestion]._id;
+const falseIndexes = answers
+        .map((elem, index) => (elem.correctAnswer === false ? index : null))
+        .filter((index) => index !== null);
 
       return {
         ...prevAnswers,
         [questionId]: {
           true: answers.findIndex((ans) => ans.correctAnswer === true),
-          false: true,
+          false: falseIndexes,
           time: timeRemaining,
         },
       }
