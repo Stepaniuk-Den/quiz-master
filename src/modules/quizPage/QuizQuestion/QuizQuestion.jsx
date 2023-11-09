@@ -10,6 +10,8 @@ import {
   AnswersCounter,
   AnswerLabels,
   QuizeBox,
+  StyledCountdown,
+  TimeText,
 } from "./QuizQuestionStyled";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
@@ -19,7 +21,6 @@ import {
   updateQuizThunk,
   updateUsersQuiz,
 } from "../../../redux/quiz/quizThunks";
-import { StyledCountdown, TimeText } from "../Time/Time.styled";
 import { useAuth } from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 
@@ -36,6 +37,7 @@ function QuizQuestion({ questions, quizId }) {
   const [userAnswers, setUserAnswers] = useState({});
   const searchParams = new URLSearchParams(location.search);
   const userName = searchParams.get("userName");
+
 
   const answers = questions[currentQuestion].answers;
   const question = questions[currentQuestion];
@@ -80,7 +82,6 @@ function QuizQuestion({ questions, quizId }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       navigate(
-        `/quiz/${quizId}/quizResult?correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
       );
 
       const quizData = {

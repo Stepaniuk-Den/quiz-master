@@ -17,7 +17,7 @@ import {
   AvatarImg,
 } from "./HeaderStyled";
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 import { useDispatch, useSelector } from "react-redux";
 import {toggleShowBurgerModal} from "../../../redux/Modal/modalSlice";
@@ -38,6 +38,8 @@ const Header = () => {
   const dropdownRef = useRef(null);
 
   const hasToken = useSelector(selectIsAuth);
+
+const location = useLocation();
 
   const dispatch = useDispatch();
 
@@ -109,14 +111,16 @@ const Header = () => {
         <Logo>QuizMaster</Logo>
       </Link>
       <NavList>
-        {hasToken ? (
+      {/(\/quiz\/[^/]+)/.test(location.pathname) ? null : (
+        hasToken ? (
           <>{generateNavLinks(hasToken)}</>
         ) : (
           <>
             {generateNavLinks(hasToken)}
           </>
-        )}
-      </NavList>
+        )
+      )}
+    </NavList>
 
       {hasToken && !isMobile ? (
         <DropdownContainer ref={dropdownRef}>
