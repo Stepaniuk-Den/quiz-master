@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const FormFiltersWrapper = styled.div`
-/* outline: 1px solid yellow; */
   width: 100%;
   margin-bottom: 40px;
 

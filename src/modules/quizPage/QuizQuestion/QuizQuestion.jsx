@@ -9,6 +9,9 @@ import {
   DownContainer,
   AnswersCounter,
   AnswerLabels,
+  QuizeBox,
+  StyledCountdown,
+  TimeText,
 } from "./QuizQuestionStyled";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
@@ -18,14 +21,14 @@ import {
   updateQuizThunk,
   updateUsersQuiz,
 } from "../../../redux/quiz/quizThunks";
-import { StyledCountdown, TimeText } from "../Time/Time.styled";
 import { useAuth } from "../../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const answerLabels = ["A", "B", "C", "D"];
+  const answerLabels = ["A", "C", "B", "D"];
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [previousQuestion, setPreviousQuestion] = useState(null);
@@ -34,6 +37,7 @@ function QuizQuestion({ questions, quizId }) {
   const [userAnswers, setUserAnswers] = useState({});
   const searchParams = new URLSearchParams(location.search);
   const userName = searchParams.get("userName");
+
 
   const answers = questions[currentQuestion].answers;
   const question = questions[currentQuestion];
@@ -78,8 +82,8 @@ function QuizQuestion({ questions, quizId }) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       navigate(
-        `/quizresult?quizId=${quizId}&userName=${userName}&correctAnswersCount=${correctAnswersCount}&totalQuestions=${questions.length}`
       );
+
       const quizData = {
         result: {
           quizId: quizId,
@@ -92,9 +96,12 @@ function QuizQuestion({ questions, quizId }) {
       if (isAuth) {
         dispatch(getPassedQuizzesThunk()).then((arr) => {
           const totalPassed = arr.payload;
-          if (totalPassed.data.some((item) => item._id === quizId)) {
+        console.log(totalPassed)
+          if (totalPassed.length === 0 ) {
+            dispatch(passedUsersQuiz(quizData));
+          } else if (totalPassed.data.some((item) => item._id === quizId)) {
             dispatch(updateUsersQuiz(quizData));
-          } else {
+          }else {
             dispatch(passedUsersQuiz(quizData));
           }
         });
@@ -170,49 +177,51 @@ function QuizQuestion({ questions, quizId }) {
 
   return (
     <>
-      <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
-      <TimeText>
-        Time:
-        <StyledCountdown>
-          <span>
-            {userAnswers[questions[currentQuestion]._id]
-              ? formatTime(userAnswers[questions[currentQuestion]._id].time)
-              : formatTime(timeRemaining)}
-          </span>
-        </StyledCountdown>
-      </TimeText>
-      <div>
-        <AnswersContainer>
-          {answers.map((answer, index) => (
-            <li key={index}>
-              <StyledButton
-                onClick={() => handleButtonClick(answer, index)}
-                isCorrect={getButtonClass(index)}
-                disabled={userAnswers[questions[currentQuestion]._id]}
-              >
-                <ButtonText>
-                  <AnswerLabels>{answerLabels[index]} : </AnswerLabels>
-                  {`${answer.answer}`}
-                </ButtonText>
-              </StyledButton>
-            </li>
-          ))}
-        </AnswersContainer>
-      </div>
-      <DownContainer>
-        <AnswersCounter>
-          {currentQuestion + 1}/{questions.length}
-        </AnswersCounter>
-        <NextButton
-          onClick={handleNextQuestion}
-          disabled={selectedAnswer === null}
-        >
-          Next
-        </NextButton>
-        {currentQuestion > 0 && (
-          <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
-        )}
-      </DownContainer>
+      <QuizeBox>
+        <TitleQuestion>{questions[currentQuestion].question}</TitleQuestion>
+        <TimeText>
+          Time:
+          <StyledCountdown>
+            <span>
+              {userAnswers[questions[currentQuestion]._id]
+                ? formatTime(userAnswers[questions[currentQuestion]._id].time)
+                : formatTime(timeRemaining)}
+            </span>
+          </StyledCountdown>
+        </TimeText>
+        <div>
+          <AnswersContainer>
+            {answers.map((answer, index) => (
+              <li key={index}>
+                <StyledButton
+                  onClick={() => handleButtonClick(answer, index)}
+                  isCorrect={getButtonClass(index)}
+                  disabled={userAnswers[questions[currentQuestion]._id]}
+                >
+                  <ButtonText>
+                    <AnswerLabels>{answerLabels[index]} : </AnswerLabels>
+                    {`${answer.answer}`}
+                  </ButtonText>
+                </StyledButton>
+              </li>
+            ))}
+          </AnswersContainer>
+        </div>
+        <DownContainer>
+          <AnswersCounter>
+            {currentQuestion + 1}/{questions.length}
+          </AnswersCounter>
+          <NextButton
+            onClick={handleNextQuestion}
+            disabled={selectedAnswer === null}
+          >
+            Next
+          </NextButton>
+          {currentQuestion > 0 && (
+            <BackButton onClick={handlePreviousQuestion}>Back</BackButton>
+          )}
+        </DownContainer>
+      </QuizeBox>
     </>
   );
 }

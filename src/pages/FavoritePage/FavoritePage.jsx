@@ -4,24 +4,27 @@ import {
   getFavoriteQuizzesThunk,
   updateFavoriteQuizThunk,
 } from "../../redux/quiz/quizThunks";
-import { selectFavorite } from "../../redux/selectors";
-import QuizeFilterTools from "../../modules/favoritePage/components/QuizFilterTools/QuizFilterTools";
+import { updateFavorite } from "../../redux/quiz/quizSlice";
+import { selectFavorite, selectFavoriteQty } from "../../redux/selectors";
 import BtnLoadMore from "../../shared/components/Buttons/BtnLoadMore/BtnLoadMore";
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";
 import QuizesList from "../../shared/components/QuizesList/QuizesList";
+import QuizeFilterTools from "../../modules/favoritePage/components/QuizFilterTools/QuizFilterTools";
 import { PageWrapper, SectionWrapper } from "./FavoritePageStyled";
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
-  const allFavoriteQuizes = useSelector(selectFavorite);
-  // console.log("allFavoriteQuizes: ", allFavoriteQuizes);
-  const [search, setSearch] = useState("");
-  const [total, setTotal] = useState("");
-  let page = 1;
-
   useEffect(() => {
-    dispatch(getFavoriteQuizzesThunk({ setTotal }));
+    dispatch(getFavoriteQuizzesThunk());
+    return () => {
+      dispatch(updateFavorite([]));
+    };
   }, [dispatch]);
+
+  const allFavoriteQuizes = useSelector(selectFavorite);  
+  const allFavoriteQuizesQty = useSelector(selectFavoriteQty);
+  const [page, setPage] = useState(2);
+  const [search, setSearch] = useState("");
 
   const filteredQuizeCards = useMemo(() => {
     return allFavoriteQuizes.filter((quiz) => quiz.quizName?.includes(search));
@@ -32,12 +35,12 @@ const FavoritePage = () => {
     const quizId = {
       favorites: id,
     };
-    dispatch(updateFavoriteQuizThunk({ quizId, setTotal }));
+    dispatch(updateFavoriteQuizThunk(quizId));
   };
 
   const handleLoadMore = () => {
-    page += 1;
-    dispatch(getFavoriteQuizzesThunk({ page, setTotal }));
+    dispatch(getFavoriteQuizzesThunk(page));
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
@@ -50,9 +53,10 @@ const FavoritePage = () => {
           className={"bottomVariant"}
           updateFavoriteQuizes={updateFavoriteQuizes}
         />
-        {total > 8 && filteredQuizeCards.length !== total && (
-          <BtnLoadMore handleLoadMore={handleLoadMore} />
-        )}
+        {allFavoriteQuizesQty > 8 &&
+          filteredQuizeCards.length !== allFavoriteQuizesQty && (
+            <BtnLoadMore handleLoadMore={handleLoadMore} />
+          )}
       </SectionWrapper>
     </PageWrapper>
   );

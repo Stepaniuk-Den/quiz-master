@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import {
   AttributeCategorySelect,
   AttributeTitles,
@@ -10,12 +11,19 @@ import {
   SetAttributeDiv,
 } from "./SelectAttributeCard.styled";
 
-const SelectAttributeCard = ({
-  audience,
-  changeAttribute,
-  changeCategory,
-  color,
-}) => {
+const SelectAttributeCard = (props) => {
+  const {
+    audience,
+    changeAttribute,
+    changeCategory,
+    color,
+    categories,
+    categoryName,
+  } = props;
+
+  const arrOptions =
+    audience === "adults" ? categories?.adults : categories?.children;
+
   return (
     <SetAttributeDiv>
       <SelectAudienceDiv>
@@ -49,12 +57,19 @@ const SelectAttributeCard = ({
         <AttributeTitles>Categories</AttributeTitles>
         <AttributeCategorySelect
           name="categories"
-          id="selectOption"
-          defaultValue={audience}
+          id="categories"
+          value={categoryName}
+          onChange={changeCategory}
+          //defaultValue="defaultOption"
         >
-          <option value={audience} disabled hidden>
+          <option value="defaultOption" hidden>
             {`For ${audience}`}
           </option>
+          {arrOptions?.map((item) => (
+            <option key={uuidv4()} value={item._id}>
+              {item.categoryName}
+            </option>
+          ))}
         </AttributeCategorySelect>
       </div>
       <div>

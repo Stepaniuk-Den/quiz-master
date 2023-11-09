@@ -24,6 +24,11 @@ export const NextButton = styled.button`
   letter-spacing: -0.01em;
 
   color: var(--text-color-100);
+
+  &:disabled {
+    color: rgba(244, 244, 244, 0.20);
+    cursor: not-allowed; 
+  }
 `;
 
 export const AnswersContainer = styled.ul`
@@ -69,7 +74,7 @@ export const AnswersCounter = styled.p`
   text-align: "right";
   bottom: 0;
   right: 0;
-  margin: 0; /* Убираем внешние отступы */
+  margin: 0;
 `;
 
 export const StyledButton = styled.button.withConfig({
@@ -83,14 +88,18 @@ export const StyledButton = styled.button.withConfig({
   text-align: left;
   padding: 14px 0 14px 18px;
   border-radius: 30px;
-  border: 1px solid rgba(244, 244, 244, 0.6);
-  background-color: transparent;
-  cursor: pointer;
-  background-color: ${(props) =>
+  border: 1px solid ${(props) =>
     props.isCorrect === "correct"
       ? "green"
       : props.isCorrect === "incorrect"
       ? "red"
+      : "rgba(244, 244, 244, 0.6)"};
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.isCorrect === "correct"
+      ? "rgba(29, 236, 18, 0.25)"
+      : props.isCorrect === "incorrect"
+      ? "rgba(255, 0, 0, 0.2)"
       : "transparent"};
   color: ${(props) =>
     props.isCorrect === "correct"
@@ -98,4 +107,36 @@ export const StyledButton = styled.button.withConfig({
       : props.isCorrect === "incorrect"
       ? "white"
       : "black"};
+`;
+
+export const QuizeBox = styled.div`
+  width: 335px;
+  background-color: var(--second-background);
+  padding: 40px 20px;
+  border-radius: 20px;
+  @media (min-width: 768px) {
+    width: 580px;
+    background-color: var(--second-background);
+    padding: 60px;
+    border-radius: 20px;
+  }
+`;
+
+export const TimeText = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  color: rgba(244, 244, 244, 0.6);
+`;
+
+export const StyledCountdown = styled.span`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  color: #f4f4f4;
+  margin-left: 8px;
 `;
