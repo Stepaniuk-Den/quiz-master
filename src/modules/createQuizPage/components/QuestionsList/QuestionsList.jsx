@@ -17,11 +17,11 @@ function QuestionsList() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleAdd = (event) => {
+  const handleAdd = (value) => {
     if (selectedOptions.length < maxOptions) {
       setSelectedOptions([
         ...selectedOptions,
-        { id: uuidv4(), value: event.target.textContent },
+        { id: uuidv4(), value: value },
       ]);
     }
   };
@@ -55,21 +55,21 @@ function QuestionsList() {
       >
         Create
         {isDropdownOpen ? (
-          <FiChevronDown size={14} />
+          <FiChevronUp size={16} />
         ) : (
-          <FiChevronUp size={14} />
+          <FiChevronDown size={16} />
         )}
       </SelectStyledQuiz>
       {isDropdownOpen && (
         <DropdownList>
           <ul>
             <li>
-              <button onClick={handleAdd}>
+              <button onClick={() => handleAdd("Quiz")}>
                 Quiz <HiArrowLongRight size={24} />
               </button>
             </li>
             <li>
-              <button onClick={handleAdd}>
+              <button onClick={() => handleAdd("True or false")}>
                 True or false <HiArrowLongRight size={24} />
               </button>
             </li>
