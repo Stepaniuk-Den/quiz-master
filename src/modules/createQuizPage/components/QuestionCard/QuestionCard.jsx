@@ -1,32 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   AnswerCardContainer,
+  BtnContainer,
   Down,
   DropdownButton,
   DropdownContainer,
   DropdownItem,
   DropdownList,
   ImageWrapper,
+  StyledBtnCancel,
+  StyledBtnSave,
   StyledImageNumberBlock,
   StyledInputQuestion,
   StyledInputTheme,
   StyledPlus,
   StyledQuestion,
   StyledQuestionCard,
+  StyledQuestionNumber,
   StyledQuestionWrapper,
   StyledTimeWrapper,
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
+import { useMediaQuery } from "react-responsive";
 
-const QuestionCard = () => {
+const QuestionCard = ({
+  currentQuestion,
+  setCurrentQuestion,
+  handleQuizChange,
+  quiz,
+  selectAnswers,
+}) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
-  const [isCurrentQuestion, setIsCurrentQuestion] = useState({
-    time: null,
-    theme: "",
-    question: "",
-    quiz: true,
-  });
+  const [isChecked, setChecked] = useState("");
 
   const questionNumber = 7;
   const allQuestions = 10;
@@ -47,7 +53,6 @@ const QuestionCard = () => {
   };
 
   const timeInSeconds = [30, 45, 60, 75, 90, 105, 120];
-  const selectAnswers = ['A', 'C', 'B', 'D'];
 
   useEffect(() => {
     const handleDocumentTimeClick = (event) => {
@@ -71,35 +76,68 @@ const QuestionCard = () => {
     const currentTimeId = evt.target.id;
 
     setIsCurrentTime(currentTime);
-    setIsCurrentQuestion((prevState) => ({
+    setCurrentQuestion((prevState) => ({
       ...prevState,
       time: currentTimeId,
     }));
   };
 
-  const handleSubmit = (evt, field) => {
-    setIsCurrentQuestion((prevState) => ({
+  const handleRadioAnswer = (event) => {
+    const value = event.target.id;
+
+    setChecked(value);
+    let fields = {};
+    if (currentQuestion.type === "quiz") {
+      selectAnswers.forEach((item, idx) => {
+        fields = {
+          ...fields,
+          [`answers[${idx}][correctAnswer]`]: value === item ? true : false,
+        };
+      });
+    } else {
+      selectAnswers.forEach(
+        (item, idx) =>
+          (fields = {
+            ...fields,
+            [`answers[${idx}][answer]`]: idx === 0 ? "True" : "False",
+            [`answers[${idx}][correctAnswer]`]: value === item ? true : false,
+          })
+      );
+    }
+    setCurrentQuestion((prevState) => ({
       ...prevState,
-      [field]: evt.target.value,
+      ...fields,
     }));
   };
+
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1439px)" });
+  const isDesktop = useMediaQuery({ query: "(min-width: 1440px)" });
 
   return (
     <StyledQuestionWrapper>
       <StyledInputTheme
         type="text"
         placeholder="Quiz theme"
-        name="theme"
-        value={isCurrentQuestion.theme}
-        onChange={(evt)=> handleSubmit(evt, "theme")}
+        name="quiz"
+        value={quiz.quizName}
+        onChange={handleQuizChange}
       />
       <StyledQuestionCard>
-        <StyledImageNumberBlock>
-        <ImageWrapper>
-          <StyledPlus />
-        </ImageWrapper>
-        <p>{questionNumber}/{allQuestions}</p>
-        </StyledImageNumberBlock>
+        {isDesktop ? (
+          <StyledImageNumberBlock>
+            <ImageWrapper>
+              <StyledPlus />
+            </ImageWrapper>
+            <p>
+              {questionNumber}/{allQuestions}
+            </p>
+          </StyledImageNumberBlock>
+        ) : (
+          <ImageWrapper>
+            <StyledPlus />
+          </ImageWrapper>
+        )}
         <StyledQuestion>
           <StyledTimeWrapper>
             <p>Time:</p>
@@ -129,14 +167,39 @@ const QuestionCard = () => {
             type="text"
             name="question"
             placeholder="Enter a question"
-            value={isCurrentQuestion.question}
-            onChange={(evt)=> handleSubmit(evt, "question")}
+            value={currentQuestion.question}
+            onChange={handleQuizChange}
           />
           <AnswerCardContainer>
-        {selectAnswers.map((el) => (
-          <AnswerCard key={el} letter={el}/>))}
-        </AnswerCardContainer>
+            {selectAnswers?.map((el) => (
+              <AnswerCard
+                key={el}
+                letter={el}
+                checked={isChecked}
+                changeAttribute={handleRadioAnswer}
+                type={currentQuestion.type}
+                handleQuizChange={handleQuizChange}
+                currentQuestion={currentQuestion}
+                selectAnswers={selectAnswers}
+              />
+            ))}
+          </AnswerCardContainer>
+          {isDesktop ? (
+            <BtnContainer>
+              <StyledBtnSave>Save</StyledBtnSave>
+              <StyledBtnCancel>Cancel</StyledBtnCancel>
+            </BtnContainer>
+          ) : null}
         </StyledQuestion>
+        {isDesktop ? null : (
+          <BtnContainer>
+            <StyledQuestionNumber>
+              {questionNumber}/{allQuestions}
+            </StyledQuestionNumber>
+            <StyledBtnSave>Save</StyledBtnSave>
+            <StyledBtnCancel>Cancel</StyledBtnCancel>
+          </BtnContainer>
+        )}
       </StyledQuestionCard>
     </StyledQuestionWrapper>
   );

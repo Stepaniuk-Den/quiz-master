@@ -12,17 +12,10 @@ import {
 } from "./SelectAttributeCard.styled";
 
 const SelectAttributeCard = (props) => {
-  const {
-    audience,
-    changeAttribute,
-    changeCategory,
-    color,
-    categories,
-    categoryName,
-  } = props;
+  const { quiz, question, changeAttribute, changeCategory, categories } = props;
 
   const arrOptions =
-    audience === "adults" ? categories?.adults : categories?.children;
+    quiz.quizType === "adults" ? categories?.adults : categories?.children;
 
   return (
     <SetAttributeDiv>
@@ -33,8 +26,8 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="children"
-              name="Audience"
-              checked={audience === "children"}
+              name="children"
+              checked={quiz.quizType === "children"}
               onChange={changeAttribute}
             />
             For Children
@@ -44,8 +37,8 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="adults"
-              name="Audience"
-              checked={audience === "adults"}
+              name="adults"
+              checked={quiz.quizType === "adults"}
               onChange={changeAttribute}
             />
             For Adults
@@ -58,15 +51,15 @@ const SelectAttributeCard = (props) => {
         <AttributeCategorySelect
           name="categories"
           id="categories"
-          // value={categoryName}
+          value={quiz.quizCategory}
           onChange={changeCategory}
-          defaultValue="defaultOption"
+          //defaultValue="defaultOption"
         >
-          <option value="defaultOption" disabled hidden>
-            {`For ${audience}`}
+          <option value="defaultOption" hidden>
+            {`For ${quiz.quizType}`}
           </option>
           {arrOptions?.map((item) => (
-            <option key={uuidv4()} value={item.categoryName}>
+            <option key={uuidv4()} value={item._id}>
               {item.categoryName}
             </option>
           ))}
@@ -79,8 +72,8 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="#43A8D3"
-              name="Background"
-              checked={color === "#43A8D3"}
+              name="background"
+              checked={question.background === "#43A8D3"}
               onChange={changeAttribute}
             />
             <span className="blue"></span>
@@ -89,8 +82,8 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="#6636C5"
-              name="Background"
-              checked={color === "#6636C5"}
+              name="background"
+              checked={question.background === "#6636C5"}
               onChange={changeAttribute}
             />
             <span className="viola"></span>
@@ -99,8 +92,8 @@ const SelectAttributeCard = (props) => {
             <input
               type="radio"
               id="#E65368"
-              name="Background"
-              checked={color === "#E65368"}
+              name="background"
+              checked={question.background === "#E65368"}
               onChange={changeAttribute}
             />
             <span className="orange"></span>

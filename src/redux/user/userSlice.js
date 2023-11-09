@@ -11,7 +11,6 @@ import {
 const initialState = {
   user: { name: null, email: null, _id: null },
   token: null,
-  // isAuth: false,
   isRefreshing: false,
   statistics: null,
   avatar: null,
@@ -28,17 +27,14 @@ const userSlice = createSlice({
       .addCase(loginUserThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
-        // state.isAuth = true;
       })
       .addCase(currentUserThunk.fulfilled, (state, action) => {
         state.user = action.payload;
-        // state.isAuth = true;
         state.isRefreshing = false;
       })
       .addCase(logOutUserThunk.fulfilled, (state, action) => {
         state.user = { name: null, email: null, _id: null };
         state.token = null;
-        // state.isAuth = false;
         state.isRefreshing = false;
         state.statistics = null;
       })

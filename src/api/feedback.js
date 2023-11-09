@@ -12,15 +12,20 @@ export async function createReview(review) {
   return data;
 }
 
-export async function createReviewQuiz({id, rate}) {
-  const { data } = await instance.post(`/feedback/${id.quizId}`, {rate});
+export async function createReviewQuiz({ quizId, rate }) {
+  const { data } = await instance.post(`/feedback/${quizId}`, { rate });
   return data;
 }
 
 export async function createQuizReview(reviewData) {
-  const { data } = await instance.post(
-    `/feedback/${reviewData.quizId}`,
-    reviewData
-  );
+  const obj = {
+    rate: reviewData.reviewData.rate,
+    comment: reviewData.reviewData.comment,
+    userName: reviewData.reviewData.userName,
+  };
+  if (reviewData.reviewData.userAvatar) {
+    obj.userAvatar = reviewData.reviewData.userAvatar;
+  }
+  const { data } = await instance.post(`/feedback/${reviewData.quizId}`, obj);
   return data;
 }

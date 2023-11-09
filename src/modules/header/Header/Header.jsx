@@ -20,10 +20,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../homepage/components/ModalLogOut/ModalLogOut";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  // toggleShowAuthPage,
-  toggleShowBurgerModal,
-} from "../../../redux/Modal/modalSlice";
+import {toggleShowBurgerModal} from "../../../redux/Modal/modalSlice";
 import { selectIsAuth, selectUser } from "../../../redux/user/userSelectors";
 
 import { useMediaQuery } from "react-responsive";
@@ -38,16 +35,13 @@ const Header = () => {
   const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
   const infoUser = useSelector(selectUser)
 
-  const location = useLocation();
-
   const dropdownRef = useRef(null);
 
   const hasToken = useSelector(selectIsAuth);
 
+const location = useLocation();
+
   const dispatch = useDispatch();
-  // const handleOpenModal = (e) => {
-  //   dispatch(toggleShowAuthPage(e.currentTarget.name));
-  // };
 
   const isMobile = useMediaQuery({
     query: "(max-width: 767px)",
@@ -84,20 +78,31 @@ const Header = () => {
   }, [isDropdownOpen]);
 
   const navItems = [
-    { to: "/home" || "/lastPassed", label: "Home" },
+    { to: "/home", label: "Home" },
     { to: "/discover", label: "Discover" },
     { to: "/favorite", label: "Favorite quize" },
     { to: "/ownquiz", label: "My quize" },
   ];
 
+  const navNotAuth = [
+    { to: "/randomquiz/Adults", label: "For Adults" },
+    { to: "/randomquiz/Children", label: "For Children", }
+  ];
+
   const generateNavLinks = (hasToken) => {
-    return navItems.map((item, index) => (
-      <Link key={index} to={item.to}>
-        <NavItem className={location.pathname === item.to ? "active" : ""}>
+    if (hasToken) {
+      return navItems.map((item, index) => (
+        <NavItem key={index} to={item.to}>
           {item.label}
         </NavItem>
-      </Link>
-    ));
+      ))
+    } else {
+      return navNotAuth.map((item, index) => (
+        <NavItem key={index} to={item.to}>
+          {item.label}
+        </NavItem>
+      ))
+    }
   };
 
   return (
@@ -106,51 +111,36 @@ const Header = () => {
         <Logo>QuizMaster</Logo>
       </Link>
       <NavList>
-        {hasToken ? (
+      {/(\/quiz\/[^/]+)/.test(location.pathname) ? null : (
+        hasToken ? (
           <>{generateNavLinks(hasToken)}</>
         ) : (
           <>
-            <Link to="/randomquiz/Adults">
-              <NavItem
-                className={
-                  location.pathname === "/randomquiz/Adults" ? "active" : ""
-                }
-              >
-                For Adults
-              </NavItem>
-            </Link>
-            <Link to="/randomquiz/Children">
-              <NavItem
-                className={
-                  location.pathname === "/randomquiz/Children" ? "active" : ""
-                }
-              >
-                For Children
-              </NavItem>
-            </Link>
+            {generateNavLinks(hasToken)}
           </>
-        )}
-      </NavList>
+        )
+      )}
+    </NavList>
 
       {hasToken && !isMobile ? (
         <DropdownContainer ref={dropdownRef}>
           <DropdownButton onClick={toggleDropdown}>
             {infoUser && infoUser.userAvatar ? (
-                <Avatar
-                  size="small"
-                  src={infoUser.userAvatar}
-                  alt="Photo"
-                  width="40px"
-                />
-              ) : (
-                <AvatarImg>
-                  {infoUser && infoUser.name
-                    ? infoUser.name.trim().charAt(0).toUpperCase()
-                    : ""}
-                </AvatarImg>
-              )}
-            {infoUser ?<UserName>{infoUser.name}</UserName> : null}
-            {isDropdownOpen ? <Up /> : <Down />}
+              <Avatar
+                size="small"
+                src={infoUser.userAvatar}
+                alt="Photo"
+                width="40px"
+              />
+            ) : (
+              <AvatarImg>
+                {infoUser && infoUser.name
+                  ? infoUser.name.trim().charAt(0).toUpperCase()
+                  : ""}
+              </AvatarImg>
+            )}
+            {infoUser ? <UserName>{infoUser.name}</UserName> : null}
+            {isDropdownOpen ? <Down style={{ rotate: '180deg' }} /> : <Down />}
           </DropdownButton>
           <DropdownList open={isDropdownOpen}>
             <Link to="/settings">

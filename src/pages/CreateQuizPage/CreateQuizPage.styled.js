@@ -1,39 +1,34 @@
 import styled from "styled-components";
 
 export const PageWrapper = styled.div`
-  outline: 1px solid green;
   padding: 80px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  & h2 {
+    margin: 0;
+  }
 
-export const SectionWrapper = styled.section`
-  outline: 1px solid red;
-  width: 100%;
-  max-width: 1240px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const QuestionsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-radius: 20px;
-  background-color: var(--white-background);
-  width: 343px;
-  height: 589px;
-  padding: 32px;
-
-  & p {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px; /* 133.333% */
+  @media only screen and (min-width: 768px) {
   }
 `;
 
-export const QuestionList = styled.ul`
-  margin-top: 32px;
+export const SectionWrapper = styled.section`
+  /* width: 100%; */
+  width: clamp(280px, 335px, 100%);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap:24px;
+  flex-direction: row;
+  align-items: center;
+
+  @media only screen and (min-width: 768px) {
+    width: 704px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 1240px;
+    flex-wrap: nowrap;
+  }
 `;
+

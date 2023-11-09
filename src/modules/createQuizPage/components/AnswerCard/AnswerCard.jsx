@@ -1,15 +1,57 @@
-import React from 'react'
-import { StyledAnswerWrapper, StyledInputAnswer, StyledInputCheckbox } from './AnswerCard.styled'
+import React from "react";
+import {
+  StyledAnswerBoolean,
+  StyledAnswerWrapper,
+  StyledInputRadio,
+  StyledLabelAnswer,
+  StyledTextareaAnswer,
+} from "./AnswerCard.styled";
 
-const AnswerCard = ({letter}) => {
+const AnswerCard = ({
+  letter,
+  changeAttribute,
+  checked,
+  type,
+  currentQuestion,
+  selectAnswers,
+  handleQuizChange,
+}) => {
+  const definedValueInput = () => {
+    const idxInput = selectAnswers.indexOf(letter);
+    for (let key in currentQuestion) {
+      if (key.includes(`[${idxInput}][answer]`)) return currentQuestion[key];
+    }
+  };
+
   return (
-    <StyledAnswerWrapper>
-      <label htmlFor="answer"><p>{letter}:</p></label>
-      <StyledInputAnswer type="text" id='answer' placeholder="Enter answer"/>
-      <StyledInputCheckbox type="checkbox" name="" id="answer" />
+    <StyledAnswerWrapper quiz={type === "quiz" ? "quiz" : null}>
+      <StyledLabelAnswer htmlFor={letter}>
+        <p className="letter">{letter}:</p>
+        {type === "quiz" ? (
+          <StyledTextareaAnswer
+            type="text"
+            id={letter}
+            name="answer"
+            placeholder="Enter answer"
+            value={definedValueInput() ? definedValueInput() : ""}
+            onChange={handleQuizChange}
+          />
+        ) : (
+          <StyledAnswerBoolean>
+            {letter === "A" ? "True" : "False"}
+          </StyledAnswerBoolean>
+        )}
+        <StyledInputRadio
+          type="radio"
+          name="answer radio"
+          id={letter}
+          checked={checked === letter}
+          onChange={changeAttribute}
+        />
+        <span></span>
+      </StyledLabelAnswer>
+    </StyledAnswerWrapper>
+  );
+};
 
-      </StyledAnswerWrapper>
-  )
-}
-
-export default AnswerCard
+export default AnswerCard;

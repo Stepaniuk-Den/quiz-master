@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FiMessageCircle, FiLogOut, FiSettings, FiChevronDown, FiChevronUp } from "react-icons/fi"
+import { NavLink } from 'react-router-dom';
 
 
 export const HeaderContainer = styled.header`
@@ -10,10 +11,13 @@ position: relative;
   padding-top: 20px;
     @media (min-width: 768px) {
      padding-top: 32px;
+      max-width: 1240px;
+        margin: auto;
   }
 
   @media (min-width: 1440px) {
   padding-top: 20px;
+
   }
 `;
 
@@ -40,18 +44,18 @@ export const Logo = styled.div`
   letter-spacing: -0.24px;
 `;
 
-export const NavList = styled.ul`
+export const NavList = styled.nav`
   display: none;
       @media (min-width: 768px) {
     display: flex;
   }
 `;
 
-export const NavItem = styled.li`
+export const NavItem = styled(NavLink)`
   margin-right: 20px;
   color: rgba(244, 244, 244, 0.60);
   line-height: 20px;
-  cursor: pointer;
+  cursor: pointer;  
 
     &.active {
     color: var(--text-color-100);
@@ -142,12 +146,7 @@ export const Down = styled(FiChevronDown)`
   width: 28px;
   height: 28px;
   stroke: var(--text-color-100);
-`;
-
-export const Up = styled(FiChevronUp)`
-  width: 28px;
-  height: 28px;
-  stroke: var(--text-color-100);
+  cursor: pointer;
 `;
 
 export const BoxAuth = styled.div`

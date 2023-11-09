@@ -1,3 +1,9 @@
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import {
   CloseBtn,
   CloseBtnContainer,
@@ -7,37 +13,37 @@ import {
   FormTitle,
   InputWrapper,
   NameInput,
-  RateStar,
   RatingWrapper,
   SendBtn,
-  SplashImg,
   TextRating,
-} from "./FeedbackFormNoAuthStyled";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
+} from "./QuizFeedbackStyled";
+import StarIcon from "@mui/icons-material/Star";
+import { selectUser } from "../../../redux/user/userSelectors";
 import { createQuizReviewThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
+import { useAuth } from "../../../hooks/useAuth";
+import { useRef } from "react";
+import { RatingS } from "../../discoverPage/components/RatingStarsRadio/RatingStarsRadioStyled";
 
-import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
-import { useLocation, useNavigate } from "react-router";
-import { selectUser } from "../../../redux/user/userSelectors";
-
-const FeedbackFormNoAuth = ({ onSendClick, to }) => {
+const QuizFeedback = ({ to }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const quizId = searchParams.get("quizId");
-  const userName = searchParams.get("userName");
+  const inputValue = searchParams.get("inputValue");
+  const { isAuth } = useAuth();
+  const { quizId } = useParams();
+  const backLink = useRef(location.state?.from);
   const infoUser = useSelector(selectUser);
+  const [value, setValue] = useState(0);
 
   const handleClick = () => {
-    if (to) {
-      navigate(to);
-    } else {
-      navigate(-1);
-    }
+    // if (to) {
+    //   navigate(to);
+    // } else {
+    //   navigate(-1);
+    // }
+    navigate(backLink.current ?? "/");
   };
 
   const formik = useFormik({
@@ -54,16 +60,16 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
 
     onSubmit: async (values) => {
       const reviewData = {
-        userName: userName ? userName : infoUser.name,
+        userName: inputValue,
         userAvatar: infoUser.userAvatar,
-        rate: values.rating,
+        rate: value,
         comment: values.feedback,
         quizId: quizId,
       };
-      console.log(reviewData);
       try {
-        await dispatch(createQuizReviewThunk(reviewData));
-        onSendClick();
+        await dispatch(createQuizReviewThunk({ quizId, reviewData }));
+        navigate(`/quiz/${quizId}/aftertestfeedback`);
+        console.log("feedback", quizId);
       } catch (error) {
         notifyError(error);
       }
@@ -72,7 +78,6 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
 
   return (
     <>
-      <SplashImg src={backgroundImg} alt="splash" loading="lazy" />
       <FormContainer>
         <CloseBtnContainer onClick={handleClick}>
           <CloseBtn />
@@ -85,22 +90,21 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
               name="name"
               placeholder="Name"
               onChange={formik.handleChange}
-              value={userName ? userName : infoUser.name}
+              value={formik.values.name}
+              defaultValue={!isAuth ? inputValue : infoUser.name}
+              readOnly={!isAuth ? inputValue : infoUser.name}
             />
           </InputWrapper>
           <RatingWrapper>
             <TextRating>Rate the quiz</TextRating>
-            {Array.from({ length: 5 }, (_, index) => (
-              <label key={index}>
-                <RateStar
-                  selected={formik.values.rating >= index + 1}
-                  onClick={() => formik.setFieldValue("rating", index + 1)}
-                />
-              </label>
-            ))}
-            {formik.errors.rating && formik.touched.rating && (
-              <div>{formik.errors.rating}</div>
-            )}
+            <RatingS
+              name="simple-controlled"
+              value={value}
+              onChange={(_, newValue) => {
+                setValue(newValue);
+              }}
+              emptyIcon={<StarIcon />}
+            />
           </RatingWrapper>
           <InputWrapper
             className={
@@ -127,4 +131,4 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
   );
 };
 
-export default FeedbackFormNoAuth;
+export default QuizFeedback;

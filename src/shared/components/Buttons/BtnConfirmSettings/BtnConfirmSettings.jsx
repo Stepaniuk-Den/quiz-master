@@ -1,10 +1,10 @@
 import { BtnConfirmSettingsS } from "./BtnConfirmSettingsS";
 
 
-const BtnConfirmSettings = ({ children }) => {
+const BtnConfirmSettings = ({ children, isDisabled, selectedFile }) => {
   return (
     <>
-      <BtnConfirmSettingsS>{children}</BtnConfirmSettingsS>
+      <BtnConfirmSettingsS type="submit" disabled={isDisabled} className={isDisabled?"isDisabled":""}>{children}</BtnConfirmSettingsS>
     </>
   );
 };

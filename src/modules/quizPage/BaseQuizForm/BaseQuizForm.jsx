@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   ButtonStart,
   Category,
   InputName,
   PageWrapper,
   QuizeBox,
+  SplashWrapS,
   Title,
 } from "./BaseQuizFormStyled";
 import { useSelector } from "react-redux";
@@ -16,9 +17,10 @@ const BaseQuizForm = () => {
   const hasToken = useSelector(selectIsAuth);
   const name = useSelector(selectUser);
   const { quizId } = useParams();
-  const { category } = useParams();
-  console.log(quizId)
-
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const category = searchParams.get("category")
+  
   useEffect(() => {
     if (hasToken && name.name) {
       setInputValue(name.name);
@@ -30,9 +32,8 @@ const BaseQuizForm = () => {
     setInputValue(value);
   };
 
-
   return (
-    <PageWrapper>
+    <>
       <QuizeBox>
         <Title>Log in to take the quiz</Title>
         <Category>{category}</Category>
@@ -43,11 +44,11 @@ const BaseQuizForm = () => {
           onChange={handleInputChange}
           readOnly={hasToken && name.name}
         />
-        <Link to={`/quiz/${quizId}/quizQuestion`}>
+        <Link to={`/quiz/${quizId}/quizquestion?inputValue=${inputValue}`}>
           <ButtonStart disabled={inputValue.length < 3}>Start</ButtonStart>
         </Link>
       </QuizeBox>
-    </PageWrapper>
+      </>
   );
 };
 // disabled = { isButtonDisabled };
