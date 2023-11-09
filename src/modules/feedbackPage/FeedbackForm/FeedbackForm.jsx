@@ -38,7 +38,6 @@ const FeedbackForm = ({ onSendClick }) => {
         rate: values.rating,
         comment: values.feedback,
       };
-      console.log(reviewData);
       try {
         await dispatch(createReviewThunk(reviewData));
         onSendClick();

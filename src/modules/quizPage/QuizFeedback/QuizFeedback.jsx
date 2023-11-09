@@ -56,7 +56,7 @@ const QuizFeedback = ({ to }) => {
 
     onSubmit: async (values) => {
       const reviewData = {
-        userName: isAuth ? inputValue : infoUser.name,
+        userName: inputValue,
         userAvatar: infoUser.userAvatar,
         rate: values.rating,
         comment: values.feedback,
@@ -71,7 +71,7 @@ const QuizFeedback = ({ to }) => {
       }
     },
   });
-
+  
   return (
     <>
       <SplashImg src={backgroundImg} alt="splash" loading="lazy" />

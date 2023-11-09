@@ -161,6 +161,12 @@ export const AttributeCategorySelect = styled.select`
   line-height: 1.29;
   letter-spacing: -0.14px;
   border: none;
+
+  & option {
+    background: var(--blue-background);
+    color: var(--text-color-100);
+    //border-radius: 15px;
+    }
 `;
 
 //=========================================
