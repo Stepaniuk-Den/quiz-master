@@ -3,8 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin-top: 80px;
   @media (min-width: 768px) {
-    margin-top: 100px;
+  margin-top: 100px;
+  max-width: 1240px;
+  margin-left:auto;
+  margin-right: auto;
   }
+
 `;
 
 export const TitleHome = styled.h2`

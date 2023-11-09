@@ -16,17 +16,20 @@ import {
   StyledPlus,
   StyledQuestion,
   StyledQuestionCard,
+  StyledQuestionNumber,
   StyledQuestionWrapper,
   StyledTimeWrapper,
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
+import { useMediaQuery } from "react-responsive";
 
 const QuestionCard = ({
   currentQuestion,
   setCurrentQuestion,
   handleQuizChange,
-  // handleChangeAnswer,
-  // currentValue,
+  quiz,
+  handleChangeAnswer,
+  currentValue,
 }) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
@@ -85,36 +88,49 @@ const QuestionCard = ({
   const handleRadioChange = (event) => {
     const value = event.target.id;
     setChecked(value);
-    const test = selectAnswers.map((item) => {
-      return {
-        answer: item === "A" ? "True" : "False",
-        correctAnswer: value === item ? true : false,
-      };
-    });
+    let fields = {};
+    selectAnswers.forEach(
+      (item, idx) =>
+        (fields = {
+          ...fields,
+          [`answers[${idx}][answer]`]: idx === 0 ? "True" : "False",
+          [`answers[${idx}][correctAnswer]`]: value === item ? true : false,
+        })
+    );
     setCurrentQuestion((prevState) => ({
       ...prevState,
-      answers: test,
+      ...fields,
     }));
   };
+
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1439px)" });
+  const isDesktop = useMediaQuery({ query: "(min-width: 1440px)" });
 
   return (
     <StyledQuestionWrapper>
       <StyledInputTheme
         type="text"
         placeholder="Quiz theme"
-        name="theme"
-        value={currentQuestion.theme}
-        onChange={(evt) => handleQuizChange(evt, "theme")}
+        name="quiz"
+        value={quiz.quizName}
+        onChange={handleQuizChange}
       />
       <StyledQuestionCard>
-        <StyledImageNumberBlock>
+        {isDesktop ? (
+          <StyledImageNumberBlock>
+            <ImageWrapper>
+              <StyledPlus />
+            </ImageWrapper>
+            <p>
+              {questionNumber}/{allQuestions}
+            </p>
+          </StyledImageNumberBlock>
+        ) : (
           <ImageWrapper>
             <StyledPlus />
           </ImageWrapper>
-          <p>
-            {questionNumber}/{allQuestions}
-          </p>
-        </StyledImageNumberBlock>
+        )}
         <StyledQuestion>
           <StyledTimeWrapper>
             <p>Time:</p>
@@ -145,7 +161,7 @@ const QuestionCard = ({
             name="question"
             placeholder="Enter a question"
             value={currentQuestion.question}
-            onChange={(evt) => handleQuizChange(evt, "question")}
+            onChange={handleQuizChange}
           />
           <AnswerCardContainer>
             {selectAnswers.map((el) => (
@@ -155,16 +171,27 @@ const QuestionCard = ({
                 checked={isChecked}
                 changeAttribute={handleRadioChange}
                 quizType={currentQuestion.quizType}
-                // changeAnswer={handleChangeAnswer}
-                // currentValue={currentValue}
+                changeAnswer={handleChangeAnswer}
+                currentValue={currentValue}
               />
             ))}
           </AnswerCardContainer>
+          {isDesktop ? (
+            <BtnContainer>
+              <StyledBtnSave>Save</StyledBtnSave>
+              <StyledBtnCancel>Cancel</StyledBtnCancel>
+            </BtnContainer>
+          ) : null}
+        </StyledQuestion>
+        {isDesktop ? null : (
           <BtnContainer>
+            <StyledQuestionNumber>
+              {questionNumber}/{allQuestions}
+            </StyledQuestionNumber>
             <StyledBtnSave>Save</StyledBtnSave>
             <StyledBtnCancel>Cancel</StyledBtnCancel>
           </BtnContainer>
-        </StyledQuestion>
+        )}
       </StyledQuestionCard>
     </StyledQuestionWrapper>
   );

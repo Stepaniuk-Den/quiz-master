@@ -62,6 +62,11 @@ export const BackButton = styled.button`
   letter-spacing: -0.01em;
   color: var(--text-color-100);
   border-bottom: 2px solid var(--text-color-100);
+&:disabled {
+    color: rgba(244, 244, 244, 0.20);
+     border-bottom: 2px solid rgba(244, 244, 244, 0.20);
+    cursor: not-allowed; 
+  }
 `;
 
 export const DownContainer = styled.div`

@@ -1,23 +1,26 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import {
   ErrorsStyled,
   FormContainer,
   FormTextarea,
   InputWrapper,
-  RateStar,
   RatingWrapper,
   SendBtn,
   TextRating,
 } from "./FeedbackFormStyled";
+import StarIcon from "@mui/icons-material/Star";
 import { createReviewThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 import { selectUser } from "../../../redux/user/userSelectors";
+import { RatingS } from "../../discoverPage/components/RatingStarsRadio/RatingStarsRadioStyled";
 
 const FeedbackForm = ({ onSendClick }) => {
   const dispatch = useDispatch();
   const infoUser = useSelector(selectUser);
+  const [value, setValue] = useState(0);
 
   const formik = useFormik({
     initialValues: {
@@ -35,7 +38,7 @@ const FeedbackForm = ({ onSendClick }) => {
       const reviewData = {
         userName: infoUser.name,
         userAvatar: infoUser.userAvatar,
-        rate: values.rating,
+        rate: value,
         comment: values.feedback,
       };
       console.log(reviewData);
@@ -54,17 +57,14 @@ const FeedbackForm = ({ onSendClick }) => {
         <form onSubmit={formik.handleSubmit}>
           <RatingWrapper>
             <TextRating>Rating</TextRating>
-            {Array.from({ length: 5 }, (_, index) => (
-              <label key={index}>
-                <RateStar
-                  selected={formik.values.rating >= index + 1}
-                  onClick={() => formik.setFieldValue("rating", index + 1)}
-                />
-              </label>
-            ))}
-            {formik.errors.rating && formik.touched.rating && (
-              <div>{formik.errors.rating}</div>
-            )}
+            <RatingS
+              name="simple-controlled"
+              value={value}
+              onChange={(_, newValue) => {
+                setValue(newValue);
+              }}
+              emptyIcon={<StarIcon />}
+            />
           </RatingWrapper>
           <InputWrapper
             className={

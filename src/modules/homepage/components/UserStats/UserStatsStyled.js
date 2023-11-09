@@ -18,7 +18,7 @@ export const AvatarImg = styled.div`
 `;
 
 export const UserCard = styled.div`
-  max-width: 292px;
+  min-width: 292px;
   height: 420px;
   border-radius: 20px;
   background: var(--blue-background);

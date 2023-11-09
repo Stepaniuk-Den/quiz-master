@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
 import PageTitle from "../../shared/components/PageTitle/PageTitle";
 import Avatar from "../../shared/components/Avatar/Avatar";
@@ -32,28 +31,23 @@ import { updateUserThunk } from "../../redux/user/userThunks";
 import { notifyError } from "../../shared/NotificationToastify/Toasts";
 import InputDefault from "../../shared/components/InputDefault/InputDefault";
 
-
 const SettingsPage = () => {
   const dispatch = useDispatch();
   const infoUser = useSelector(selectUser);
+  // console.log(selectedUser);
   const [selectedFile, setSelectedFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(true);
-  const navigate = useNavigate();
 
-const [passwordShown, setPasswordShown] = useState(false);
-const togglePasswordShown = () => setPasswordShown((show) => !show);
-// const isSubmitBtnDisabled = useRef(true);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordShown = () => setPasswordShown((show) => !show);
+  const isSubmitBtnDisabled = useRef(true);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    // if (event.target.files[0]) { setIsDisabled(false)}
-    console.log(event);
 
     if (file) {
       setSelectedFile(file);
-      setIsDisabled(false)
-      
+
       const reader = new FileReader();
       reader.onload = (e) => {
         setAvatarPreview(e.target.result);
@@ -62,7 +56,6 @@ const togglePasswordShown = () => setPasswordShown((show) => !show);
     }
   };
   
-  console.log(321);
   const formik = useFormik({
     initialValues: {
       // name: infoUser && infoUser.name ? infoUser.name : "",
@@ -70,7 +63,6 @@ const togglePasswordShown = () => setPasswordShown((show) => !show);
       email: infoUser?.email,
       password: "",
     },
-
 
     validationSchema: Yup.object({
       name: Yup.string()
@@ -91,44 +83,19 @@ const togglePasswordShown = () => setPasswordShown((show) => !show);
       if (selectedFile) {
         formData.append("avatar", selectedFile);
       }
-      dispatch(updateUserThunk(formData)).then((result) => {
-        if (result) { navigate("/quiz-master") };
-      })
-      .catch ((error) => {
+      dispatch(updateUserThunk(formData)).catch((error) => {
         notifyError(error);
       });
-      // console.log(values);
-      },
+      console.log(values);
+    },
   });
-    
-    // const handleOnChange = (evt) => {
-    //     console.log(evt.target.value);
-    //     formik.handleChange(evt);
-    // };
-    
-const handleOnChange = (data) => {
-    // console.log(data.currentTarget.defaultValue);
-    // const defaultName = data.currentTarget.defaultValue;
-    const changedName = data.currentTarget.value
-    // const qwe = defaultName === changedName
-    // console.log(qwe);
-    
-    if (infoUser.name !== changedName) {
-      console.log(infoUser.name);
-      setIsDisabled(false);
-    } else {
-        setIsDisabled(true);
-    };
-    formik.handleChange(data);
-   }
-
 
   // const [formikValues, setFormikValues] = useState(formik.values);
   useEffect(() => {
     console.log("user changed", formik.errors.name);
-    // if (!formik.errors.name || !formik.errors.email) {
-    //   isSubmitBtnDisabled.current = false;
-    // }
+    if (!formik.errors.name || !formik.errors.email) {
+      isSubmitBtnDisabled.current = false;
+    }
     console.log("user changed", formik.errors.email);
   }, [formik.values.name, avatarPreview]);
 
@@ -179,7 +146,7 @@ const handleOnChange = (data) => {
                   value={formik.values.name}
                   placeholder="Name"
                   autoComplete="off"
-                  onChange={(evt)=>handleOnChange(evt)}
+                  onChange={formik.handleChange}
                   label="Name"
                 />
 
@@ -229,8 +196,8 @@ const handleOnChange = (data) => {
                   <ErrorsStyled>{formik.errors.password}</ErrorsStyled>
                 ) : null}
               </InputsWrapper>
-              <BtnConfirmSettings isDisabled={isDisabled} selectedFile = {selectedFile}>Save</BtnConfirmSettings>
-              {/* <button type="submit" disabled={isDisabled}>Save</button> */}
+              {/* <BtnConfirmSettings type="submit">Save</BtnConfirmSettings> */}
+              <button type="submit" disabled={isSubmitBtnDisabled.current}>Save</button>
             </FormStyled>
           </SettingForm>
         </SectionWrapper>

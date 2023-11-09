@@ -4,7 +4,8 @@ import { AiOutlineClose } from "react-icons/ai";
 export const FormContainer = styled.div`
   position: relative;
   box-sizing: border-box;
-  margin-bottom: 155px;
+  margin-bottom: 204px;
+  margin-top: 204px;
   padding: 130px 20px;
   max-width: 335px;
   height: 404px;
@@ -17,7 +18,8 @@ export const FormContainer = styled.div`
   @media (min-width: 768px) {
     max-width: 452px;
     height: 408px;
-    margin-bottom: 170px;
+    margin-bottom: 196px;
+    margin-top: 196px;
     padding: 120px 100px;
   }
 `;
@@ -93,21 +95,21 @@ export const CloseBtn = styled(AiOutlineClose)`
 `;
 export const SplashImg = styled.img`
   position: absolute;
-  top: 47%;
+  top: 55.5%;
   right: 41%;
   width: 343px;
   height: 325px;
   max-width: 100%;
 
   @media (min-width: 768px) {
-    top: 39.5%;
+    top: 46%;
     right: 51%;
     width: 470px;
     height: 445px;
   }
 
   @media (min-width: 1440px) {
-    top: 38%;
+    top: 45%;
     right: 53.6%;
   }
 `;

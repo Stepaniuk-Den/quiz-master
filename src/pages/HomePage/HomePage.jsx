@@ -15,32 +15,34 @@ const HomePage = () => {
   const [passedQuizzes, setPassedQuizzes] = useState([]);
 
   useEffect(() => {
-    if (passedQuizzes.length === 0) {
-      dispatch(getPassedQuizzesThunk({ page: 1, limit: 3 }))
+    if (passedQuizzes && passedQuizzes.length === 0) {
+      dispatch(getPassedQuizzesThunk({ page: 1, limit: 4 }))
         .then(response => {
           setPassedQuizzes(response.payload.data);
         })
     }
   }, [dispatch, passedQuizzes]);
-  const shouldDisplaySeeAll = passedQuizzes?.length < 3;
+
   
   return (
     <Container>
-      <PageTopBar titlePage="Home"/>
+      <PageTopBar titlePage="Home" />
       
       <BoxUserStats>
         <UserStats />
         <div>
           <BoxLastPassed>
             <TitleLastPassedQ>Last passed quizzes</TitleLastPassedQ>
-            {shouldDisplaySeeAll ? null : <ButtonSeeAll link={seeAllLink} />}
+          {passedQuizzes && passedQuizzes.length > 3 ? <ButtonSeeAll link={seeAllLink} /> : null}
+
           </BoxLastPassed>
           <MediaQuery minWidth={1440}>
             {matches => (
-              <QuizesList quizzesArr={matches ? passedQuizzes?.slice(0, 3) : passedQuizzes.data?.slice(0, 2)} />
+              passedQuizzes && passedQuizzes.length > 0 ? (
+                <QuizesList quizzesArr={matches ? passedQuizzes.slice(0, 3) : passedQuizzes.slice(0, 2)} />
+              ) : null
             )}
           </MediaQuery>
-         
         </div>
       </BoxUserStats>
     </Container>
