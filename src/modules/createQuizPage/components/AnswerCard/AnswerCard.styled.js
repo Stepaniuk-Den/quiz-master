@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const StyledAnswerWrapper = styled.li`
   display: flex;
   width: 222px;
-  height: 68px;
+  /* height: 68px; */
+  height: ${(props) => (props.quiz === "quiz" ? '68px' : '44px')};
   padding: 14px 18px;
   align-items: start;
 
@@ -48,6 +49,11 @@ export const StyledLabelAnswer = styled.label`
   }
 `;
 
+export const StyledAnswerBoolean = styled.p`
+display: flex;
+width: 80%;
+padding: 0 4px;
+`;
 export const StyledInputAnswer = styled.input`
   display: flex;
   /* flex-wrap: wrap; */
