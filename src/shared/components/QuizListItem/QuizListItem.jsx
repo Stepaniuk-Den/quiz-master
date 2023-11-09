@@ -17,7 +17,6 @@ import BtnEditQuiz from "../Buttons/BtnEditQuiz/BtnEditQuiz";
 import { useLocation } from "react-router-dom";
 
 const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
-  console.log(quiz)
   const {
     _id,
     quizCategory,
