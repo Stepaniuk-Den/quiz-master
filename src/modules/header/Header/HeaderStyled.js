@@ -11,10 +11,13 @@ position: relative;
   padding-top: 20px;
     @media (min-width: 768px) {
      padding-top: 32px;
+      max-width: 1240px;
+        margin: auto;
   }
 
   @media (min-width: 1440px) {
   padding-top: 20px;
+
   }
 `;
 
