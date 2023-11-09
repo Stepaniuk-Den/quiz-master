@@ -26,7 +26,7 @@ const FeedbackThankYou = () => {
           <ThankYouText>
             Thank you for your feedback, feedback is very important to us.
           </ThankYouText>
-          <Link to="/home">
+          <Link to="/">
             <ToMainPageBtn>To main page</ToMainPageBtn>
           </Link>
         </ThankYouWrapper>
