@@ -3,9 +3,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 
 export const FormContainer = styled.div`
-  position: relative;
+position: relative;
   box-sizing: border-box;
-  margin-bottom: 155px;
   padding: 40px 20px;
   max-width: 335px;
   width: 100%;
@@ -19,7 +18,6 @@ export const FormContainer = styled.div`
   @media (min-width: 768px) {
     max-width: 481px;
     height: 460px;
-    margin-bottom: 170px;
     padding: 60px 80px;
   }
 `;
@@ -161,23 +159,4 @@ export const ErrorsStyled = styled.div`
   color: var(--pink-color);
   text-align: center;
 `;
-export const SplashImg = styled.img`
-  position: absolute;
-  top: 47%;
-  right: 41%;
-  width: 343px;
-  height: 325px;
-  max-width: 100%;
 
-  @media (min-width: 768px) {
-    top: 39.5%;
-    right: 51%;
-    width: 470px;
-    height: 445px;
-  }
-
-  @media (min-width: 1440px) {
-    top: 38%;
-    right: 53.6%;
-  }
-`;

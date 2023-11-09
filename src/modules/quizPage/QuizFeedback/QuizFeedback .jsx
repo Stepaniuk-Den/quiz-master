@@ -10,7 +10,6 @@ import {
   RateStar,
   RatingWrapper,
   SendBtn,
-  SplashImg,
   TextRating,
 } from "./QuizFeedbackStyled";
 import { useFormik } from "formik";
@@ -20,9 +19,9 @@ import { useLocation, useNavigate } from "react-router";
 import { selectUser } from "../../../redux/user/userSelectors";
 import { createQuizReviewThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
-import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
 import { useAuth } from "../../../hooks/useAuth";
 import { useParams } from "react-router-dom";
+import { useRef } from "react";
 
 const QuizFeedback = ({ to }) => {
   const dispatch = useDispatch();
@@ -33,13 +32,15 @@ const QuizFeedback = ({ to }) => {
   const inputValue = searchParams.get("inputValue");
   const { isAuth } = useAuth();
   const { quizId } = useParams();
+  const backLink = useRef(location.state?.from);
 
   const handleClick = () => {
-    if (to) {
-      navigate(to);
-    } else {
-      navigate(-1);
-    }
+    // if (to) {
+    //   navigate(to);
+    // } else {
+    //   navigate(-1);
+    // }
+    navigate(backLink.current ?? "/");
   };
 
   const formik = useFormik({
@@ -74,7 +75,6 @@ const QuizFeedback = ({ to }) => {
 
   return (
     <>
-      <SplashImg src={backgroundImg} alt="splash" loading="lazy" />
       <FormContainer>
         <CloseBtnContainer onClick={handleClick}>
           <CloseBtn />
