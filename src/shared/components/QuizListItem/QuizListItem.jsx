@@ -17,9 +17,11 @@ import BtnEditQuiz from "../Buttons/BtnEditQuiz/BtnEditQuiz";
 import { useLocation } from "react-router-dom";
 
 const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
+  
   const {
     _id,
     quizCategory,
+    categoryName,
     quizName,
     rate,
     totalPassed,
@@ -50,14 +52,14 @@ const QuizListItem = ({ quiz, updateFavoriteQuizes }) => {
         </TopIconBox>
         <TextRatingWrapper>
           <TextWrapper>
-            <ThemesS>{quizCategory?.categoryName}</ThemesS>
+            <ThemesS>{quizCategory? quizCategory?.categoryName : categoryName}</ThemesS>
             <GeneralScienceS>{quizName}</GeneralScienceS>
           </TextWrapper>
           <RatingStars rate={rate} />
         </TextRatingWrapper>
         <BtnStart
           id={quiz._id}
-          category={quizCategory.categoryName}
+          category={quizCategory? quizCategory?.categoryName : categoryName}
           correctAnswers={correctAnswers}
           quantityQuestions={quantityQuestions}
         />
