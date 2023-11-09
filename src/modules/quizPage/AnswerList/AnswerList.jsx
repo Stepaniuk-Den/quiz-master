@@ -13,7 +13,7 @@ const AnswerList = () => {
 
   useEffect(() => {
     dispatch(getQuizThunk(quizId)).then((data) => {
-      setQuizData(data.payload);
+      setQuizData(data.payload.questions);
     });
   }, [dispatch, quizId]);
 
