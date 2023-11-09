@@ -15,8 +15,8 @@ const CreateQuizPage = () => {
   const [categoryName, setCategoryName] = useState("");
   const allCategories = useSelector(selectDiscoverAllCategories);
   const dispatch = useDispatch();
-  const location = useLocation()
-  console.log('location: ', location.state.data);//id quiz
+  const location = useLocation();
+  // console.log('location: ', location.state.data);//id quiz
 
   useEffect(() => {
     if (allCategories) return;

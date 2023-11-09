@@ -10,6 +10,8 @@ import {
   AnswersCounter,
   AnswerLabels,
   QuizeBox,
+  StyledCountdown,
+  TimeText,
 } from "./QuizQuestionStyled";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
@@ -19,7 +21,6 @@ import {
   updateQuizThunk,
   updateUsersQuiz,
 } from "../../../redux/quiz/quizThunks";
-import { StyledCountdown, TimeText } from "../Time/Time.styled";
 import { useAuth } from "../../../hooks/useAuth";
 import { useParams } from "react-router-dom";
 
@@ -27,7 +28,7 @@ function QuizQuestion({ questions, quizId }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const answerLabels = ["A", "B", "C", "D"];
+  const answerLabels = ["A", "C", "B", "D"];
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [previousQuestion, setPreviousQuestion] = useState(null);
@@ -37,6 +38,7 @@ function QuizQuestion({ questions, quizId }) {
   const searchParams = new URLSearchParams(location.search);
   const userName = searchParams.get("userName");
   const inputValue = searchParams.get("inputValue");
+
 
   const answers = questions[currentQuestion].answers;
   const question = questions[currentQuestion];
@@ -96,9 +98,12 @@ function QuizQuestion({ questions, quizId }) {
       if (isAuth) {
         dispatch(getPassedQuizzesThunk()).then((arr) => {
           const totalPassed = arr.payload;
-          if (totalPassed.data.some((item) => item._id === quizId)) {
+        console.log(totalPassed)
+          if (totalPassed.length === 0 ) {
+            dispatch(passedUsersQuiz(quizData));
+          } else if (totalPassed.data.some((item) => item._id === quizId)) {
             dispatch(updateUsersQuiz(quizData));
-          } else {
+          }else {
             dispatch(passedUsersQuiz(quizData));
           }
         });

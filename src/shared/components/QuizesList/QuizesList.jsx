@@ -3,7 +3,7 @@ import QuizListItem from "../QuizListItem/QuizListItem";
 import { CardList } from "./QuizesListStyled";
 import CreateQuizCard from "../../../modules/randomQuizPage/components/CreateQuizCard/CreateQuizCard";
 
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 
 const QuizesList = ({ quizzesArr, className, updateFavoriteQuizes }) => {
   const location = useLocation();
@@ -17,9 +17,9 @@ const QuizesList = ({ quizzesArr, className, updateFavoriteQuizes }) => {
         {randomQuizzes && <CreateQuizCard />}
         {quizzesArr?.length > 0 &&
           quizzesArr?.map((quiz) => (
-            <li key={uuidv4()}>
-              <QuizListItem
-                //key={quiz._id}
+            // <li key={uuidv4()}>
+              <li key={quiz._id}>
+              <QuizListItem                
                 quiz={quiz}
                 updateFavoriteQuizes={updateFavoriteQuizes}
               />
