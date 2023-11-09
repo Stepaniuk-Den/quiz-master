@@ -1,18 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import {
-  CloseBtn,
-  CloseBtnContainer,
-  FormContainer,
-  FormWrapper,
-  SplashImg,
-  TextThanks,
-  TitleThanks,
-  ToMainPageBtn,
-} from "./FeedbackThankYouNoAuthStyled";
-
+import { CloseBtn, CloseBtnContainer, FormContainer, FormWrapper, SplashImg, TextThanks, TitleThanks, ToMainPageBtn } from "./AfterTestFeedbackStyled";
 import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
 
-const FeedbackThankYouNoAuth = ({ to }) => {
+
+const AfterTestFeedback = ({ to }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -43,4 +34,4 @@ const FeedbackThankYouNoAuth = ({ to }) => {
   );
 };
 
-export default FeedbackThankYouNoAuth;
+export default AfterTestFeedback;

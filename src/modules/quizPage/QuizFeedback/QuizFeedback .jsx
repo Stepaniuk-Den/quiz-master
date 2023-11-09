@@ -12,25 +12,49 @@ import {
   SendBtn,
   SplashImg,
   TextRating,
-} from "./FeedbackFormNoAuthStyled";
+} from "./QuizFeedbackStyled";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
+import { selectIsAuth, selectUser } from "../../../redux/user/userSelectors";
 import { createQuizReviewThunk } from "../../../redux/feedback/feedbackThunks";
 import { notifyError } from "../../../shared/NotificationToastify/Toasts";
-
 import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
-import { useLocation, useNavigate } from "react-router";
-import { selectUser } from "../../../redux/user/userSelectors";
+import { useState } from "react";
+import { useAuth } from "../../../hooks/useAuth";
+import { useParams } from "react-router-dom";
 
-const FeedbackFormNoAuth = ({ onSendClick, to }) => {
+
+const QuizFeedback = ({ to, quizId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const quizId = searchParams.get("quizId");
-  const userName = searchParams.get("userName");
+  // const quizId = searchParams.get("quizId");
+  // const userName = searchParams.get("userName");
   const infoUser = useSelector(selectUser);
+  const inputValue = searchParams.get("inputValue");
+  const { isAuth } = useAuth();
+
+  // const {quizId} = useParams();
+  console.log("yeeee", quizId)
+  // const userName = useParams();
+  // console.log("feed", userName)
+  // console.log("feed", inputValue)
+
+  // const hasToken = useSelector(selectIsAuth);
+  // useEffect(() => {
+  //   if (hasToken && name.name) {
+  //     setInputValue(name.name);
+  //   }
+  // }, [hasToken, name.name]);
+
+  // const [showThankYou, setShowThankYou] = useState(false);
+
+  // const handleSendBtnClick = () => {
+  //   setShowThankYou(true);
+  // };
 
   const handleClick = () => {
     if (to) {
@@ -54,16 +78,18 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
 
     onSubmit: async (values) => {
       const reviewData = {
-        userName: userName ? userName : infoUser.name,
+        userName: isAuth ? inputValue : infoUser.name,
         userAvatar: infoUser.userAvatar,
         rate: values.rating,
         comment: values.feedback,
         quizId: quizId,
       };
-      console.log(reviewData);
+      // console.log("feedback", quizId);
+      // console.log(reviewData);
       try {
-        await dispatch(createQuizReviewThunk(reviewData));
-        onSendClick();
+        await dispatch(createQuizReviewThunk({quizId, reviewData}));
+        navigate(`/quiz/${quizId}/aftertestfeedback`);
+        console.log("feedback", quizId);
       } catch (error) {
         notifyError(error);
       }
@@ -85,7 +111,9 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
               name="name"
               placeholder="Name"
               onChange={formik.handleChange}
-              value={userName ? userName : infoUser.name}
+              value={formik.values.name}
+              defaultValue={!isAuth ? inputValue : infoUser.name}
+              readOnly={!isAuth ? inputValue : infoUser.name}
             />
           </InputWrapper>
           <RatingWrapper>
@@ -127,4 +155,4 @@ const FeedbackFormNoAuth = ({ onSendClick, to }) => {
   );
 };
 
-export default FeedbackFormNoAuth;
+export default QuizFeedback ;

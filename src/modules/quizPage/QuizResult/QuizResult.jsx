@@ -24,9 +24,11 @@ const QuizResult = () => {
   const searchParams = new URLSearchParams(location.search);
   const correctAnswersCount = searchParams.get("correctAnswersCount");
   const totalQuestions = searchParams.get("totalQuestions");
-  const [value, setValue] = useState(0);
+  const inputValue = searchParams.get("inputValue");
   const quizId = useParams();
-
+  const [value, setValue] = useState(0);
+  console.log("result", quizId)
+ 
   const navigate = useNavigate();
   const backLink = useRef(location.state?.from);
 
@@ -35,8 +37,7 @@ const QuizResult = () => {
       dispatch(createReviewQuizThunk({ id: quizId, rate: value })).then(() => {
         notifyRateAddSuccess();
         navigate(backLink.current ?? "/");
-        console.log(quizId);
-        console.log(value);
+        // console.log(value);
       });
       // .catch((error) => {
       //   notifyError(error);
@@ -72,7 +73,7 @@ const QuizResult = () => {
         />
       </RatingBox>
 
-      <BtnWriteReviewLink to={`/quiz/${quizId}/quizFeedback`}>
+      <BtnWriteReviewLink to={`/quiz/${quizId}/quizfeedback?inputValue=${inputValue}`}>
         Write a review
       </BtnWriteReviewLink>
     </QuizeBox>
