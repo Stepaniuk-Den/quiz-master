@@ -40,7 +40,7 @@ const QuizResult = () => {
       //   notifyError(error);
       // });
     } else {
-      window.history.back();
+      navigate(backLink.current ?? "/");
     }
   };
 

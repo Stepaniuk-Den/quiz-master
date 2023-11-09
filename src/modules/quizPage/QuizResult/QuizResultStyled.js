@@ -1,16 +1,7 @@
 import styled from "styled-components";
-
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
-// import { styled } from '@mui/material/styles';
 import { AiOutlineClose } from "react-icons/ai";
-
-export const PageWrapper = styled.div`
-  padding: 128px 0 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 export const QuizeBox = styled.div`
   position: relative;
@@ -96,30 +87,29 @@ export const BtnWriteReviewLink = styled(Link)`
   }
 `;
 
-// ===========================
 
 export const RatingBox = styled.div`
   margin: 0;
-  padding: 0;  
+  padding: 0;
 `;
 
-export const RatingS = styled(Rating)({  
-  "& .MuiRating-iconFilled": {    
+export const RatingS = styled(Rating)({
+  "& .MuiRating-iconFilled": {
     color: "var(--star-color-100)",
     // size: "large",
-  },  
-  "& .MuiRating-iconEmpty": {    
+  },
+  "& .MuiRating-iconEmpty": {
     color: "var(--star-color-8)",
     // size: "large",
-  },  
-  // "& .MuiRating-iconHover": {    
-  //   color: "var(--star-color-8)", 
+  },
+  // "& .MuiRating-iconHover": {
+  //   color: "var(--star-color-8)",
   //   // size: "large",
-  // }, 
+  // },
   // "& . MuiRating-iconSize": {
   //   size:"large",
   // }
-  
+
   // .MuiRating-sizeLarge
   // .MuiRating-icon
   // "& .emptyIcon": {
@@ -127,7 +117,6 @@ export const RatingS = styled(Rating)({
   // }
 });
 
-// ================================
 
 export const BtnCloseS = styled.button`
   position: absolute;
@@ -153,7 +142,7 @@ export const BtnCloseS = styled.button`
 export const AiOutlineCloseS = styled(AiOutlineClose)`
   width: 28px;
   height: 28px;
-  fill: var( --text-color-100);
+  fill: var(--text-color-100);
 
   @media screen and (max-width: 768px) {
     width: 24px;

@@ -1,5 +1,5 @@
 import GoBackBtn from "../../shared/components/Buttons/GoBackBtn/GoBackBtn";
-import { PageWrapper, BackBox, Container } from "./QuizePage.styled";
+import { PageWrapper, BackBox, Container, SplashWrapS } from "./QuizePage.styled";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import BaseQuizForm from "../../modules/quizPage/BaseQuizForm";
 import QuizResult from "../../modules/quizPage/QuizResult";
@@ -28,6 +28,7 @@ const QuizePage = () => {
         </BackBox>
       )}
       <PageWrapper>
+      <SplashWrapS>
         <Outlet>
           <BaseQuizForm quizId={quizId} />
           <AnswerList quizId={quizId} />
@@ -35,6 +36,7 @@ const QuizePage = () => {
           <QuizFeedback quizId={quizId} />
           <AfterTestFeedback />
         </Outlet>
+        </SplashWrapS>
       </PageWrapper>
     </Container>
   );
