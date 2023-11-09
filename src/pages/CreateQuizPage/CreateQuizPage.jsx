@@ -8,7 +8,6 @@ import { PageWrapper, SectionWrapper } from "./CreateQuizPage.styled.js";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuizCategoriesThunk } from "../../redux/quiz/quizThunks.js";
 import { selectDiscoverAllCategories } from "../../redux/selectors.js";
-//import { boolean } from "yup";
 import { useMediaQuery } from "react-responsive";
 
 const CreateQuizPage = () => {
@@ -18,25 +17,20 @@ const CreateQuizPage = () => {
   });
   const [currentQuestion, setCurrentQuestion] = useState({
     question: "",
-    quizType: "quize",
-    /* 'true or false' */
+    type: "quiz",
+    /* quiz    true or false */
   });
   const allCategories = useSelector(selectDiscoverAllCategories);
   const dispatch = useDispatch();
-  const location = useLocation();
+  // const location = useLocation();
   // console.log('location: ', location.state.data);//id quiz
-
-  const [isValue, setIsValue] = useState("");
 
   console.log("currentQuiz: ", currentQuiz);
   console.log("currentQuestion: ", currentQuestion);
   // console.log("isValue: ", isValue);
 
-  const handleChangeAnswer = (evt) => {
-    const currentAnswer = evt.target.value;
-    setIsValue(currentAnswer);
-    console.log(currentAnswer);
-  };
+  const selectAnswers =
+    currentQuestion.type === "quiz" ? ["A", "C", "B", "D"] : ["A", "C"];
 
   useEffect(() => {
     if (allCategories) return;
@@ -45,11 +39,17 @@ const CreateQuizPage = () => {
 
   const handleRadioChange = (event) => {
     const value = event.target.id;
+    const name = event.target.name;
 
-    if (value === "children" || value === "adults") {
-      setCurrentQuiz((prevState) => ({ ...prevState, quizType: value }));
-    }
-    setCurrentQuestion((prevState) => ({ ...prevState, background: value }));
+    if (name === "children" || name === "adults")
+      return setCurrentQuiz((prevState) => ({
+        ...prevState,
+        quizType: value,
+        quizCategory: "",
+      }));
+
+    name === "background" &&
+      setCurrentQuestion((prevState) => ({ ...prevState, background: value }));
   };
 
   const handleSelectCategory = (event) => {
@@ -60,15 +60,37 @@ const CreateQuizPage = () => {
   };
 
   const handleQuizChange = (event) => {
-    event.target.name === "quiz" &&
+    const idInput = event.target.id;
+    const value = event.target.value;
+    const nameInput = event.target.name;
+    if (nameInput === "answer") {
+      let answer = {};
+      selectAnswers.forEach(
+        (item, idx) =>
+          idInput === item &&
+          (answer = {
+            [`answers[${idx}][answer]`]: value,
+          })
+      );
+      return setCurrentQuestion((prevState) => ({
+        ...prevState,
+        ...answer,
+      }));
+    }
+    nameInput === "quiz" &&
       setCurrentQuiz((prevState) => ({
         ...prevState,
-        quizName: event.target.value,
+        quizName: value,
       }));
-    event.target.name === "question" &&
+    nameInput === "question" &&
       setCurrentQuestion((prevState) => ({
         ...prevState,
-        question: event.target.value,
+        question: value,
+      }));
+    nameInput === "categories" &&
+      setCurrentQuiz((prevState) => ({
+        ...prevState,
+        quizCategory: value,
       }));
   };
 
@@ -83,13 +105,11 @@ const CreateQuizPage = () => {
               currentQuestion={currentQuestion}
               setCurrentQuestion={setCurrentQuestion}
               handleQuizChange={handleQuizChange}
-              quiz={currentQuiz}
-              handleChangeAnswer={handleChangeAnswer}
-              currentValue={isValue}
+              selectAnswers={selectAnswers}
             />
             <SelectAttributeCard
               changeAttribute={handleRadioChange}
-              changeCategory={handleSelectCategory}
+              changeCategory={handleQuizChange}
               categories={allCategories}
               quiz={currentQuiz}
               question={currentQuestion}
@@ -116,6 +136,21 @@ const CreateQuizPage = () => {
             />
           </>
         )}
+        <QuestionsList />
+        <QuestionCard
+          currentQuestion={currentQuestion}
+          setCurrentQuestion={setCurrentQuestion}
+          handleQuizChange={handleQuizChange}
+          quiz={currentQuiz}
+          selectAnswers={selectAnswers}
+        />
+        <SelectAttributeCard
+          quiz={currentQuiz}
+          question={currentQuestion}
+          changeAttribute={handleRadioChange}
+          changeCategory={handleSelectCategory}
+          categories={allCategories}
+        />
       </SectionWrapper>
     </PageWrapper>
   );

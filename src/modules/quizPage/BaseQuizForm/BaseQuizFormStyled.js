@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const PageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-`;
-
 export const QuizeBox = styled.div`
   width: 335px;
   background-color: var(--second-background);

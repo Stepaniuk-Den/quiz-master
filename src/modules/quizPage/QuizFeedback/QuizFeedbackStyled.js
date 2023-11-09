@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 
 export const FormContainer = styled.div`
-  position: relative;
+position: relative;
   box-sizing: border-box;
   margin-bottom: 155px;
   margin-top: 155px;
@@ -147,24 +147,4 @@ export const ErrorsStyled = styled.div`
   line-height: 1.1;
   color: var(--pink-color);
   text-align: center;
-`;
-export const SplashImg = styled.img`
-  position: absolute;
-  top: 55.5%;
-  right: 41%;
-  width: 343px;
-  height: 325px;
-  max-width: 100%;
-
-  @media (min-width: 768px) {
-    top: 46%;
-    right: 51%;
-    width: 470px;
-    height: 445px;
-  }
-
-  @media (min-width: 1440px) {
-    top: 45%;
-    right: 53.6%;
-  }
 `;
