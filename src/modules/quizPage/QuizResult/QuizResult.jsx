@@ -14,7 +14,7 @@ import { useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { createReviewQuizThunk } from "../../../redux/feedback/feedbackThunks";
 import StarIcon from "@mui/icons-material/Star";
-import {notifyRateAddSuccess} from "../../../shared/NotificationToastify/Toasts";
+import { notifyRateAddSuccess } from "../../../shared/NotificationToastify/Toasts";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 
@@ -25,10 +25,8 @@ const QuizResult = () => {
   const correctAnswersCount = searchParams.get("correctAnswersCount");
   const totalQuestions = searchParams.get("totalQuestions");
   const inputValue = searchParams.get("inputValue");
-  const {quizId} = useParams();
+  const { quizId } = useParams();
   const [value, setValue] = useState(0);
-  console.log("result", quizId)
- 
   const navigate = useNavigate();
   const backLink = useRef(location.state?.from);
 
@@ -70,7 +68,9 @@ const QuizResult = () => {
         />
       </RatingBox>
 
-      <BtnWriteReviewLink to={`/quiz/${quizId}/quizfeedback?inputValue=${inputValue}`}>
+      <BtnWriteReviewLink
+        to={`/quiz/${quizId}/quizfeedback?inputValue=${inputValue}`}
+      >
         Write a review
       </BtnWriteReviewLink>
     </QuizeBox>

@@ -6,6 +6,7 @@ export const FormContainer = styled.div`
   position: relative;
   box-sizing: border-box;
   margin-bottom: 155px;
+  margin-top: 155px;
   padding: 40px 20px;
   max-width: 335px;
   width: 100%;
@@ -20,6 +21,7 @@ export const FormContainer = styled.div`
     max-width: 481px;
     height: 460px;
     margin-bottom: 170px;
+    margin-top: 170px;
     padding: 60px 80px;
   }
 `;
@@ -163,21 +165,21 @@ export const ErrorsStyled = styled.div`
 `;
 export const SplashImg = styled.img`
   position: absolute;
-  top: 47%;
+  top: 55.5%;
   right: 41%;
   width: 343px;
   height: 325px;
   max-width: 100%;
 
   @media (min-width: 768px) {
-    top: 39.5%;
+    top: 46%;
     right: 51%;
     width: 470px;
     height: 445px;
   }
 
   @media (min-width: 1440px) {
-    top: 38%;
+    top: 45%;
     right: 53.6%;
   }
 `;
