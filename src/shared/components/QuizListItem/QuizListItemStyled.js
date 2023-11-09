@@ -50,7 +50,7 @@ export const FiUsersS = styled(FiUsers)`
   stroke: #f4f4f4;
 `;
 
-export const UsersNumber = styled.p`
+export const UsersNumber = styled.div`
   margin: 0;
   padding: 0;
   display: block;  

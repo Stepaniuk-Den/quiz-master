@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
-import { FaStar } from "react-icons/fa";
 
 export const FormContainer = styled.div`
   position: relative;
@@ -68,26 +67,12 @@ export const TextRating = styled.h3`
   font-size: 16px;
   font-family: "GilroyRegular";
   font-weight: 400;
-  line-height: 16px;
+  line-height: 22px;
   margin-right: 8px;
 `;
 export const StarBtn = styled.button`
   background-color: transparent;
   line-height: 10px;
-`;
-export const RateStar = styled(FaStar)`
-  color: ${(props) =>
-    props.selected ? "var(--star-color-100)" : "var(--star-color-8)"};
-  width: 19px;
-  height: 18px;
-  cursor: pointer;
-  transition: transform 250ms linear;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.2);
-    transition: transform 250ms linear;
-  }
 `;
 export const FormTextarea = styled.textarea`
   height: 100%;

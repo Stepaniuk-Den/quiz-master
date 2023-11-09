@@ -6,6 +6,11 @@ export const PageWrapper = styled.div`
   align-items: center;
 `;
 
+export const Container = styled.div`
+      max-width: 1240px;
+  margin-left:auto;
+  margin-right: auto;
+`
 
 export const BackBox = styled.div`
   margin: 48px 0 30px;
