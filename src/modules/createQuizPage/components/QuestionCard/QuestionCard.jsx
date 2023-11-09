@@ -20,6 +20,7 @@ import {
   StyledTimeWrapper,
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
+import { useMediaQuery } from "react-responsive";
 
 const QuestionCard = ({
   currentQuestion,
@@ -101,6 +102,10 @@ const QuestionCard = ({
     }));
   };
 
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1439px)" });
+  const isDesktop = useMediaQuery({ query: "(min-width: 1440px)" });
+
   return (
     <StyledQuestionWrapper>
       <StyledInputTheme
@@ -111,14 +116,20 @@ const QuestionCard = ({
         onChange={handleQuizChange}
       />
       <StyledQuestionCard>
-        <StyledImageNumberBlock>
+        {isDesktop ? (
+          <StyledImageNumberBlock>
+            <ImageWrapper>
+              <StyledPlus />
+            </ImageWrapper>
+            <p>
+              {questionNumber}/{allQuestions}
+            </p>
+          </StyledImageNumberBlock>
+        ) : (
           <ImageWrapper>
             <StyledPlus />
           </ImageWrapper>
-          <p>
-            {questionNumber}/{allQuestions}
-          </p>
-        </StyledImageNumberBlock>
+        )}
         <StyledQuestion>
           <StyledTimeWrapper>
             <p>Time:</p>
@@ -169,6 +180,11 @@ const QuestionCard = ({
             <StyledBtnCancel>Cancel</StyledBtnCancel>
           </BtnContainer>
         </StyledQuestion>
+        {isDesktop ? null : (
+          <p>
+            {questionNumber}/{allQuestions}
+          </p>
+        )}
       </StyledQuestionCard>
     </StyledQuestionWrapper>
   );
