@@ -28,8 +28,7 @@ const QuestionCard = ({
   setCurrentQuestion,
   handleQuizChange,
   quiz,
-  handleChangeAnswer,
-  currentValue,
+  selectAnswers,
 }) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
@@ -54,8 +53,6 @@ const QuestionCard = ({
   };
 
   const timeInSeconds = [30, 45, 60, 75, 90, 105, 120];
-  const selectAnswers =
-    currentQuestion.quizType === "quiz" ? ["A", "C", "B", "D"] : ["A", "C"];
 
   useEffect(() => {
     const handleDocumentTimeClick = (event) => {
@@ -85,18 +82,28 @@ const QuestionCard = ({
     }));
   };
 
-  const handleRadioChange = (event) => {
+  const handleRadioAnswer = (event) => {
     const value = event.target.id;
+
     setChecked(value);
     let fields = {};
-    selectAnswers.forEach(
-      (item, idx) =>
-        (fields = {
+    if (currentQuestion.type === "quiz") {
+      selectAnswers.forEach((item, idx) => {
+        fields = {
           ...fields,
-          [`answers[${idx}][answer]`]: idx === 0 ? "True" : "False",
           [`answers[${idx}][correctAnswer]`]: value === item ? true : false,
-        })
-    );
+        };
+      });
+    } else {
+      selectAnswers.forEach(
+        (item, idx) =>
+          (fields = {
+            ...fields,
+            [`answers[${idx}][answer]`]: idx === 0 ? "True" : "False",
+            [`answers[${idx}][correctAnswer]`]: value === item ? true : false,
+          })
+      );
+    }
     setCurrentQuestion((prevState) => ({
       ...prevState,
       ...fields,
@@ -164,15 +171,16 @@ const QuestionCard = ({
             onChange={handleQuizChange}
           />
           <AnswerCardContainer>
-            {selectAnswers.map((el) => (
+            {selectAnswers?.map((el) => (
               <AnswerCard
                 key={el}
                 letter={el}
                 checked={isChecked}
-                changeAttribute={handleRadioChange}
-                quizType={currentQuestion.quizType}
-                changeAnswer={handleChangeAnswer}
-                currentValue={currentValue}
+                changeAttribute={handleRadioAnswer}
+                type={currentQuestion.type}
+                handleQuizChange={handleQuizChange}
+                currentQuestion={currentQuestion}
+                selectAnswers={selectAnswers}
               />
             ))}
           </AnswerCardContainer>
