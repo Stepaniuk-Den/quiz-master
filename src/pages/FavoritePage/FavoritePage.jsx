@@ -21,7 +21,7 @@ const FavoritePage = () => {
     };
   }, [dispatch]);
 
-  const allFavoriteQuizes = useSelector(selectFavorite);
+  const allFavoriteQuizes = useSelector(selectFavorite);  
   const allFavoriteQuizesQty = useSelector(selectFavoriteQty);
   const [page, setPage] = useState(2);
   const [search, setSearch] = useState("");
