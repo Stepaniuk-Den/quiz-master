@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ButtonSeeAll from "../../shared/components/Buttons/ButtonSeeAll";
 import UserStats from "../../modules/homepage/components/UserStats"
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar";

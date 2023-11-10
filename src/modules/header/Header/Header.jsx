@@ -10,7 +10,6 @@ import {
   Logo,
   NavItem,
   NavList,
-  Up,
   Down,
   UserName,
   BoxAuth,

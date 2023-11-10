@@ -23,8 +23,8 @@ function QuestionsList({ setCurrentQuestion, currentQuestion }) {
   };
 
   const handleDeleteOption = (id) => {
-    const updatedOptions = selectedOptions.filter((option) => option.id !== id);
-    // setSelectedOptions(updatedOptions);
+selectedOptions.filter((option) => option.id !== id);
+
 
     /* зробити запит на видалення, перед цим додати на кнопку видалення id запитання */
   };

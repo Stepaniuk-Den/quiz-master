@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FiMessageCircle, FiLogOut, FiSettings, FiChevronDown, FiChevronUp } from "react-icons/fi"
+import { FiMessageCircle, FiLogOut, FiSettings, FiChevronDown } from "react-icons/fi"
 import { NavLink } from 'react-router-dom';
 
 

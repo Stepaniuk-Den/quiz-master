@@ -1,6 +1,4 @@
 import {
-  FiChevronDown,
-  FiChevronUp,
   FiLogOut,
   FiMessageCircle,
   FiSettings,
