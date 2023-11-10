@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import StarIcon from "@mui/icons-material/Star";
 import {
   ErrorsStyled,
   FormContainer,
@@ -11,10 +12,9 @@ import {
   SendBtn,
   TextRating,
 } from "./FeedbackFormStyled";
-import StarIcon from "@mui/icons-material/Star";
 import { createReviewThunk } from "../../../redux/feedback/feedbackThunks";
-import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 import { selectUser } from "../../../redux/user/userSelectors";
+import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 import { RatingS } from "../../discoverPage/components/RatingStarsRadio/RatingStarsRadioStyled";
 
 const FeedbackForm = ({ onSendClick }) => {
@@ -41,7 +41,6 @@ const FeedbackForm = ({ onSendClick }) => {
         rate: value,
         comment: values.feedback,
       };
-      console.log(reviewData);
       try {
         await dispatch(createReviewThunk(reviewData));
         onSendClick();

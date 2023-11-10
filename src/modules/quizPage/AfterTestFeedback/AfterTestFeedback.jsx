@@ -1,25 +1,25 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { CloseBtn, CloseBtnContainer, FormContainer, FormWrapper, SplashImg, TextThanks, TitleThanks, ToMainPageBtn } from "./AfterTestFeedbackStyled";
-import backgroundImg from "../../../shared/images/desktop/question-desktop@2x.png";
 import { useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  CloseBtn,
+  CloseBtnContainer,
+  FormContainer,
+  FormWrapper,
+  TextThanks,
+  TitleThanks,
+  ToMainPageBtn,
+} from "./AfterTestFeedbackStyled";
 
-
-const AfterTestFeedback = ({ to }) => {
+const AfterTestFeedback = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const backLink = useRef(location.state?.from);
 
   const handleClick = () => {
-    // if (to) {
-    //   navigate(to);
-    // } else {
-    //   navigate(-1);
-    // }
     navigate(backLink.current ?? "/");
   };
   return (
     <>
-      <SplashImg src={backgroundImg} alt="splash" loading="lazy" />
       <FormContainer>
         <CloseBtnContainer onClick={handleClick}>
           <CloseBtn />

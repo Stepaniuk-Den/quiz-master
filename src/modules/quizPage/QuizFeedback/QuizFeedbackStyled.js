@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 
 export const FormContainer = styled.div`
-position: relative;
+  position: relative;
   box-sizing: border-box;
   margin-bottom: 155px;
   margin-top: 102px;
@@ -24,7 +24,7 @@ position: relative;
   }
 
   @media (min-width: 1440px) {
-    /* margin-top: 106px; */
+    margin-top: 170px;
   }
 `;
 

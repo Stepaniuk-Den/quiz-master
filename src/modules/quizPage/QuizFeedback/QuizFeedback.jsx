@@ -1,9 +1,11 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
+import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import StarIcon from "@mui/icons-material/Star";
 import {
   CloseBtn,
   CloseBtnContainer,
@@ -17,12 +19,10 @@ import {
   SendBtn,
   TextRating,
 } from "./QuizFeedbackStyled";
-import StarIcon from "@mui/icons-material/Star";
 import { selectUser } from "../../../redux/user/userSelectors";
 import { createQuizReviewThunk } from "../../../redux/feedback/feedbackThunks";
-import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 import { useAuth } from "../../../hooks/useAuth";
-import { useRef } from "react";
+import { notifyError } from "../../../shared/NotificationToastify/Toasts";
 import { RatingS } from "../../discoverPage/components/RatingStarsRadio/RatingStarsRadioStyled";
 
 const QuizFeedback = ({ to }) => {
@@ -38,11 +38,6 @@ const QuizFeedback = ({ to }) => {
   const [value, setValue] = useState(0);
 
   const handleClick = () => {
-    // if (to) {
-    //   navigate(to);
-    // } else {
-    //   navigate(-1);
-    // }
     navigate(backLink.current ?? "/");
   };
 
@@ -69,7 +64,6 @@ const QuizFeedback = ({ to }) => {
       try {
         await dispatch(createQuizReviewThunk({ quizId, reviewData }));
         navigate(`/quiz/${quizId}/aftertestfeedback`);
-        console.log("feedback", quizId);
       } catch (error) {
         notifyError(error);
       }
