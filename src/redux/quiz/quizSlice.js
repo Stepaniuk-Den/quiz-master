@@ -59,7 +59,6 @@ const quizSlice = createSlice({
       state.quizzes.filtered = action.payload;
     },
     updateFilteredQty: (state, action) => {
-      console.log('action: ', action.payload);
       state.quizzes.filteredQty = action.payload;
     },
     updateFavorite: (state, action) => {
