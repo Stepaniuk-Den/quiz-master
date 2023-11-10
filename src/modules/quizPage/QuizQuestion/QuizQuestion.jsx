@@ -192,7 +192,7 @@ const falseIndexes = answers
   return () => {
     clearTimeout(timer);
   };
-}, [question, currentQuestion, isAnswerSelected, timeRemaining]);
+}, [question, currentQuestion, isAnswerSelected, timeRemaining, questions, answers]);
 
 
   return (

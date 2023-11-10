@@ -4,9 +4,7 @@ import {
   ButtonStart,
   Category,
   InputName,
-  PageWrapper,
   QuizeBox,
-  SplashWrapS,
   Title,
 } from "./BaseQuizFormStyled";
 import { useSelector } from "react-redux";
@@ -51,5 +49,5 @@ const BaseQuizForm = () => {
       </>
   );
 };
-// disabled = { isButtonDisabled };
+
 export default BaseQuizForm;

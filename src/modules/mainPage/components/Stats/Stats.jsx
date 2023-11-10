@@ -13,7 +13,7 @@ const total = useSelector(selectTotal);
     if (total === null) {
       dispatch(getTotalPassedThunk())
     }
-  }, [total]);
+  }, [dispatch,total]);
 
 
 
