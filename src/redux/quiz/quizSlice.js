@@ -32,7 +32,7 @@ const initialState = {
     ownQuizesQty: null,
     favorites: [],
     favoritesQty: null,
-    total: 129865,
+    total: null,
   },
   filters: null,
 
