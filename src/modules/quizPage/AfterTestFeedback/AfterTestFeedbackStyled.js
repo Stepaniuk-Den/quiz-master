@@ -44,7 +44,7 @@ export const TextThanks = styled.p`
   color: var(--text-color-60);
   font-size: 15px;
   font-family: "GilroyRegular";
-  line-height: 16px;
+  line-height: 20px;
 `;
 export const ToMainPageBtn = styled.button`
   color: inherit;
