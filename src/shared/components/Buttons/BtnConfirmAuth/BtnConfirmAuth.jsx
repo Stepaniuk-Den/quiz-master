@@ -4,7 +4,7 @@ import { BtnConfirmAuthS } from "./BtnConfirmAuthS";
 const BtnConfirmAuth = ({ children }) => {
   return (
     <>
-      <BtnConfirmAuthS>{children}</BtnConfirmAuthS>
+      <BtnConfirmAuthS type="submit">{children}</BtnConfirmAuthS>
     </>
   );
 };
