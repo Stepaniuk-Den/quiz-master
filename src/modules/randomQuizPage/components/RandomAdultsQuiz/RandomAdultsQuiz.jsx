@@ -10,14 +10,11 @@ import {
   RandomASectionWrapper,
 } from "./RandomAdults&ChildrenQuizStyled";
 import { useDispatch } from "react-redux";
-//import { selectRandomAdult } from "../../../../redux/selectors";
 import { getRandomQuizzesThunk } from "../../../../redux/quiz/quizThunks";
 
 const RandomAdultsQuiz = ({ adultsRandomQuizzes }) => {
   const dispatch = useDispatch();
-  //const [page, setPage] = useState(1);
   const [visibleQuizzes, setVisibleQuizzes] = useState(7);
-  //const randomAdultsQuizzes = useSelector(selectRandomAdult);
 
   useEffect(() => {
     if (adultsRandomQuizzes.length === 0) {
@@ -30,26 +27,8 @@ const RandomAdultsQuiz = ({ adultsRandomQuizzes }) => {
   }, [dispatch]);
 
   const loadMore = () => {
-    //setPage((page) => page + 1);
     setVisibleQuizzes(visibleQuizzes + 8);
-    console.log("u cliked Load more btn");
   };
-
-  // const filter = (quizzes) => {
-  //   const uniqueQuizzes = [];
-  //   const seenIds = new Set();
-
-  //   for (const randomQuiz of quizzes) {
-  //     if (!seenIds.has(randomQuiz._id)) {
-  //       uniqueQuizzes.push(randomQuiz);
-  //       seenIds.add(randomQuiz._id);
-  //     }
-  //   }
-  //   return uniqueQuizzes;
-  // };
-  // const uniqueAdultsRandomQuizzes = filter(adultsRandomQuizzes);
-  // console.log(uniqueAdultsRandomQuizzes);
-  // const shouldLoadMore = uniqueAdultsRandomQuizzes?.length < 7;
 
   return (
     <RandomAPageWrapper>
@@ -65,7 +44,6 @@ const RandomAdultsQuiz = ({ adultsRandomQuizzes }) => {
       <RandomASectionWrapper>
         <QuizesList quizzesArr={adultsRandomQuizzes.slice(0, visibleQuizzes)} />
         <RandomABtnWrapper>
-          {/* {shouldLoadMore ? null : <BtnLoadMore handleLoadMore={loadMore} />} */}
           <BtnLoadMore handleLoadMore={loadMore} />
         </RandomABtnWrapper>
       </RandomASectionWrapper>
