@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
 export const RandomAPageWrapper = styled.div`
-  //outline: 1px solid green;
   padding: 80px 0 0;
-  //display: flex;
-  //flex-direction: column;
-  //align-items: center;
 `;
 
 export const RandomASectionWrapper = styled.section`
-  //outline: 1px solid red;
   width: 100%;
-  //max-width: 1240px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media only screen and (min-width: 768px){
+    max-width:704px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media only screen and (min-width: 1440px){
+    max-width: 100%;
+    margin: 0;
+  }
 `;
 
 
