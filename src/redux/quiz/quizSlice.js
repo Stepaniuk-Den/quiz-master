@@ -43,45 +43,8 @@ const initialState = {
   allCategories: null,
 
   categoryType: {
-    adult: [
-      // {
-      //   _id: "65398ba45191746edd43494c",
-      //   categoryName: "Cars",
-      //   categoryType: "adults",
-      // },
-      // {
-      //   _id: "65398bca5191746edd43494f",
-      //   categoryName: "Architecture",
-      //   categoryType: "adults",
-      // },
-      // {
-      //   _id: "65398bdb5191746edd434952",
-      //   categoryName: "Science",
-      //   categoryType: "adults",
-      // },
-      // {
-      //   _id: "65398beb5191746edd434955",
-      //   categoryName: "History",
-      //   categoryType: "adults",
-      // },
-    ],
-    children: [
-      // {
-      //   _id: "65398dc95191746edd434974",
-      //   categoryName: "Nature",
-      //   categoryType: "children",
-      // },
-      // {
-      //   _id: "65398e175191746edd43497d",
-      //   categoryName: "Comics",
-      //   categoryType: "children",
-      // },
-      // {
-      //   _id: "65398e365191746edd434980",
-      //   categoryName: "Literature",
-      //   categoryType: "children",
-      // },
-    ],
+    adult: [],
+    children: [],
   },
 };
 
@@ -94,6 +57,10 @@ const quizSlice = createSlice({
     },
     updateFiltered: (state, action) => {
       state.quizzes.filtered = action.payload;
+    },
+    updateFilteredQty: (state, action) => {
+      console.log('action: ', action.payload);
+      state.quizzes.filteredQty = action.payload;
     },
     updateFavorite: (state, action) => {
       state.quizzes.favorites = action.payload;
@@ -157,11 +124,7 @@ const quizSlice = createSlice({
         }
         state.quizzes.total += 1;
       })
-      .addCase(updateQuizThunk.fulfilled, (state, action) => {
-        // const newUserQuizzes = state.quizzes.user.filter(
-        //   (quiz) => quiz.id !== action.payload.id
-        // );
-        // state.quizzes.user = [...newUserQuizzes, action.payload];
+      .addCase(updateQuizThunk.fulfilled, (state, action) => {        
       })
       .addCase(updateFavoriteQuizThunk.fulfilled, (state, action) => {
         notifyBtnHeartSuccess();
@@ -183,6 +146,6 @@ const quizSlice = createSlice({
   },
 });
 
-export const { setFilter, updateFiltered, updateFavorite, updateOwnQuizes } =
+export const { setFilter, updateFiltered, updateFavorite, updateOwnQuizes, updateFilteredQty } =
   quizSlice.actions;
 export const quizReducer = quizSlice.reducer;
