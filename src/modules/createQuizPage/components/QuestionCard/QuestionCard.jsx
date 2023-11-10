@@ -22,6 +22,8 @@ import {
 } from "./QuestionCard.styled";
 import AnswerCard from "../AnswerCard/AnswerCard";
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
+import { currentCreated } from "../../../../redux/selectors";
 
 const QuestionCard = ({
   currentQuestion,
@@ -29,10 +31,13 @@ const QuestionCard = ({
   handleQuizChange,
   quiz,
   selectAnswers,
+  handleSubmit,
 }) => {
   const [isDropdownTimeOpen, setDropdownTimeOpen] = useState(false);
   const [isCurrentTime, setIsCurrentTime] = useState(null);
   const [isChecked, setChecked] = useState("");
+  const currentQuiz = useSelector(currentCreated);
+  const isDesktop = useMediaQuery({ query: "(min-width: 1440px)" });
 
   const questionNumber = 7;
   const allQuestions = 10;
@@ -110,9 +115,7 @@ const QuestionCard = ({
     }));
   };
 
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
-  const isTablet = useMediaQuery({ query: "(max-width: 1439px)" });
-  const isDesktop = useMediaQuery({ query: "(min-width: 1440px)" });
+  
 
   return (
     <StyledQuestionWrapper>
@@ -186,7 +189,9 @@ const QuestionCard = ({
           </AnswerCardContainer>
           {isDesktop ? (
             <BtnContainer>
-              <StyledBtnSave>Save</StyledBtnSave>
+              <StyledBtnSave onClick={handleSubmit} data-id={currentQuiz?._id}>
+                Save
+              </StyledBtnSave>
               <StyledBtnCancel>Cancel</StyledBtnCancel>
             </BtnContainer>
           ) : null}
@@ -196,7 +201,9 @@ const QuestionCard = ({
             <StyledQuestionNumber>
               {questionNumber}/{allQuestions}
             </StyledQuestionNumber>
-            <StyledBtnSave>Save</StyledBtnSave>
+            <StyledBtnSave onClick={handleSubmit} data-id={currentQuiz?._id}>
+              Save
+            </StyledBtnSave>
             <StyledBtnCancel>Cancel</StyledBtnCancel>
           </BtnContainer>
         )}

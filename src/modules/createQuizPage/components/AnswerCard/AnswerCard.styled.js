@@ -3,16 +3,15 @@ import styled from "styled-components";
 export const StyledAnswerWrapper = styled.li`
   display: flex;
   width: 100%;
-  height: ${(props) => (props.quiz === "quiz" ? '68px' : '44px')};
+  height: ${(props) => (props.$quiz === "quiz" ? "68px" : "44px")};
   padding: 14px 18px;
   font-size: 14px;
-    letter-spacing: -0.14px;
-  border-radius: ${(props) => (props.quiz === "quiz" ? '15px' : '30px')};
+  letter-spacing: -0.14px;
+  border-radius: ${(props) => (props.$quiz === "quiz" ? "15px" : "30px")};
   border: 1px solid var(--border-color-60);
 
   @media only screen and (min-width: 375px) {
     width: 139px;
-
   }
 
   @media only screen and (min-width: 768px) {
@@ -22,8 +21,8 @@ export const StyledAnswerWrapper = styled.li`
   }
 
   @media only screen and (min-width: 1440px) {
-  align-items: start;
-  width: 222px;
+    align-items: start;
+    width: 222px;
   }
 `;
 
@@ -68,10 +67,10 @@ export const StyledLabelAnswer = styled.label`
 `;
 
 export const StyledAnswerBoolean = styled.p`
-display: flex;
-width: 80%;
-padding: 0 2px;
-margin-left: 2px;
+  display: flex;
+  width: 80%;
+  padding: 0 2px;
+  margin-left: 2px;
 `;
 
 export const StyledTextareaAnswer = styled.textarea`
@@ -96,7 +95,7 @@ export const StyledInputRadio = styled.input`
   position: absolute;
   z-index: 1;
   right: 0;
-    top: 1px;
+  top: 1px;
   opacity: 0;
   cursor: pointer;
 `;
