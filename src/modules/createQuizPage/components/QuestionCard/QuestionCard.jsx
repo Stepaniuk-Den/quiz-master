@@ -39,7 +39,7 @@ const QuestionCard = ({
   const currentQuiz = useSelector(currentCreated);
   const isDesktop = useMediaQuery({ query: "(min-width: 1440px)" });
 
-  const questionNumber = 7;
+  const questionNumber = 1;
   const allQuestions = 10;
 
   const dropdownRef = useRef(null);
