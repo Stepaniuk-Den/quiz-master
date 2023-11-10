@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import {
   AvatarImg,
-  AddButton,
+  AddAvatarButton,
   IconPlus,
   IconWrapper,
   BtnEyeStyled,
@@ -67,10 +67,6 @@ const UserProfileForm = () => {
             email: Yup.string()
                 .email("Invalid email address")
                 .required("Email address is required"),
-            // password: Yup.string()
-            //   .min(6, "Enter at least 6 characters")
-            //   .max(20, "Must be maximum 20 characters")
-            //   .required("Password is required"),
         }),
 
         onSubmit: (values) => {
@@ -119,7 +115,7 @@ const UserProfileForm = () => {
                         : ""}
                 </AvatarImg>
             )}
-            <AddButton type="submit">
+            <AddAvatarButton type="submit">
                 <label htmlFor="avatar-upload">
                     <IconWrapper className="bi-wrapper">
                         <IconPlus className="bi-btn" />
@@ -132,7 +128,7 @@ const UserProfileForm = () => {
                     style={{ display: "none" }}
                     onChange={handleFileChange}
                 />
-            </AddButton>
+            </AddAvatarButton>
         </AvatarWrapper>
         <FormStyled onSubmit={formik.handleSubmit}>
             <InputsWrapper>
