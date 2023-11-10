@@ -17,7 +17,6 @@ const QuizeSearch = ({ filteredQuizeCards }) => {
       <InputStyled
         placeholder="Search"
         name="quizCollectionName"
-        // value={quizCollectionName}
         type="text"
         autoComplete="on"
         autoFocus
