@@ -26,13 +26,17 @@ export const BtnConfirmSettingsS = styled.button`
     background-color: transparent;
     cursor: not-allowed;
     border: 1px solid var(--text-color-60);
-    font-size: 16px;;
+    color: var(--text-color-60);
     transform: scale(1);
     }
   
   @media screen and (max-width: 768px) {
     max-width: 295px;
     font-size: 14px;
-  line-height: 1.1;
+    line-height: 1.1;
+
+  &.isDisabled {
+    font-size: 14px;;
+    }
   }
 `;

@@ -3,21 +3,21 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import { BiPlus } from "react-icons/bi";
 
 export const SettingForm = styled.div`
-    display: flex;
-    justify-content: center;
-    max-width: 580px;
-    width: 100%;
-    align-items: center;
-    flex-direction: column;
-    padding: 50px 150px;
-    border: 1px solid var(--text-color-30);
-    border-radius: 20px;
-    background-color: var(--second-background);
-    margin-bottom: 53px;
+  display: flex;
+  justify-content: center;
+  max-width: 580px;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 150px;
+  border: 1px solid var(--text-color-30);
+  border-radius: 20px;
+  background-color: var(--second-background);
+  margin-bottom: 53px;
   
-    @media screen and (max-width: 768px) {
-      max-width: 335px;
-      padding: 40px 20px;
+  @media screen and (max-width: 768px) {
+    max-width: 335px;
+    padding: 40px 20px;
     }
   `;
 
@@ -43,7 +43,7 @@ export const AvatarWrapper = styled.div`
   position: relative;
 `;
 
-export const AddButton = styled.button`
+export const AddAvatarButton = styled.button`
   position: absolute;
   left: 35px;
   width: 30px;
@@ -56,7 +56,7 @@ export const AddButton = styled.button`
   background-color: var(--blue-background);
   border-radius: 50%;
   border-color: var(--text-color-100);
-  cursor: pointer;
+
   &:hover {
     & .bi-btn {
       scale: 1.2;
@@ -79,6 +79,7 @@ export const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   `;
 
 export const FormStyled = styled.form`
