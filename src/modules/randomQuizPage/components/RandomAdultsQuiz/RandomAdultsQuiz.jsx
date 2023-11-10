@@ -32,8 +32,8 @@ const RandomAdultsQuiz = ({ adultsRandomQuizzes }) => {
 
   return (
     <RandomAPageWrapper>
-      <PageTitle>For Adults</PageTitle>
       <RandomAPageDesc>
+        <PageTitle>For Adults</PageTitle>
         <Paragraph>
           Dive deep into a world of intriguing quizzes tailored for adults. From
           cinema to logic, challenge your knowledge and discover where your
