@@ -32,7 +32,7 @@ export async function getUserQuizzes(page=1) {
 }
 
 export async function getTotalPassed() {
-  const { data } = await instance.get("quiz/total");
+  const { data } = await instance.get("quizzes/total");
   return data;
 }
 
