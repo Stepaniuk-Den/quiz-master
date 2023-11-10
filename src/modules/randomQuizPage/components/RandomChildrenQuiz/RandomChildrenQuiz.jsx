@@ -32,8 +32,8 @@ const RandomChildrenQuiz = ({ childrenRandomQuizzes }) => {
 
   return (
     <RandomAPageWrapper>
-      <PageTitle>For Children</PageTitle>
       <RandomAPageDesc>
+        <PageTitle>For Children</PageTitle>
         <Paragraph>
           Engaging and fun quizzes designed specifically for kids. Dive into a
           world of colorful questions on movies, music, and much more. Perfect
