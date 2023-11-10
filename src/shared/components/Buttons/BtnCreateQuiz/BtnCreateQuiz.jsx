@@ -3,7 +3,6 @@ import { BiPlusS, BtnTitle, ButtonS, IconWrapper } from "./BtnCreateQuizStyled";
 
 const BtnCreateQuiz = () => {
   const handleCreateQuiz = () =>{
-    console.log("Clicked Create quiz");
   }
   return (
     <>

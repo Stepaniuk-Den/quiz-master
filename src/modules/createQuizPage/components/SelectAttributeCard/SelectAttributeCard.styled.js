@@ -16,9 +16,6 @@ export const SetAttributeDiv = styled.div`
   flex-wrap: wrap;
   gap: 40px;
   width: 260px;
-  /* width: 100%; */
-  /* min-width: 260px;
-  max-width: 260px; */
   margin-top: 40px;
   margin-bottom: 40px;
 
@@ -130,7 +127,6 @@ export const AttributeCategorySelect = styled.select`
   & option {
     background: var(--blue-background);
     color: var(--text-color-100);
-    //border-radius: 15px;
   }
 `;
 

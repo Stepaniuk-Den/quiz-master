@@ -15,7 +15,6 @@ export const StyledQuestionWrapper = styled.div`
 
   @media only screen and (min-width: 1440px) {
     width: 744px;
-    /* margin: 0 24px; */
   }
 `;
 

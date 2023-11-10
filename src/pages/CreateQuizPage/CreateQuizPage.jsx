@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import QuestionCard from "../../modules/createQuizPage/components/QuestionCard/QuestionCard.jsx";
 import QuestionsList from "../../modules/createQuizPage/components/QuestionsList/QuestionsList.jsx";
@@ -27,11 +26,6 @@ const CreateQuizPage = () => {
   const allCategories = useSelector(selectDiscoverAllCategories);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
-  // const location = useLocation();
-  // console.log('location: ', location.state.data);//id quiz
-
-  console.log("currentQuestion: ", currentQuestion);
-  console.log("currentQuiz: ", currentQuiz);
 
   const selectAnswers =
     currentQuestion.type === "quiz" ? ["A", "C", "B", "D"] : ["A", "C"];

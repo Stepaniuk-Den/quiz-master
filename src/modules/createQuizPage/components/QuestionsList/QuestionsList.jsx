@@ -10,22 +10,16 @@ import {
   SelectStyledQuiz,
   DropdownList,
 } from "./QuestionsList.styled";
-import { useSelector } from "react-redux";
-import { currentCreated } from "../../../../redux/selectors";
 
 function QuestionsList({ setCurrentQuestion, currentQuestion }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const currentQuiz = useSelector(currentCreated);
-  const maxOptions = 10;
+
 
   const selectedOptions =
     currentQuestion.type === "" ? [] : [currentQuestion.type];
 
   const handleAdd = (value) => {
-    // if (currentQuiz.length < maxOptions) {
     setCurrentQuestion((prevState) => ({ ...prevState, type: value }));
-    // setCurrentQuestion({ question: "", type: "" });
-    // }
   };
 
   const handleDeleteOption = (id) => {
@@ -47,7 +41,6 @@ function QuestionsList({ setCurrentQuestion, currentQuestion }) {
         {selectedOptions.map((option, index) => (
           <QuestionList key={uuidv4()}>
             {index + 1}. {option.charAt(0).toUpperCase() + option.slice(1)}
-            {/* {option.value} */}
             <span
               role="button"
               onClick={() => handleDeleteOption(option.id)}

@@ -77,7 +77,7 @@ export const StyledTextareaAnswer = styled.textarea`
   display: flex;
   padding: 0 2px;
   margin-left: 2px;
-  width: 80%;
+  width: 85%;
   justify-content: center;
   align-items: center;
   resize: none;
@@ -86,6 +86,17 @@ export const StyledTextareaAnswer = styled.textarea`
   color: var(--text-color-100);
   &::placeholder {
     color: var(--text-color-100);
+  }
+
+  @media only screen and (min-width: 375px) {
+    width: 65%;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 75%;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 80%;
   }
 `;
 

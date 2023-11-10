@@ -53,7 +53,6 @@ const SelectAttributeCard = (props) => {
           id="categories"
           value={quiz.quizCategory}
           onChange={changeCategory}
-          //defaultValue="defaultOption"
         >
           <option value="defaultOption" hidden>
             {`For ${quiz.quizType}`}
