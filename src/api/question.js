@@ -12,7 +12,6 @@ export async function addQuestion({ quizId, currentQuestion }) {
     currentQuestion,
     options
   );
-  console.log("data: ", data);
   return data;
 }
 

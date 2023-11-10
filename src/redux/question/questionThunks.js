@@ -11,7 +11,6 @@ export const addQuestionThunk = createAsyncThunk(
   async (questionData, thunkAPI) => {
     try {
       const data = await addQuestion(questionData);
-      console.log("data: ", data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

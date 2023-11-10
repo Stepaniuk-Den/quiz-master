@@ -7,7 +7,6 @@ import {
 
 const QuizeSearch = ({ filteredQuizeCards }) => {
   const handleSearchBtnClick = () => {
-    console.log("handleSearchBtnClick");
   };
   return (
     <FormWrapper>
