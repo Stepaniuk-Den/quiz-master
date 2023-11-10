@@ -1,11 +1,21 @@
 import { StyledStats } from "./Stats.styled";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectTotal } from "../../../../redux/selectors";
 import Paragraph from "../../../../shared/components/Paragraph/Paragraph";
+import { useEffect } from "react";
+import { getTotalPassedThunk } from "../../../../redux/quiz/quizThunks";
 
 function Stats() {
-  const total = useSelector(selectTotal);
+const total = useSelector(selectTotal);
+ const dispatch = useDispatch();
+  useEffect(() => {
+    if (total === null) {
+      dispatch(getTotalPassedThunk())
+    }
+  }, [total]);
+
+
 
   return (
     <StyledStats>

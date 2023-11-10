@@ -8,8 +8,7 @@ import {
 } from "../../redux/selectors";
 import { selectIsAuth } from "../../redux/user/userSelectors";
 import {
-  getRandomQuizzesThunk,
-  // getTotalPassedThunk,
+  getRandomQuizzesThunk
 } from "../../redux/quiz/quizThunks";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,9 +23,6 @@ const MainPage = () => {
   const randomAdultQuizzes = useSelector(selectRandomAdult);
   const randomChildrenQuizzes = useSelector(selectRandomChildren);
   const user = useSelector(selectIsAuth);
-
-  // dispatch(getTotalPassedThunk())
-  //  dispatch(getAllReviewsThunk())
 
   const handleChooseTest = () => {
     if (user) {

@@ -5,7 +5,7 @@ export const FormContainer = styled.div`
 position: relative;
   box-sizing: border-box;
   margin-bottom: 155px;
-  margin-top: 155px;
+  margin-top: 102px;
   padding: 40px 20px;
   max-width: 335px;
   width: 100%;
@@ -19,9 +19,12 @@ position: relative;
   @media (min-width: 768px) {
     max-width: 481px;
     height: 460px;
-    margin-bottom: 170px;
-    margin-top: 170px;
+    margin-top: 202px;
     padding: 60px 80px;
+  }
+
+  @media (min-width: 1440px) {
+    /* margin-top: 106px; */
   }
 `;
 
