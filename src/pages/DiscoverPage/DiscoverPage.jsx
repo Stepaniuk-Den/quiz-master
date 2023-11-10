@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilteredQuizzesThunk } from "../../redux/quiz/quizThunks";
-import { updateFiltered } from "../../redux/quiz/quizSlice";
+import { updateFiltered, updateFilteredQty } from "../../redux/quiz/quizSlice";
 import {
   selectDiscoverFilteredQty,
   selectDiscoverFilteredQuizes,
@@ -34,9 +34,11 @@ const DiscoverPage = () => {
       return;
     dispatch(updateFiltered([]));
     dispatch(getFilteredQuizzesThunk({ ...commonFilter }));
+    
 
     return () => {
       dispatch(updateFiltered([]));
+      dispatch(updateFilteredQty(null))
     };
   }, [dispatch, commonFilter]);
 

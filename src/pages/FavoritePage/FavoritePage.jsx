@@ -17,7 +17,7 @@ const FavoritePage = () => {
   useEffect(() => {
     dispatch(getFavoriteQuizzesThunk());
     return () => {
-      dispatch(updateFavorite([]));
+      dispatch(updateFavorite([]));      
     };
   }, [dispatch]);
 
