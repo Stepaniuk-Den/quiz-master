@@ -26,8 +26,8 @@ export const NextButton = styled.button`
   color: var(--text-color-100);
 
   &:disabled {
-    color: rgba(244, 244, 244, 0.20);
-    cursor: not-allowed; 
+    color: rgba(244, 244, 244, 0.2);
+    cursor: not-allowed;
   }
 `;
 
@@ -62,10 +62,10 @@ export const BackButton = styled.button`
   letter-spacing: -0.01em;
   color: var(--text-color-100);
   border-bottom: 2px solid var(--text-color-100);
-&:disabled {
-    color: rgba(244, 244, 244, 0.20);
-     border-bottom: 2px solid rgba(244, 244, 244, 0.20);
-    cursor: not-allowed; 
+  &:disabled {
+    color: rgba(244, 244, 244, 0.2);
+    border-bottom: 2px solid rgba(244, 244, 244, 0.2);
+    cursor: not-allowed;
   }
 `;
 
@@ -93,12 +93,13 @@ export const StyledButton = styled.button.withConfig({
   text-align: left;
   padding: 14px 0 14px 18px;
   border-radius: 30px;
-  border: 1px solid ${(props) =>
-    props.isCorrect === "correct"
-      ? "green"
-      : props.isCorrect === "incorrect"
-      ? "red"
-      : "rgba(244, 244, 244, 0.6)"};
+  border: 1px solid
+    ${(props) =>
+      props.isCorrect === "correct"
+        ? "green"
+        : props.isCorrect === "incorrect"
+        ? "red"
+        : "rgba(244, 244, 244, 0.6)"};
   cursor: pointer;
   background-color: ${(props) =>
     props.isCorrect === "correct"

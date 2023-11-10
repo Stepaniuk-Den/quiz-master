@@ -6,9 +6,13 @@ import SelectAttributeCard from "../../modules/createQuizPage/components/SelectA
 import PageTopBar from "../../shared/components/PageTopBar/PageTopBar.jsx";
 import { PageWrapper, SectionWrapper } from "./CreateQuizPage.styled.js";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuizCategoriesThunk } from "../../redux/quiz/quizThunks.js";
+import {
+  createQuizThunk,
+  getQuizCategoriesThunk,
+} from "../../redux/quiz/quizThunks.js";
 import { selectDiscoverAllCategories } from "../../redux/selectors.js";
 import { useMediaQuery } from "react-responsive";
+import { addQuestionThunk } from "../../redux/question/questionThunks.js";
 
 const CreateQuizPage = () => {
   const [currentQuiz, setCurrentQuiz] = useState({
@@ -17,17 +21,17 @@ const CreateQuizPage = () => {
   });
   const [currentQuestion, setCurrentQuestion] = useState({
     question: "",
-    type: "quiz",
+    type: "",
     /* quiz    true or false */
   });
   const allCategories = useSelector(selectDiscoverAllCategories);
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   // const location = useLocation();
   // console.log('location: ', location.state.data);//id quiz
 
-  console.log("currentQuiz: ", currentQuiz);
   console.log("currentQuestion: ", currentQuestion);
-  // console.log("isValue: ", isValue);
+  console.log("currentQuiz: ", currentQuiz);
 
   const selectAnswers =
     currentQuestion.type === "quiz" ? ["A", "C", "B", "D"] : ["A", "C"];
@@ -94,7 +98,12 @@ const CreateQuizPage = () => {
       }));
   };
 
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const handleSubmit = (event) => {
+    const quizId = event.target.dataset.id;
+    if (!quizId) dispatch(createQuizThunk(currentQuiz));
+    else dispatch(addQuestionThunk({ currentQuestion, quizId }));
+  };
+
   return (
     <PageWrapper>
       <PageTopBar titlePage="Create quize" />
@@ -105,7 +114,9 @@ const CreateQuizPage = () => {
               currentQuestion={currentQuestion}
               setCurrentQuestion={setCurrentQuestion}
               handleQuizChange={handleQuizChange}
+              quiz={currentQuiz}
               selectAnswers={selectAnswers}
+              handleSubmit={handleSubmit}
             />
             <SelectAttributeCard
               changeAttribute={handleRadioChange}
@@ -114,18 +125,24 @@ const CreateQuizPage = () => {
               quiz={currentQuiz}
               question={currentQuestion}
             />
-            <QuestionsList />
+            <QuestionsList
+              currentQuestion={currentQuestion}
+              setCurrentQuestion={setCurrentQuestion}
+            />
           </>
         ) : (
           <>
-            <QuestionsList />
+            <QuestionsList
+              currentQuestion={currentQuestion}
+              setCurrentQuestion={setCurrentQuestion}
+            />
             <QuestionCard
               currentQuestion={currentQuestion}
               setCurrentQuestion={setCurrentQuestion}
               handleQuizChange={handleQuizChange}
               quiz={currentQuiz}
-              handleChangeAnswer={handleChangeAnswer}
-              currentValue={isValue}
+              selectAnswers={selectAnswers}
+              handleSubmit={handleSubmit}
             />
             <SelectAttributeCard
               quiz={currentQuiz}
@@ -136,21 +153,6 @@ const CreateQuizPage = () => {
             />
           </>
         )}
-        <QuestionsList />
-        <QuestionCard
-          currentQuestion={currentQuestion}
-          setCurrentQuestion={setCurrentQuestion}
-          handleQuizChange={handleQuizChange}
-          quiz={currentQuiz}
-          selectAnswers={selectAnswers}
-        />
-        <SelectAttributeCard
-          quiz={currentQuiz}
-          question={currentQuestion}
-          changeAttribute={handleRadioChange}
-          changeCategory={handleSelectCategory}
-          categories={allCategories}
-        />
       </SectionWrapper>
     </PageWrapper>
   );

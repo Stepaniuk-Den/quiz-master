@@ -8,36 +8,46 @@ import {
   QuestionsWrapper,
   QuestionList,
   SelectStyledQuiz,
-  DropdownList, 
+  DropdownList,
 } from "./QuestionsList.styled";
+import { useSelector } from "react-redux";
+import { currentCreated } from "../../../../redux/selectors";
 
-
-function QuestionsList() {
-  const maxOptions = 10;
-  const [selectedOptions, setSelectedOptions] = useState([]);
+function QuestionsList({ setCurrentQuestion, currentQuestion }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const currentQuiz = useSelector(currentCreated);
+  const maxOptions = 10;
+
+  const selectedOptions =
+    currentQuestion.type === "" ? [] : [currentQuestion.type];
 
   const handleAdd = (value) => {
-    if (selectedOptions.length < maxOptions) {
-      setSelectedOptions([
-        ...selectedOptions,
-        { id: uuidv4(), value: value },
-      ]);
-    }
+    // if (currentQuiz.length < maxOptions) {
+    setCurrentQuestion((prevState) => ({ ...prevState, type: value }));
+    // setCurrentQuestion({ question: "", type: "" });
+    // }
   };
 
   const handleDeleteOption = (id) => {
     const updatedOptions = selectedOptions.filter((option) => option.id !== id);
-    setSelectedOptions(updatedOptions);
+    // setSelectedOptions(updatedOptions);
+
+    /* зробити запит на видалення, перед цим додати на кнопку видалення id запитання */
   };
 
   return (
     <QuestionsWrapper>
       <p>Questions</p>
-      <ul style={{ maxHeight: isDropdownOpen ? "200px" : "auto", overflowY: "auto" }}>
+      <ul
+        style={{
+          maxHeight: isDropdownOpen ? "200px" : "auto",
+          overflowY: "auto",
+        }}
+      >
         {selectedOptions.map((option, index) => (
-          <QuestionList key={option.id}>
-            {index + 1}. {option.value}{" "}
+          <QuestionList key={uuidv4()}>
+            {index + 1}. {option.charAt(0).toUpperCase() + option.slice(1)}
+            {/* {option.value} */}
             <span
               role="button"
               onClick={() => handleDeleteOption(option.id)}
@@ -64,12 +74,12 @@ function QuestionsList() {
         <DropdownList>
           <ul>
             <li>
-              <button onClick={() => handleAdd("Quiz")}>
+              <button onClick={() => handleAdd("quiz")}>
                 Quiz <HiArrowLongRight size={24} />
               </button>
             </li>
             <li>
-              <button onClick={() => handleAdd("True or false")}>
+              <button onClick={() => handleAdd("true or false")}>
                 True or false <HiArrowLongRight size={24} />
               </button>
             </li>

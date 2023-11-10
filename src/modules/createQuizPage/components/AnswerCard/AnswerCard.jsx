@@ -24,7 +24,7 @@ const AnswerCard = ({
   };
 
   return (
-    <StyledAnswerWrapper quiz={type === "quiz" ? "quiz" : null}>
+    <StyledAnswerWrapper $quiz={type === "quiz" ? "quiz" : null}>
       <StyledLabelAnswer htmlFor={letter}>
         <p className="letter">{letter}:</p>
         {type === "quiz" ? (
