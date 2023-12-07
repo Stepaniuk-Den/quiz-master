@@ -3,8 +3,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). To get acquainted and configure additional features refer to documentation.
 
 # Technologies
+
 React
-Redux 
+Redux
 Axios
 React Router
 Redux Persist
@@ -12,7 +13,7 @@ Styled Components
 
 ### Description of application
 
-A Quiz app that combines learning, play, and self-expression. Designed for any age and level of knowledge. The application allows both registered and non-registered users to choose and take quizzes.
+A mobile application where you can create your profile and add photos, write comments under your own or other people's photos.
 
 This app has a main page with a description and navigation elements.
 
@@ -48,22 +49,24 @@ Each quiz card contains the number of users who have taken that quiz, a heart-sh
 
 <img width="206" alt="Знімок екрана 2023-11-10 о 08 22 38" src="https://github.com/Stepaniuk-Den/quiz-master/assets/126395277/19791f9d-8972-429d-be54-b894ab039801">
 
-
-
 ## Available Scripts
 
 In the project directory, you can run:
+
 ### `npm start`
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ### `npm test`
+
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
+
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 The build is minified and the filenames include the hashes.\
@@ -71,9 +74,10 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
+
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
 ## Learn More
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
